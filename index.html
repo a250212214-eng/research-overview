@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>研究总览 · 调研纪要 数据看板</title>
+<style>
+:root {
+  --bg:#0b0e14; --panel:#131a26; --panel2:#182136; --border:#243049;
+  --text:#e8edf4; --muted:#8b98ab; --blue:#4d9fff; --gold:#ffc24d;
+  --up:#ff5d5d; --down:#2fbf71; --purple:#9d7bff; --cyan:#35d0d0;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+       background:radial-gradient(1200px 500px at 20% -10%, #16223a 0%, var(--bg) 55%) fixed;
+       color:var(--text); min-height:100vh; }
+.wrap { max-width:1140px; margin:0 auto; padding:36px 22px 60px; }
+
+/* ── 头部 ── */
+.hero { margin-bottom:26px; }
+.hero h1 { font-size:30px; font-weight:800; letter-spacing:.5px;
+           background:linear-gradient(90deg,#fff 10%,#9dc6ff 60%,#6ea8ff 100%);
+           -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero .meta { margin-top:10px; font-size:13px; color:var(--muted); display:flex; flex-wrap:wrap; gap:8px 18px; }
+.hero .meta b { color:#c9d6ea; font-weight:600; }
+.pill { display:inline-block; padding:2px 10px; border-radius:20px; font-size:12px;
+        background:rgba(77,159,255,.12); border:1px solid rgba(77,159,255,.35); color:#9dc6ff; }
+.tip { margin-top:16px; background:linear-gradient(90deg, rgba(255,194,77,.10), rgba(255,194,77,.03));
+       border:1px solid rgba(255,194,77,.3); border-radius:10px; padding:12px 16px;
+       font-size:13px; color:#e8d5a8; line-height:1.7; }
+.tip b { color:var(--gold); }
+
+/* ── 统计卡 ── */
+.stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin-bottom:26px; }
+.stat { background:linear-gradient(160deg,var(--panel2),var(--panel)); border:1px solid var(--border);
+        border-radius:12px; padding:16px 18px; position:relative; overflow:hidden; }
+.stat::after { content:""; position:absolute; right:-20px; top:-20px; width:70px; height:70px;
+               border-radius:50%; background:radial-gradient(circle, rgba(77,159,255,.18), transparent 70%); }
+.stat .k { font-size:12px; color:var(--muted); margin-bottom:7px; }
+.stat .v { font-size:24px; font-weight:800; font-family:"SF Mono",Consolas,monospace; }
+.stat .v.up { color:var(--up); } .stat .v.down { color:var(--down); } .stat .v.gold { color:var(--gold); }
+
+/* ── Tabs ── */
+.tabs { display:flex; gap:8px; margin-bottom:18px; flex-wrap:wrap; }
+.tab { padding:10px 20px; border-radius:10px; cursor:pointer; font-size:14px; font-weight:600;
+       background:var(--panel); border:1px solid var(--border); color:var(--muted); transition:all .18s; }
+.tab:hover { border-color:var(--blue); color:var(--text); }
+.tab.on { background:linear-gradient(135deg,#1d3a66,#16294d); border-color:var(--blue); color:#cfe4ff;
+          box-shadow:0 0 18px rgba(77,159,255,.25); }
+.panel { display:none; } .panel.on { display:block; animation:fade .25s ease; }
+@keyframes fade { from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+
+/* ── 面板通用 ── */
+.box { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:20px; margin-bottom:16px; }
+.box h3 { font-size:15px; color:#cfe4ff; margin-bottom:14px; padding-bottom:10px;
+          border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px; }
+.subnote { font-size:12px; color:var(--muted); margin:-6px 0 14px; line-height:1.7; }
+
+/* ── 日报列表 ── */
+.month-group { margin-bottom:16px; }
+.month-title { font-size:13px; color:var(--gold); font-weight:700; margin-bottom:8px; }
+.month-count { color:var(--muted); font-weight:400; }
+.d-list { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:8px; }
+.d-item { display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:9px;
+          background:var(--panel2); border:1px solid var(--border); text-decoration:none;
+          color:var(--text); transition:all .15s; }
+.d-item:hover { border-color:var(--blue); transform:translateX(3px); }
+.d-date { font-family:Consolas,monospace; font-size:12px; color:#9dc6ff; white-space:nowrap; }
+.d-title { font-size:13px; flex:1; }
+.d-tag { font-size:11px; color:var(--muted); border:1px solid var(--border); padding:1px 8px; border-radius:12px; }
+
+/* ── 周报 ── */
+.w-item { display:flex; align-items:center; gap:12px; padding:14px 16px; border-radius:10px;
+          background:var(--panel2); border:1px solid var(--border); text-decoration:none;
+          color:var(--text); margin-bottom:10px; transition:all .15s; }
+.w-item:hover { border-color:var(--blue); transform:translateX(3px); }
+.w-ic { font-size:20px; } .w-title { font-size:14px; font-weight:600; flex:1; }
+.w-tag { font-size:11px; color:var(--muted); border:1px solid var(--border); padding:1px 8px; border-radius:12px; }
+
+/* ── 自选股 ── */
+.toolbar { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; align-items:center; }
+.chip { padding:5px 14px; border-radius:20px; font-size:12px; cursor:pointer;
+        background:var(--panel2); border:1px solid var(--border); color:var(--muted); transition:all .15s; }
+.chip:hover { color:var(--text); border-color:var(--blue); }
+.chip.on { background:rgba(77,159,255,.16); border-color:var(--blue); color:#cfe4ff; }
+.tbl-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:10px; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th { position:sticky; top:0; background:#1a2740; color:#9dc6ff; padding:10px 8px; cursor:pointer;
+     white-space:nowrap; text-align:right; font-weight:600; user-select:none; font-size:12px; }
+th.l { text-align:left; } th:hover { color:#fff; }
+td { padding:9px 8px; border-bottom:1px solid #1c2740; text-align:right; white-space:nowrap; }
+td.l { text-align:left; } td.mono { font-family:Consolas,monospace; color:#9dc6ff; }
+.up { color:var(--up) !important; } .down { color:var(--down) !important; }
+tr:hover td { background:rgba(77,159,255,.06); }
+
+/* ── 研究积累 ── */
+.rc-stats { display:flex; gap:26px; margin-bottom:16px; flex-wrap:wrap; }
+.rc-stats .v { font-size:22px; font-weight:800; color:var(--gold); }
+.rc-stats .k { font-size:12px; color:var(--muted); }
+.bar-row { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.bar-name { width:110px; font-size:12px; color:var(--text); text-align:right; }
+.bar-track { flex:1; height:12px; background:#0e1524; border-radius:6px; overflow:hidden; }
+.bar-fill { height:100%; background:linear-gradient(90deg,#2f6bd8,#4d9fff); border-radius:6px; }
+.bar-val { width:46px; font-size:12px; color:var(--muted); font-family:Consolas,monospace; }
+.tag-cloud { display:flex; flex-wrap:wrap; gap:8px 14px; margin-top:8px; align-items:center; }
+.tag { color:#b9d4ff; }
+
+/* ── 搜索 ── */
+.search { display:flex; gap:10px; margin-bottom:14px; }
+.search input { flex:1; max-width:340px; padding:9px 14px; border-radius:9px; font-size:13px;
+      background:var(--panel2); border:1px solid var(--border); color:var(--text); outline:none; }
+.search input:focus { border-color:var(--blue); }
+
+footer { margin-top:30px; text-align:center; font-size:12px; color:#5b6a80; line-height:1.8; }
+a { color:inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <h1>📊 研究总览 · 调研纪要数据看板</h1>
+    <div class="meta">
+      <span>基准日 <b>2026-08-26 15:28</b></span>
+      <span>来源 <b>知识星球「调研纪要」</b> + <b>通达信 064 板块</b></span>
+      <span class="pill">外部浏览版</span>
+    </div>
+    <div class="tip">💡 <b>说明：</b>本页为研究总览的外部浏览版，已内嵌自选股行情快照等核心数据；
+      下方「每日日报 / 每周复盘」为完整报告入口，链接指向本机产出文件——在装有产出的电脑上点击可打开完整报告，
+      外部浏览时以快照数据为准。</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="k">每日日报</div><div class="v">27</div></div>
+    <div class="stat"><div class="k">研究积累条目</div><div class="v gold">7,520</div></div>
+    <div class="stat"><div class="k">覆盖交易日</div><div class="v">26</div></div>
+    <div class="stat"><div class="k">自选股（064）</div><div class="v">32</div></div>
+    <div class="stat"><div class="k">今日上涨 / 下跌</div><div class="v"><span class="up">15</span> / <span class="down">17</span></div></div>
+    <div class="stat"><div class="k">合计总市值</div><div class="v" style="font-size:19px">1.45万亿</div></div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab on" data-tab="daily">📰 每日日报</div>
+    <div class="tab" data-tab="watch">🎯 自选股监控</div>
+    <div class="tab" data-tab="weekly">📈 每周复盘</div>
+    <div class="tab" data-tab="research">📚 研究积累</div>
+  </div>
+
+  <!-- 每日日报 -->
+  <div class="panel on" id="p-daily">
+    <div class="box">
+      <h3>📰 每日日报 <span style="font-weight:400;font-size:12px;color:var(--muted)">共 27 期 · 按月归档</span></h3>
+      <div class="search"><input id="dailySearch" placeholder="🔍 按日期筛选，如 2026-08-25 …" oninput="filterDaily(this.value)"></div>
+      <div id="dailyList"><div class="month-group"><div class="month-title">📁 2026-08 <span class="month-count">25 期</span></div><div class="d-list"><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-25_新闻日报.html" target="_blank"><span class="d-date">2026-08-25</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-24_新闻日报.html" target="_blank"><span class="d-date">2026-08-24</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-23_新闻日报.html" target="_blank"><span class="d-date">2026-08-23</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-22_新闻日报.html" target="_blank"><span class="d-date">2026-08-22</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-21_新闻日报.html" target="_blank"><span class="d-date">2026-08-21</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-20_新闻日报.html" target="_blank"><span class="d-date">2026-08-20</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-19_新闻日报.html" target="_blank"><span class="d-date">2026-08-19</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-18_新闻日报.html" target="_blank"><span class="d-date">2026-08-18</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-17_新闻日报.html" target="_blank"><span class="d-date">2026-08-17</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-16_新闻日报.html" target="_blank"><span class="d-date">2026-08-16</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-15_新闻日报.html" target="_blank"><span class="d-date">2026-08-15</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-14_新闻日报.html" target="_blank"><span class="d-date">2026-08-14</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-13_新闻日报.html" target="_blank"><span class="d-date">2026-08-13</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-12_新闻日报.html" target="_blank"><span class="d-date">2026-08-12</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-11_新闻日报.html" target="_blank"><span class="d-date">2026-08-11</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-10_新闻日报.html" target="_blank"><span class="d-date">2026-08-10</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-09_新闻日报.html" target="_blank"><span class="d-date">2026-08-09</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-08_新闻日报.html" target="_blank"><span class="d-date">2026-08-08</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-07_新闻日报.html" target="_blank"><span class="d-date">2026-08-07</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-06_新闻日报.html" target="_blank"><span class="d-date">2026-08-06</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-05_新闻日报.html" target="_blank"><span class="d-date">2026-08-05</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-04_新闻日报.html" target="_blank"><span class="d-date">2026-08-04</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-03_新闻日报.html" target="_blank"><span class="d-date">2026-08-03</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-02_新闻日报.html" target="_blank"><span class="d-date">2026-08-02</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/调研纪要_2026-08-01_新闻日报.html" target="_blank"><span class="d-date">2026-08-01</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a></div></div><div class="month-group"><div class="month-title">📁 2026-07 <span class="month-count">2 期</span></div><div class="d-list"><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-07/调研纪要_2026-07-31_新闻日报.html" target="_blank"><span class="d-date">2026-07-31</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a><a class="d-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-07/调研纪要_2026-07-29_新闻日报.html" target="_blank"><span class="d-date">2026-07-29</span><span class="d-title">调研纪要日报</span><span class="d-tag">本地</span></a></div></div></div>
+    </div>
+  </div>
+
+  <!-- 自选股监控 -->
+  <div class="panel" id="p-watch">
+    <div class="box">
+      <h3>🎯 自选股监控 · 通达信 064 板块 <span style="font-weight:400;font-size:12px;color:var(--muted)">快照 2026-08-26 14:54:22 · 顺序与通达信一致</span></h3>
+      <div class="subnote">内嵌快照数据，来自东方财富行情 / 日K线 / 公告；红涨绿跌。近两日公告：重要 24 · 普通 36（详见本地完整页）</div>
+      <div class="toolbar">
+        <span class="chip on" data-ind="">全部 32</span>
+        <span class="chip" data-ind="电力">电力</span><span class="chip" data-ind="化学制品">化学制品</span><span class="chip" data-ind="银行Ⅱ">银行Ⅱ</span><span class="chip" data-ind="计算机设备">计算机设备</span><span class="chip" data-ind="电网设备">电网设备</span><span class="chip" data-ind="物流">物流</span><span class="chip" data-ind="光伏设备">光伏设备</span><span class="chip" data-ind="电池">电池</span><span class="chip" data-ind="工业金属">工业金属</span><span class="chip" data-ind="半导体">半导体</span><span class="chip" data-ind="房地产开发">房地产开发</span><span class="chip" data-ind="软件开发">软件开发</span><span class="chip" data-ind="通用设备">通用设备</span><span class="chip" data-ind="农化制品">农化制品</span><span class="chip" data-ind="医疗服务">医疗服务</span><span class="chip" data-ind="其他电子Ⅱ">其他电子Ⅱ</span><span class="chip" data-ind="贵金属">贵金属</span><span class="chip" data-ind="IT服务Ⅱ">IT服务Ⅱ</span><span class="chip" data-ind="自动化设备">自动化设备</span><span class="chip" data-ind="化学原料">化学原料</span><span class="chip" data-ind="能源金属">能源金属</span><span class="chip" data-ind="冶钢原料">冶钢原料</span><span class="chip" data-ind="炼化及贸易">炼化及贸易</span>
+      </div>
+      <div class="tbl-wrap">
+        <table id="wt">
+          <thead><tr>
+            <th class="l">代码</th><th class="l">名称</th><th class="l">行业</th>
+            <th data-k="price">现价</th><th data-k="chg">今日</th><th data-k="chg5">5日</th>
+            <th data-k="ytd">年初至今</th><th data-k="mktcap" class="l">总市值</th><th data-k="turnover">换手</th><th data-k="volratio">量比</th>
+          </tr></thead>
+          <tbody id="wtBody"><tr data-ind="电力" data-idx="0"><td class="l mono">000803</td><td class="l"><b>山高环能</b></td><td class="l ind-cell">电力</td><td data-v="7.28">7.28</td><td data-v="-0.41%" class="down">-0.41%</td><td data-v="+3.56%" class="up">+3.56%</td><td data-v="+1.82%" class="up">+1.82%</td><td data-v="34.0亿" class="l">34.0亿</td><td>1.41%</td><td>0.69</td></tr><tr data-ind="化学制品" data-idx="1"><td class="l mono">603822</td><td class="l"><b>ST嘉澳</b></td><td class="l ind-cell">化学制品</td><td data-v="57.08">57.08</td><td data-v="-0.73%" class="down">-0.73%</td><td data-v="+2.57%" class="up">+2.57%</td><td data-v="-40.77%" class="down">-40.77%</td><td data-v="43.9亿" class="l">43.9亿</td><td>0.63%</td><td>0.78</td></tr><tr data-ind="银行Ⅱ" data-idx="2"><td class="l mono">601009</td><td class="l"><b>南京银行</b></td><td class="l ind-cell">银行Ⅱ</td><td data-v="11.71">11.71</td><td data-v="+0.95%" class="up">+0.95%</td><td data-v="-0.43%" class="down">-0.43%</td><td data-v="+4.46%" class="up">+4.46%</td><td data-v="1,448亿" class="l">1,448亿</td><td>0.45%</td><td>0.74</td></tr><tr data-ind="计算机设备" data-idx="3"><td class="l mono">000977</td><td class="l"><b>浪潮信息</b></td><td class="l ind-cell">计算机设备</td><td data-v="73.91">73.91</td><td data-v="-0.27%" class="down">-0.27%</td><td data-v="+1.43%" class="up">+1.43%</td><td data-v="+11.04%" class="up">+11.04%</td><td data-v="1,085亿" class="l">1,085亿</td><td>2.24%</td><td>0.53</td></tr><tr data-ind="电网设备" data-idx="4"><td class="l mono">000400</td><td class="l"><b>许继电气</b></td><td class="l ind-cell">电网设备</td><td data-v="22.45">22.45</td><td data-v="+0.81%" class="up">+0.81%</td><td data-v="+0.54%" class="up">+0.54%</td><td data-v="-11.92%" class="down">-11.92%</td><td data-v="229亿" class="l">229亿</td><td>1.01%</td><td>0.60</td></tr><tr data-ind="物流" data-idx="5"><td class="l mono">600153</td><td class="l"><b>建发股份</b></td><td class="l ind-cell">物流</td><td data-v="9.08">9.08</td><td data-v="+3.42%" class="up">+3.42%</td><td data-v="+2.71%" class="up">+2.71%</td><td data-v="+6.20%" class="up">+6.20%</td><td data-v="263亿" class="l">263亿</td><td>0.81%</td><td>1.20</td></tr><tr data-ind="光伏设备" data-idx="6"><td class="l mono">002056</td><td class="l"><b>横店东磁</b></td><td class="l ind-cell">光伏设备</td><td data-v="21.13">21.13</td><td data-v="-0.52%" class="down">-0.52%</td><td data-v="-0.80%" class="down">-0.80%</td><td data-v="+11.74%" class="up">+11.74%</td><td data-v="344亿" class="l">344亿</td><td>0.81%</td><td>0.57</td></tr><tr data-ind="电池" data-idx="7"><td class="l mono">300568</td><td class="l"><b>星源材质</b></td><td class="l ind-cell">电池</td><td data-v="15.26">15.26</td><td data-v="+5.97%" class="up">+5.97%</td><td data-v="+5.90%" class="up">+5.90%</td><td data-v="+0.13%" class="up">+0.13%</td><td data-v="228亿" class="l">228亿</td><td>6.43%</td><td>1.45</td></tr><tr data-ind="工业金属" data-idx="8"><td class="l mono">603979</td><td class="l"><b>金诚信</b></td><td class="l ind-cell">工业金属</td><td data-v="80.71">80.71</td><td data-v="+10.00%" class="up">+10.00%</td><td data-v="+10.79%" class="up">+10.79%</td><td data-v="+6.91%" class="up">+6.91%</td><td data-v="503亿" class="l">503亿</td><td>1.03%</td><td>0.95</td></tr><tr data-ind="半导体" data-idx="9"><td class="l mono">688728</td><td class="l"><b>格科微</b></td><td class="l ind-cell">半导体</td><td data-v="15.12">15.12</td><td data-v="-0.92%" class="down">-0.92%</td><td data-v="-4.97%" class="down">-4.97%</td><td data-v="+1.20%" class="up">+1.20%</td><td data-v="393亿" class="l">393亿</td><td>0.60%</td><td>0.59</td></tr><tr data-ind="房地产开发" data-idx="10"><td class="l mono">600246</td><td class="l"><b>万通发展</b></td><td class="l ind-cell">房地产开发</td><td data-v="11.74">11.74</td><td data-v="+2.09%" class="up">+2.09%</td><td data-v="-3.77%" class="down">-3.77%</td><td data-v="-4.55%" class="down">-4.55%</td><td data-v="228亿" class="l">228亿</td><td>3.34%</td><td>0.64</td></tr><tr data-ind="房地产开发" data-idx="11"><td class="l mono">002244</td><td class="l"><b>滨江集团</b></td><td class="l ind-cell">房地产开发</td><td data-v="9.37">9.37</td><td data-v="+4.34%" class="up">+4.34%</td><td data-v="-0.21%" class="down">-0.21%</td><td data-v="-6.11%" class="down">-6.11%</td><td data-v="292亿" class="l">292亿</td><td>1.18%</td><td>0.89</td></tr><tr data-ind="软件开发" data-idx="12"><td class="l mono">688561</td><td class="l"><b>奇安信-U</b></td><td class="l ind-cell">软件开发</td><td data-v="24.99">24.99</td><td data-v="+0.20%" class="up">+0.20%</td><td data-v="-1.34%" class="down">-1.34%</td><td data-v="-29.76%" class="down">-29.76%</td><td data-v="170亿" class="l">170亿</td><td>0.42%</td><td>0.69</td></tr><tr data-ind="通用设备" data-idx="13"><td class="l mono">002438</td><td class="l"><b>江苏神通</b></td><td class="l ind-cell">通用设备</td><td data-v="13.86">13.86</td><td data-v="+0.80%" class="up">+0.80%</td><td data-v="+1.02%" class="up">+1.02%</td><td data-v="-11.72%" class="down">-11.72%</td><td data-v="70.3亿" class="l">70.3亿</td><td>1.99%</td><td>1.37</td></tr><tr data-ind="软件开发" data-idx="14"><td class="l mono">300454</td><td class="l"><b>深信服</b></td><td class="l ind-cell">软件开发</td><td data-v="112.81">112.81</td><td data-v="-3.52%" class="down">-3.52%</td><td data-v="-1.53%" class="down">-1.53%</td><td data-v="-1.95%" class="down">-1.95%</td><td data-v="487亿" class="l">487亿</td><td>3.81%</td><td>0.71</td></tr><tr data-ind="农化制品" data-idx="15"><td class="l mono">000893</td><td class="l"><b>亚钾国际</b></td><td class="l ind-cell">农化制品</td><td data-v="48.31">48.31</td><td data-v="+4.16%" class="up">+4.16%</td><td data-v="+0.19%" class="up">+0.19%</td><td data-v="+0.94%" class="up">+0.94%</td><td data-v="446亿" class="l">446亿</td><td>2.12%</td><td>1.06</td></tr><tr data-ind="化学制品" data-idx="16"><td class="l mono">300596</td><td class="l"><b>利安隆</b></td><td class="l ind-cell">化学制品</td><td data-v="41.71">41.71</td><td data-v="-2.27%" class="down">-2.27%</td><td data-v="-1.86%" class="down">-1.86%</td><td data-v="-0.12%" class="down">-0.12%</td><td data-v="95.8亿" class="l">95.8亿</td><td>1.02%</td><td>0.51</td></tr><tr data-ind="软件开发" data-idx="17"><td class="l mono">301095</td><td class="l"><b>广立微</b></td><td class="l ind-cell">软件开发</td><td data-v="72.28">72.28</td><td data-v="-0.04%" class="down">-0.04%</td><td data-v="-1.42%" class="down">-1.42%</td><td data-v="+1.08%" class="up">+1.08%</td><td data-v="145亿" class="l">145亿</td><td>2.36%</td><td>0.90</td></tr><tr data-ind="医疗服务" data-idx="18"><td class="l mono">301257</td><td class="l"><b>普蕊斯</b></td><td class="l ind-cell">医疗服务</td><td data-v="44.70">44.70</td><td data-v="-3.52%" class="down">-3.52%</td><td data-v="-7.64%" class="down">-7.64%</td><td data-v="-13.97%" class="down">-13.97%</td><td data-v="35.3亿" class="l">35.3亿</td><td>4.39%</td><td>0.64</td></tr><tr data-ind="其他电子Ⅱ" data-idx="19"><td class="l mono">002885</td><td class="l"><b>京泉华</b></td><td class="l ind-cell">其他电子Ⅱ</td><td data-v="27.81">27.81</td><td data-v="-2.25%" class="down">-2.25%</td><td data-v="-2.15%" class="down">-2.15%</td><td data-v="+8.38%" class="up">+8.38%</td><td data-v="75.3亿" class="l">75.3亿</td><td>4.65%</td><td>0.75</td></tr><tr data-ind="软件开发" data-idx="20"><td class="l mono">688692</td><td class="l"><b>达梦数据</b></td><td class="l ind-cell">软件开发</td><td data-v="216.59">216.59</td><td data-v="-8.80%" class="down">-8.80%</td><td data-v="-11.75%" class="down">-11.75%</td><td data-v="-16.78%" class="down">-16.78%</td><td data-v="245亿" class="l">245亿</td><td>2.99%</td><td>1.72</td></tr><tr data-ind="贵金属" data-idx="21"><td class="l mono">000975</td><td class="l"><b>山金国际</b></td><td class="l ind-cell">贵金属</td><td data-v="27.37">27.37</td><td data-v="-1.55%" class="down">-1.55%</td><td data-v="+2.13%" class="up">+2.13%</td><td data-v="+14.76%" class="up">+14.76%</td><td data-v="759亿" class="l">759亿</td><td>1.94%</td><td>0.72</td></tr><tr data-ind="IT服务Ⅱ" data-idx="22"><td class="l mono">300017</td><td class="l"><b>网宿科技</b></td><td class="l ind-cell">IT服务Ⅱ</td><td data-v="14.95">14.95</td><td data-v="-0.99%" class="down">-0.99%</td><td data-v="-4.47%" class="down">-4.47%</td><td data-v="+49.50%" class="up">+49.50%</td><td data-v="373亿" class="l">373亿</td><td>5.88%</td><td>0.85</td></tr><tr data-ind="半导体" data-idx="23"><td class="l mono">688419</td><td class="l"><b>耐科装备</b></td><td class="l ind-cell">半导体</td><td data-v="55.19">55.19</td><td data-v="-1.16%" class="down">-1.16%</td><td data-v="+16.07%" class="up">+16.07%</td><td data-v="+100.04%" class="up">+100.04%</td><td data-v="63.2亿" class="l">63.2亿</td><td>4.09%</td><td>0.80</td></tr><tr data-ind="电网设备" data-idx="24"><td class="l mono">688676</td><td class="l"><b>金盘科技</b></td><td class="l ind-cell">电网设备</td><td data-v="72.34">72.34</td><td data-v="-2.24%" class="down">-2.24%</td><td data-v="+6.57%" class="up">+6.57%</td><td data-v="-19.32%" class="down">-19.32%</td><td data-v="333亿" class="l">333亿</td><td>2.29%</td><td>0.60</td></tr><tr data-ind="自动化设备" data-idx="25"><td class="l mono">688686</td><td class="l"><b>奥普特</b></td><td class="l ind-cell">自动化设备</td><td data-v="131.35">131.35</td><td data-v="+3.14%" class="up">+3.14%</td><td data-v="+14.22%" class="up">+14.22%</td><td data-v="+6.27%" class="up">+6.27%</td><td data-v="161亿" class="l">161亿</td><td>2.27%</td><td>1.15</td></tr><tr data-ind="银行Ⅱ" data-idx="26"><td class="l mono">002142</td><td class="l"><b>宁波银行</b></td><td class="l ind-cell">银行Ⅱ</td><td data-v="34.03">34.03</td><td data-v="+1.40%" class="up">+1.40%</td><td data-v="+3.18%" class="up">+3.18%</td><td data-v="+25.16%" class="up">+25.16%</td><td data-v="2,247亿" class="l">2,247亿</td><td>0.38%</td><td>0.79</td></tr><tr data-ind="化学原料" data-idx="27"><td class="l mono">600989</td><td class="l"><b>宝丰能源</b></td><td class="l ind-cell">化学原料</td><td data-v="23.10">23.10</td><td data-v="-0.60%" class="down">-0.60%</td><td data-v="-2.37%" class="down">-2.37%</td><td data-v="+20.25%" class="up">+20.25%</td><td data-v="1,694亿" class="l">1,694亿</td><td>0.79%</td><td>0.76</td></tr><tr data-ind="电池" data-idx="28"><td class="l mono">301349</td><td class="l"><b>信德新材</b></td><td class="l ind-cell">电池</td><td data-v="43.38">43.38</td><td data-v="+1.21%" class="up">+1.21%</td><td data-v="+1.17%" class="up">+1.17%</td><td data-v="+30.02%" class="up">+30.02%</td><td data-v="61.8亿" class="l">61.8亿</td><td>3.96%</td><td>0.86</td></tr><tr data-ind="能源金属" data-idx="29"><td class="l mono">002466</td><td class="l"><b>天齐锂业</b></td><td class="l ind-cell">能源金属</td><td data-v="47.58">47.58</td><td data-v="+1.21%" class="up">+1.21%</td><td data-v="+3.14%" class="up">+3.14%</td><td data-v="-14.08%" class="down">-14.08%</td><td data-v="815亿" class="l">815亿</td><td>2.76%</td><td>0.81</td></tr><tr data-ind="冶钢原料" data-idx="30"><td class="l mono">001203</td><td class="l"><b>大中矿业</b></td><td class="l ind-cell">冶钢原料</td><td data-v="27.32">27.32</td><td data-v="+4.67%" class="up">+4.67%</td><td data-v="+3.45%" class="up">+3.45%</td><td data-v="-10.29%" class="down">-10.29%</td><td data-v="419亿" class="l">419亿</td><td>2.03%</td><td>0.92</td></tr><tr data-ind="炼化及贸易" data-idx="31"><td class="l mono">000703</td><td class="l"><b>恒逸石化</b></td><td class="l ind-cell">炼化及贸易</td><td data-v="18.21">18.21</td><td data-v="-0.71%" class="down">-0.71%</td><td data-v="-4.56%" class="down">-4.56%</td><td data-v="+69.79%" class="up">+69.79%</td><td data-v="696亿" class="l">696亿</td><td>2.79%</td><td>0.74</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 每周复盘 -->
+  <div class="panel" id="p-weekly">
+    <div class="box">
+      <h3>📈 每周股市复盘 <span style="font-weight:400;font-size:12px;color:var(--muted)">共 2 期</span></h3>
+      <a class="w-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/上周涨幅复盘-20260823.html" target="_blank"><span class="w-ic">📈</span><span class="w-title">📈 2026-08-23 周度涨幅复盘</span><span class="w-tag">本地</span></a><a class="w-item" href="file:///C:/Users/25021/WPSDrive/237962780/WPS云盘/WorkBuddy/Claw/out/2026-08/上周涨幅复盘-20260815.html" target="_blank"><span class="w-ic">📈</span><span class="w-title">📈 2026-08-15 周度涨幅复盘</span><span class="w-tag">本地</span></a>
+    </div>
+  </div>
+
+  <!-- 研究积累 -->
+  <div class="panel" id="p-research">
+    <div class="box">
+      <h3>📚 研究积累 <span style="font-weight:400;font-size:12px;color:var(--muted)">研报 / 纪要观点条目库</span></h3>
+      <div class="rc-stats">
+        <div><div class="v">7,520</div><div class="k">累计条目</div></div>
+        <div><div class="v">26</div><div class="k">覆盖日期</div></div>
+        <div><div class="v" style="color:var(--blue)">1,679</div><div class="k">电子/半导体 条数</div></div>
+      </div>
+      <div class="subnote">按行业分类统计（TOP 12）：</div>
+      <div class="bar-row"><span class="bar-name">电子/半导体</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">1679</span></div><div class="bar-row"><span class="bar-name">计算机/AI</span><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div><span class="bar-val">744</span></div><div class="bar-row"><span class="bar-name">其他</span><div class="bar-track"><div class="bar-fill" style="width:37%"></div></div><span class="bar-val">615</span></div><div class="bar-row"><span class="bar-name">电子</span><div class="bar-track"><div class="bar-fill" style="width:31%"></div></div><span class="bar-val">513</span></div><div class="bar-row"><span class="bar-name">计算机</span><div class="bar-track"><div class="bar-fill" style="width:24%"></div></div><span class="bar-val">407</span></div><div class="bar-row"><span class="bar-name">电新</span><div class="bar-track"><div class="bar-fill" style="width:18%"></div></div><span class="bar-val">306</span></div><div class="bar-row"><span class="bar-name">机械设备</span><div class="bar-track"><div class="bar-fill" style="width:18%"></div></div><span class="bar-val">295</span></div><div class="bar-row"><span class="bar-name">医药生物</span><div class="bar-track"><div class="bar-fill" style="width:17%"></div></div><span class="bar-val">285</span></div><div class="bar-row"><span class="bar-name">电力设备</span><div class="bar-track"><div class="bar-fill" style="width:16%"></div></div><span class="bar-val">269</span></div><div class="bar-row"><span class="bar-name">消费/零售</span><div class="bar-track"><div class="bar-fill" style="width:14%"></div></div><span class="bar-val">227</span></div><div class="bar-row"><span class="bar-name">金融/策略</span><div class="bar-track"><div class="bar-fill" style="width:12%"></div></div><span class="bar-val">207</span></div><div class="bar-row"><span class="bar-name">通信</span><div class="bar-track"><div class="bar-fill" style="width:11%"></div></div><span class="bar-val">191</span></div>
+      <div class="tag-cloud"><span class="tag" style="font-size:17px;opacity:1.00">电子/半导体 · 1679</span><span class="tag" style="font-size:14px;opacity:0.75">计算机/AI · 744</span><span class="tag" style="font-size:13px;opacity:0.71">其他 · 615</span><span class="tag" style="font-size:13px;opacity:0.69">电子 · 513</span><span class="tag" style="font-size:12px;opacity:0.66">计算机 · 407</span><span class="tag" style="font-size:12px;opacity:0.63">电新 · 306</span><span class="tag" style="font-size:12px;opacity:0.63">机械设备 · 295</span><span class="tag" style="font-size:12px;opacity:0.63">医药生物 · 285</span><span class="tag" style="font-size:12px;opacity:0.62">电力设备 · 269</span><span class="tag" style="font-size:12px;opacity:0.61">消费/零售 · 227</span><span class="tag" style="font-size:12px;opacity:0.61">金融/策略 · 207</span><span class="tag" style="font-size:12px;opacity:0.60">通信 · 191</span></div>
+    </div>
+  </div>
+
+  <footer>
+    数据来源：知识星球「调研纪要」· 东方财富（行情/K线/公告）· 通达信本地板块 064<br>
+    本页由 build_overview_web.py 自动生成 · 本地完整版见 <b>研究总览.html</b>（保持不变）
+  </footer>
+</div>
+
+<script>
+// ── Tab 切换 ──
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click', function(){
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.panel').forEach(x=>x.classList.remove('on'));
+    t.classList.add('on');
+    document.getElementById('p-'+t.dataset.tab).classList.add('on');
+  });
+});
+
+// ── 日报搜索 ──
+function filterDaily(v){
+  var q = v.trim();
+  document.querySelectorAll('.d-item').forEach(function(it){
+    var ok = !q || it.querySelector('.d-date').textContent.indexOf(q) >= 0;
+    it.style.display = ok ? '' : 'none';
+  });
+  document.querySelectorAll('.month-group').forEach(function(mg){
+    var any = Array.prototype.some.call(mg.querySelectorAll('.d-item'), x=>x.style.display!=='none');
+    mg.style.display = any ? '' : 'none';
+  });
+}
+
+// ── 自选股：行业筛选 ──
+document.querySelectorAll('.chip').forEach(function(c){
+  c.addEventListener('click', function(){
+    document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));
+    c.classList.add('on');
+    var ind = c.dataset.ind;
+    document.querySelectorAll('#wtBody tr').forEach(function(r){
+      r.style.display = (!ind || r.dataset.ind === ind) ? '' : 'none';
+    });
+  });
+});
+
+// ── 自选股：表头排序 ──
+document.querySelectorAll('#wt th').forEach(function(th){
+  th.addEventListener('click', function(){
+    var k = th.dataset.k; if (!k) return;
+    var tbody = document.getElementById('wtBody');
+    var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+    var dir = th._dir = (th._dir === 1) ? -1 : 1;
+    function num(v){ var x = parseFloat(String(v).replace(/[+%,万亿]/g,'').replace('亿','e8')); return isNaN(x) ? -1e18 : x; }
+    rows.sort(function(a,b){
+      var va = a.children[th.cellIndex].dataset.v, vb = b.children[th.cellIndex].dataset.v;
+      return (num(va) - num(vb)) * dir;
+    });
+    rows.forEach(r=>tbody.appendChild(r));
+  });
+});
+</script>
+</body>
+</html>
