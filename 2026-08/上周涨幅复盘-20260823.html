@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股上周涨幅复盘 | 2026.08.17-08.21</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f5f6fa;
+    color: #2d3436;
+    line-height: 1.7;
+    padding: 24px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    border-radius: 16px;
+    padding: 32px 40px;
+    margin-bottom: 24px;
+  }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  .header .subtitle { font-size: 15px; opacity: 0.8; }
+  .header .date-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+
+  /* TL;DR Card */
+  .tldr {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-left: 4px solid #e74c3c;
+  }
+  .tldr h2 { font-size: 18px; margin-bottom: 12px; color: #1a1a2e; }
+  .tldr p { font-size: 14px; color: #555; margin-bottom: 8px; }
+  .tldr .highlight { color: #e74c3c; font-weight: 600; }
+  .tldr .highlight-green { color: #27ae60; font-weight: 600; }
+
+  /* Section */
+  .section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+  }
+  .section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3436;
+    margin: 18px 0 10px;
+  }
+
+  /* Chart container */
+  .chart-box { width: 100%; height: 380px; margin: 16px 0; }
+  .chart-box-sm { width: 100%; height: 320px; margin: 16px 0; }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 12px 0;
+  }
+  th {
+    background: #f8f9fa;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: #2d3436;
+    border-bottom: 2px solid #e0e0e0;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #555;
+  }
+  tr:hover td { background: #fafbfc; }
+  .red { color: #e74c3c; font-weight: 600; }
+  .green { color: #27ae60; font-weight: 600; }
+  .flat { color: #7f8c8d; font-weight: 600; }
+
+  /* Daily card */
+  .daily-card {
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    border: 1px solid #e8e8e8;
+    background: #fff;
+  }
+  .daily-card.mon { border-left: 4px solid #e74c3c; }
+  .daily-card.tue { border-left: 4px solid #e74c3c; }
+  .daily-card.wed { border-left: 4px solid #27ae60; }
+  .daily-card.thu { border-left: 4px solid #e74c3c; }
+  .daily-card.fri { border-left: 4px solid #27ae60; }
+
+  .daily-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .daily-header .day {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+  .daily-header .idx {
+    font-size: 13px;
+    color: #666;
+  }
+  .daily-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 8px 0;
+  }
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .tag-up { background: #fde8e8; color: #c0392b; }
+  .tag-down { background: #e8f8e8; color: #27ae60; }
+  .tag-info { background: #e8f0fe; color: #1a73e8; }
+
+  .daily-body { font-size: 13px; color: #555; }
+  .daily-body p { margin-bottom: 6px; }
+  .daily-body strong { color: #2d3436; }
+
+  /* Grid */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+
+  /* Summary box */
+  .summary-box {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+  }
+  .summary-box h2 { color: #fff; border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .summary-box p { font-size: 14px; margin-bottom: 8px; opacity: 0.95; }
+  .summary-box strong { font-weight: 700; }
+
+  /* Source */
+  .source {
+    font-size: 12px;
+    color: #999;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #e0e0e0;
+  }
+
+  /* Disclaimer */
+  .disclaimer {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-top: 24px;
+    font-size: 12px;
+    color: #856404;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>A股上周涨幅复盘</h1>
+    <div class="subtitle">市场热点深度解析 | 每日上涨热点梳理</div>
+    <span class="date-tag">2026年8月17日 — 8月21日</span>
+  </div>
+
+  <!-- TL;DR -->
+  <div class="tldr">
+    <h2>核心结论</h2>
+    <p>上周A股呈现<span class="highlight-green">高位剧烈震荡、科技成长杀跌、防御资源走强</span>的调整格局。上证指数周跌0.56%、创业板指周跌2.23%、科创50周跌3.73%，市场处于<span class="highlight">存量资金博弈、避险情绪升温</span>阶段。</p>
+    <p><span class="highlight-green">周三长阴暴跌</span>是全周情绪拐点：沪指放量重挫2.40%，创业板指跌6.26%，超5000只个股下跌、130余只跌停。受美30年期国债收益率飙至5.3%（2007年以来新高）、费城半导体指数大跌近6%双重外部冲击，叠加宇树科技上市高开低走（仅+460%）引发机器人板块深幅调整。</p>
+    <p><span class="highlight">防御主线崛起</span>：石油石化（+5.44%）、有色金属（+2.50%，贵金属/锂矿）、银行（+2.40%）逆势走强；转基因（+6.8%）、粮食概念（+5.6%）、黄金概念（+3.49%）三大避险题材领衔概念涨幅榜。医药生物周四全线爆发（mRNA癌症疫苗催化），周五资金集中兑现。</p>
+    <p><span class="highlight-green">情绪周期进入退潮</span>：连板高度自20cm汉森制药3连板降至红四方、一鸣食品等多股跌停，封板率从周初约77%降至周五73%附近，资金偏好转向确定性与避险。</p>
+  </div>
+
+  <!-- Section 1: Index Performance -->
+  <div class="section">
+    <h2>一、主要指数周涨跌幅</h2>
+    <p style="font-size:14px;color:#666;margin-bottom:8px;">上周A股主要指数全线收跌，成长风格回调最深，科创50回调3.73%居首；防御方向抗跌，沪指相对韧性。</p>
+    <div id="chart-index" class="chart-box"></div>
+    <table>
+      <thead>
+        <tr><th>指数</th><th>代码</th><th>收盘点位</th><th>周涨跌幅</th><th>风格特征</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>上证指数</td><td>000001.SH</td><td>3905.20</td><td class="green">-0.56%</td><td>相对韧性</td></tr>
+        <tr><td>上证50</td><td>000016.SH</td><td>—</td><td class="green">-1.12%</td><td>大盘蓝筹弱</td></tr>
+        <tr><td>沪深300</td><td>000300.SH</td><td>4618.90</td><td class="green">-1.01%</td><td>权重承压</td></tr>
+        <tr><td>中证500</td><td>000905.SH</td><td>—</td><td class="green">-1.70%</td><td>中盘调整</td></tr>
+        <tr><td>中证1000</td><td>000852.SH</td><td>—</td><td class="green">-2.16%</td><td>小盘回调</td></tr>
+        <tr><td>深证成指</td><td>399001.SZ</td><td>14094.17</td><td class="green">-1.81%</td><td>成长承压</td></tr>
+        <tr><td>创业板指</td><td>399006.SZ</td><td>3545.58</td><td class="green">-2.23%</td><td>成长弱</td></tr>
+        <tr><td>科创50</td><td>000688.SH</td><td>1653.56</td><td class="green">-3.73%</td><td>回调最深</td></tr>
+        <tr><td>北证50</td><td>899050.BJ</td><td>—</td><td class="green">-1.55%</td><td>同步调整</td></tr>
+      </tbody>
+    </table>
+    <div class="source">数据来源：证券时报、财联社 | 数据时点：2026-08-21收盘</div>
+  </div>
+
+  <!-- Section 2: Sector Performance -->
+  <div class="section">
+    <h2>二、申万一级行业涨跌排名</h2>
+    <p style="font-size:14px;color:#666;margin-bottom:8px;">全周7个行业上涨、24个行业下跌。石油石化、有色金属、银行领涨防御；传媒、计算机、综合领跌科技成长。</p>
+    <div id="chart-sector" class="chart-box"></div>
+
+    <h3>涨幅前五行业</h3>
+    <table>
+      <thead><tr><th>行业</th><th>周涨跌幅</th><th>驱动逻辑</th></tr></thead>
+      <tbody>
+        <tr><td>石油石化</td><td class="red">+5.44%</td><td>特朗普对伊朗史上最严厉制裁+霍尔木兹海峡禁航+国际油价飙涨，海油工程、石化机械等跟涨</td></tr>
+        <tr><td>有色金属</td><td class="red">+2.50%</td><td>现货黄金突破4600美元创6月新高、锂矿（碳酸锂期价站上15.6万/吨）双引擎，主力净流入39.77亿居首</td></tr>
+        <tr><td>银行</td><td class="red">+2.40%</td><td>高股息防御逻辑，江苏银行创新高，市场避险资金涌入</td></tr>
+        <tr><td>农林牧渔</td><td class="red">+1.29%</td><td>厄尔尼诺+全球粮食危机预期叠加，主力净流入31.37亿；转基因（+6.8%）、粮食概念（+5.6%）领涨概念榜</td></tr>
+        <tr><td>房地产</td><td class="red">+1.13%</td><td>上海"沪八条"新政+超跌反弹，京投发展、城投控股等多股涨停</td></tr>
+      </tbody>
+    </table>
+
+    <h3>跌幅前五行业</h3>
+    <table>
+      <thead><tr><th>行业</th><th>周涨跌幅</th><th>调整原因</th></tr></thead>
+      <tbody>
+        <tr><td>传媒</td><td class="green">-5.54%</td><td>快手概念（-6.36%）、云游戏（-5.53%）、手机游戏（-5.02%）领跌，AI算力潮退传导应用端</td></tr>
+        <tr><td>计算机</td><td class="green">-4.95%</td><td>算力租赁（-4.98%）、财税数字化（-5.18%）全线调整，AI题材降温</td></tr>
+        <tr><td>综合</td><td class="green">-3.97%</td><td>前期炒作题材回吐，板块beta高、防御性差</td></tr>
+        <tr><td>电子</td><td class="green">-2.76%</td><td>全周主力净流出570.60亿居首，存储/半导体/CPO全线重挫（仅周五小幅修复）</td></tr>
+        <tr><td>通信</td><td class="green">-1.39%</td><td>主力净流出200.87亿，光模块周三深跌（旭创/新易盛跌超9%）后周五修复</td></tr>
+      </tbody>
+    </table>
+    <div class="source">数据来源：证券时报、同花顺流动性周报 | 数据时点：2026-08-21收盘</div>
+  </div>
+
+  <!-- Section 3: Volume -->
+  <div class="section">
+    <h2>三、每日成交额变化</h2>
+    <p style="font-size:14px;color:#666;margin-bottom:8px;">全周日均成交约2.25万亿，较上周略缩。周三放量至2.51万亿（暴跌放量出货），周五缩至1.89万亿创4个多月新低。</p>
+    <div id="chart-volume" class="chart-box-sm"></div>
+    <div class="source">数据来源：财联社、证券时报 | 单位：万亿元</div>
+  </div>
+
+  <!-- Section 4: Concept Hotspots -->
+  <div class="section">
+    <h2>四、概念板块涨幅TOP10</h2>
+    <p style="font-size:14px;color:#666;margin-bottom:8px;">转基因、粮食、贵金属/铅锌/黄金概念领衔本周概念涨幅榜，避险+资源主线特征明显。</p>
+    <div id="chart-concept" class="chart-box-sm"></div>
+    <div class="source">数据来源：同花顺、东方财富 | 数据时点：2026-08-21收盘</div>
+  </div>
+
+  <!-- Section 5: Fund Flow -->
+  <div class="section">
+    <h2>五、资金流向</h2>
+    <p style="font-size:14px;color:#666;margin-bottom:8px;">全周主力资金净流出1489.95亿，资金整体谨慎、存量博弈特征明显。有色金属、农林牧渔获净流入，电子、通信、计算机大幅失血。</p>
+    <div class="grid-2">
+      <div>
+        <h3 style="color:#c0392b;">主力净流入行业TOP5</h3>
+        <table>
+          <thead><tr><th>行业</th><th>净流入（亿）</th></tr></thead>
+          <tbody>
+            <tr><td>有色金属</td><td class="red">+39.77</td></tr>
+            <tr><td>农林牧渔</td><td class="red">+31.37</td></tr>
+            <tr><td>银行</td><td class="red">+18.50</td></tr>
+            <tr><td>房地产</td><td class="red">+12.60</td></tr>
+            <tr><td>汽车</td><td class="red">+9.40</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3 style="color:#27ae60;">主力净流出行业TOP5</h3>
+        <table>
+          <thead><tr><th>行业</th><th>净流出（亿）</th></tr></thead>
+          <tbody>
+            <tr><td>电子</td><td class="green">-570.60</td></tr>
+            <tr><td>通信</td><td class="green">-200.87</td></tr>
+            <tr><td>计算机</td><td class="green">-176.00</td></tr>
+            <tr><td>电力设备</td><td class="green">-95.40</td></tr>
+            <tr><td>医药生物</td><td class="green">-78.20</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="source">数据来源：证券时报 | 数据时点：2026-08-21收盘</div>
+  </div>
+
+  <!-- Section 6: Daily Hotspots -->
+  <div class="section">
+    <h2>六、每日上涨热点详解</h2>
+    <p style="font-size:14px;color:#666;margin-bottom:16px;">以下按交易日梳理每日热点板块、涨停梯队及关键催化。</p>
+
+    <!-- Monday -->
+    <div class="daily-card mon">
+      <div class="daily-header">
+        <span class="day">8月17日（周一）| 放量大涨，科技主升，CPO/存储全面爆发</span>
+        <span class="idx">沪指 <span class="red">+1.41%</span> | 深成指 <span class="red">+2.44%</span> | 创业板指 <span class="red">+3.14%</span></span>
+      </div>
+      <div class="daily-body">
+        <p><strong>成交额</strong>：2.39万亿（放量2446亿）| <strong>涨停</strong>：约110只 | <strong>封板率</strong>：约77%</p>
+        <p><strong>领涨板块</strong>：</p>
+        <div class="daily-tags">
+          <span class="tag tag-up">CPO/光通信</span>
+          <span class="tag tag-up">存储芯片/半导体</span>
+          <span class="tag tag-up">算力硬件/PCB</span>
+          <span class="tag tag-up">先进封装</span>
+          <span class="tag tag-up">散热（液冷）</span>
+          <span class="tag tag-up">创新药/CRO</span>
+        </div>
+        <p><strong>领跌板块</strong>：<span class="tag tag-down">银行</span> <span class="tag tag-down">公用事业</span></p>
+        <p><strong>连板梯队</strong>：天洋新材4板、金螳螂4板、澳洋健康4板、风范股份11天7板、一鸣食品6天5板、誉衡药业7天5板</p>
+        <p><strong>关键催化</strong>：英伟达Spectrum-X交换机量产+长鑫科技市值重回4万亿（+12%），半导体板块当日资金净流入95亿；药明康德股价创新高。</p>
+      </div>
+    </div>
+
+    <!-- Tuesday -->
+    <div class="daily-card tue">
+      <div class="daily-header">
+        <span class="day">8月18日（周二）| V型反弹，农业爆发涨停潮，机器人活跃</span>
+        <span class="idx">沪指 <span class="red">+0.19%</span> | 深成指 <span class="green">-0.56%</span> | 创业板指 <span class="green">-0.93%</span></span>
+      </div>
+      <div class="daily-body">
+        <p><strong>成交额</strong>：2.40万亿 | <strong>涨停</strong>：约80只 | <strong>封板率</strong>：约75%</p>
+        <p><strong>领涨板块</strong>：</p>
+        <div class="daily-tags">
+          <span class="tag tag-up">种植业/种业</span>
+          <span class="tag tag-up">猪肉</span>
+          <span class="tag tag-up">信创/操作系统</span>
+          <span class="tag tag-up">人形机器人</span>
+          <span class="tag tag-up">玻璃基板</span>
+        </div>
+        <p><strong>领跌板块</strong>：<span class="tag tag-down">半导体</span> <span class="tag tag-down">军工</span> <span class="tag tag-down">CPO</span></p>
+        <p><strong>连板梯队</strong>：金健米业2连板、农发种业2连板、秋乐种业30cm涨停、罗牛山2连板、正裕工业3连板</p>
+        <p><strong>核心标的</strong>：京东方A获主力净流入43亿；年内最贵新股频准激光首日最高冲至1300元、收涨516%</p>
+        <p><strong>关键催化</strong>：超强厄尔尼诺+全球粮食危机预期叠加，种业板块指数飙升逾12%</p>
+      </div>
+    </div>
+
+    <!-- Wednesday -->
+    <div class="daily-card wed">
+      <div class="daily-header">
+        <span class="day">8月19日（周三）| 放量长阴暴跌，高位股批量退潮，科技全线杀跌</span>
+        <span class="idx">沪指 <span class="green">-2.40%</span> | 深成指 <span class="green">-5.01%</span> | 创业板指 <span class="green">-6.26%</span> | 科创50 <span class="green">-6.89%</span></span>
+      </div>
+      <div class="daily-body">
+        <p><strong>成交额</strong>：2.51万亿（放量1693亿，本周最大）| <strong>涨停</strong>：仅36~44只 | <strong>跌停</strong>：130余只 | <strong>封板率</strong>：急降至50%以下</p>
+        <p><strong>领涨板块（逆势）</strong>：</p>
+        <div class="daily-tags">
+          <span class="tag tag-up">煤炭（焦炭提涨）</span>
+          <span class="tag tag-up">家电</span>
+          <span class="tag tag-up">油气设服</span>
+          <span class="tag tag-up">银行（江苏银行创新高）</span>
+          <span class="tag tag-up">农业（粮食）</span>
+          <span class="tag tag-up">化工</span>
+          <span class="tag tag-up">房地产</span>
+        </div>
+        <p><strong>领跌板块</strong>：<span class="tag tag-down">CPO/光模块（中际旭创/新易盛跌超9%）</span> <span class="tag tag-down">半导体</span> <span class="tag tag-down">人形机器人</span> <span class="tag tag-down">AI算力</span></p>
+        <p><strong>连板梯队</strong>：红四方(数据残缺)3连板、金健米业/京粮控股3连板、宝泰隆/陕西黑猫/大有能源/美锦能源涨停</p>
+        <p><strong>关键事件</strong>：超5000只个股下跌、130余股跌停、跌超10%个股超360只，创年内第二高下跌纪录。宇树科技上市首日高开低走仅+460%（收报约1100元远低于市场预期）。</p>
+        <p><strong>关键催化</strong>：美30年期国债收益率飙至5.3%（2007年来新高）+ 隔夜费城半导体指数大跌近6%双重外部冲击，全球风险资产承压</p>
+      </div>
+    </div>
+
+    <!-- Thursday -->
+    <div class="daily-card thu">
+      <div class="daily-header">
+        <span class="day">8月20日（周四）| 缩量修复，医药生物全线爆发涨停潮</span>
+        <span class="idx">沪指 <span class="red">+0.24%</span> | 深成指 <span class="red">+0.59%</span> | 创业板指 <span class="red">+0.64%</span></span>
+      </div>
+      <div class="daily-body">
+        <p><strong>成交额</strong>：2.09万亿（缩量4317亿）| <strong>涨停</strong>：约83只 | <strong>封板率</strong>：约76% | <strong>跌停</strong>：13只</p>
+        <p><strong>领涨板块</strong>：</p>
+        <div class="daily-tags">
+          <span class="tag tag-up">生物疫苗/mRNA</span>
+          <span class="tag tag-up">免疫治疗</span>
+          <span class="tag tag-up">化学制药</span>
+          <span class="tag tag-up">创新药/CRO</span>
+          <span class="tag tag-up">贵金属（赤峰黄金涨停）</span>
+          <span class="tag tag-up">房地产（沪八条）</span>
+        </div>
+        <p><strong>领跌板块</strong>：<span class="tag tag-down">国防军工</span> <span class="tag tag-down">电力设备</span> <span class="tag tag-down">食品饮料</span> <span class="tag tag-down">公用事业</span> <span class="tag tag-down">石油石化</span></p>
+        <p><strong>连板梯队</strong>：哈药股份(600664.SH) 收涨0.22%触发"严重异常波动"进入重点监控、汉森制药3连板、风范股份14天8板</p>
+        <p><strong>20cm涨停群</strong>：安科生物、沃森生物、康希诺、键凯科技等多股20cm涨停（mRNA抗癌疫苗方向）</p>
+        <p><strong>关键催化</strong>：莫德纳/默沙东个性化mRNA癌症疫苗intismeran III期阳性，隔夜Moderna暴涨177%；上海"沪八条"新政催化房地产；药明康德日成交146亿元（收涨2.38%）</p>
+      </div>
+    </div>
+
+    <!-- Friday -->
+    <div class="daily-card fri">
+      <div class="daily-header">
+        <span class="day">8月21日（周五）| 缩量企稳，贵金属+算力硬件回暖，高位股持续退潮</span>
+        <span class="idx">沪指 <span class="red">+0.04%</span> | 深成指 <span class="red">+0.87%</span> | 创业板指 <span class="red">+1.43%</span> | 科创50 <span class="red">+0.04%</span></span>
+      </div>
+      <div class="daily-body">
+        <p><strong>成交额</strong>：1.88万亿（创4个多月新低，缩量2001亿）| <strong>涨停</strong>：54~57只 | <strong>跌停</strong>：14~15只 | <strong>封板率</strong>：约73~75%</p>
+        <p><strong>领涨板块</strong>：</p>
+        <div class="daily-tags">
+          <span class="tag tag-up">贵金属（白银/黄金）</span>
+          <span class="tag tag-up">锂矿</span>
+          <span class="tag tag-up">算力硬件（CPO/光通信/PCB）</span>
+          <span class="tag tag-up">液冷服务器</span>
+          <span class="tag tag-up">功率半导体</span>
+          <span class="tag tag-up">石油石化</span>
+        </div>
+        <p><strong>领跌板块</strong>：<span class="tag tag-down">农林牧渔</span> <span class="tag tag-down">医药生物</span> <span class="tag tag-down">食品饮料</span> <span class="tag tag-down">医药商业</span> <span class="tag tag-down">游戏</span> <span class="tag tag-down">教育</span></p>
+        <p><strong>连板梯队</strong>：汉森制药3连板（最高标）、键凯科技/康希诺/近岸蛋白/贝瑞基因20cm 2连板、天洋新材8天5板、哈森股份5天4板、旭光电子6天4板</p>
+        <p><strong>核心标的</strong>：湖南白银/盛达资源/白银有色涨停（黄金突破4600美元）、融捷股份涨停（碳酸锂期价站15.6万）、新易盛大涨7%市值破6100亿、士兰微涨停（封单4.83亿）、飞龙股份/金富科技涨停、星网锐捷/瑞斯康达/通鼎互联封板</p>
+        <p><strong>关键催化</strong>：① SK海力士发布CPO路线图+英伟达官宣CPO交换机量产；② 现货黄金突破4600美元/盎司（避险）；③ 功率半导体第三轮涨价（10月落地、涨幅10-15%）；④ 财政部"十五五"财政金融协同促内需政策优化</p>
+        <p><strong>高位股退潮</strong>：哈药股份反复跌停引发"跷跷板"博弈（医药→科技切换）、一鸣食品/红四方/开开实业/百合花跌停、C宇树收跌2.12%累计回撤近40%</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 7: Mainline Analysis -->
+  <div class="summary-box">
+    <h2>七、市场主线与情绪分析</h2>
+    <p><strong>市场环境判断</strong>：高位震荡→退潮档 — 周三长阴打破高位震荡格局，存量资金在避险与科技间跷跷板切换，适合严控仓位、精选避险/刚需方向。</p>
+    <p><strong>真主线① 有色金属（贵金属/锂矿/铅锌）</strong>：周涨2.50%，主力净流入39.77亿居首。产业逻辑扎实（黄金避险+碳酸锂涨价+全球流动性预期变化），催化连续（美长债收益率5.3%、现货黄金突破4600美元）。交易位置处于<strong>主升确认期</strong>，但需警惕短期超买风险。</p>
+    <p><strong>真主线② 石油石化</strong>：周涨5.44%，居行业涨幅榜首。特朗普对伊朗史上最严厉制裁+伊朗禁航霍尔木兹海峡+国际油价飙涨三重催化，海油工程、石化机械等受益。地缘风险溢价尚未消化完。</p>
+    <p><strong>次级热点/脉冲题材</strong>：农业粮食（厄尔尼诺催化的转基因/粮食/种业脉冲式行情）、医药生物（周四mRNA癌症疫苗引爆的"一日游"行情，周五即调整）、算力硬件（CPO/光通信周三大跌、周五修复，趋势尚未明确反转）。</p>
+    <p><strong>情绪周期</strong>：周一大涨（科技主升）→周二V型（农业爆发）→周三长阴暴跌（退潮）→周四修复（医药高潮）→周五缩量分化（高位股反复跌停）。连板高度从20cm汉森制药3连板维持，封板率从周初约77%降至73-75%，高位股频繁跌停（哈药股份、红四方、一鸣食品等）标志着投机情绪处于<strong>退潮期</strong>。</p>
+    <p><strong>后续观察重点</strong>：① 成交额能否重回2万亿上方（增量资金入场信号）；② 现货黄金/油价是否创新高（避险主线延续性）；③ CPO/光通信能否在SK海力士催化下持续放量修复（科技主回归信号）；④ 哈药股份触发"严重异常波动"后高位股亏钱效应何时收敛（情绪修复起点）。</p>
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer">
+    <strong>免责声明</strong>：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。
+  </div>
+
+  <div style="text-align:center;padding:20px;font-size:12px;color:#999;">
+    数据来源：同花顺、证券时报、财联社、东方财富、金融界等 | 报告生成时间：2026-08-23
+  </div>
+
+</div>
+
+<script>
+// Chart 1: Index Performance
+echarts.init(document.getElementById('chart-index')).setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  grid: { left: '8%', right: '5%', bottom: '10%', top: '8%' },
+  xAxis: {
+    type: 'category',
+    data: ['上证指数', '上证50', '沪深300', '中证500', '中证1000', '深证成指', '创业板指', '北证50', '科创50'],
+    axisLabel: { fontSize: 11, rotate: 20 }
+  },
+  yAxis: {
+    type: 'value',
+    name: '周涨跌幅(%)',
+    axisLabel: { formatter: '{value}%' }
+  },
+  series: [{
+    type: 'bar',
+    data: [
+      { value: -0.56, itemStyle: { color: '#27ae60' } },
+      { value: -1.12, itemStyle: { color: '#27ae60' } },
+      { value: -1.01, itemStyle: { color: '#27ae60' } },
+      { value: -1.70, itemStyle: { color: '#27ae60' } },
+      { value: -2.16, itemStyle: { color: '#27ae60' } },
+      { value: -1.81, itemStyle: { color: '#27ae60' } },
+      { value: -2.23, itemStyle: { color: '#27ae60' } },
+      { value: -1.55, itemStyle: { color: '#27ae60' } },
+      { value: -3.73, itemStyle: { color: '#27ae60' } }
+    ],
+    label: {
+      show: true,
+      position: 'top',
+      formatter: function(params) {
+        return (params.value > 0 ? '+' : '') + params.value + '%';
+      },
+      fontSize: 11,
+      color: '#555'
+    },
+    barWidth: '50%'
+  }]
+});
+
+// Chart 2: Sector Performance
+echarts.init(document.getElementById('chart-sector')).setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  grid: { left: '12%', right: '8%', bottom: '5%', top: '5%' },
+  xAxis: { type: 'value', name: '周涨跌幅(%)', axisLabel: { formatter: '{value}%' } },
+  yAxis: {
+    type: 'category',
+    data: ['通信', '电子', '综合', '计算机', '传媒', '房地产', '农林牧渔', '银行', '有色金属', '石油石化'],
+    axisLabel: { fontSize: 12 }
+  },
+  series: [{
+    type: 'bar',
+    data: [
+      { value: -1.39, itemStyle: { color: '#27ae60' } },
+      { value: -2.76, itemStyle: { color: '#27ae60' } },
+      { value: -3.97, itemStyle: { color: '#27ae60' } },
+      { value: -4.95, itemStyle: { color: '#27ae60' } },
+      { value: -5.54, itemStyle: { color: '#27ae60' } },
+      { value: 1.13, itemStyle: { color: '#e74c3c' } },
+      { value: 1.29, itemStyle: { color: '#e74c3c' } },
+      { value: 2.40, itemStyle: { color: '#e74c3c' } },
+      { value: 2.50, itemStyle: { color: '#e74c3c' } },
+      { value: 5.44, itemStyle: { color: '#e74c3c' } }
+    ],
+    label: {
+      show: true,
+      position: 'right',
+      formatter: function(params) {
+        return (params.value > 0 ? '+' : '') + params.value + '%';
+      },
+      fontSize: 11,
+      color: '#555'
+    },
+    barWidth: '55%'
+  }]
+});
+
+// Chart 3: Daily Volume
+echarts.init(document.getElementById('chart-volume')).setOption({
+  tooltip: { trigger: 'axis' },
+  grid: { left: '8%', right: '5%', bottom: '10%', top: '10%' },
+  xAxis: {
+    type: 'category',
+    data: ['周一 8/17', '周二 8/18', '周三 8/19', '周四 8/20', '周五 8/21'],
+    axisLabel: { fontSize: 12 }
+  },
+  yAxis: {
+    type: 'value',
+    name: '成交额(万亿)',
+    axisLabel: { formatter: '{value}' },
+    min: 1.5,
+    max: 2.8
+  },
+  series: [{
+    type: 'bar',
+    data: [
+      { value: 2.39, itemStyle: { color: '#3498db' } },
+      { value: 2.40, itemStyle: { color: '#3498db' } },
+      { value: 2.51, itemStyle: { color: '#27ae60' } },
+      { value: 2.09, itemStyle: { color: '#3498db' } },
+      { value: 1.88, itemStyle: { color: '#27ae60' } }
+    ],
+    label: {
+      show: true,
+      position: 'top',
+      formatter: '{c}万亿',
+      fontSize: 12,
+      color: '#555'
+    },
+    barWidth: '45%',
+    markLine: {
+      data: [{ type: 'average', name: '日均' }],
+      lineStyle: { color: '#e67e22', type: 'dashed' },
+      label: { formatter: '日均: {c}万亿', color: '#e67e22' }
+    }
+  }]
+});
+
+// Chart 4: Concept Hotspots
+echarts.init(document.getElementById('chart-concept')).setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  grid: { left: '18%', right: '8%', bottom: '5%', top: '5%' },
+  xAxis: { type: 'value', name: '周涨跌幅(%)', axisLabel: { formatter: '{value}%' } },
+  yAxis: {
+    type: 'category',
+    data: ['玻璃基板', '固态电池', '黄金概念', '金属锌', '金属铅', '粮食概念', '锂电池', '转基因'],
+    axisLabel: { fontSize: 12 },
+    inverse: true
+  },
+  series: [{
+    type: 'bar',
+    data: [
+      { value: 2.95, itemStyle: { color: '#e74c3c' } },
+      { value: 3.20, itemStyle: { color: '#e74c3c' } },
+      { value: 3.49, itemStyle: { color: '#e74c3c' } },
+      { value: 3.95, itemStyle: { color: '#e74c3c' } },
+      { value: 4.71, itemStyle: { color: '#e74c3c' } },
+      { value: 5.60, itemStyle: { color: '#e74c3c' } },
+      { value: 6.18, itemStyle: { color: '#e74c3c' } },
+      { value: 6.80, itemStyle: { color: '#e74c3c' } }
+    ],
+    label: {
+      show: true,
+      position: 'right',
+      formatter: '+{c}%',
+      fontSize: 11,
+      color: '#555'
+    },
+    barWidth: '55%'
+  }]
+});
+</script>
+</body>
+</html>
