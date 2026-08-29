@@ -6,28 +6,28 @@
 <title>研究总览 · 调研纪要 数据看板</title>
 <style>
 :root {
-  --bg:#0b0e14; --panel:#131a26; --panel2:#182136; --border:#243049;
-  --text:#e8edf4; --muted:#8b98ab; --blue:#4d9fff; --gold:#ffc24d;
-  --up:#ff5d5d; --down:#2fbf71; --purple:#9d7bff; --cyan:#35d0d0;
+  --bg:#f4f6fa; --panel:#ffffff; --panel2:#f0f3f9; --border:#dde3ed;
+  --text:#1c2534; --muted:#5d6b81; --blue:#2f6bd8; --gold:#c47d08;
+  --up:#e03131; --down:#0f9960; --purple:#7048e8; --cyan:#0ca5a5;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
-       background:radial-gradient(1200px 500px at 20% -10%, #16223a 0%, var(--bg) 55%) fixed;
+       background:radial-gradient(1200px 500px at 20% -10%, #e8eff9 0%, var(--bg) 55%) fixed;
        color:var(--text); min-height:100vh; }
 .wrap { max-width:1140px; margin:0 auto; padding:36px 22px 60px; }
 
 /* ── 头部 ── */
 .hero { margin-bottom:26px; }
 .hero h1 { font-size:30px; font-weight:800; letter-spacing:.5px;
-           background:linear-gradient(90deg,#fff 10%,#9dc6ff 60%,#6ea8ff 100%);
+           background:linear-gradient(90deg,#16233d 10%,#2f6bd8 60%,#5aa8ff 100%);
            -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 .hero .meta { margin-top:10px; font-size:13px; color:var(--muted); display:flex; flex-wrap:wrap; gap:8px 18px; }
-.hero .meta b { color:#c9d6ea; font-weight:600; }
+.hero .meta b { color:#2b3a52; font-weight:600; }
 .pill { display:inline-block; padding:2px 10px; border-radius:20px; font-size:12px;
-        background:rgba(77,159,255,.12); border:1px solid rgba(77,159,255,.35); color:#9dc6ff; }
-.tip { margin-top:16px; background:linear-gradient(90deg, rgba(255,194,77,.10), rgba(255,194,77,.03));
-       border:1px solid rgba(255,194,77,.3); border-radius:10px; padding:12px 16px;
-       font-size:13px; color:#e8d5a8; line-height:1.7; }
+        background:rgba(47,107,216,.10); border:1px solid rgba(47,107,216,.30); color:#2f6bd8; }
+.tip { margin-top:16px; background:linear-gradient(90deg, rgba(196,125,8,.10), rgba(196,125,8,.03));
+       border:1px solid rgba(196,125,8,.32); border-radius:10px; padding:12px 16px;
+       font-size:13px; color:#7a5210; line-height:1.7; }
 .tip b { color:var(--gold); }
 
 /* ── 统计卡 ── */
@@ -35,7 +35,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
 .stat { background:linear-gradient(160deg,var(--panel2),var(--panel)); border:1px solid var(--border);
         border-radius:12px; padding:16px 18px; position:relative; overflow:hidden; }
 .stat::after { content:""; position:absolute; right:-20px; top:-20px; width:70px; height:70px;
-               border-radius:50%; background:radial-gradient(circle, rgba(77,159,255,.18), transparent 70%); }
+               border-radius:50%; background:radial-gradient(circle, rgba(47,107,216,.14), transparent 70%); }
 .stat .k { font-size:12px; color:var(--muted); margin-bottom:7px; }
 .stat .v { font-size:24px; font-weight:800; font-family:"SF Mono",Consolas,monospace; }
 .stat .v.up { color:var(--up); } .stat .v.down { color:var(--down); } .stat .v.gold { color:var(--gold); }
@@ -45,14 +45,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
 .tab { padding:10px 20px; border-radius:10px; cursor:pointer; font-size:14px; font-weight:600;
        background:var(--panel); border:1px solid var(--border); color:var(--muted); transition:all .18s; }
 .tab:hover { border-color:var(--blue); color:var(--text); }
-.tab.on { background:linear-gradient(135deg,#1d3a66,#16294d); border-color:var(--blue); color:#cfe4ff;
-          box-shadow:0 0 18px rgba(77,159,255,.25); }
+.tab.on { background:linear-gradient(135deg,#e8f0fd,#d3e3fb); border-color:var(--blue); color:#1c4fa1;
+          box-shadow:0 2px 10px rgba(47,107,216,.18); }
 .panel { display:none; } .panel.on { display:block; animation:fade .25s ease; }
 @keyframes fade { from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
 
 /* ── 面板通用 ── */
 .box { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:20px; margin-bottom:16px; }
-.box h3 { font-size:15px; color:#cfe4ff; margin-bottom:14px; padding-bottom:10px;
+.box h3 { font-size:15px; color:#1c4fa1; margin-bottom:14px; padding-bottom:10px;
           border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px; }
 .subnote { font-size:12px; color:var(--muted); margin:-6px 0 14px; line-height:1.7; }
 
@@ -65,7 +65,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
           background:var(--panel2); border:1px solid var(--border); text-decoration:none;
           color:var(--text); transition:all .15s; }
 .d-item:hover { border-color:var(--blue); transform:translateX(3px); }
-.d-date { font-family:Consolas,monospace; font-size:12px; color:#9dc6ff; white-space:nowrap; }
+.d-date { font-family:Consolas,monospace; font-size:12px; color:#2f6bd8; white-space:nowrap; }
 .d-title { font-size:13px; flex:1; }
 .d-tag { font-size:11px; color:var(--muted); border:1px solid var(--border); padding:1px 8px; border-radius:12px; }
 
@@ -82,16 +82,16 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
 .chip { padding:5px 14px; border-radius:20px; font-size:12px; cursor:pointer;
         background:var(--panel2); border:1px solid var(--border); color:var(--muted); transition:all .15s; }
 .chip:hover { color:var(--text); border-color:var(--blue); }
-.chip.on { background:rgba(77,159,255,.16); border-color:var(--blue); color:#cfe4ff; }
+.chip.on { background:rgba(47,107,216,.13); border-color:var(--blue); color:#1c4fa1; }
 .tbl-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:10px; }
 table { width:100%; border-collapse:collapse; font-size:13px; }
-th { position:sticky; top:0; background:#1a2740; color:#9dc6ff; padding:10px 8px; cursor:pointer;
+th { position:sticky; top:0; background:#eef2f8; color:#2f6bd8; padding:10px 8px; cursor:pointer;
      white-space:nowrap; text-align:right; font-weight:600; user-select:none; font-size:12px; }
-th.l { text-align:left; } th:hover { color:#fff; }
-td { padding:9px 8px; border-bottom:1px solid #1c2740; text-align:right; white-space:nowrap; }
-td.l { text-align:left; } td.mono { font-family:Consolas,monospace; color:#9dc6ff; }
+th.l { text-align:left; } th:hover { color:#1c4fa1; }
+td { padding:9px 8px; border-bottom:1px solid #e6ebf3; text-align:right; white-space:nowrap; }
+td.l { text-align:left; } td.mono { font-family:Consolas,monospace; color:#2f6bd8; }
 .up { color:var(--up) !important; } .down { color:var(--down) !important; }
-tr:hover td { background:rgba(77,159,255,.06); }
+tr:hover td { background:rgba(47,107,216,.07); }
 
 /* ── 研究积累 ── */
 .rc-stats { display:flex; gap:26px; margin-bottom:16px; flex-wrap:wrap; }
@@ -99,11 +99,11 @@ tr:hover td { background:rgba(77,159,255,.06); }
 .rc-stats .k { font-size:12px; color:var(--muted); }
 .bar-row { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
 .bar-name { width:110px; font-size:12px; color:var(--text); text-align:right; }
-.bar-track { flex:1; height:12px; background:#0e1524; border-radius:6px; overflow:hidden; }
+.bar-track { flex:1; height:12px; background:#e6ebf3; border-radius:6px; overflow:hidden; }
 .bar-fill { height:100%; background:linear-gradient(90deg,#2f6bd8,#4d9fff); border-radius:6px; }
 .bar-val { width:46px; font-size:12px; color:var(--muted); font-family:Consolas,monospace; }
 .tag-cloud { display:flex; flex-wrap:wrap; gap:8px 14px; margin-top:8px; align-items:center; }
-.tag { color:#b9d4ff; }
+.tag { color:#3a5a8c; }
 
 /* ── 部门成员 ── */
 .team-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
@@ -120,7 +120,7 @@ tr:hover td { background:rgba(77,159,255,.06); }
       background:var(--panel2); border:1px solid var(--border); color:var(--text); outline:none; }
 .search input:focus { border-color:var(--blue); }
 
-footer { margin-top:30px; text-align:center; font-size:12px; color:#5b6a80; line-height:1.8; }
+footer { margin-top:30px; text-align:center; font-size:12px; color:#7a8798; line-height:1.8; }
 a { color:inherit; }
 </style>
 </head>
@@ -130,7 +130,7 @@ a { color:inherit; }
   <div class="hero">
     <h1>📊 研究总览 · 调研纪要数据看板</h1>
     <div class="meta">
-      <span>基准日 <b>2026-08-29 21:27</b></span>
+      <span>基准日 <b>2026-08-29 21:40</b></span>
       <span>来源 <b>知识星球「调研纪要」</b> + <b>通达信 064 板块</b></span>
       <span class="pill">外部浏览版</span>
     </div>
