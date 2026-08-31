@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>异动归因档案 · 研究总览</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--border:#e8ecf3;--text:#1a2233;--muted:#6b7787;
+--up:#e03131;--down:#0f9960;--accent:#7048e8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+background:var(--bg);color:var(--text);line-height:1.7;padding:0 18px 60px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto}
+.back{display:inline-block;margin:22px 0 0;color:#7048e8;text-decoration:none;font-size:13px;font-weight:600}
+.back:hover{text-decoration:underline}
+.hero{background:linear-gradient(135deg,#7048e8 0%,#9d7bff 100%);border-radius:16px;
+padding:24px 30px;margin:14px 0 20px;color:#fff;box-shadow:0 10px 30px rgba(112,72,232,.22);
+position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-50px;top:-50px;width:200px;height:200px;
+border-radius:50%;background:rgba(255,255,255,.10)}
+.hero h1{font-size:24px;font-weight:800;position:relative;z-index:1}
+.hero .sub{font-size:13px;opacity:.9;margin-top:5px;position:relative;z-index:1}
+.hero-stats{display:flex;gap:26px;margin-top:14px;position:relative;z-index:1;flex-wrap:wrap}
+.hero-stats div{font-size:12px;opacity:.9}
+.hero-stats b{display:block;font-size:22px;font-weight:800;opacity:1}
+.bar{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.search{flex:1;min-width:220px;padding:9px 14px;border:1px solid var(--border);border-radius:9px;
+font-size:13.5px;font-family:inherit;background:#fff}
+.search:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(112,72,232,.12)}
+.chip{padding:7px 15px;border:1px solid var(--border);border-radius:20px;background:#fff;
+font-size:12.5px;cursor:pointer;color:#4a5568;font-family:inherit}
+.chip.on{background:linear-gradient(135deg,#7048e8,#9d7bff);color:#fff;border-color:transparent;font-weight:600}
+.item{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:16px 20px;
+margin-bottom:12px;box-shadow:0 1px 3px rgba(16,24,40,.04);transition:all .15s}
+.item:hover{border-color:#b8a5f5;box-shadow:0 6px 18px rgba(112,72,232,.10);transform:translateY(-1px)}
+.head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.name{font-weight:800;font-size:16px}
+.code{font-family:ui-monospace,Consolas,monospace;color:#2f6bd8;font-size:13px;margin-left:6px}
+.date{font-size:12.5px;color:var(--muted)}
+.chg{font-size:17px;font-weight:800}
+.up{color:var(--up)}.down{color:var(--down)}
+.badge{font-size:11px;padding:2px 10px;border-radius:20px;color:#fff;margin-left:8px}
+.b-h{background:#e03131}.b-m{background:#f59f00}.b-l{background:#868e96}
+.verdict{font-size:13.5px;color:#2b3a52;margin:8px 0;line-height:1.7}
+.ev{font-size:12.5px;color:var(--muted);background:#f8f9fc;border-radius:7px;padding:8px 12px;
+margin:8px 0;border:1px solid #eef2f8}
+.meta{font-size:12px;color:var(--muted);margin-top:6px}
+.tags{margin-top:9px}
+.tags span{display:inline-block;background:#eef2f8;color:#2f6bd8;font-size:11px;
+padding:2px 10px;border-radius:20px;margin:0 6px 5px 0}
+.link{font-size:12.5px;color:#7048e8;text-decoration:none;font-weight:600}
+.link:hover{text-decoration:underline}
+.empty{text-align:center;padding:44px;color:#98a2b3;background:#fff;border-radius:13px;
+border:1px dashed var(--border);font-size:14px}
+footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--border);font-size:11.5px;
+color:#98a2b3;text-align:center;line-height:1.9}
+</style></head><body><div class="wrap">
+<a class="back" href="研究总览.html">← 返回研究总览</a>
+<div class="hero">
+  <h1>📂 异动归因档案</h1>
+  <div class="sub">六步归因流程沉淀的历史记录 · 点击任意条目可查看完整归因报告</div>
+  <div class="hero-stats">
+    <div>归档总数<b>4</b></div>
+    <div>覆盖股票<b>4</b></div>
+    <div>上涨<b>2</b></div>
+    <div>下跌<b>2</b></div>
+  </div>
+</div>
+<div class="bar">
+  <input class="search" id="q" placeholder="🔎 搜索代码 / 名称 / 题材标签 / 主因关键词" oninput="flt()">
+  <button class="chip on" data-f="all" onclick="setF(this)">全部</button>
+  <button class="chip" data-f="up" onclick="setF(this)">📈 上涨</button>
+  <button class="chip" data-f="down" onclick="setF(this)">📉 下跌</button>
+</div>
+<div id="list"><div class="item" data-key="002352 顺丰控股 中报 归母净利下滑 归母扣非背离 业绩杀跌 独立α下跌 融资盘撤退 放量下跌 物流 深市主板 中报&lt;strong&gt;归母净利同比 −4.1%&lt;/strong&gt;触发的&lt;strong&gt;业绩杀跌&lt;/strong&gt;：8/28 盘后披露 2026 半年报（营收 1555 亿、归母净利 55 亿同比 −4.1%），8/31 是&lt;strong&gt;中报后首个交易日&lt;/strong&gt;，市场按归母口径集中定价。属&lt;strong&gt;纯个股负面 α&lt;/strong&gt;——同期快递同业与大盘几乎没跌。 2026 半年报归母净利同比 −4.1%（08-28 盘后披露，08-31 首个交易日反应）" data-chg="down"><div class="head"><div><span class="name">顺丰控股</span><span class="code">002352</span><span class="date">2026-08-31</span><span class="badge b-h">置信度高</span></div><div class="chg down">-5.49%</div></div><div class="verdict"><b>主因：</b>中报&lt;strong&gt;归母净利同比 −4.1%&lt;/strong&gt;触发的&lt;strong&gt;业绩杀跌&lt;/strong&gt;：8/28 盘后披露 2026 半年报（营收 1555 亿、归母净利 55 亿同比 −4.1%），8/31 是&lt;strong&gt;中报后首个交易日&lt;/strong&gt;，市场按归母口径集中定价。属&lt;strong&gt;纯个股负面 α&lt;/strong&gt;——同期快递同业与大盘几乎没跌。</div><div class="meta">所属 物流（快递） · 板块 -0.73% · α −4.76pct（vs 物流板块 −0.73%；vs 上证 −5.30pct） · 龙虎榜 未上榜（盘中，未触发异动条件；−5.5% 未达深市主板上榜标准） · 持续性 偏弱 / 待观察（基本面不差，属归母口径情绪杀；看午后能否放量企稳）</div><div class="tags"><span>中报</span><span>归母净利下滑</span><span>归母扣非背离</span><span>业绩杀跌</span><span>独立α下跌</span><span>融资盘撤退</span><span>放量下跌</span><span>物流</span><span>深市主板</span><a class="link" href="异动归因-顺丰控股002352-20260831.html" target="_blank">📄 查看完整归因报告 →</a></div></div><div class="item" data-key="688209 英集芯 中报预增 业绩翻倍 北向买入 逆板块独涨 20cm涨停 快充芯片 电源管理 股份回购 中报净利润翻倍（+100.01%）驱动的&lt;strong&gt;业绩超预期行情&lt;/strong&gt;，&lt;strong&gt;北向资金主导买入&lt;/strong&gt;，在半导体板块大跌背景下&lt;strong&gt;逆势涨停&lt;/strong&gt;，属纯独立 α。 中报净利润同比增长 100.01%（08-27 盘后发布）" data-chg="up"><div class="head"><div><span class="name">英集芯</span><span class="code">688209</span><span class="date">2026-08-28</span><span class="badge b-h">置信度高</span></div><div class="chg up">+19.98%</div></div><div class="verdict"><b>主因：</b>中报净利润翻倍（+100.01%）驱动的&lt;strong&gt;业绩超预期行情&lt;/strong&gt;，&lt;strong&gt;北向资金主导买入&lt;/strong&gt;，在半导体板块大跌背景下&lt;strong&gt;逆势涨停&lt;/strong&gt;，属纯独立 α。</div><div class="ev">🔎 08-27 盘后中报净利+100.01% → 08-28 低开单边上行封 20cm 涨停；龙虎榜净买 1.57 亿，沪股通净买 1.11 亿为最大买方；同期半导体板块 -1.69%、主力流出 128 亿</div><div class="meta">所属 半导体 · 板块 -1.69% · α +21.67pct 超额（逆板块） · 龙虎榜 净买 1.57 亿（沪股通主导） · 持续性 中等偏强</div><div class="tags"><span>中报预增</span><span>业绩翻倍</span><span>北向买入</span><span>逆板块独涨</span><span>20cm涨停</span><span>快充芯片</span><span>电源管理</span><span>股份回购</span><a class="link" href="异动归因-英集芯688209-20260828.html" target="_blank">📄 查看完整归因报告 →</a></div></div><div class="item" data-key="300454 深信服 外盘映射 软件开发 冲高回落 脉冲行情 长上影 外盘映射 + 板块资金驱动的&lt;strong&gt;脉冲行情&lt;/strong&gt;：隔夜美国软件股大涨触发高开冲高，但资金未能接力，&lt;strong&gt;冲高回落、留长上影&lt;/strong&gt;。 隔夜美国企业软件巨头股价大涨（外盘映射）" data-chg="up"><div class="head"><div><span class="name">深信服</span><span class="code">300454</span><span class="date">2026-08-28</span><span class="badge b-h">置信度高</span></div><div class="chg up">+4.07%</div></div><div class="verdict"><b>主因：</b>外盘映射 + 板块资金驱动的&lt;strong&gt;脉冲行情&lt;/strong&gt;：隔夜美国软件股大涨触发高开冲高，但资金未能接力，&lt;strong&gt;冲高回落、留长上影&lt;/strong&gt;。</div><div class="ev">🔎 08-28 11:00「隔夜美国企业软件巨头股价大涨，软件开发概念强势拉升」；主力资金 10:31 见顶 +2.00 亿后回落至 +1.27 亿</div><div class="meta">所属 软件开发 · 板块 0.81% · α +3.26pct 超额 · 龙虎榜 未上榜 · 持续性 弱</div><div class="tags"><span>外盘映射</span><span>软件开发</span><span>冲高回落</span><span>脉冲行情</span><span>长上影</span><a class="link" href="异动归因-深信服300454-20260828.html" target="_blank">📄 查看完整归因报告 →</a></div></div><div class="item" data-key="688692 达梦数据 业绩不及预期 中报 杀估值 逆势下跌 现金流下滑 国产数据库 放量下跌 中报&lt;strong&gt;业绩不及预期&lt;/strong&gt;引发的&lt;strong&gt;估值杀跌&lt;/strong&gt;：净利增速仅 +7.99% 撑不住 45.79 倍 PE，叠加经营现金流下滑。属&lt;strong&gt;纯个股负面 α&lt;/strong&gt;——当日大盘与信创板块普涨，唯独达梦逆势暴跌。 中报净利仅 +7.99% + 经营现金流下滑（08-25 盘后发布）" data-chg="down"><div class="head"><div><span class="name">达梦数据</span><span class="code">688692</span><span class="date">2026-08-26</span><span class="badge b-h">置信度高</span></div><div class="chg down">-9.33%</div></div><div class="verdict"><b>主因：</b>中报&lt;strong&gt;业绩不及预期&lt;/strong&gt;引发的&lt;strong&gt;估值杀跌&lt;/strong&gt;：净利增速仅 +7.99% 撑不住 45.79 倍 PE，叠加经营现金流下滑。属&lt;strong&gt;纯个股负面 α&lt;/strong&gt;——当日大盘与信创板块普涨，唯独达梦逆势暴跌。</div><div class="ev">🔎 08-25 盘后中报净利+7.99%、拟10派7元 → 08-26 低开5.68%（开盘即最高）单边下杀收 -9.33%；同日科创50 +1.71%、中国软件 +0.86%，逆势超额 -11.04pct</div><div class="meta">所属 软件开发（国产数据库） · 板块 1.71% · α −11.04pct（vs 科创50，逆势暴跌） · 龙虎榜 未上榜（未触发±15%偏离） · 持续性 偏弱（需观察215企稳）</div><div class="tags"><span>业绩不及预期</span><span>中报</span><span>杀估值</span><span>逆势下跌</span><span>现金流下滑</span><span>国产数据库</span><span>放量下跌</span><a class="link" href="异动归因-达梦数据688692-20260826.html" target="_blank">📄 查看完整归因报告 →</a></div></div></div>
+<footer>共 4 条归因记录 · 由 stock-move-attribution 六步归因流程生成<br>
+本页面由 build_attribution_module.py 自动生成 · 2026-08-31 10:15</footer>
+</div>
+<script>
+var F='all';
+function setF(el){
+  F=el.dataset.f;
+  document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on');});
+  el.classList.add('on');
+  flt();
+}
+function flt(){
+  var q=(document.getElementById('q').value||'').trim().toLowerCase();
+  var n=0;
+  document.querySelectorAll('#list .item').forEach(function(el){
+    var k=(el.dataset.key||'').toLowerCase();
+    var c=el.dataset.chg||'';
+    var okF = (F==='all') || (F==='up' && c==='up') || (F==='down' && c==='down');
+    var okQ = !q || k.indexOf(q)>=0;
+    var show = okF && okQ;
+    el.style.display = show?'':'none';
+    if(show) n++;
+  });
+}
+</script>
+</body></html>
