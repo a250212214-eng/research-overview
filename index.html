@@ -173,6 +173,31 @@ tr:hover td { background:rgba(47,107,216,.07); }
 .team-btn b { font-size:16px; }
 .team-btn span { font-size:12px; opacity:.88; }
 
+/* ── 产品管理：荐股周报 + 异动归因 ── */
+.product-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px; }
+.product-card { background:linear-gradient(160deg,var(--panel2),var(--panel)); border:1px solid var(--border);
+                border-radius:14px; padding:18px; display:flex; flex-direction:column; gap:12px; }
+.pc-hd { display:flex; gap:12px; align-items:center; }
+.pc-ic { font-size:28px; }
+.pc-t { font-size:15px; font-weight:700; color:#1c4fa1; }
+.pc-s { font-size:12px; color:var(--muted); margin-top:2px; }
+.pc-info { font-size:13px; color:var(--text); background:rgba(47,107,216,.06); border-radius:10px; padding:10px 12px; }
+.pc-list { display:flex; flex-direction:column; gap:8px; }
+.pc-btn { display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:10px 14px;
+           border-radius:10px; background:var(--panel); border:1px solid var(--blue); color:var(--blue);
+           font-size:13px; font-weight:600; text-decoration:none; transition:all .18s; }
+.pc-btn:hover { background:var(--blue); color:#fff; }
+.attr-form-ext { display:flex; gap:8px; flex-wrap:wrap; }
+.attr-form-ext input { flex:1; min-width:110px; padding:9px 12px; border-radius:9px; font-size:13px;
+                        background:var(--panel); border:1px solid var(--border); color:var(--text); outline:none; }
+.attr-form-ext input:focus { border-color:var(--blue); }
+.attr-form-ext button { padding:9px 16px; border-radius:9px; background:var(--blue); color:#fff;
+                         border:none; font-size:13px; font-weight:600; cursor:pointer; }
+.attr-form-ext button:hover { background:#1c4fa1; }
+.attr-cmd { font-family:Consolas,monospace; font-size:13px; background:#0f172a; color:#7dd3fc;
+             padding:10px 12px; border-radius:8px; display:none; word-break:break-all; }
+.attr-cmd.on { display:block; }
+
 /* ── 搜索 ── */
 .search { display:flex; gap:10px; margin-bottom:14px; }
 .search input { flex:1; max-width:340px; padding:9px 14px; border-radius:9px; font-size:13px;
@@ -190,8 +215,8 @@ a { color:inherit; }
   <aside class="side">
     <div class="side-hd">目录</div>
     <a class="nav-item on" data-cat="stock" href="#/stock">股票研究<span class="nb">6</span></a>
-    <a class="nav-item" data-cat="product" href="#/product">产品管理<span class="nb warn">待开发</span></a>
-    <a class="nav-item" data-cat="team" href="#/team">部门管理<span class="nb">3</span></a>
+    <a class="nav-item" data-cat="product" href="#/product">产品管理<span class="nb">5</span></a>
+    <a class="nav-item" data-cat="team" href="#/team">部门管理<span class="nb">5</span></a>
     <div class="side-ft">基准日 <b>2026-08-31</b><br>知识星球「调研纪要」<br>通达信 064 板块</div>
   </aside>
 
@@ -204,7 +229,7 @@ a { color:inherit; }
   <div class="hero">
     <h1>📊 研究总览 · 调研纪要数据看板</h1>
     <div class="meta">
-      <span>基准日 <b>2026-08-31 13:50</b></span>
+      <span>基准日 <b>2026-08-31 14:03</b></span>
       <span>来源 <b>知识星球「调研纪要」</b> + <b>通达信 064 板块</b></span>
       <span class="pill">外部浏览版</span>
     </div>
@@ -230,6 +255,7 @@ a { color:inherit; }
           <a class="ncard" href="#/stock/watch"><div class="ic">🎯</div><div class="t">自选股监控</div><div class="s">29 只 · 064 板块</div></a>
           <div class="ncard todo"><div class="ic">📊</div><span class="badge">待开发</span><div class="t" style="color:var(--muted)">每日复盘</div><div class="s">盘后指数 / 板块 / 涨停家数</div></div>
           <a class="ncard" href="#/stock/weekly"><div class="ic">📈</div><div class="t">每周复盘</div><div class="s">3 期 · 指数周涨跌</div></a>
+          <a class="ncard" href="#/product"><div class="ic">🧩</div><div class="t">产品管理</div><div class="s">1 期荐股 · 4 条归因</div></a>
         </div>
       </div>
     </section>
@@ -288,14 +314,45 @@ a { color:inherit; }
     </div>
   </section>
 
-    <!-- 产品管理（待开发） -->
+    <!-- 产品管理：荐股周报 + 异动归因 -->
     <section class="sec" id="sec-product">
       <div class="box">
-        <h3>📦 产品管理 <span style="font-weight:400;font-size:12px;color:var(--muted)">规划中</span></h3>
-        <div class="empty">
-          <div class="e-ic">🚧</div>
-          <div class="e-t">产品管理模块待开发</div>
-          <div class="e-s">规划内容：产品净值看板 · 组合管理 · 产品参数<br>后续接入后在此处展示</div>
+        <h3>🧩 产品管理 <span style="font-weight:400;font-size:12px;color:var(--muted)">荐股周报 · 异动归因</span></h3>
+
+        <div class="product-grid">
+          <!-- 荐股周报 -->
+          <div class="product-card">
+            <div class="pc-hd">
+              <div class="pc-ic">📊</div>
+              <div>
+                <div class="pc-t">荐股周报</div>
+                <div class="pc-s">17 条推荐 · 已发布 1 期</div>
+              </div>
+            </div>
+            <div class="pc-info">第 01 期 2026-08-25 ~ 2026-08-28，平均 +3.05%</div>
+            <div class="pc-list"><a class="w-item" href="pick/pick-1-20260825.html" target="_blank"><span class="w-ic">📊</span><span class="w-title">第 1 期 · 2026-08-25</span><span class="w-tag">在线</span></a></div>
+            <a class="pc-btn" href="pick-archive.html" target="_blank">📂 查阅荐股周报档案 →</a>
+          </div>
+
+          <!-- 异动归因 -->
+          <div class="product-card">
+            <div class="pc-hd">
+              <div class="pc-ic">🔍</div>
+              <div>
+                <div class="pc-t">异动归因</div>
+                <div class="pc-s">已归档 4 条 · 覆盖 4 只股票</div>
+              </div>
+            </div>
+            <div class="pc-info">涨 <b style="color:var(--red)">2</b> · 跌 <b style="color:var(--green)">2</b> · 输入代码与日期生成归因指令</div>
+            <div class="attr-form-ext">
+              <input id="attrCodeExt" placeholder="股票代码 例：300454" maxlength="6">
+              <input id="attrDateExt" placeholder="异动日期 例：20260828" maxlength="8">
+              <button onclick="attrGenExt()">生成指令</button>
+            </div>
+            <div class="attr-cmd" id="attrCmdExt"></div>
+            <div class="pc-list"><a class="w-item" href="attribution/002352-20260831.html" target="_blank"><span class="w-ic">🔍</span><span class="w-title">顺丰控股 002352 · 2026-08-31</span><span class="w-tag">在线</span></a><a class="w-item" href="attribution/300454-20260828.html" target="_blank"><span class="w-ic">🔍</span><span class="w-title">深信服 300454 · 2026-08-28</span><span class="w-tag">在线</span></a><a class="w-item" href="attribution/688209-20260828.html" target="_blank"><span class="w-ic">🔍</span><span class="w-title">英集芯 688209 · 2026-08-28</span><span class="w-tag">在线</span></a><a class="w-item" href="attribution/688692-20260826.html" target="_blank"><span class="w-ic">🔍</span><span class="w-title">达梦数据 688692 · 2026-08-26</span><span class="w-tag">在线</span></a></div>
+            <a class="pc-btn" href="attribution-archive.html" target="_blank">📂 查阅归因档案 →</a>
+          </div>
         </div>
       </div>
     </section>
@@ -348,6 +405,17 @@ function router(){
 }
 window.addEventListener('hashchange', router);
 window.addEventListener('load', router);
+
+// ── 异动归因指令生成（外部版：显示指令，用户手动复制后发给助手） ──
+function attrGenExt(){
+  var code = document.getElementById('attrCodeExt').value.trim();
+  var date = document.getElementById('attrDateExt').value.trim();
+  var box = document.getElementById('attrCmdExt');
+  if (!/^\d{6}$/.test(code)) { box.textContent = '⚠️ 股票代码须为 6 位数字'; box.classList.add('on'); return; }
+  if (!/^\d{8}$/.test(date)) { box.textContent = '⚠️ 日期须为 8 位数字，如 20260831'; box.classList.add('on'); return; }
+  box.textContent = '归因 ' + code + ' ' + date;
+  box.classList.add('on');
+}
 
 // ── 日报搜索 ──
 function filterDaily(v){
