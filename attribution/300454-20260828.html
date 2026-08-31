@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>深信服(300454) 异动归因 · 2026-08-28</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--border:#e8ecf3;--text:#1a2233;--muted:#6b7787;
+--up:#e03131;--down:#0f9960;--blue:#2f6bd8;--accent:#7048e8;--soft:#f8f9fc}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+background:var(--bg);color:var(--text);line-height:1.7;padding:0 18px 60px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto}
+.hero{border-radius:16px;padding:26px 30px;margin:22px 0 20px;color:#fff;
+box-shadow:0 10px 30px rgba(0,0,0,.13);position:relative;overflow:hidden}
+.hero.u{background:linear-gradient(135deg,#c92a2a 0%,#e8590c 55%,#f76707 100%)}
+.hero.d{background:linear-gradient(135deg,#087f5b 0%,#0ca678 55%,#12b886 100%)}
+.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:230px;height:230px;
+border-radius:50%;background:rgba(255,255,255,.09)}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;position:relative;z-index:1}
+.hero-name{font-size:27px;font-weight:800;letter-spacing:.5px}
+.hero-name span{font-size:15px;font-weight:500;opacity:.85;font-family:ui-monospace,Consolas,monospace}
+.hero-sub{font-size:13px;opacity:.9;margin-top:3px}
+.hero-chg{font-size:44px;font-weight:800;line-height:1;letter-spacing:-1px}
+.hero-chg small{display:block;font-size:12px;font-weight:500;opacity:.85;margin-top:6px;text-align:right;letter-spacing:0}
+.hero-tag{display:inline-block;margin-top:12px;background:rgba(255,255,255,.22);padding:4px 13px;
+border-radius:20px;font-size:12px;font-weight:600;backdrop-filter:blur(4px)}
+.hero-verdict{margin-top:16px;padding-top:15px;border-top:1px solid rgba(255,255,255,.25);
+font-size:14.5px;line-height:1.75;position:relative;z-index:1}
+.hero-verdict b{background:rgba(255,255,255,.2);padding:1px 6px;border-radius:4px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:13px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:15px 17px;
+box-shadow:0 1px 3px rgba(16,24,40,.04);transition:transform .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(16,24,40,.07)}
+.card .k{font-size:11.5px;color:var(--muted);margin-bottom:5px;letter-spacing:.3px}
+.card .v{font-size:22px;font-weight:800;line-height:1.2}
+.card .n{font-size:11px;color:var(--muted);margin-top:3px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 26px;
+margin-bottom:18px;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+.panel h2{font-size:16.5px;font-weight:700;color:#16233d;margin-bottom:15px;display:flex;
+align-items:center;gap:9px;padding-bottom:11px;border-bottom:2px solid var(--soft)}
+.panel h2 .ic{width:27px;height:27px;border-radius:8px;display:inline-flex;align-items:center;
+justify-content:center;font-size:14px;background:linear-gradient(135deg,#7048e8,#9d7bff);color:#fff}
+.up{color:var(--up)}.down{color:var(--down)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:4px}
+th{background:var(--soft);color:#2b3a52;text-align:left;padding:10px 13px;font-weight:600;font-size:12.5px}
+th:first-child{border-radius:8px 0 0 8px}th:last-child{border-radius:0 8px 8px 0}
+td{padding:10px 13px;border-bottom:1px solid #f0f3f8;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#fafbfe}
+.ev{border-left:4px solid #dee2e6;background:var(--soft);border-radius:0 10px 10px 0;
+padding:13px 17px;margin-bottom:11px}
+.ev.s1{border-left-color:#e03131;background:linear-gradient(90deg,#fff5f5,#fffafa)}
+.ev.s2{border-left-color:#4c6ef5;background:linear-gradient(90deg,#f3f7ff,#fbfcff)}
+.ev.s3{border-left-color:#f59f00;background:linear-gradient(90deg,#fffaf0,#fffdf8)}
+.ev.s4{border-left-color:#0f9960;background:linear-gradient(90deg,#f2fbf6,#fafdfb)}
+.ev .h{font-size:13.5px;font-weight:700;color:#1a2233;margin-bottom:4px;display:flex;
+align-items:center;gap:8px;flex-wrap:wrap}
+.ev .b{font-size:13px;color:#495057;line-height:1.72}
+.ev .b strong{color:#1a2233;background:linear-gradient(transparent 62%,#ffe9a8 62%)}
+.pill{display:inline-block;font-size:10.5px;padding:2px 9px;border-radius:20px;color:#fff;font-weight:600}
+.p1{background:#e03131}.p2{background:#4c6ef5}.p3{background:#f59f00}.p4{background:#0f9960}
+.note{background:linear-gradient(135deg,#f8f9fc,#f3f6fb);border:1px solid var(--border);
+border-left:3px solid var(--accent);padding:13px 16px;font-size:12.8px;color:#4a5568;
+border-radius:0 10px 10px 0;margin-top:14px;line-height:1.75}
+.note strong{color:#1a2233}
+.chart{width:100%;height:auto;display:block;margin:4px 0}
+.legend{font-size:11px;color:var(--muted);margin-top:6px}
+ul{padding-left:19px;font-size:13.5px}li{margin-bottom:8px;color:#3d4757}
+li strong{color:#1a2233}
+.concl{font-size:14.5px;line-height:1.85;color:#2b3a52;margin-bottom:14px}
+.concl strong{background:linear-gradient(transparent 62%,#ffe9a8 62%);color:#1a2233}
+footer{margin-top:24px;padding-top:18px;border-top:1px solid var(--border);font-size:11.5px;
+color:#98a2b3;text-align:center;line-height:1.9}
+@media(max-width:640px){.hero-chg{font-size:34px}.panel{padding:18px 16px}}
+</style></head><body><div class="wrap">
+
+<div class="hero u">
+  <div class="hero-top">
+    <div>
+      <div class="hero-name">深信服 <span>300454</span></div>
+      <div class="hero-sub">2026-08-28 · 软件开发 · 创业板</div>
+      <div class="hero-tag">置信度 高 ｜ 持续性 弱</div>
+    </div>
+    <div class="hero-chg">+4.07%<small>收盘 124.89（昨收 120.0）</small></div>
+  </div>
+  <div class="hero-verdict">外盘映射 + 板块资金驱动的<strong>脉冲行情</strong>：隔夜美国软件股大涨触发高开冲高，但资金未能接力，<strong>冲高回落、留长上影</strong>。</div>
+</div>
+
+<div class="cards"><div class="card"><div class="k">今开</div><div class="v up">128.27</div><div class="n">高开</div></div><div class="card"><div class="k">最高</div><div class="v up">135.5</div><div class="n">最大 +12.92%</div></div><div class="card"><div class="k">最低</div><div class="v down">124.38</div><div class="n">最大 +3.65%</div></div><div class="card"><div class="k">振幅</div><div class="v ">9.27%</div><div class="n">日内波动幅度</div></div><div class="card"><div class="k">换手率</div><div class="v ">11.06%</div><div class="n">量比 1.97</div></div><div class="card"><div class="k">成交额</div><div class="v ">41.19 亿</div><div class="n">总市值 538.97 亿</div></div></div>
+
+<div class="panel"><h2><span class="ic">📉</span>日内形态与资金同步关系</h2><svg class="chart" viewBox="0 0 920 320" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gp" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e03131" stop-opacity="0.20"/><stop offset="100%" stop-color="#e03131" stop-opacity="0.02"/></linearGradient></defs><line x1="62" y1="34.0" x2="824" y2="34.0" stroke="#f0f3f8" stroke-width="1"/><text x="54" y="38.0" font-size="11" fill="#98a2b3" text-anchor="end">136.10</text><line x1="62" y1="86.5" x2="824" y2="86.5" stroke="#f0f3f8" stroke-width="1"/><text x="54" y="90.5" font-size="11" fill="#98a2b3" text-anchor="end">131.93</text><line x1="62" y1="139.0" x2="824" y2="139.0" stroke="#f0f3f8" stroke-width="1"/><text x="54" y="143.0" font-size="11" fill="#98a2b3" text-anchor="end">127.75</text><line x1="62" y1="191.5" x2="824" y2="191.5" stroke="#f0f3f8" stroke-width="1"/><text x="54" y="195.5" font-size="11" fill="#98a2b3" text-anchor="end">123.58</text><line x1="62" y1="244.0" x2="824" y2="244.0" stroke="#f0f3f8" stroke-width="1"/><text x="54" y="248.0" font-size="11" fill="#98a2b3" text-anchor="end">119.40</text><line x1="62" y1="236.5" x2="824" y2="236.5" stroke="#adb5bd" stroke-width="1.4" stroke-dasharray="5 4"/><text x="67" y="230.5" font-size="10.5" fill="#868e96">昨收 120.0</text><polygon points="62.0,244 62.0,208.7 157.2,98.9 252.5,69.0 347.8,111.0 443.0,110.5 538.2,121.6 633.5,135.5 728.8,133.3 824.0,132.9 824.0,244" fill="rgba(47,107,216,.10)"/><polyline points="62.0,208.7 157.2,98.9 252.5,69.0 347.8,111.0 443.0,110.5 538.2,121.6 633.5,135.5 728.8,133.3 824.0,132.9" fill="none" stroke="#2f6bd8" stroke-width="2.2" stroke-linejoin="round"/><circle cx="62.0" cy="208.7" r="2.6" fill="#2f6bd8"/><circle cx="157.2" cy="98.9" r="2.6" fill="#2f6bd8"/><circle cx="252.5" cy="69.0" r="2.6" fill="#2f6bd8"/><circle cx="347.8" cy="111.0" r="2.6" fill="#2f6bd8"/><circle cx="443.0" cy="110.5" r="2.6" fill="#2f6bd8"/><circle cx="538.2" cy="121.6" r="2.6" fill="#2f6bd8"/><circle cx="633.5" cy="135.5" r="2.6" fill="#2f6bd8"/><circle cx="728.8" cy="133.3" r="2.6" fill="#2f6bd8"/><circle cx="824.0" cy="132.9" r="2.6" fill="#2f6bd8"/><polygon points="62.0,244 62.0,132.5 157.2,66.7 252.5,41.5 347.8,98.1 443.0,129.6 538.2,142.1 633.5,163.5 728.8,171.1 824.0,175.0 824.0,244" fill="url(#gp)"/><polyline points="62.0,132.5 157.2,66.7 252.5,41.5 347.8,98.1 443.0,129.6 538.2,142.1 633.5,163.5 728.8,171.1 824.0,175.0" fill="none" stroke="#e03131" stroke-width="2.8" stroke-linejoin="round"/><circle cx="62.0" cy="132.5" r="4.5" fill="#e03131"/><text x="62.0" y="152.5" font-size="11" fill="#495057" text-anchor="middle">开 128.27</text><circle cx="824.0" cy="175.0" r="5" fill="#e03131"/><text x="818.0" y="167.0" font-size="11.5" font-weight="700" fill="#e03131" text-anchor="end">收 124.89</text><text x="62.0" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">09:31</text><text x="157.2" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">10:01</text><text x="252.5" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">10:31</text><text x="347.8" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">11:01</text><text x="443.0" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">13:01</text><text x="538.2" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">13:31</text><text x="633.5" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">14:01</text><text x="728.8" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">14:31</text><text x="824.0" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">15:00</text><rect x="62" y="294" width="14" height="3" rx="1.5" fill="#e03131"/><text x="82" y="299" font-size="11" fill="#5d6b81">价格（示意）</text><rect x="172" y="294" width="14" height="3" rx="1.5" fill="#2f6bd8"/><text x="192" y="299" font-size="11" fill="#5d6b81">主力资金累计净流入（亿元）</text></svg><div class="legend">分时价格为依据 OHLC 与资金节奏绘制的示意走势；资金流为东财分钟级真实累计值。</div><div class="note">主力资金在 <strong>10:31 见顶（+2.00 亿）</strong>，与股价最高点 135.50 同时出现；此后资金持续流出至尾盘 <strong>+1.27 亿</strong>，股价同步回落收 124.89。资金撤退与价格回落完全同向，说明<strong>冲高缺乏承接、获利盘与抛压主导后半场</strong>。（分时价格为依据 OHLC 与资金峰值时点绘制的示意走势，资金流为东财分钟级真实累计值）</div></div>
+<div class="panel"><h2><span class="ic">⛓</span>证据链</h2><div class="ev s1"><div class="h"><span class="pill p1">最强证据</span>外盘映射催化（当日，板块级）</div><div class="b">2026-08-28 11:00《21世纪经济报道》：<strong>「隔夜美国企业软件巨头股价大涨，软件开发概念强势拉升丨异动情报」</strong> —— 直接触发 A 股软件开发概念集体高开，深信服高开 6.89% 并冲高至 +12.92%。</div></div><div class="ev s2"><div class="h"><span class="pill p2">佐证</span>板块资金确实流入</div><div class="b">2026-08-28《证券时报》<strong>「17.21 亿元主力资金今日抢筹计算机板块」</strong>；东财行业数据确认软件开发板块主力净流入 <strong>+20.99 亿</strong>。</div></div><div class="ev s3"><div class="h"><span class="pill p3">反向证据</span>公司层面&lt;strong&gt;无&lt;/strong&gt;新催化</div><div class="b">08-28 当日<strong>无深信服公司公告、无个股新闻</strong>；最近的公司级利好是 <strong>08-21 中报</strong>（归母净利 2.31 亿、同比扭亏为盈），已过去 5 个交易日，属<strong>前期利好，非当日驱动</strong>。</div></div><div class="ev s4"><div class="h"><span class="pill p4">排除</span>结构性利空全部排除</div><div class="b">无解禁 · 无大宗交易 · 无减持公告 · 未上龙虎榜（无机构/游资大举介入痕迹）。</div></div></div>
+
+<div class="panel"><h2><span class="ic">💰</span>资金性质与持续性</h2>
+<table><tr><th style="width:23%">维度</th><th style="width:25%">数据</th><th>判读</th></tr><tr><td style='width:23%'><b>当日主力净流入</b></td><td class='up' style='width:25%'>+0.91 亿（超大单 +1.19 亿）</td><td>流入为正，但盘中从峰值 +2.00 亿回落，<strong>后半场在流出</strong></td></tr><tr><td style='width:23%'><b>龙虎榜</b></td><td class='' style='width:25%'>未上榜</td><td>未触发上榜条件 → 无机构专用席位、无知名游资营业部集中介入</td></tr><tr><td style='width:23%'><b>近 3 日主力累计</b></td><td class='down' style='width:25%'>−0.76 亿</td><td>净流出</td></tr><tr><td style='width:23%'><b>近 5 日主力累计</b></td><td class='up' style='width:25%'>+1.42 亿</td><td>小幅净流入</td></tr><tr><td style='width:23%'><b>近 20 日主力累计</b></td><td class='down' style='width:25%'>−3.55 亿</td><td><strong>中期仍为净流出</strong>，趋势未反转</td></tr><tr><td style='width:23%'><b>融资余额</b></td><td class='down' style='width:25%'>14.46 亿(08-24) → 13.16 亿(08-27)</td><td><strong>杠杆资金连续撤退</strong>；08-27 买入 1.47 亿 vs 偿还 2.44 亿，净偿还 −0.97 亿</td></tr><tr><td style='width:23%'><b>股东户数</b></td><td class='' style='width:25%'>53,653 户（06-30），较上期 −3.79%</td><td>筹码<strong>集中</strong>，人均持股 8,044 股（中期偏正面）</td></tr></table>
+<div style="margin-top:16px"><div style="font-size:13px;font-weight:600;color:#2b3a52;margin-bottom:6px">近 10 日主力资金净流入</div><svg class="chart" viewBox="0 0 920 210" xmlns="http://www.w3.org/2000/svg"><line x1="62" y1="97.0" x2="900" y2="97.0" stroke="#dee2e6" stroke-width="1.4"/><text x="54" y="101.0" font-size="10.5" fill="#98a2b3" text-anchor="end">0</text><text x="54" y="30.0" font-size="10.5" fill="#98a2b3" text-anchor="end">+2.0亿</text><text x="54" y="172.0" font-size="10.5" fill="#98a2b3" text-anchor="end">-2.0亿</text><rect x="82.1" y="96.9" width="43.6" height="1.5" rx="3" fill="#e03131" opacity="0.85"/><text x="103.9" y="91.9" font-size="10" fill="#e03131" text-anchor="middle">+0.00</text><text x="103.9" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-17</text><rect x="165.9" y="90.1" width="43.6" height="6.9" rx="3" fill="#e03131" opacity="0.85"/><text x="187.7" y="85.1" font-size="10" fill="#e03131" text-anchor="middle">+0.19</text><text x="187.7" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-18</text><rect x="249.7" y="97.0" width="43.6" height="42.1" rx="3" fill="#0f9960" opacity="0.85"/><text x="271.5" y="151.1" font-size="10" fill="#0f9960" text-anchor="middle">-1.17</text><text x="271.5" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-19</text><rect x="333.5" y="48.1" width="43.6" height="48.9" rx="3" fill="#e03131" opacity="0.85"/><text x="355.3" y="43.1" font-size="10" fill="#e03131" text-anchor="middle">+1.36</text><text x="355.3" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-20</text><rect x="417.3" y="26.0" width="43.6" height="71.0" rx="3" fill="#e03131" opacity="0.85"/><text x="439.1" y="21.0" font-size="10" fill="#e03131" text-anchor="middle">+1.97</text><text x="439.1" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-21</text><rect x="501.1" y="30.4" width="43.6" height="66.6" rx="3" fill="#e03131" opacity="0.85"/><text x="522.9" y="25.4" font-size="10" fill="#e03131" text-anchor="middle">+1.85</text><text x="522.9" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-24</text><rect x="584.9" y="84.9" width="43.6" height="12.1" rx="3" fill="#e03131" opacity="0.85"/><text x="606.7" y="79.9" font-size="10" fill="#e03131" text-anchor="middle">+0.34</text><text x="606.7" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-25</text><rect x="668.7" y="97.0" width="43.6" height="67.7" rx="3" fill="#0f9960" opacity="0.85"/><text x="690.5" y="176.7" font-size="10" fill="#0f9960" text-anchor="middle">-1.88</text><text x="690.5" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-26</text><rect x="752.5" y="89.7" width="43.6" height="7.3" rx="3" fill="#e03131" opacity="0.85"/><text x="774.3" y="84.7" font-size="10" fill="#e03131" text-anchor="middle">+0.20</text><text x="774.3" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-27</text><rect x="836.3" y="64.1" width="43.6" height="32.9" rx="3" fill="#e03131" opacity="0.85"/><text x="858.1" y="59.1" font-size="10" fill="#e03131" text-anchor="middle">+0.91</text><text x="858.1" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-28</text><text x="62" y="204" font-size="10.5" fill="#98a2b3">单位：亿元（东财日级主力净流入）</text></svg></div><div class="note"><strong>持续性判断：弱。</strong>当日主力虽净流入，但盘中冲高即遭抛压、杠杆资金连续撤退、近 20 日主力仍净流出，属<strong>脉冲式情绪行情</strong>而非趋势启动。</div></div>
+<div class="panel"><h2><span class="ic">🔀</span>板块联动（α / β 拆分）</h2>
+<svg class="chart" viewBox="0 0 920 270" xmlns="http://www.w3.org/2000/svg"><rect x="300" y="20" width="1.5" height="236" fill="#dee2e6"/><text x="292" y="14" font-size="11" fill="#0f9960" font-weight="700" text-anchor="end">← 跌</text><text x="308" y="14" font-size="11" fill="#e03131" font-weight="700">涨 →</text><text x="286" y="40" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">深信服</text><rect x="300" y="30" width="330.0" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="638.0" y="43" font-size="11.5" fill="#e03131" font-weight="700">+4.07%</text><text x="308" y="62" font-size="11" fill="#98a2b3">个股</text><text x="286" y="86" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">软件开发（所属）</text><rect x="300" y="76" width="65.7" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="373.7" y="89" font-size="11.5" fill="#e03131" font-weight="700">+0.81%</text><text x="308" y="108" font-size="11" fill="#98a2b3">涨 83 跌 49，内部分化剧烈</text><text x="286" y="132" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">计算机</text><rect x="300" y="122" width="26.8" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="334.8" y="135" font-size="11.5" fill="#e03131" font-weight="700">+0.33%</text><text x="308" y="154" font-size="11" fill="#98a2b3">涨 187 跌 166</text><text x="286" y="178" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">计算机设备</text><rect x="300" y="168" width="0.0" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="308.0" y="181" font-size="11.5" fill="#e03131" font-weight="700">+0.00%</text><text x="308" y="200" font-size="11" fill="#98a2b3">同属大科技但下跌</text><text x="286" y="224" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">通信设备</text><rect x="300" y="214" width="0.0" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="308.0" y="227" font-size="11.5" fill="#e03131" font-weight="700">+0.00%</text><text x="308" y="246" font-size="11" fill="#98a2b3">科技内资金大幅流出</text></svg><table style="margin-top:14px"><tr><th>板块</th><th>当日涨跌</th><th>主力净流入</th><th>说明</th></tr><tr><td><b>深信服</b></td><td class='up'><b>+4.07%</b></td><td class='up'>+0.91 亿</td><td>个股</td></tr><tr><td><b>软件开发（所属）</b></td><td class='up'><b>+0.81%</b></td><td class='up'>+20.99 亿</td><td>涨 83 跌 49，内部分化剧烈</td></tr><tr><td><b>计算机</b></td><td class='up'><b>+0.33%</b></td><td class='up'>+13.66 亿</td><td>涨 187 跌 166</td></tr><tr><td><b>计算机设备</b></td><td class='up'><b>−0.50%</b></td><td class='up'>−9.39 亿</td><td>同属大科技但下跌</td></tr><tr><td><b>通信设备</b></td><td class='up'><b>−1.02%</b></td><td class='up'>−61.19 亿</td><td>科技内资金大幅流出</td></tr></table>
+<div class="note"><strong>判定：α + β 共振，但 α 未守住。</strong>① 深信服 +4.07% vs 板块 +0.81%，<strong>超额 +3.26pct → 确有独立 α</strong>；② 但盘中最高 +12.92%（超额约 12pct）回落至 +4.07%，说明 <strong>α 是资金脉冲、未获承接</strong>；③ 同属大科技的通信设备（−61 亿）、计算机设备（−9.4 亿）<strong>资金大幅流出</strong> → <strong>这不是科技板块普涨，而是「软件开发」受外盘映射的定向脉冲</strong>。</div></div>
+<div class="panel"><h2><span class="ic">🎯</span>结论与后续关注</h2>
+<div class="concl">深信服 08-28 的异动，本质是<strong>一次外盘映射驱动的脉冲行情</strong>：隔夜美国企业软件巨头股价大涨，直接刺激 A 股软件开发概念高开，深信服高开 6.89% 并一度冲高至 +12.92%。但这次上涨<strong>缺乏公司层面的新催化支撑</strong>（中报扭亏已是 5 个交易日前），资金属于<strong>板块情绪推动的短线脉冲</strong>——主力资金在 10:31 见顶后持续流出，最终仅收 +4.07%，留下 9.27% 振幅的长上影线。</div><ul><li><strong>板块资金能否延续</strong>：软件开发 08-28 主力 +20.99 亿，需看下一交易日是否延续（延续则脉冲可反复）</li><li><strong>120 元一线</strong>：即 08-27 收盘价，是当前多空分水岭</li><li><strong>融资余额是否止跌</strong>：当前连续撤退，回升才代表杠杆资金回补</li><li><strong>外盘联动</strong>：若美国软件股继续走强可能二次脉冲，但缺基本面新催化则持续性偏弱</li></ul></div>
+
+<footer>数据来源：腾讯财经 · 百度股市通 · 东方财富 · 同花顺 · 巨潮资讯网<br>
+由 stock-move-attribution 六步归因流程自动生成 · 基于公开数据的归因分析，不构成投资建议<br>
+归档于 2026-08-30 10:02</footer>
+</div></body></html>
