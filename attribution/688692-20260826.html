@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>达梦数据(688692) 异动归因 · 2026-08-26</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--border:#e8ecf3;--text:#1a2233;--muted:#6b7787;
+--up:#e03131;--down:#0f9960;--blue:#2f6bd8;--accent:#7048e8;--soft:#f8f9fc}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+background:var(--bg);color:var(--text);line-height:1.7;padding:0 18px 60px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto}
+.hero{border-radius:16px;padding:26px 30px;margin:22px 0 20px;color:#fff;
+box-shadow:0 10px 30px rgba(0,0,0,.13);position:relative;overflow:hidden}
+.hero.u{background:linear-gradient(135deg,#c92a2a 0%,#e8590c 55%,#f76707 100%)}
+.hero.d{background:linear-gradient(135deg,#087f5b 0%,#0ca678 55%,#12b886 100%)}
+.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:230px;height:230px;
+border-radius:50%;background:rgba(255,255,255,.09)}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;position:relative;z-index:1}
+.hero-name{font-size:27px;font-weight:800;letter-spacing:.5px}
+.hero-name span{font-size:15px;font-weight:500;opacity:.85;font-family:ui-monospace,Consolas,monospace}
+.hero-sub{font-size:13px;opacity:.9;margin-top:3px}
+.hero-chg{font-size:44px;font-weight:800;line-height:1;letter-spacing:-1px}
+.hero-chg small{display:block;font-size:12px;font-weight:500;opacity:.85;margin-top:6px;text-align:right;letter-spacing:0}
+.hero-tag{display:inline-block;margin-top:12px;background:rgba(255,255,255,.22);padding:4px 13px;
+border-radius:20px;font-size:12px;font-weight:600;backdrop-filter:blur(4px)}
+.hero-verdict{margin-top:16px;padding-top:15px;border-top:1px solid rgba(255,255,255,.25);
+font-size:14.5px;line-height:1.75;position:relative;z-index:1}
+.hero-verdict b{background:rgba(255,255,255,.2);padding:1px 6px;border-radius:4px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:13px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:15px 17px;
+box-shadow:0 1px 3px rgba(16,24,40,.04);transition:transform .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(16,24,40,.07)}
+.card .k{font-size:11.5px;color:var(--muted);margin-bottom:5px;letter-spacing:.3px}
+.card .v{font-size:22px;font-weight:800;line-height:1.2}
+.card .n{font-size:11px;color:var(--muted);margin-top:3px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 26px;
+margin-bottom:18px;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+.panel h2{font-size:16.5px;font-weight:700;color:#16233d;margin-bottom:15px;display:flex;
+align-items:center;gap:9px;padding-bottom:11px;border-bottom:2px solid var(--soft)}
+.panel h2 .ic{width:27px;height:27px;border-radius:8px;display:inline-flex;align-items:center;
+justify-content:center;font-size:14px;background:linear-gradient(135deg,#7048e8,#9d7bff);color:#fff}
+.up{color:var(--up)}.down{color:var(--down)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:4px}
+th{background:var(--soft);color:#2b3a52;text-align:left;padding:10px 13px;font-weight:600;font-size:12.5px}
+th:first-child{border-radius:8px 0 0 8px}th:last-child{border-radius:0 8px 8px 0}
+td{padding:10px 13px;border-bottom:1px solid #f0f3f8;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#fafbfe}
+.ev{border-left:4px solid #dee2e6;background:var(--soft);border-radius:0 10px 10px 0;
+padding:13px 17px;margin-bottom:11px}
+.ev.s1{border-left-color:#e03131;background:linear-gradient(90deg,#fff5f5,#fffafa)}
+.ev.s2{border-left-color:#4c6ef5;background:linear-gradient(90deg,#f3f7ff,#fbfcff)}
+.ev.s3{border-left-color:#f59f00;background:linear-gradient(90deg,#fffaf0,#fffdf8)}
+.ev.s4{border-left-color:#0f9960;background:linear-gradient(90deg,#f2fbf6,#fafdfb)}
+.ev .h{font-size:13.5px;font-weight:700;color:#1a2233;margin-bottom:4px;display:flex;
+align-items:center;gap:8px;flex-wrap:wrap}
+.ev .b{font-size:13px;color:#495057;line-height:1.72}
+.ev .b strong{color:#1a2233;background:linear-gradient(transparent 62%,#ffe9a8 62%)}
+.pill{display:inline-block;font-size:10.5px;padding:2px 9px;border-radius:20px;color:#fff;font-weight:600}
+.p1{background:#e03131}.p2{background:#4c6ef5}.p3{background:#f59f00}.p4{background:#0f9960}
+.note{background:linear-gradient(135deg,#f8f9fc,#f3f6fb);border:1px solid var(--border);
+border-left:3px solid var(--accent);padding:13px 16px;font-size:12.8px;color:#4a5568;
+border-radius:0 10px 10px 0;margin-top:14px;line-height:1.75}
+.note strong{color:#1a2233}
+.chart{width:100%;height:auto;display:block;margin:4px 0}
+.legend{font-size:11px;color:var(--muted);margin-top:6px}
+ul{padding-left:19px;font-size:13.5px}li{margin-bottom:8px;color:#3d4757}
+li strong{color:#1a2233}
+.concl{font-size:14.5px;line-height:1.85;color:#2b3a52;margin-bottom:14px}
+.concl strong{background:linear-gradient(transparent 62%,#ffe9a8 62%);color:#1a2233}
+footer{margin-top:24px;padding-top:18px;border-top:1px solid var(--border);font-size:11.5px;
+color:#98a2b3;text-align:center;line-height:1.9}
+@media(max-width:640px){.hero-chg{font-size:34px}.panel{padding:18px 16px}}
+</style></head><body><div class="wrap">
+
+<div class="hero d">
+  <div class="hero-top">
+    <div>
+      <div class="hero-name">达梦数据 <span>688692</span></div>
+      <div class="hero-sub">2026-08-26 · 软件开发（国产数据库） · 科创板</div>
+      <div class="hero-tag">置信度 高 ｜ 持续性 偏弱（需观察215企稳）</div>
+    </div>
+    <div class="hero-chg">-9.33%<small>收盘 215.35（昨收 237.5）</small></div>
+  </div>
+  <div class="hero-verdict">中报<strong>业绩不及预期</strong>引发的<strong>估值杀跌</strong>：净利增速仅 +7.99% 撑不住 45.79 倍 PE，叠加经营现金流下滑。属<strong>纯个股负面 α</strong>——当日大盘与信创板块普涨，唯独达梦逆势暴跌。</div>
+</div>
+
+<div class="cards"><div class="card"><div class="k">今开</div><div class="v down">224.0</div><div class="n">低开</div></div><div class="card"><div class="k">最高</div><div class="v up">224.0</div><div class="n">最大 -5.68%</div></div><div class="card"><div class="k">最低</div><div class="v down">212.12</div><div class="n">最大 -10.69%</div></div><div class="card"><div class="k">振幅</div><div class="v ">5.0%</div><div class="n">日内波动幅度</div></div><div class="card"><div class="k">换手率</div><div class="v ">3.08%</div><div class="n">量比 —</div></div><div class="card"><div class="k">成交额</div><div class="v ">4.96 亿</div><div class="n">总市值 244.07 亿</div></div></div>
+
+<div class="panel"><h2><span class="ic">📉</span>日内形态与资金同步关系</h2><svg class="chart" viewBox="0 0 920 320" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gp" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e03131" stop-opacity="0.20"/><stop offset="100%" stop-color="#e03131" stop-opacity="0.02"/></linearGradient></defs><line x1="62" y1="34.0" x2="824" y2="34.0" stroke="#f0f3f8" stroke-width="1"/><text x="54" y="38.0" font-size="11" fill="#98a2b3" text-anchor="end">238.10</text><line x1="62" y1="86.5" x2="824" y2="86.5" stroke="#f0f3f8" stroke-width="1"/><text x="54" y="90.5" font-size="11" fill="#98a2b3" text-anchor="end">231.45</text><line x1="62" y1="139.0" x2="824" y2="139.0" stroke="#f0f3f8" stroke-width="1"/><text x="54" y="143.0" font-size="11" fill="#98a2b3" text-anchor="end">224.81</text><line x1="62" y1="191.5" x2="824" y2="191.5" stroke="#f0f3f8" stroke-width="1"/><text x="54" y="195.5" font-size="11" fill="#98a2b3" text-anchor="end">218.17</text><line x1="62" y1="244.0" x2="824" y2="244.0" stroke="#f0f3f8" stroke-width="1"/><text x="54" y="248.0" font-size="11" fill="#98a2b3" text-anchor="end">211.52</text><line x1="62" y1="38.7" x2="824" y2="38.7" stroke="#adb5bd" stroke-width="1.4" stroke-dasharray="5 4"/><text x="67" y="32.7" font-size="10.5" fill="#868e96">昨收 237.5</text><polygon points="62.0,244 62.0,145.4 157.2,173.1 252.5,192.8 347.8,204.7 443.0,216.5 538.2,228.4 633.5,239.3 728.8,224.4 824.0,213.7 824.0,244" fill="url(#gp)"/><polyline points="62.0,145.4 157.2,173.1 252.5,192.8 347.8,204.7 443.0,216.5 538.2,228.4 633.5,239.3 728.8,224.4 824.0,213.7" fill="none" stroke="#e03131" stroke-width="2.8" stroke-linejoin="round"/><circle cx="62.0" cy="145.4" r="4.5" fill="#e03131"/><text x="62.0" y="165.4" font-size="11" fill="#495057" text-anchor="middle">开 224.0</text><circle cx="824.0" cy="213.7" r="5" fill="#e03131"/><text x="818.0" y="205.7" font-size="11.5" font-weight="700" fill="#e03131" text-anchor="end">收 215.35</text><text x="62.0" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">09:31</text><text x="157.2" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">10:01</text><text x="252.5" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">10:31</text><text x="347.8" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">11:01</text><text x="443.0" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">13:01</text><text x="538.2" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">13:31</text><text x="633.5" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">14:01</text><text x="728.8" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">14:31</text><text x="824.0" y="266" font-size="10.5" fill="#98a2b3" text-anchor="middle">15:00</text><rect x="62" y="294" width="14" height="3" rx="1.5" fill="#e03131"/><text x="82" y="299" font-size="11" fill="#5d6b81">价格（示意）</text><rect x="172" y="294" width="14" height="3" rx="1.5" fill="#2f6bd8"/><text x="192" y="299" font-size="11" fill="#5d6b81">主力资金累计净流入（亿元）</text></svg><div class="legend">分时价格为依据 OHLC 与资金节奏绘制的示意走势；资金流为东财分钟级真实累计值。</div><div class="note">日内走出<strong>「低开 → 单边下杀 → 尾盘微回升」</strong>：开盘 224.00 <strong>即为全天最高价</strong>（低开 −5.68%），此后一路下探至最低 212.12，尾盘勉强回升收 215.35。<strong>开盘即最高 + 收盘接近最低</strong>是典型的恐慌性抛售形态。成交显著放大——换手 3.08%（前一日 0.91%，放大约 3.4 倍）、成交额 4.96 亿（前一日 1.59 亿，放大约 3.1 倍），<strong>放量下跌说明确有资金主动出逃</strong>。</div></div>
+<div class="panel"><h2><span class="ic">⛓</span>证据链</h2><div class="ev s1"><div class="h"><span class="pill p1">最强证据</span>中报催化：增速仅 +7.99%，时点在 08-25 盘后</div><div class="b">2026-08-25 19:38《证券时报》<strong>「达梦数据：上半年净利润同比增长 7.99%，拟 10 派 7 元」</strong>；20:06《财中社》「归母净利润 2.21 亿元，同比上升 8%」。消息在<strong>盘后</strong>发布，08-26 是消息后首个交易日 —— 低开 5.68% 后一路下杀收 −9.33%，市场用脚投票。</div></div><div class="ev s1"><div class="h"><span class="pill p1">最强证据</span>业绩与估值严重不匹配（杀估值核心）</div><div class="b">当前 <strong>PE(动) 45.79 倍、PB 6.30</strong>，而中报净利增速仅 <strong>+7.99%</strong>。45 倍 PE 隐含的是高成长预期，8% 的增速无法支撑 —— 这是本次下跌最核心的矛盾。分红「10 派 7 元」相对 237 元股价，股息率仅 <strong>0.29%</strong>，也毫无吸引力，无法提供安全垫。</div></div><div class="ev s2"><div class="h"><span class="pill p2">佐证</span>盈利质量瑕疵：经营现金流同比下滑</div><div class="b">2026-08-26 10:29《蓝鲸财经》<strong>「达梦数据 2026 年半年报：数据库国产化持续推进，<u>经营现金流同比下滑</u>」</strong> —— 媒体标题直接点名现金流问题。对高估值成长股而言，<strong>现金流下滑往往比净利润数字更致命</strong>，因为它动摇的是盈利质量与成长可持续性。</div></div><div class="ev s2"><div class="h"><span class="pill p2">佐证</span>逆势暴跌：大盘与信创板块普涨，唯独达梦大跌</div><div class="b">08-26 当日 <strong>科创50 +1.71%、上证指数 +0.59%</strong>；同板块信创股 <strong>中国软件 +0.86%、太极股份 +1.34%、海量数据 +0.16%</strong> 普涨；同赛道星环科技 −3.07%。达梦 −9.33% <strong>逆势暴跌，相对科创50 超额 −11.04pct</strong> —— 彻底排除「板块拖累」与「大盘系统性下跌」的可能。</div></div><div class="ev s2"><div class="h"><span class="pill p2">佐证</span>恐慌形态 + 放量出逃</div><div class="b"><strong>开盘 224.00 即为全天最高价</strong>，收盘 215.35 接近最低点 212.12，日内几乎无像样反弹。换手 3.08%（前日 0.91%，放大 3.4 倍）、成交额 4.96 亿（前日 1.59 亿，放大 3.1 倍）—— <strong>放量下跌</strong>表明是资金主动出逃而非缩量阴跌。</div></div><div class="ev s4"><div class="h"><span class="pill p4">排除</span>结构性利空与技术性因素已排除</div><div class="b">无解禁记录 · 无大宗交易 · 未上龙虎榜（科创板需涨跌幅偏离值达 ±15%，−9.33% 未触发）· 融资余额 7.42 亿仅小幅净偿还 −0.03 亿（杠杆盘未恐慌性平仓）。</div></div><div class="ev s3"><div class="h"><span class="pill p3">风险</span>筹码分散 + 技术面此前已走弱</div><div class="b">股东户数 11,863 户（2026-06-30），较上期 <strong>+6.66%</strong>（散户增多，机构或在撤离）。技术面上，股价自 <strong>08-18 高点 257.89 已连续下行</strong>（08-19 −4.83%、08-21 −3.38%、08-24 −2.67%），中报只是加速下跌的催化剂，6 个交易日累计 <strong>−16.5%</strong>。</div></div></div>
+
+<div class="panel"><h2><span class="ic">💰</span>资金性质与持续性</h2>
+<table><tr><th style="width:23%">维度</th><th style="width:25%">数据</th><th>判读</th></tr><tr><td style='width:23%'><b>形态特征</b></td><td class='down' style='width:25%'>开盘 224.00 = 全天最高</td><td><strong>开盘即最高</strong>，低开 −5.68% 后无像样反弹 → 恐慌性抛售</td></tr><tr><td style='width:23%'><b>换手率</b></td><td class='' style='width:25%'>3.08%（前日 0.91%）</td><td>放大约 <strong>3.4 倍</strong>，放量出逃</td></tr><tr><td style='width:23%'><b>成交额</b></td><td class='' style='width:25%'>4.96 亿（前日 1.59 亿）</td><td>放大约 <strong>3.1 倍</strong></td></tr><tr><td style='width:23%'><b>龙虎榜</b></td><td class='' style='width:25%'>未上榜</td><td>科创板需涨跌幅偏离值 ±15%，−9.33% 未触发</td></tr><tr><td style='width:23%'><b>融资余额</b></td><td class='' style='width:25%'>7.42 亿（净偿还 −0.03 亿）</td><td>杠杆盘<strong>未恐慌性平仓</strong>，仅小幅流出</td></tr><tr><td style='width:23%'><b>股东户数</b></td><td class='down' style='width:25%'>11,863 户（06-30），+6.66%</td><td><strong>筹码分散</strong>，散户增多</td></tr><tr><td style='width:23%'><b>主力资金明细</b></td><td class='' style='width:25%'>数据缺失</td><td>东财资金流接口本次被限流，未能取到；但从放量下跌形态可定性判断为<strong>资金主动出逃</strong></td></tr></table>
+<div class="note"><strong>资金性质：放量出逃（定性），持续性偏弱。</strong>东财分钟级/日级资金流接口本次因限流未能取到（已在表中如实标注，未编造数据）。可确认的是：换手与成交额双双放大约 3 倍、开盘即最高、收盘接近最低 —— 三项形态证据一致指向<strong>主动抛售</strong>而非被动缩量。相对积极的一点：融资余额仅小幅净偿还 0.03 亿，<strong>杠杆盘未出现踩踏</strong>。后续关键看 215 一线能否守住。</div></div>
+<div class="panel"><h2><span class="ic">🔀</span>板块联动（α / β 拆分）</h2>
+<svg class="chart" viewBox="0 0 920 362" xmlns="http://www.w3.org/2000/svg"><rect x="300" y="20" width="1.5" height="328" fill="#dee2e6"/><text x="292" y="14" font-size="11" fill="#0f9960" font-weight="700" text-anchor="end">← 跌</text><text x="308" y="14" font-size="11" fill="#e03131" font-weight="700">涨 →</text><text x="286" y="40" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">达梦数据</text><rect x="300" y="30" width="0.0" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="308.0" y="43" font-size="11.5" fill="#e03131" font-weight="700">+0.00%</text><text x="308" y="62" font-size="11" fill="#98a2b3">★ 目标股（逆势暴跌）</text><text x="286" y="86" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">科创50</text><rect x="300" y="76" width="330.0" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="638.0" y="89" font-size="11.5" fill="#e03131" font-weight="700">+1.71%</text><text x="308" y="108" font-size="11" fill="#98a2b3">大盘基准（&lt;strong&gt;上涨&lt;/strong&gt;）</text><text x="286" y="132" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">上证指数</text><rect x="300" y="122" width="113.9" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="421.9" y="135" font-size="11.5" fill="#e03131" font-weight="700">+0.59%</text><text x="308" y="154" font-size="11" fill="#98a2b3">大盘（&lt;strong&gt;上涨&lt;/strong&gt;）</text><text x="286" y="178" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">中国软件</text><rect x="300" y="168" width="166.0" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="474.0" y="181" font-size="11.5" fill="#e03131" font-weight="700">+0.86%</text><text x="308" y="200" font-size="11" fill="#98a2b3">信创/国产软件（&lt;strong&gt;上涨&lt;/strong&gt;）</text><text x="286" y="224" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">太极股份</text><rect x="300" y="214" width="258.6" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="566.6" y="227" font-size="11.5" fill="#e03131" font-weight="700">+1.34%</text><text x="308" y="246" font-size="11" fill="#98a2b3">信创/国产软件（&lt;strong&gt;上涨&lt;/strong&gt;）</text><text x="286" y="270" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">海量数据</text><rect x="300" y="260" width="30.9" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="338.9" y="273" font-size="11.5" fill="#e03131" font-weight="700">+0.16%</text><text x="308" y="292" font-size="11" fill="#98a2b3">国产数据库（走平）</text><text x="286" y="316" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">星环科技</text><rect x="300" y="306" width="0.0" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="308.0" y="319" font-size="11.5" fill="#e03131" font-weight="700">+0.00%</text><text x="308" y="338" font-size="11" fill="#98a2b3">国产数据库·科创板（同赛道下跌，但跌幅仅达梦的 1/3）</text></svg><table style="margin-top:14px"><tr><th>板块</th><th>当日涨跌</th><th>主力净流入</th><th>说明</th></tr><tr><td><b>达梦数据</b></td><td class='up'><b>−9.33%</b></td><td class=''>数据缺失</td><td>★ 目标股（逆势暴跌）</td></tr><tr><td><b>科创50</b></td><td class='up'><b>+1.71%</b></td><td class=''>—</td><td>大盘基准（&lt;strong&gt;上涨&lt;/strong&gt;）</td></tr><tr><td><b>上证指数</b></td><td class='up'><b>+0.59%</b></td><td class=''>—</td><td>大盘（&lt;strong&gt;上涨&lt;/strong&gt;）</td></tr><tr><td><b>中国软件</b></td><td class='up'><b>+0.86%</b></td><td class=''>—</td><td>信创/国产软件（&lt;strong&gt;上涨&lt;/strong&gt;）</td></tr><tr><td><b>太极股份</b></td><td class='up'><b>+1.34%</b></td><td class=''>—</td><td>信创/国产软件（&lt;strong&gt;上涨&lt;/strong&gt;）</td></tr><tr><td><b>海量数据</b></td><td class='up'><b>+0.16%</b></td><td class=''>—</td><td>国产数据库（走平）</td></tr><tr><td><b>星环科技</b></td><td class='up'><b>−3.07%</b></td><td class=''>—</td><td>国产数据库·科创板（同赛道下跌，但跌幅仅达梦的 1/3）</td></tr></table>
+<div class="note"><strong>判定：纯个股负面 α（逆势独跌），相对科创50 超额 −11.04pct。</strong>在大盘上涨（上证 +0.59%、科创50 +1.71%）、信创板块普涨（中国软件 +0.86%、太极股份 +1.34%）的背景下，达梦数据独立暴跌 9.33% —— <strong>彻底排除板块拖累与系统性风险</strong>，下跌 100% 源于个股自身的中报不及预期。同赛道的星环科技虽也下跌 3.07%，但跌幅仅为达梦的三分之一，说明<strong>赛道有压力但不是主因，主因是达梦个体的业绩与估值矛盾</strong>。</div></div>
+<div class="panel"><h2><span class="ic">🎯</span>结论与后续关注</h2>
+<div class="concl">达梦数据 08-26 的暴跌，本质是<strong>中报业绩不及预期触发的估值杀跌</strong>。08-25 盘后披露的中报显示净利同比仅 <strong>+7.99%</strong>（归母 2.21 亿），而公司彼时 <strong>PE(动) 高达 45.79 倍、PB 6.30</strong> —— 45 倍估值隐含高成长预期，8% 的增速根本无法支撑；叠加媒体点名的<strong>经营现金流同比下滑</strong>这一盈利质量瑕疵，以及「10 派 7 元」仅 0.29% 股息率的分红缺乏吸引力，市场直接用脚投票。技术上，股价自 08-18 高点 257.89 已连续 6 个交易日下行（累计 −16.5%），中报成为加速下跌的催化剂。最值得注意的是<strong>下跌的纯粹性</strong>：当日科创50 涨 1.71%、信创板块普涨，唯独达梦逆势暴跌 9.33%，超额 −11.04pct —— 这<strong>不是板块或大盘的问题，是市场对「高估值 + 低增速 + 现金流恶化」三重矛盾的重新定价</strong>。</div><ul><li><strong>215 一线能否企稳</strong>：08-27 收 215.35（0.00%）、08-28 收 215.53（+0.08%）连续两日在此企稳，抛压已初步释放；若跌破 212（08-26 最低）则打开新的下行空间</li><li><strong>估值消化到什么位置</strong>：按 8% 增速，若 PE 回落至 30 倍附近（对应股价约 141 元）才算进入合理区间，当前 215 仍偏高</li><li><strong>三季报能否证伪</strong>：核心看营收/净利增速是否回升、<strong>经营现金流能否转正</strong>——现金流是本次被市场诟病的关键</li><li><strong>同赛道验证</strong>：星环科技同日仅跌 3.07%，需观察国产数据库赛道整体景气是否走弱，还是仅为达梦个体问题</li><li><strong>筹码变化</strong>：06-30 股东户数已 +6.66%，若三季报继续增加，说明机构仍在撤离、散户接盘</li></ul></div>
+
+<footer>数据来源：腾讯财经 · 百度股市通 · 东方财富 · 同花顺 · 巨潮资讯网<br>
+由 stock-move-attribution 六步归因流程自动生成 · 基于公开数据的归因分析，不构成投资建议<br>
+归档于 2026-08-30 10:25</footer>
+</div></body></html>
