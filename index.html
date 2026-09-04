@@ -229,7 +229,7 @@ a { color:inherit; }
   <div class="hero">
     <h1>📊 研究总览 · 调研纪要数据看板</h1>
     <div class="meta">
-      <span>基准日 <b>2026-09-04 13:07</b></span>
+      <span>基准日 <b>2026-09-04 13:11</b></span>
       <span>来源 <b>知识星球「调研纪要」</b> + <b>通达信 064 板块</b></span>
       <span class="pill">外部浏览版</span>
     </div>
@@ -446,6 +446,54 @@ function filterDaily(v){
     mg.style.display = any ? '' : 'none';
   });
 }
+
+// ── 日报：运行时自动补齐最新日期（服务器 09:15 推送后无需等本机重建） ──
+(function(){
+  function pad2(n){ return n < 10 ? '0' + n : '' + n; }
+  async function syncLatestDaily(){
+    var wrap = document.getElementById('dailyList'); if (!wrap) return;
+    var all = []; var d = new Date();
+    for (var k = 0; k < 3; k++){
+      var ym = d.getFullYear() + '-' + pad2(d.getMonth() + 1);
+      try {
+        var r = await fetch('https://api.github.com/repos/a250212214-eng/research-overview/contents/' + ym);
+        if (r.ok) {
+          var arr = await r.json();
+          arr.forEach(function(f){ var m = /^(\d{4}-\d{2}-\d{2})\.html$/.exec(f.name); if (m) all.push(m[1]); });
+        }
+      } catch(e){}
+      d.setMonth(d.getMonth() - 1);
+    }
+    if (!all.length) return;
+    all.sort();
+    var newest = all[all.length - 1];
+    if (wrap.textContent.indexOf(newest) >= 0) return;  // 静态列表已含，无需补
+    var mm = newest.slice(0, 7);
+    var grp = null;
+    Array.prototype.forEach.call(wrap.querySelectorAll('.month-group'), function(g){
+      if (!grp && g.querySelector('.month-title').textContent.indexOf(mm) >= 0) grp = g;
+    });
+    var item = '<a class="d-item" href="' + mm + '/' + newest + '.html" target="_blank">'
+             + '<span class="d-date">' + newest + '</span>'
+             + '<span class="d-title">调研纪要日报</span>'
+             + '<span class="d-tag">在线</span></a>';
+    if (grp) { grp.querySelector('.d-list').insertAdjacentHTML('afterbegin', item); }
+    else {
+      wrap.insertAdjacentHTML('afterbegin',
+        '<div class="month-group"><div class="month-title">📁 ' + mm
+        + ' <span class="month-count">1 期</span></div><div class="d-list">' + item + '</div></div>');
+    }
+    var n = document.querySelectorAll('#dailyList .d-item').length;
+    var h3 = document.querySelector('#sec-daily h3');
+    if (h3) h3.innerHTML = h3.innerHTML.replace(/共\s*\d+\s*期/, '共 ' + n + ' 期');
+    // 补命中月组的计数（新建月组初始即 1 期，无需处理）
+    if (grp) {
+      var mc = grp.querySelector('.month-count');
+      if (mc) mc.textContent = mc.textContent.replace(/\d+/, function(x){ return (+x) + 1; });
+    }
+  }
+  syncLatestDaily();
+})();
 
 // ── 自选股：行业筛选 ──
 document.querySelectorAll('.chip').forEach(function(c){
