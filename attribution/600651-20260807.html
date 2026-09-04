@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>飞乐音响(600651) 异动归因 · 2026-08-07</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--border:#e8ecf3;--text:#1a2233;--muted:#6b7787;
+--up:#e03131;--down:#0f9960;--blue:#2f6bd8;--accent:#7048e8;--soft:#f8f9fc}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+background:var(--bg);color:var(--text);line-height:1.7;padding:0 18px 60px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto}
+.hero{border-radius:16px;padding:26px 30px;margin:22px 0 20px;color:#fff;
+box-shadow:0 10px 30px rgba(0,0,0,.13);position:relative;overflow:hidden}
+.hero.u{background:linear-gradient(135deg,#c92a2a 0%,#e8590c 55%,#f76707 100%)}
+.hero.d{background:linear-gradient(135deg,#087f5b 0%,#0ca678 55%,#12b886 100%)}
+.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:230px;height:230px;
+border-radius:50%;background:rgba(255,255,255,.09)}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;position:relative;z-index:1}
+.hero-name{font-size:27px;font-weight:800;letter-spacing:.5px}
+.hero-name span{font-size:15px;font-weight:500;opacity:.85;font-family:ui-monospace,Consolas,monospace}
+.hero-sub{font-size:13px;opacity:.9;margin-top:3px}
+.hero-chg{font-size:44px;font-weight:800;line-height:1;letter-spacing:-1px}
+.hero-chg small{display:block;font-size:12px;font-weight:500;opacity:.85;margin-top:6px;text-align:right;letter-spacing:0}
+.hero-tag{display:inline-block;margin-top:12px;background:rgba(255,255,255,.22);padding:4px 13px;
+border-radius:20px;font-size:12px;font-weight:600;backdrop-filter:blur(4px)}
+.hero-verdict{margin-top:16px;padding-top:15px;border-top:1px solid rgba(255,255,255,.25);
+font-size:14.5px;line-height:1.75;position:relative;z-index:1}
+.hero-verdict b{background:rgba(255,255,255,.2);padding:1px 6px;border-radius:4px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:13px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:15px 17px;
+box-shadow:0 1px 3px rgba(16,24,40,.04);transition:transform .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(16,24,40,.07)}
+.card .k{font-size:11.5px;color:var(--muted);margin-bottom:5px;letter-spacing:.3px}
+.card .v{font-size:22px;font-weight:800;line-height:1.2}
+.card .n{font-size:11px;color:var(--muted);margin-top:3px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 26px;
+margin-bottom:18px;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+.panel h2{font-size:16.5px;font-weight:700;color:#16233d;margin-bottom:15px;display:flex;
+align-items:center;gap:9px;padding-bottom:11px;border-bottom:2px solid var(--soft)}
+.panel h2 .ic{width:27px;height:27px;border-radius:8px;display:inline-flex;align-items:center;
+justify-content:center;font-size:14px;background:linear-gradient(135deg,#7048e8,#9d7bff);color:#fff}
+.up{color:var(--up)}.down{color:var(--down)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:4px}
+th{background:var(--soft);color:#2b3a52;text-align:left;padding:10px 13px;font-weight:600;font-size:12.5px}
+th:first-child{border-radius:8px 0 0 8px}th:last-child{border-radius:0 8px 8px 0}
+td{padding:10px 13px;border-bottom:1px solid #f0f3f8;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#fafbfe}
+.ev{border-left:4px solid #dee2e6;background:var(--soft);border-radius:0 10px 10px 0;
+padding:13px 17px;margin-bottom:11px}
+.ev.s1{border-left-color:#e03131;background:linear-gradient(90deg,#fff5f5,#fffafa)}
+.ev.s2{border-left-color:#4c6ef5;background:linear-gradient(90deg,#f3f7ff,#fbfcff)}
+.ev.s3{border-left-color:#f59f00;background:linear-gradient(90deg,#fffaf0,#fffdf8)}
+.ev.s4{border-left-color:#0f9960;background:linear-gradient(90deg,#f2fbf6,#fafdfb)}
+.ev .h{font-size:13.5px;font-weight:700;color:#1a2233;margin-bottom:4px;display:flex;
+align-items:center;gap:8px;flex-wrap:wrap}
+.ev .b{font-size:13px;color:#495057;line-height:1.72}
+.ev .b strong{color:#1a2233;background:linear-gradient(transparent 62%,#ffe9a8 62%)}
+.pill{display:inline-block;font-size:10.5px;padding:2px 9px;border-radius:20px;color:#fff;font-weight:600}
+.p1{background:#e03131}.p2{background:#4c6ef5}.p3{background:#f59f00}.p4{background:#0f9960}
+.note{background:linear-gradient(135deg,#f8f9fc,#f3f6fb);border:1px solid var(--border);
+border-left:3px solid var(--accent);padding:13px 16px;font-size:12.8px;color:#4a5568;
+border-radius:0 10px 10px 0;margin-top:14px;line-height:1.75}
+.note strong{color:#1a2233}
+.chart{width:100%;height:auto;display:block;margin:4px 0}
+.legend{font-size:11px;color:var(--muted);margin-top:6px}
+ul{padding-left:19px;font-size:13.5px}li{margin-bottom:8px;color:#3d4757}
+li strong{color:#1a2233}
+.concl{font-size:14.5px;line-height:1.85;color:#2b3a52;margin-bottom:14px}
+.concl strong{background:linear-gradient(transparent 62%,#ffe9a8 62%);color:#1a2233}
+footer{margin-top:24px;padding-top:18px;border-top:1px solid var(--border);font-size:11.5px;
+color:#98a2b3;text-align:center;line-height:1.9}
+@media(max-width:640px){.hero-chg{font-size:34px}.panel{padding:18px 16px}}
+</style><!-- LINK_REWRITTEN --><!-- AUTH_GATE --><script src="auth.js"></script></head><body><div class="wrap">
+
+<div class="hero u">
+  <div class="hero-top">
+    <div>
+      <div class="hero-name">飞乐音响 <span>600651</span></div>
+      <div class="hero-sub">2026-08-07 · 汽车零部件（东财）／实际主业：汽车电子+照明+智能卡封测+医疗器械精密件 · 沪市主板</div>
+      <div class="hero-tag">置信度 高 ｜ 持续性 弱</div>
+    </div>
+    <div class="hero-chg">+9.97%<small>收盘 6.4（昨收 5.82）</small></div>
+  </div>
+  <div class="hero-verdict">减持利空出尽 + 芯片测试/半导体封测题材共振，α 为主、β 为辅；但封板质量差、资金一日游，属事件驱动脉冲行情</div>
+</div>
+
+<div class="cards"><div class="card"><div class="k">今开</div><div class="v up">5.84</div><div class="n">高开</div></div><div class="card"><div class="k">最高</div><div class="v up">6.4</div><div class="n">最大 +9.97%</div></div><div class="card"><div class="k">最低</div><div class="v down">5.82</div><div class="n">最大 +0.00%</div></div><div class="card"><div class="k">振幅</div><div class="v ">9.97%</div><div class="n">日内波动幅度</div></div><div class="card"><div class="k">换手率</div><div class="v ">1.72%</div><div class="n">量比 2.47</div></div><div class="card"><div class="k">成交额</div><div class="v ">2.66 亿</div><div class="n">总市值 137.9 亿</div></div></div>
+
+
+<div class="panel"><h2><span class="ic">⛓</span>证据链</h2><div class="ev s1"><div class="h"><span class="pill p1">最强证据</span>2026-08-07《关于持股5%以上股东减持股份计划期限届满暨减持结果公告》</div><div class="b">持股5%以上股东<b>临港集团减持计划到期、最终未实施</b>。此前减持预期长期压制股价，公告落地＝不确定性解除，是当日最直接的催化。</div></div><div class="ev s1"><div class="h"><span class="pill p1">最强证据</span>同花顺涨停标签：减持未实施+芯片测试+医疗器械+上海国资</div><div class="b">四源一致：同花顺 reason、萝卜投研《涨停快车》、财联社异动、日度复盘快讯，均指向<b>芯片测试／半导体封测</b>。财联社明确：模块封装及芯片测试服务以全资子公司<b>上海仪电智能电子</b>为主体（接触式/非接触式/双界面模块 + 芯片测试）。</div></div><div class="ev s2"><div class="h"><span class="pill p2">佐证</span>主力净流入 0.781 亿，超大单 0.601 亿（占 77%）</div><div class="b">近 20 个交易日<b>单日峰值</b>，量能配合到位。但次日（8/10）即转为 -0.015 亿，属脉冲而非趋势。</div></div><div class="ev s2"><div class="h"><span class="pill p2">佐证</span>财联社盘口：10:49 触及涨停，封单 1.63 亿，炸板 5 次</div><div class="b">封板力度仅 <b>0.41</b>（弱封板），盘中反复打开——资金分歧明显，不是强势一字板。</div></div><div class="ev s4"><div class="h"><span class="pill p4">排除</span>未上龙虎榜（未触发上榜条件）</div><div class="b">无机构专用席位、无知名游资营业部介入。本轮由中小资金与量化主导，持续性打折。<b>注意：查不到龙虎榜≠无资金异动，已用日级资金流交叉验证。</b></div></div><div class="ev s2"><div class="h"><span class="pill p2">参考</span>板块环境：上证 +1.02%、创业板 +1.35%，半导体条线活跃</div><div class="b">当日为普涨日（有研新材 3 板、先导基电涨停、锴威特 2 板），β 环境友好；但<b>上海国资条线下跌</b>（华谊集团 -2.58%、宝信软件 -3.59%），故「上海国资」并非当日驱动。</div></div></div>
+
+<div class="panel"><h2><span class="ic">💰</span>资金性质与持续性</h2>
+<table><tr><th style="width:23%">维度</th><th style="width:25%">数据</th><th>判读</th></tr><tr><td style='width:23%'><b>主力净流入</b></td><td class='' style='width:25%'>0.78 亿</td><td>近20日峰值，超大单占 77%</td></tr><tr><td style='width:23%'><b>次日(8/10)</b></td><td class='' style='width:25%'>-0.02 亿</td><td>立刻转负，无连续性</td></tr><tr><td style='width:23%'><b>近5日累计</b></td><td class='' style='width:25%'>+0.63 亿</td><td>集中在 8/7 单日，脉冲特征</td></tr><tr><td style='width:23%'><b>融资余额</b></td><td class='' style='width:25%'>3.1 亿左右</td><td>稳定，杠杆资金未明显加仓</td></tr><tr><td style='width:23%'><b>股东户数</b></td><td class='' style='width:25%'>6.04 万户（6/30）</td><td>较上期 -9.05%，筹码中期集中</td></tr></table>
+<div style="margin-top:16px"><div style="font-size:13px;font-weight:600;color:#2b3a52;margin-bottom:6px">近 10 日主力资金净流入</div><svg class="chart" viewBox="0 0 920 210" xmlns="http://www.w3.org/2000/svg"><line x1="62" y1="97.0" x2="900" y2="97.0" stroke="#dee2e6" stroke-width="1.4"/><text x="54" y="101.0" font-size="10.5" fill="#98a2b3" text-anchor="end">0</text><text x="54" y="30.0" font-size="10.5" fill="#98a2b3" text-anchor="end">+0.8亿</text><text x="54" y="172.0" font-size="10.5" fill="#98a2b3" text-anchor="end">-0.8亿</text><rect x="82.1" y="91.1" width="43.6" height="5.9" rx="3" fill="#e03131" opacity="0.85"/><text x="103.9" y="86.1" font-size="10" fill="#e03131" text-anchor="middle">+0.06</text><text x="103.9" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-03</text><rect x="165.9" y="93.1" width="43.6" height="3.9" rx="3" fill="#e03131" opacity="0.85"/><text x="187.7" y="88.1" font-size="10" fill="#e03131" text-anchor="middle">+0.04</text><text x="187.7" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-04</text><rect x="249.7" y="95.8" width="43.6" height="1.5" rx="3" fill="#e03131" opacity="0.85"/><text x="271.5" y="90.8" font-size="10" fill="#e03131" text-anchor="middle">+0.01</text><text x="271.5" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-05</text><rect x="333.5" y="97.0" width="43.6" height="1.7" rx="3" fill="#0f9960" opacity="0.85"/><text x="355.3" y="110.7" font-size="10" fill="#0f9960" text-anchor="middle">-0.02</text><text x="355.3" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-06</text><rect x="417.3" y="26.0" width="43.6" height="71.0" rx="3" fill="#e03131" opacity="0.85"/><text x="439.1" y="21.0" font-size="10" fill="#e03131" text-anchor="middle">+0.78</text><text x="439.1" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-07</text><rect x="501.1" y="97.0" width="43.6" height="1.5" rx="3" fill="#0f9960" opacity="0.85"/><text x="522.9" y="110.3" font-size="10" fill="#0f9960" text-anchor="middle">-0.01</text><text x="522.9" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-10</text><rect x="584.9" y="97.0" width="43.6" height="6.9" rx="3" fill="#0f9960" opacity="0.85"/><text x="606.7" y="115.9" font-size="10" fill="#0f9960" text-anchor="middle">-0.08</text><text x="606.7" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-11</text><rect x="668.7" y="96.9" width="43.6" height="1.5" rx="3" fill="#e03131" opacity="0.85"/><text x="690.5" y="91.9" font-size="10" fill="#e03131" text-anchor="middle">+0.00</text><text x="690.5" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-12</text><rect x="752.5" y="97.0" width="43.6" height="15.2" rx="3" fill="#0f9960" opacity="0.85"/><text x="774.3" y="124.2" font-size="10" fill="#0f9960" text-anchor="middle">-0.17</text><text x="774.3" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-13</text><rect x="836.3" y="91.9" width="43.6" height="5.1" rx="3" fill="#e03131" opacity="0.85"/><text x="858.1" y="86.9" font-size="10" fill="#e03131" text-anchor="middle">+0.06</text><text x="858.1" y="186" font-size="10" fill="#98a2b3" text-anchor="middle">08-14</text><text x="62" y="204" font-size="10.5" fill="#98a2b3">单位：亿元（东财日级主力净流入）</text></svg></div><div class="note">资金呈典型脉冲特征：8/7 单日主力净流入 0.78 亿（近20日峰值、超大单占77%），但 8/8 起连续 3 日转负，缺乏连续性；叠加未上龙虎榜、无机构席位参与，本轮由中小资金与量化主导。</div></div>
+<div class="panel"><h2><span class="ic">🔀</span>板块联动（α / β 拆分）</h2>
+<svg class="chart" viewBox="0 0 920 362" xmlns="http://www.w3.org/2000/svg"><rect x="300" y="20" width="1.5" height="328" fill="#dee2e6"/><text x="292" y="14" font-size="11" fill="#0f9960" font-weight="700" text-anchor="end">← 跌</text><text x="308" y="14" font-size="11" fill="#e03131" font-weight="700">涨 →</text><text x="286" y="40" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">飞乐音响</text><rect x="300" y="30" width="330.0" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="638.0" y="43" font-size="11.5" fill="#e03131" font-weight="700">+9.97%</text><text x="308" y="62" font-size="11" fill="#98a2b3">目标股，10:49 涨停，炸板5次</text><text x="286" y="86" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">三安光电</text><rect x="300" y="76" width="166.5" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="474.5" y="89" font-size="11.5" fill="#e03131" font-weight="700">+5.03%</text><text x="308" y="108" font-size="11" fill="#98a2b3">光学光电子龙头，跟涨</text><text x="286" y="132" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">伟测科技</text><rect x="300" y="122" width="110.9" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="418.9" y="135" font-size="11.5" fill="#e03131" font-weight="700">+3.35%</text><text x="308" y="154" font-size="11" fill="#98a2b3">芯片测试可比，验证题材</text><text x="286" y="178" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">京东方A</text><rect x="300" y="168" width="61.2" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="369.2" y="181" font-size="11.5" fill="#e03131" font-weight="700">+1.85%</text><text x="308" y="200" font-size="11" fill="#98a2b3">面板，跟涨</text><text x="286" y="224" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">上证指数</text><rect x="300" y="214" width="33.8" height="16" rx="4" fill="#e03131" opacity="0.88"/><text x="341.8" y="227" font-size="11.5" fill="#e03131" font-weight="700">+1.02%</text><text x="308" y="246" font-size="11" fill="#98a2b3">大盘普涨，β 环境</text><text x="286" y="270" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">华谊集团</text><rect x="214.6" y="260" width="85.4" height="16" rx="4" fill="#0f9960" opacity="0.88"/><text x="206.6" y="273" font-size="11.5" fill="#0f9960" font-weight="700" text-anchor="end">-2.58%</text><text x="308" y="292" font-size="11" fill="#98a2b3">上海国资条线下跌</text><text x="286" y="316" font-size="12.5" fill="#1a2233" font-weight="600" text-anchor="end">宝信软件</text><rect x="181.2" y="306" width="118.8" height="16" rx="4" fill="#0f9960" opacity="0.88"/><text x="173.2" y="319" font-size="11.5" fill="#0f9960" font-weight="700" text-anchor="end">-3.59%</text><text x="308" y="338" font-size="11" fill="#98a2b3">上海国资条线下跌</text></svg><table style="margin-top:14px"><tr><th>板块</th><th>当日涨跌</th><th>主力净流入</th><th>说明</th></tr><tr><td><b>飞乐音响</b></td><td class='up'><b>9.97</b></td><td class=''>—</td><td>目标股，10:49 涨停，炸板5次</td></tr><tr><td><b>三安光电</b></td><td class='up'><b>5.03</b></td><td class=''>—</td><td>光学光电子龙头，跟涨</td></tr><tr><td><b>伟测科技</b></td><td class='up'><b>3.35</b></td><td class=''>—</td><td>芯片测试可比，验证题材</td></tr><tr><td><b>京东方A</b></td><td class='up'><b>1.85</b></td><td class=''>—</td><td>面板，跟涨</td></tr><tr><td><b>上证指数</b></td><td class='up'><b>1.02</b></td><td class=''>—</td><td>大盘普涨，β 环境</td></tr><tr><td><b>华谊集团</b></td><td class='down'><b>-2.58</b></td><td class=''>—</td><td>上海国资条线下跌</td></tr><tr><td><b>宝信软件</b></td><td class='down'><b>-3.59</b></td><td class=''>—</td><td>上海国资条线下跌</td></tr></table>
+<div class="note">α 为主、β 为辅。当日大盘普涨（上证 +1.02%）且半导体条线活跃，提供了友好环境；但光学光电子可比仅涨 1~5%、上海国资条线反而下跌（-2.6%/-3.6%），个股 +9.97% 显著跑赢所有可比，说明个体催化（减持出清+芯片测试）是主要驱动。</div></div>
+<div class="panel"><h2><span class="ic">🎯</span>结论与后续关注</h2>
+<div class="concl">8月7日飞乐音响涨停，本质是「事件驱动 + 题材共振」的脉冲行情，而非基本面或趋势性资金推动。核心催化有二：一是 8/7 当日公告持股 5% 以上股东临港集团减持计划期满且未实施，长期压制股价的不确定性解除（利空出尽）；二是市场聚焦其芯片测试／半导体封测业务（全资子公司上海仪电智能电子，模块封装+芯片测试），当日半导体产业链整体活跃（有研新材 3 板、先导基电涨停）形成共振。资金面上，主力单日净流入 0.78 亿、超大单占 77%，为近 20 日峰值，但这是脉冲而非趋势——次日即转负，且未触发龙虎榜（无机构席位、无知名游资介入），封板质量也差（10:49 触及涨停后炸板 5 次，封板力度仅 0.41）。后续走势印证了这一点：8/10 起连续回落，至 8/19 已跌至 5.69 元，完全回吐涨停涨幅并转负。判断这是一次「消息面一次性兑现」的短促行情，持续性弱；跟踪要点在于临港集团是否重启减持（本期仅为期满未实施，非不减持承诺），以及中报净利同比 -92% 的基本面压力（PE动 400+，题材退潮后风险显著）。</div><ul><li>临港集团后续是否重启减持计划（本期为「期满未减持」，非承诺不减持，随时可再发新计划）</li><li>中报业绩：2026H1 归母净利 177.87 万元、同比 -92.27%，基本面无法支撑估值（PE动 400+），题材退潮后回落风险大</li><li>8/26 拟 4350 万受让云瀚科技 75% 股权（关联交易），是后续新的事件驱动点</li><li>芯片测试业务（上海仪电智能电子）的实质性订单与产能落地情况</li></ul></div>
+
+<footer>数据来源：腾讯财经 · 百度股市通 · 东方财富 · 同花顺 · 巨潮资讯网<br>
+由 stock-move-attribution 六步归因流程自动生成 · 基于公开数据的归因分析，不构成投资建议<br>
+归档于 2026-09-03 15:05</footer>
+</div></body></html>
