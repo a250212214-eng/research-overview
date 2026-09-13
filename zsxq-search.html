@@ -135,7 +135,7 @@ mark { background:#fff2a8; color:#7a5b00; padding:0 2px; border-radius:3px; font
  *  ⚠️ 此处只能放 publishable / anon 密钥，绝不能放 sb_secret_
  * ============================================================ */
 var SB_URL = "https://uwxlctiufefpbprsaamu.supabase.co";
-var SB_KEY = "__SB_KEY__";          /* 部署时写入；留占位符则走页面内激活 */
+var SB_KEY = "sb_publishable_g5pqxJkWUrmhMu1kJr734w_t1bXQjT-";   /* 公开只读密钥，设计上可暴露于前端 */
 var LS_KEY = "zsxq_sb_key";         /* 浏览器本地保存的密钥 */
 try { var _lk = localStorage.getItem(LS_KEY); if (_lk) SB_KEY = _lk; } catch (e) {}
 function hasKey(){ return SB_KEY && SB_KEY.indexOf("__") !== 0 && SB_KEY.length > 20; }
