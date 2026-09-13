@@ -112,6 +112,15 @@ mark { background:#fff2a8; color:#7a5b00; padding:0 2px; border-radius:3px; font
       <span class="chip" data-field="sector">板块</span>
     </div>
 
+    <div class="opt">
+      <span class="lbl">行业</span>
+      <span id="indChips" style="display:contents">
+        <span class="chip on" data-ind="">全部</span>
+      </span>
+      <span class="chip ind-more" id="indMore" style="display:none">更多行业 ▾</span>
+    </div>
+    <div class="indwrap" id="indWrap"></div>
+
     <div class="hot">
       <span class="lbl">常用：</span>
       <span class="kw">电子布</span><span class="kw">EML</span><span class="kw">CCL</span>
@@ -157,6 +166,7 @@ function buildURL(limit, offset){
   var q = "select=topic_id,date,title,content,author,sector,likes,url&order=date.desc,created_at.desc";
   q += "&limit=" + limit + "&offset=" + offset;
   if (state.kw) q += "&" + state.field + "=ilike.*" + encodeURIComponent(state.kw) + "*";
+  if (state.ind) q += "&sector=eq." + encodeURIComponent(state.ind);
   if (state.days) q += "&date=gte." + daysAgo(state.days);
   return SB_URL + "/rest/v1/zsxq_topics?" + q;
 }
@@ -263,12 +273,101 @@ function statBar(){
     var h = Math.max(3, Math.round(26 * by[d] / max));
     return '<i style="height:' + h + 'px" title="' + d + ' · ' + by[d] + ' 条"></i>';
   }).join("");
-  var label = state.kw ? '「' + esc(state.kw) + '」' : "最近发帖";
+  var label = state.kw ? '「' + esc(state.kw) + '」' : (state.ind ? esc(state.ind) + " 行业" : "最近发帖");
   return '<div class="rstat">' +
     '<span class="n">' + (state.total < 0 ? state.rows.length : state.total) + '</span>' +
     '<span class="t">条命中 · ' + label + ' · ' + (state.days ? "近 " + state.days + " 天" : "全库") + ' · 覆盖 ' + days.length + ' 天</span>' +
     '<span class="spark">' + bars + '</span>' +
   '</div>';
+}
+
+/* ============================================================
+ *  行业（申万一级）入口
+ *  —— 复用帖子自带的 sector 字段，点一下就把该行业全部捞出来
+ * ============================================================ */
+var IND_LIST = [];
+var IND_PIN = ["电子","计算机","通信","电力设备","机械设备","医药生物","汽车","国防军工"];
+
+function indCacheKey(){
+  var d = new Date();
+  return "zsxq_ind_" + d.getFullYear() + String(d.getMonth()+1).padStart(2,"0") + String(d.getDate()).padStart(2,"0");
+}
+
+function loadInd(){
+  if (!hasKey()) return;
+  try { var raw = localStorage.getItem(indCacheKey()); if (raw) { IND_LIST = JSON.parse(raw); renderInd(); return; } } catch(e){}
+  var acc = {}, off = 0;
+  (function step(){
+    fetch(SB_URL + "/rest/v1/zsxq_topics?select=sector&order=topic_id.asc&limit=1000&offset=" + off, {
+      headers: { "apikey": SB_KEY, "Authorization": "Bearer " + SB_KEY, "Range": off + "-" + (off + 999) }
+    })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      rows.forEach(function(x){ var s = x.sector || "其他"; acc[s] = (acc[s] || 0) + 1; });
+      off += rows.length;
+      if (rows.length === 1000 && off < 60000) return step();
+      IND_LIST = Object.keys(acc).map(function(k){ return { n:k, c:acc[k] }; })
+                   .sort(function(a,b){ return b.c - a.c; });
+      try { localStorage.setItem(indCacheKey(), JSON.stringify(IND_LIST)); } catch(e){}
+      renderInd();
+    })
+    .catch(function(){});
+  })();
+}
+
+function chipInd(name, count){
+  return '<span class="chip" data-ind="' + esc(name) + '">' + esc(name) + '<i class="c">' + count + '</i></span>';
+}
+
+function renderInd(){
+  if (!IND_LIST.length) return;
+  var others = IND_LIST.filter(function(x){ return x.n !== "其他" && x.n !== "宏观策略" && x.c >= 100; });
+  // 保证常用行业靠前，其余仍按条数排
+  others.sort(function(a,b){
+    var ia = IND_PIN.indexOf(a.n), ib = IND_PIN.indexOf(b.n);
+    if (ia >= 0 || ib >= 0) return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+    return b.c - a.c;
+  });
+  var picked = others.map(function(x){ return x.n; });
+  var rest = IND_LIST.filter(function(x){ return picked.indexOf(x.n) < 0; });
+
+  var box = $("indChips");
+  box.innerHTML = '<span class="chip' + (state.ind ? "" : " on") + '" data-ind="">全部</span>' +
+                  others.map(function(x){ return chipInd(x.n, x.c); }).join("");
+  if (rest.length){
+    $("indMore").style.display = "";
+    $("indMore").textContent = "更多行业 ▾（" + rest.length + "）";
+    $("indWrap").innerHTML = '<div class="opt" style="margin-top:0">' +
+      rest.map(function(x){ return chipInd(x.n, x.c); }).join("") + '</div>';
+  }
+  syncIndOn();
+  bindInd();
+}
+
+function bindInd(){
+  document.querySelectorAll('[data-ind]').forEach(function(c){
+    c.onclick = function(){ pickInd(c.dataset.ind); };
+  });
+  var m = $("indMore");
+  if (m) m.onclick = function(){
+    var w = $("indWrap");
+    var show = w.classList.toggle("show");
+    m.textContent = (show ? "收起行业 ▴" : "更多行业 ▾") +
+      (w.firstChild ? "（" + w.querySelectorAll('[data-ind]').length + "）" : "");
+  };
+}
+
+function syncIndOn(){
+  document.querySelectorAll('[data-ind]').forEach(function(c){
+    c.classList.toggle("on", c.dataset.ind === (state.ind || ""));
+  });
+}
+
+function pickInd(name){
+  state.ind = name || "";
+  if (!state.ind && $("kw").value.trim() === "") state.kw = "";
+  syncIndOn();
+  search(false);
 }
 
 function showKeyHint(){
@@ -335,6 +434,7 @@ $("kw").addEventListener("keydown", function(e){
 /* ── 初始：展示最近发帖 ── */
 state.kw = "";
 search(false);
+if (hasKey()) loadInd();
 </script>
 </body>
 </html>
