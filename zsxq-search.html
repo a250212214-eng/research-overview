@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>情报检索 · 调研纪要全文库</title>
+<style>
+:root {
+  --bg:#f4f6fa; --panel:#ffffff; --panel2:#f0f3f9; --border:#dde3ed;
+  --text:#1c2534; --muted:#5d6b81; --blue:#2f6bd8; --gold:#c47d08;
+  --up:#e03131; --down:#0f9960; --purple:#7048e8; --cyan:#0ca5a5;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+       background:radial-gradient(1200px 500px at 20% -10%, #e8eff9 0%, var(--bg) 55%) fixed;
+       color:var(--text); min-height:100vh; }
+.wrap { max-width:1120px; margin:0 auto; padding:26px 22px 70px; }
+
+/* ── 顶部 ── */
+.top { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:20px; flex-wrap:wrap; }
+.top h1 { font-size:21px; font-weight:700; letter-spacing:.3px; }
+.top h1 span { font-weight:400; font-size:12px; color:var(--muted); letter-spacing:0; margin-left:10px; }
+.back { font-size:13px; color:var(--blue); text-decoration:none; font-weight:600;
+        background:var(--panel); border:1px solid var(--border); padding:9px 15px; border-radius:10px; transition:all .16s; }
+.back:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+
+/* ── 搜索区 ── */
+.panel { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:18px 20px; margin-bottom:16px; }
+.sbar { display:flex; gap:10px; }
+.sbar input { flex:1; padding:13px 16px; border:1px solid var(--border); border-radius:11px;
+              font-size:15px; outline:none; transition:all .16s; background:var(--panel2); color:var(--text); }
+.sbar input:focus { border-color:var(--blue); background:#fff; box-shadow:0 0 0 3px rgba(47,107,216,.10); }
+.sbar button { padding:13px 26px; border:none; border-radius:11px; background:var(--blue); color:#fff;
+               font-size:15px; font-weight:600; cursor:pointer; transition:all .16s; white-space:nowrap; }
+.sbar button:hover { background:#2559bd; }
+.sbar button:disabled { opacity:.55; cursor:default; }
+
+.opt { display:flex; align-items:center; gap:8px; margin-top:13px; flex-wrap:wrap; }
+.opt .lbl { font-size:12px; color:var(--muted); margin-right:2px; }
+.chip { padding:6px 13px; border-radius:8px; border:1px solid var(--border); background:var(--panel2);
+        font-size:12.5px; color:var(--muted); cursor:pointer; transition:all .14s; user-select:none; }
+.chip:hover { border-color:var(--blue); color:var(--blue); }
+.chip.on { background:linear-gradient(135deg,#e8f0fd,#d3e3fb); border-color:var(--blue); color:#1c4fa1; font-weight:600; }
+
+.hot { margin-top:14px; padding-top:13px; border-top:1px dashed var(--border); }
+.hot .lbl { font-size:12px; color:var(--muted); margin-right:8px; }
+.hot .kw { display:inline-block; padding:5px 11px; margin:0 6px 6px 0; border-radius:7px;
+           background:#eef3fc; color:#2a5db5; font-size:12.5px; cursor:pointer; transition:all .14s; }
+.hot .kw:hover { background:var(--blue); color:#fff; }
+
+/* ── 结果统计 ── */
+.rstat { display:flex; align-items:baseline; gap:14px; margin-bottom:14px; padding-left:4px; flex-wrap:wrap; }
+.rstat .n { font-size:22px; font-weight:700; color:var(--blue); }
+.rstat .t { font-size:13px; color:var(--muted); }
+.spark { display:flex; align-items:flex-end; gap:2px; height:26px; margin-left:auto; }
+.spark i { display:block; width:6px; background:linear-gradient(180deg,#7ba6e8,#2f6bd8); border-radius:2px 2px 0 0; min-height:3px; }
+
+/* ── 结果卡片 ── */
+.card { background:var(--panel); border:1px solid var(--border); border-radius:12px;
+        padding:15px 18px; margin-bottom:10px; transition:all .16s; }
+.card:hover { border-color:#bcd0ee; box-shadow:0 4px 14px rgba(47,107,216,.08); }
+.meta { display:flex; align-items:center; gap:10px; font-size:12px; color:var(--muted); margin-bottom:8px; flex-wrap:wrap; }
+.meta .d { font-weight:700; color:var(--blue); font-size:12.5px; }
+.meta .sec { padding:1.5px 8px; border-radius:6px; background:#eef3fc; color:#2a5db5; font-weight:500; }
+.meta .lk { margin-left:auto; color:#c47d08; }
+.ttl { font-size:14.5px; font-weight:600; line-height:1.55; margin-bottom:7px; }
+.txt { font-size:13px; line-height:1.78; color:#3a4759; white-space:pre-wrap; word-break:break-word; }
+.txt.clip { display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+mark { background:#fff2a8; color:#7a5b00; padding:0 2px; border-radius:3px; font-weight:600; }
+.acts { margin-top:10px; display:flex; gap:14px; font-size:12.5px; }
+.acts a, .acts span { color:var(--blue); cursor:pointer; text-decoration:none; font-weight:600; }
+.acts a:hover, .acts span:hover { text-decoration:underline; }
+.acts .ext { color:var(--muted); }
+
+.empty { text-align:center; padding:56px 20px; color:var(--muted); font-size:14px; }
+.empty .ic { font-size:36px; margin-bottom:12px; opacity:.7; }
+.err { background:#fff5f5; border:1px solid #ffd0d0; color:#c92a2a; border-radius:11px;
+       padding:14px 18px; font-size:13px; line-height:1.7; }
+.more { display:block; width:100%; padding:13px; border:1px dashed var(--border); border-radius:11px;
+        background:var(--panel); color:var(--blue); font-size:13.5px; font-weight:600; cursor:pointer; transition:all .16s; }
+.more:hover { border-color:var(--blue); background:#f7faff; }
+.foot { text-align:center; font-size:11.5px; color:#a3adbb; margin-top:26px; line-height:1.9; }
+</style>
+<!-- LINK_REWRITTEN --><!-- AUTH_GATE --><script src="auth.js"></script></head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <h1>🔍 情报检索<span>调研纪要全文库 · 逐条帖子全文</span></h1>
+    <a class="back" href="index.html">← 返回研究总览</a>
+  </div>
+
+  <div class="panel">
+    <div class="sbar">
+      <input id="kw" type="text" placeholder="输入关键词，回车检索…  如：电子布 / EML / CPO / 天齐锂业" autocomplete="off">
+      <button id="go">检 索</button>
+    </div>
+
+    <div class="opt">
+      <span class="lbl">范围</span>
+      <span class="chip on" data-days="30">近 30 天</span>
+      <span class="chip" data-days="7">近 7 天</span>
+      <span class="chip" data-days="90">近 90 天</span>
+      <span class="chip" data-days="0">全库</span>
+    </div>
+
+    <div class="opt">
+      <span class="lbl">字段</span>
+      <span class="chip on" data-field="content">全文</span>
+      <span class="chip" data-field="title">仅标题</span>
+      <span class="chip" data-field="author">作者</span>
+      <span class="chip" data-field="sector">板块</span>
+    </div>
+
+    <div class="hot">
+      <span class="lbl">常用：</span>
+      <span class="kw">电子布</span><span class="kw">EML</span><span class="kw">CCL</span>
+      <span class="kw">CPO</span><span class="kw">光模块</span><span class="kw">Rubin</span>
+      <span class="kw">光纤</span><span class="kw">涨停</span><span class="kw">投资提示</span>
+    </div>
+  </div>
+
+  <div id="stat"></div>
+  <div id="out"></div>
+
+  <div class="foot">
+    数据源：知识星球「调研纪要」全文库（zsxq_topics）· 每日 09:15 自动入库<br>
+    本页为只读检索 · 支持中文子串匹配
+  </div>
+</div>
+
+<script>
+/* ============================================================
+ *  配置：Supabase 项目 + 只读密钥
+ *  ⚠️ 此处只能放 publishable / anon 密钥，绝不能放 sb_secret_
+ * ============================================================ */
+var SB_URL = "https://uwxlctiufefpbprsaamu.supabase.co";
+var SB_KEY = "__SB_KEY__";          /* 部署时写入；留占位符则走页面内激活 */
+var LS_KEY = "zsxq_sb_key";         /* 浏览器本地保存的密钥 */
+try { var _lk = localStorage.getItem(LS_KEY); if (_lk) SB_KEY = _lk; } catch (e) {}
+function hasKey(){ return SB_KEY && SB_KEY.indexOf("__") !== 0 && SB_KEY.length > 20; }
+
+var PAGE = 60;
+var state = { kw:"", days:30, field:"content", rows:[], total:0, offset:0, loading:false };
+
+var $ = function(id){ return document.getElementById(id); };
+function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+/* ── 日期偏移 ── */
+function daysAgo(n){
+  var d = new Date(); d.setDate(d.getDate() - n + 1);
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+
+/* ── 构造 PostgREST 查询 ── */
+function buildURL(limit, offset){
+  var q = "select=topic_id,date,title,content,author,sector,likes,url&order=date.desc,created_at.desc";
+  q += "&limit=" + limit + "&offset=" + offset;
+  if (state.kw) q += "&" + state.field + "=ilike.*" + encodeURIComponent(state.kw) + "*";
+  if (state.days) q += "&date=gte." + daysAgo(state.days);
+  return SB_URL + "/rest/v1/zsxq_topics?" + q;
+}
+
+/* ── 检索 ── */
+function search(append){
+  if (state.loading) return;
+  if (!hasKey()) { showKeyHint(); return; }
+  state.loading = true;
+  $("go").disabled = true;
+  $("go").textContent = "检索中…";
+  if (!append) { state.rows = []; state.offset = 0; $("out").innerHTML = ""; }
+
+  var hdrs = { "apikey": SB_KEY, "Authorization": "Bearer " + SB_KEY, "Range": state.offset + "-" + (state.offset + PAGE - 1), "Prefer": "count=exact" };
+
+  fetch(buildURL(PAGE, state.offset), { headers: hdrs })
+    .then(function(r){
+      var cr = r.headers.get("Content-Range") || "";
+      state.total = cr.indexOf("/") >= 0 ? parseInt(cr.split("/")[1], 10) : -1;
+      if (!r.ok) return r.text().then(function(t){ throw new Error("HTTP " + r.status + " · " + t.slice(0,240)); });
+      return r.json();
+    })
+    .then(function(rows){
+      state.rows = state.rows.concat(rows);
+      state.offset += rows.length;
+      render(rows);
+    })
+    .catch(function(e){
+      $("out").innerHTML = '<div class="err"><b>检索失败</b><br>' + esc(e.message) +
+        '<br><br>常见原因：密钥未配置 / RLS 未开放只读 / 网络不通。</div>';
+    })
+    .then(function(){
+      state.loading = false;
+      $("go").disabled = false;
+      $("go").textContent = "检 索";
+    });
+}
+
+/* ── 关键词高亮 ── */
+function hl(text){
+  var s = esc(text || "");
+  if (!state.kw || state.field !== "content" && state.field !== "title") return s;
+  try {
+    var re = new RegExp("(" + state.kw.replace(/[.*+?^${}()|[\]\\]/g,"\\$&") + ")", "gi");
+    return s.replace(re, "<mark>$1</mark>");
+  } catch(e){ return s; }
+}
+
+/* ── 渲染结果 ── */
+function render(newRows){
+  $("stat").innerHTML = statBar();
+
+  if (!state.rows.length){
+    $("out").innerHTML = '<div class="empty"><div class="ic">🗂</div>没有命中记录<br><span style="font-size:12.5px">换个关键词，或把范围切到「全库」再试</span></div>';
+    return;
+  }
+
+  var html = newRows.map(function(r, i){
+    var idx = state.offset - newRows.length + i;
+    var body = r.content || "";
+    var long = body.length > 260;
+    return '<div class="card">' +
+      '<div class="meta">' +
+        '<span class="d">' + esc(r.date || "") + '</span>' +
+        (r.sector ? '<span class="sec">' + esc(r.sector) + '</span>' : "") +
+        '<span>👤 ' + esc(r.author || "—") + '</span>' +
+        '<span class="lk">👍 ' + (r.likes || 0) + '</span>' +
+      '</div>' +
+      (r.title ? '<div class="ttl">' + hl(r.title) + '</div>' : "") +
+      '<div class="txt clip" id="t' + idx + '">' + hl(body) + '</div>' +
+      '<div class="acts">' +
+        (long ? '<span onclick="toggle(' + idx + ',this)">展开全文 ▾</span>' : "") +
+        (r.url ? '<a class="ext" href="' + esc(r.url) + '" target="_blank" rel="noopener">星球原帖 ↗</a>' : "") +
+      '</div>' +
+    '</div>';
+  }).join("");
+
+  $("out").innerHTML += html;
+
+  if (state.rows.length < state.total){
+    var b = document.createElement("button");
+    b.className = "more";
+    b.textContent = "加载更多（已显示 " + state.rows.length + " / " + state.total + " 条）";
+    b.onclick = function(){ b.remove(); search(true); };
+    $("out").appendChild(b);
+  }
+}
+
+function toggle(i, el){
+  var t = $("t" + i);
+  if (!t) return;
+  var clipped = t.classList.toggle("clip");
+  el.textContent = clipped ? "展开全文 ▾" : "收起 ▴";
+}
+
+/* ── 顶部统计 + 日期分布迷你柱 ── */
+function statBar(){
+  if (!state.rows.length) return "";
+  var by = {};
+  state.rows.forEach(function(r){ by[r.date] = (by[r.date] || 0) + 1; });
+  var days = Object.keys(by).sort();
+  var max = Math.max.apply(null, days.map(function(d){ return by[d]; }));
+  var bars = days.map(function(d){
+    var h = Math.max(3, Math.round(26 * by[d] / max));
+    return '<i style="height:' + h + 'px" title="' + d + ' · ' + by[d] + ' 条"></i>';
+  }).join("");
+  var label = state.kw ? '「' + esc(state.kw) + '」' : "最近发帖";
+  return '<div class="rstat">' +
+    '<span class="n">' + (state.total < 0 ? state.rows.length : state.total) + '</span>' +
+    '<span class="t">条命中 · ' + label + ' · ' + (state.days ? "近 " + state.days + " 天" : "全库") + ' · 覆盖 ' + days.length + ' 天</span>' +
+    '<span class="spark">' + bars + '</span>' +
+  '</div>';
+}
+
+function showKeyHint(){
+  $("stat").innerHTML = "";
+  $("out").innerHTML =
+    '<div class="panel" style="border-color:#f0c36d;background:#fffdf5">' +
+      '<div style="font-size:15px;font-weight:700;margin-bottom:8px">🔑 首次使用：激活检索通道</div>' +
+      '<div style="font-size:13px;color:var(--muted);line-height:1.85;margin-bottom:14px">' +
+        '本页直连数据库读取，需要一个<b>公开只读密钥</b>（Supabase publishable / anon key）。只需填一次，之后本浏览器长期记住。<br>' +
+        '<b>获取路径：</b>Supabase 控制台 → 左下角 <b>Settings</b> → <b>API Keys</b> → 复制 <code>Publishable key</code>（<code>sb_publishable_…</code>）；' +
+        '同时需在 <b>SQL Editor</b> 执行 <code>sql/open_readonly.sql</code> 开放只读。' +
+      '</div>' +
+      '<div class="sbar">' +
+        '<input id="ki" type="password" placeholder="粘贴 sb_publishable_… 或 anon public key（eyJ…）" autocomplete="off">' +
+        '<button id="kb">激 活</button>' +
+      '</div>' +
+      '<div id="km" style="font-size:12.5px;margin-top:10px;min-height:18px"></div>' +
+    '</div>';
+
+  $("kb").onclick = function(){
+    var v = $("ki").value.trim();
+    if (!v) return;
+    SB_KEY = v;
+    try { localStorage.setItem(LS_KEY, v); } catch (e) {}
+    $("km").innerHTML = '<span style="color:var(--muted)">正在校验…</span>';
+    fetch(SB_URL + "/rest/v1/zsxq_topics?select=topic_id&limit=1",
+          { headers: { "apikey": v, "Authorization": "Bearer " + v } })
+      .then(function(r){
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        $("km").innerHTML = '<span style="color:var(--down)">✓ 激活成功，正在加载结果…</span>';
+        setTimeout(function(){ search(false); }, 500);
+      })
+      .catch(function(e){
+        try { localStorage.removeItem(LS_KEY); } catch (er) {}
+        SB_KEY = "__SB_KEY__";
+        $("km").innerHTML = '<span style="color:var(--up)">✗ 校验失败（' + esc(e.message) +
+          '）· 请确认密钥正确，且已执行 open_readonly.sql 开放只读</span>';
+      });
+  };
+  $("ki").addEventListener("keydown", function(e){ if (e.key === "Enter") $("kb").click(); });
+}
+
+/* ── 交互绑定 ── */
+document.querySelectorAll('.opt .chip').forEach(function(c){
+  c.onclick = function(){
+    var g = c.parentNode;
+    g.querySelectorAll('.chip').forEach(function(x){ x.classList.remove('on'); });
+    c.classList.add('on');
+    if (c.dataset.days !== undefined) state.days = parseInt(c.dataset.days, 10);
+    if (c.dataset.field !== undefined) state.field = c.dataset.field;
+    search(false);
+  };
+});
+
+document.querySelectorAll('.hot .kw').forEach(function(k){
+  k.onclick = function(){ $("kw").value = k.textContent; state.kw = k.textContent; search(false); };
+});
+
+$("go").onclick = function(){ state.kw = $("kw").value.trim(); search(false); };
+$("kw").addEventListener("keydown", function(e){
+  if (e.key === "Enter"){ state.kw = $("kw").value.trim(); search(false); }
+});
+
+/* ── 初始：展示最近发帖 ── */
+state.kw = "";
+search(false);
+</script>
+</body>
+</html>
