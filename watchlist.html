@@ -21,6 +21,7 @@ h1 { font-size: 24px; color: #2c3e50; margin-bottom: 4px; }
 .chk-add { color: #d63031; font-weight: 700; margin-right: 8px; }
 .chk-del { color: #009872; font-weight: 700; margin-right: 8px; }
 .chk-mov { color: #3498db; font-weight: 700; margin-right: 8px; }
+.chk-note { color: #b5bdc3; font-size: 12px; margin-left: 8px; }
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 20px; }
 .card { background: #fff; border-radius: 8px; padding: 14px 16px; box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
 .card .k { font-size: 12px; color: #999; margin-bottom: 6px; }
@@ -49,6 +50,9 @@ td.zt { background: #fdecea; } td.dt { background: #e8f6f0; }
 .toolbar button { padding: 5px 12px; border: 1px solid #d5dde3; border-radius: 6px; background: #fff;
                   color: #555; font-size: 12px; cursor: pointer; }
 .toolbar button:hover { border-color: #3498db; color: #3498db; background: #ebf5fb; }
+.toolbar a.btn { padding: 5px 12px; border: 1px solid #d5dde3; border-radius: 6px; background: #fff;
+                 color: #555; font-size: 12px; cursor: pointer; text-decoration: none; display: inline-block; }
+.toolbar a.btn:hover { border-color: #3498db; color: #3498db; background: #ebf5fb; }
 .hint { font-size: 12px; color: #aaa; }
 .notice { padding: 10px 12px; border-left: 3px solid #d5dde3; background: #fafbfc;
           border-radius: 0 6px 6px 0; margin-bottom: 8px; }
@@ -76,16 +80,16 @@ footer { text-align: center; color: #b5bdc3; font-size: 12px; margin-top: 26px; 
 <body>
 <main>
   <h1>🎯 自选股监控 · 通达信064板块</h1>
-  <div class="subtitle">更新于 2026-09-11 15:36:46 ｜ 27 只 ｜ 表格顺序 = 通达信板块顺序（blk 文件 2026-09-11 13:05 更新） ｜ <a href="index.html">← 返回研究总览</a></div>
+  <div class="subtitle">更新于 2026-09-14 10:43:50 ｜ 27 只 ｜ 表格顺序 = 通达信板块顺序（blk 文件 2026-09-14 09:18 更新） ｜ <a href="index.html">← 返回研究总览</a></div>
 
-<div class="chk chk-chg"><b>🔔 板块变动</b>（相对上次核对 2026-09-09 15:36:00）<div class="chk-row"><span class="chk-add">＋ 新增 1 只</span>山高环能<span class="mono">(000803)</span></div><div class="chk-row"><span class="chk-del">－ 移除 2 只</span>迈瑞医疗<span class="mono">(300760)</span>、万凯新材<span class="mono">(301216)</span></div><div class="chk-row"><span class="chk-mov">⇅ 顺序调整 21 只</span>兖矿能源、宝丰能源、红利低波100ETF景顺、ST嘉澳、浪潮信息、金诚信、星源材质、奇安信-U、深信服、亚钾国际、广立微、京泉华、山金国际、网宿科技、耐科装备、奥普特、大中矿业、恒逸石化、许继电气、中科曙光、桐昆股份</div></div>
+<div class="chk chk-ok">✓ 板块核对：与上次（2026-09-14 10:40:26）一致，共 27 只，顺序与通达信相同</div>
   <div class="cards">
     <div class="card"><div class="k">自选股数量</div><div class="v">27</div></div>
-    <div class="card"><div class="k">今日上涨 / 下跌</div><div class="v"><span class="up">2</span> / <span class="down">25</span></div></div>
-    <div class="card"><div class="k">平均今日涨幅</div><div class="v down">-2.47%</div></div>
-    <div class="card"><div class="k">平均年初至今</div><div class="v up">+6.88%</div></div>
-    <div class="card"><div class="k">合计总市值</div><div class="v">1.62万亿</div></div>
-    <div class="card"><div class="k">近两日公告</div><div class="v">重要 8 · 普通 11</div></div>
+    <div class="card"><div class="k">今日上涨 / 下跌</div><div class="v"><span class="up">18</span> / <span class="down">8</span></div></div>
+    <div class="card"><div class="k">平均今日涨幅</div><div class="v up">+0.85%</div></div>
+    <div class="card"><div class="k">平均年初至今</div><div class="v up">+14.79%</div></div>
+    <div class="card"><div class="k">合计总市值</div><div class="v">1.60万亿</div></div>
+    <div class="card"><div class="k">近两日公告</div><div class="v">重要 0 · 普通 0</div></div>
   </div>
 
   <div class="module">
@@ -106,405 +110,405 @@ footer { text-align: center; color: #b5bdc3; font-size: 12px; margin-top: 26px; 
         <td class="l mono">002092</td>
         <td class="l"><b>中泰化学</b></td>
         <td class="l" data-v="20260831" title="入选 2026-08-31">08-31</td>
-        <td title="基准 2026-09-01 开盘 4.90 → 现价 4.68"><span class="down">-4.49%</span></td>
+        <td title="基准 2026-09-01 开盘 4.90 → 现价 4.66"><span class="down">-4.90%</span></td>
         <td class="l" title="化学原料">化学原料</td>
-        <td data-v="4.68">4.68</td>
-        <td data-v="-3.51"><span class="down">-3.51%</span></td>
-        <td data-v="-3.51"><span class="down">-3.51%</span></td>
-        <td data-v="-6.02"><span class="down">-6.02%</span></td>
-        <td data-v="121">121亿</td>
-        <td data-v="2.34">2.34%</td>
-        <td data-v="1.05">1.05</td>
+        <td data-v="4.66">4.66</td>
+        <td data-v="-0.43"><span class="down">-0.43%</span></td>
+        <td data-v="-3.32"><span class="down">-3.32%</span></td>
+        <td data-v="-6.43"><span class="down">-6.43%</span></td>
+        <td data-v="120">120亿</td>
+        <td data-v="0.89">0.89%</td>
+        <td data-v="1.27">1.27</td>
       </tr>
       <tr data-idx="1">
         <td class="l">2</td>
         <td class="l mono">601009</td>
         <td class="l"><b>南京银行</b></td>
         <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 11.69 → 现价 12.24"><span class="up">+4.70%</span></td>
+        <td title="基准 2026-08-27 开盘 11.69 → 现价 12.32"><span class="up">+5.39%</span></td>
         <td class="l" title="银行Ⅱ">银行Ⅱ</td>
-        <td data-v="12.24">12.24</td>
-        <td data-v="-1.29"><span class="down">-1.29%</span></td>
-        <td data-v="+2.17"><span class="up">+2.17%</span></td>
-        <td data-v="+9.22"><span class="up">+9.22%</span></td>
-        <td data-v="1,513">1,513亿</td>
-        <td data-v="0.32">0.32%</td>
-        <td data-v="0.74">0.74</td>
+        <td data-v="12.32">12.32</td>
+        <td data-v="+0.65"><span class="up">+0.65%</span></td>
+        <td data-v="+3.27"><span class="up">+3.27%</span></td>
+        <td data-v="+9.93"><span class="up">+9.93%</span></td>
+        <td data-v="1,523">1,523亿</td>
+        <td data-v="0.16">0.16%</td>
+        <td data-v="1.26">1.26</td>
       </tr>
       <tr data-idx="2">
         <td class="l">3</td>
         <td class="l mono">000803</td>
         <td class="l"><b>山高环能</b></td>
         <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 7.26 → 现价 7.50"><span class="up">+3.31%</span></td>
+        <td title="基准 2026-08-27 开盘 7.26 → 现价 7.51"><span class="up">+3.44%</span></td>
         <td class="l" title="电力">电力</td>
-        <td data-v="7.50">7.50</td>
-        <td data-v="-4.09"><span class="down">-4.09%</span></td>
-        <td data-v="+0.67"><span class="up">+0.67%</span></td>
-        <td data-v="+4.90"><span class="up">+4.90%</span></td>
+        <td data-v="7.51">7.51</td>
+        <td data-v="+0.13"><span class="up">+0.13%</span></td>
+        <td data-v="+1.76"><span class="up">+1.76%</span></td>
+        <td data-v="+5.03"><span class="up">+5.03%</span></td>
         <td data-v="35.0">35.0亿</td>
-        <td data-v="2.27">2.27%</td>
-        <td data-v="0.92">0.92</td>
+        <td data-v="0.62">0.62%</td>
+        <td data-v="0.77">0.77</td>
       </tr>
       <tr data-idx="3">
         <td class="l">4</td>
-        <td class="l mono">600188</td>
-        <td class="l"><b>兖矿能源</b></td>
-        <td class="l" data-v="20260831" title="入选 2026-08-31">08-31</td>
-        <td title="基准 2026-09-01 开盘 23.33 → 现价 21.38"><span class="down">-8.36%</span></td>
-        <td class="l" title="煤炭开采">煤炭开采</td>
-        <td data-v="21.38">21.38</td>
-        <td data-v="-1.70"><span class="down">-1.70%</span></td>
-        <td data-v="-0.83"><span class="down">-0.83%</span></td>
-        <td data-v="+66.64"><span class="up">+66.64%</span></td>
-        <td data-v="2,146">2,146亿</td>
-        <td data-v="0.64">0.64%</td>
-        <td data-v="0.74">0.74</td>
-      </tr>
-      <tr data-idx="4">
-        <td class="l">5</td>
         <td class="l mono">600989</td>
         <td class="l"><b>宝丰能源</b></td>
         <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 22.66 → 现价 23.97"><span class="up">+5.78%</span></td>
+        <td title="基准 2026-08-27 开盘 22.66 → 现价 24.15"><span class="up">+6.58%</span></td>
         <td class="l" title="化学原料">化学原料</td>
-        <td data-v="23.97">23.97</td>
-        <td data-v="-2.96"><span class="down">-2.96%</span></td>
-        <td data-v="-1.76"><span class="down">-1.76%</span></td>
-        <td data-v="+27.57"><span class="up">+27.57%</span></td>
-        <td data-v="1,758">1,758亿</td>
-        <td data-v="1.30">1.30%</td>
-        <td data-v="1.28">1.28</td>
+        <td data-v="24.15">24.15</td>
+        <td data-v="+0.75"><span class="up">+0.75%</span></td>
+        <td data-v="+3.16"><span class="up">+3.16%</span></td>
+        <td data-v="+28.53"><span class="up">+28.53%</span></td>
+        <td data-v="1,771">1,771亿</td>
+        <td data-v="0.48">0.48%</td>
+        <td data-v="1.41">1.41</td>
       </tr>
-      <tr data-idx="5">
-        <td class="l">6</td>
+      <tr data-idx="4">
+        <td class="l">5</td>
         <td class="l mono">515100</td>
         <td class="l"><b>红利低波100ETF景顺</b></td>
         <td class="l" data-v="20260828" title="入选 2026-08-28">08-28</td>
-        <td title="基准 2026-08-31 开盘 1.41 → 现价 1.41"><span class="down">-0.21%</span></td>
+        <td title="基准 2026-08-31 开盘 1.41 → 现价 1.41"><span class="up">+0.28%</span></td>
         <td class="l" title="—">—</td>
         <td data-v="1.41">1.41</td>
-        <td data-v="-0.71"><span class="down">-0.71%</span></td>
-        <td data-v="-1.40"><span class="down">-1.40%</span></td>
-        <td data-v="-1.61"><span class="down">-1.61%</span></td>
-        <td data-v="49.8">49.8亿</td>
-        <td data-v="1.79">1.79%</td>
-        <td data-v="0.67">0.67</td>
+        <td data-v="+0.50"><span class="up">+0.50%</span></td>
+        <td data-v="-0.14"><span class="down">-0.14%</span></td>
+        <td data-v="-1.12"><span class="down">-1.12%</span></td>
+        <td data-v="50.1">50.1亿</td>
+        <td data-v="1.68">1.68%</td>
+        <td data-v="2.00">2.00</td>
       </tr>
-      <tr data-idx="6">
-        <td class="l">7</td>
-        <td class="l mono">603822</td>
-        <td class="l"><b>ST嘉澳</b></td>
-        <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 57.18 → 现价 62.31"><span class="up">+8.97%</span></td>
-        <td class="l" title="化学制品">化学制品</td>
-        <td data-v="62.31">62.31</td>
-        <td data-v="-2.00"><span class="down">-2.00%</span></td>
-        <td data-v="-6.27"><span class="down">-6.27%</span></td>
-        <td data-v="-35.34"><span class="down">-35.34%</span></td>
-        <td data-v="47.9">47.9亿</td>
-        <td data-v="0.68">0.68%</td>
-        <td data-v="0.72">0.72</td>
-      </tr>
-      <tr data-idx="7">
-        <td class="l">8</td>
+      <tr data-idx="5">
+        <td class="l">6</td>
         <td class="l mono">000977</td>
         <td class="l"><b>浪潮信息</b></td>
         <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 75.30 → 现价 70.54"><span class="down">-6.32%</span></td>
+        <td title="基准 2026-08-27 开盘 75.30 → 现价 68.78"><span class="down">-8.66%</span></td>
         <td class="l" title="计算机设备">计算机设备</td>
-        <td data-v="70.54">70.54</td>
-        <td data-v="+0.16"><span class="up">+0.16%</span></td>
-        <td data-v="-9.24"><span class="down">-9.24%</span></td>
-        <td data-v="+5.98"><span class="up">+5.98%</span></td>
-        <td data-v="1,036">1,036亿</td>
-        <td data-v="4.84">4.84%</td>
-        <td data-v="0.65">0.65</td>
+        <td data-v="68.78">68.78</td>
+        <td data-v="-2.50"><span class="down">-2.50%</span></td>
+        <td data-v="-7.97"><span class="down">-7.97%</span></td>
+        <td data-v="+3.34"><span class="up">+3.34%</span></td>
+        <td data-v="1,010">1,010亿</td>
+        <td data-v="2.31">2.31%</td>
+        <td data-v="1.23">1.23</td>
       </tr>
-      <tr data-idx="8">
-        <td class="l">9</td>
+      <tr data-idx="6">
+        <td class="l">7</td>
         <td class="l mono">603979</td>
         <td class="l"><b>金诚信</b></td>
         <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 80.70 → 现价 75.00"><span class="down">-7.06%</span></td>
+        <td title="基准 2026-08-27 开盘 80.70 → 现价 74.43"><span class="down">-7.77%</span></td>
         <td class="l" title="工业金属">工业金属</td>
-        <td data-v="75.00">75.00</td>
-        <td data-v="-6.41"><span class="down">-6.41%</span></td>
-        <td data-v="-5.71"><span class="down">-5.71%</span></td>
-        <td data-v="-0.65"><span class="down">-0.65%</span></td>
-        <td data-v="468">468亿</td>
-        <td data-v="2.10">2.10%</td>
-        <td data-v="1.84">1.84</td>
+        <td data-v="74.43">74.43</td>
+        <td data-v="-0.76"><span class="down">-0.76%</span></td>
+        <td data-v="-5.12"><span class="down">-5.12%</span></td>
+        <td data-v="-1.40"><span class="down">-1.40%</span></td>
+        <td data-v="464">464亿</td>
+        <td data-v="0.44">0.44%</td>
+        <td data-v="0.99">0.99</td>
       </tr>
-      <tr data-idx="9">
-        <td class="l">10</td>
+      <tr data-idx="7">
+        <td class="l">8</td>
         <td class="l mono">300568</td>
         <td class="l"><b>星源材质</b></td>
         <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 15.10 → 现价 14.40"><span class="down">-4.64%</span></td>
+        <td title="基准 2026-08-27 开盘 15.10 → 现价 15.38"><span class="up">+1.85%</span></td>
         <td class="l" title="电池">电池</td>
-        <td data-v="14.40">14.40</td>
-        <td data-v="-2.31"><span class="down">-2.31%</span></td>
-        <td data-v="+3.45"><span class="up">+3.45%</span></td>
-        <td data-v="-5.51"><span class="down">-5.51%</span></td>
-        <td data-v="215">215亿</td>
-        <td data-v="3.46">3.46%</td>
-        <td data-v="0.80">0.80</td>
+        <td data-v="15.38">15.38</td>
+        <td data-v="+6.81"><span class="up">+6.81%</span></td>
+        <td data-v="+8.01"><span class="up">+8.01%</span></td>
+        <td data-v="+0.92"><span class="up">+0.92%</span></td>
+        <td data-v="230">230亿</td>
+        <td data-v="4.43">4.43%</td>
+        <td data-v="3.36">3.36</td>
       </tr>
-      <tr data-idx="10">
-        <td class="l">11</td>
+      <tr data-idx="8">
+        <td class="l">9</td>
         <td class="l mono">688561</td>
         <td class="l"><b>奇安信-U</b></td>
         <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 25.02 → 现价 27.60"><span class="up">+10.31%</span></td>
+        <td title="基准 2026-08-27 开盘 25.02 → 现价 29.27"><span class="up">+16.99%</span></td>
         <td class="l" title="软件开发">软件开发</td>
-        <td data-v="27.60">27.60</td>
-        <td data-v="+1.85"><span class="up">+1.85%</span></td>
-        <td data-v="-0.76"><span class="down">-0.76%</span></td>
-        <td data-v="-22.43"><span class="down">-22.43%</span></td>
-        <td data-v="188">188亿</td>
-        <td data-v="1.34">1.34%</td>
-        <td data-v="1.23">1.23</td>
+        <td data-v="29.27">29.27</td>
+        <td data-v="+6.05"><span class="up">+6.05%</span></td>
+        <td data-v="+7.81"><span class="up">+7.81%</span></td>
+        <td data-v="-17.73"><span class="down">-17.73%</span></td>
+        <td data-v="200">200亿</td>
+        <td data-v="1.90">1.90%</td>
+        <td data-v="5.93">5.93</td>
       </tr>
-      <tr data-idx="11">
-        <td class="l">12</td>
+      <tr data-idx="9">
+        <td class="l">10</td>
         <td class="l mono">300454</td>
         <td class="l"><b>深信服</b></td>
         <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 117.58 → 现价 127.91"><span class="up">+8.79%</span></td>
+        <td title="基准 2026-08-27 开盘 117.58 → 现价 133.67"><span class="up">+13.68%</span></td>
         <td class="l" title="软件开发">软件开发</td>
-        <td data-v="127.91">127.91</td>
-        <td data-v="-0.93"><span class="down">-0.93%</span></td>
-        <td data-v="-5.31"><span class="down">-5.31%</span></td>
-        <td data-v="+11.18"><span class="up">+11.18%</span></td>
-        <td data-v="552">552亿</td>
-        <td data-v="3.43">3.43%</td>
-        <td data-v="0.86">0.86</td>
+        <td data-v="133.67">133.67</td>
+        <td data-v="+4.50"><span class="up">+4.50%</span></td>
+        <td data-v="-0.69"><span class="down">-0.69%</span></td>
+        <td data-v="+16.18"><span class="up">+16.18%</span></td>
+        <td data-v="577">577亿</td>
+        <td data-v="5.04">5.04%</td>
+        <td data-v="4.85">4.85</td>
       </tr>
-      <tr data-idx="12">
-        <td class="l">13</td>
+      <tr data-idx="10">
+        <td class="l">11</td>
         <td class="l mono">000893</td>
         <td class="l"><b>亚钾国际</b></td>
         <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 48.20 → 现价 41.80"><span class="down">-13.28%</span></td>
+        <td title="基准 2026-08-27 开盘 48.20 → 现价 41.72"><span class="down">-13.44%</span></td>
         <td class="l" title="农化制品">农化制品</td>
-        <td data-v="41.80">41.80</td>
-        <td data-v="-3.29"><span class="down">-3.29%</span></td>
-        <td data-v="-13.65"><span class="down">-13.65%</span></td>
-        <td data-v="-12.66"><span class="down">-12.66%</span></td>
+        <td data-v="41.72">41.72</td>
+        <td data-v="-0.19"><span class="down">-0.19%</span></td>
+        <td data-v="-8.47"><span class="down">-8.47%</span></td>
+        <td data-v="-12.83"><span class="down">-12.83%</span></td>
         <td data-v="386">386亿</td>
-        <td data-v="2.33">2.33%</td>
-        <td data-v="0.91">0.91</td>
+        <td data-v="0.58">0.58%</td>
+        <td data-v="0.70">0.70</td>
       </tr>
-      <tr data-idx="13">
-        <td class="l">14</td>
+      <tr data-idx="11">
+        <td class="l">12</td>
         <td class="l mono">301095</td>
         <td class="l"><b>广立微</b></td>
         <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 72.68 → 现价 72.10"><span class="down">-0.80%</span></td>
+        <td title="基准 2026-08-27 开盘 72.68 → 现价 71.10"><span class="down">-2.17%</span></td>
         <td class="l" title="软件开发">软件开发</td>
-        <td data-v="72.10">72.10</td>
-        <td data-v="-1.80"><span class="down">-1.80%</span></td>
-        <td data-v="+2.72"><span class="up">+2.72%</span></td>
-        <td data-v="+0.82"><span class="up">+0.82%</span></td>
-        <td data-v="144">144亿</td>
-        <td data-v="2.41">2.41%</td>
-        <td data-v="0.70">0.70</td>
+        <td data-v="71.10">71.10</td>
+        <td data-v="-1.39"><span class="down">-1.39%</span></td>
+        <td data-v="-4.72"><span class="down">-4.72%</span></td>
+        <td data-v="-0.58"><span class="down">-0.58%</span></td>
+        <td data-v="142">142亿</td>
+        <td data-v="1.05">1.05%</td>
+        <td data-v="1.06">1.06</td>
       </tr>
-      <tr data-idx="14">
-        <td class="l">15</td>
+      <tr data-idx="12">
+        <td class="l">13</td>
         <td class="l mono">002885</td>
         <td class="l"><b>京泉华</b></td>
         <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 28.05 → 现价 26.51"><span class="down">-5.49%</span></td>
+        <td title="基准 2026-08-27 开盘 28.05 → 现价 27.26"><span class="down">-2.82%</span></td>
         <td class="l" title="其他电子Ⅱ">其他电子Ⅱ</td>
-        <td data-v="26.51">26.51</td>
-        <td data-v="-2.14"><span class="down">-2.14%</span></td>
-        <td data-v="-4.40"><span class="down">-4.40%</span></td>
-        <td data-v="+3.33"><span class="up">+3.33%</span></td>
-        <td data-v="71.8">71.8亿</td>
-        <td data-v="9.98">9.98%</td>
-        <td data-v="0.70">0.70</td>
+        <td data-v="27.26">27.26</td>
+        <td data-v="+2.83"><span class="up">+2.83%</span></td>
+        <td data-v="-9.22"><span class="down">-9.22%</span></td>
+        <td data-v="+6.26"><span class="up">+6.26%</span></td>
+        <td data-v="73.8">73.8亿</td>
+        <td data-v="3.93">3.93%</td>
+        <td data-v="0.90">0.90</td>
       </tr>
-      <tr data-idx="15">
-        <td class="l">16</td>
+      <tr data-idx="13">
+        <td class="l">14</td>
         <td class="l mono">000975</td>
         <td class="l"><b>山金国际</b></td>
         <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 27.37 → 现价 25.39"><span class="down">-7.23%</span></td>
+        <td title="基准 2026-08-27 开盘 27.37 → 现价 25.86"><span class="down">-5.52%</span></td>
         <td class="l" title="贵金属">贵金属</td>
-        <td data-v="25.39">25.39</td>
-        <td data-v="-1.86"><span class="down">-1.86%</span></td>
-        <td data-v="-3.28"><span class="down">-3.28%</span></td>
-        <td data-v="+6.46"><span class="up">+6.46%</span></td>
-        <td data-v="704">704亿</td>
-        <td data-v="1.49">1.49%</td>
-        <td data-v="1.15">1.15</td>
+        <td data-v="25.86">25.86</td>
+        <td data-v="+1.85"><span class="up">+1.85%</span></td>
+        <td data-v="+0.23"><span class="up">+0.23%</span></td>
+        <td data-v="+8.43"><span class="up">+8.43%</span></td>
+        <td data-v="717">717亿</td>
+        <td data-v="0.76">0.76%</td>
+        <td data-v="1.96">1.96</td>
       </tr>
-      <tr data-idx="16">
-        <td class="l">17</td>
+      <tr data-idx="14">
+        <td class="l">15</td>
         <td class="l mono">300017</td>
         <td class="l"><b>网宿科技</b></td>
         <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 15.16 → 现价 14.68"><span class="down">-3.17%</span></td>
+        <td title="基准 2026-08-27 开盘 15.16 → 现价 14.76"><span class="down">-2.64%</span></td>
         <td class="l" title="IT服务Ⅱ">IT服务Ⅱ</td>
-        <td data-v="14.68">14.68</td>
-        <td data-v="-2.59"><span class="down">-2.59%</span></td>
-        <td data-v="-6.20"><span class="down">-6.20%</span></td>
-        <td data-v="+47.98"><span class="up">+47.98%</span></td>
-        <td data-v="366">366亿</td>
-        <td data-v="4.76">4.76%</td>
-        <td data-v="0.95">0.95</td>
+        <td data-v="14.76">14.76</td>
+        <td data-v="+0.54"><span class="up">+0.54%</span></td>
+        <td data-v="-6.40"><span class="down">-6.40%</span></td>
+        <td data-v="+48.79"><span class="up">+48.79%</span></td>
+        <td data-v="368">368亿</td>
+        <td data-v="2.53">2.53%</td>
+        <td data-v="1.83">1.83</td>
       </tr>
-      <tr data-idx="17">
-        <td class="l">18</td>
+      <tr data-idx="15">
+        <td class="l">16</td>
         <td class="l mono">688419</td>
         <td class="l"><b>耐科装备</b></td>
         <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 55.12 → 现价 46.08"><span class="down">-16.40%</span></td>
+        <td title="基准 2026-08-27 开盘 55.12 → 现价 46.65"><span class="down">-15.37%</span></td>
         <td class="l" title="半导体">半导体</td>
-        <td data-v="46.08">46.08</td>
-        <td data-v="-2.81"><span class="down">-2.81%</span></td>
-        <td data-v="-2.17"><span class="down">-2.17%</span></td>
-        <td data-v="+67.00"><span class="up">+67.00%</span></td>
-        <td data-v="52.8">52.8亿</td>
-        <td data-v="2.20">2.20%</td>
-        <td data-v="0.80">0.80</td>
+        <td data-v="46.65">46.65</td>
+        <td data-v="+1.24"><span class="up">+1.24%</span></td>
+        <td data-v="-5.32"><span class="down">-5.32%</span></td>
+        <td data-v="+69.07"><span class="up">+69.07%</span></td>
+        <td data-v="53.4">53.4亿</td>
+        <td data-v="1.05">1.05%</td>
+        <td data-v="1.36">1.36</td>
       </tr>
-      <tr data-idx="18">
-        <td class="l">19</td>
+      <tr data-idx="16">
+        <td class="l">17</td>
         <td class="l mono">688686</td>
         <td class="l"><b>奥普特</b></td>
         <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 131.80 → 现价 137.05"><span class="up">+3.98%</span></td>
+        <td title="基准 2026-08-27 开盘 131.80 → 现价 135.37"><span class="up">+2.71%</span></td>
         <td class="l" title="自动化设备">自动化设备</td>
-        <td data-v="137.05">137.05</td>
-        <td data-v="-2.58"><span class="down">-2.58%</span></td>
-        <td data-v="-3.84"><span class="down">-3.84%</span></td>
-        <td data-v="+11.07"><span class="up">+11.07%</span></td>
-        <td data-v="168">168亿</td>
-        <td data-v="1.57">1.57%</td>
-        <td data-v="1.04">1.04</td>
+        <td data-v="135.37">135.37</td>
+        <td data-v="-1.23"><span class="down">-1.23%</span></td>
+        <td data-v="-10.93"><span class="down">-10.93%</span></td>
+        <td data-v="+9.70"><span class="up">+9.70%</span></td>
+        <td data-v="165">165亿</td>
+        <td data-v="0.67">0.67%</td>
+        <td data-v="1.43">1.43</td>
       </tr>
-      <tr data-idx="19">
-        <td class="l">20</td>
-        <td class="l mono">001203</td>
-        <td class="l"><b>大中矿业</b></td>
-        <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 27.27 → 现价 23.83"><span class="down">-12.61%</span></td>
-        <td class="l" title="冶钢原料">冶钢原料</td>
-        <td data-v="23.83">23.83</td>
-        <td data-v="-5.92"><span class="down">-5.92%</span></td>
-        <td data-v="-9.39"><span class="down">-9.39%</span></td>
-        <td data-v="-21.75"><span class="down">-21.75%</span></td>
-        <td data-v="365">365亿</td>
-        <td data-v="1.51">1.51%</td>
-        <td data-v="1.62">1.62</td>
-      </tr>
-      <tr data-idx="20">
-        <td class="l">21</td>
-        <td class="l mono">000703</td>
-        <td class="l"><b>恒逸石化</b></td>
-        <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 18.18 → 现价 17.35"><span class="down">-4.57%</span></td>
-        <td class="l" title="炼化及贸易">炼化及贸易</td>
-        <td data-v="17.35">17.35</td>
-        <td data-v="-3.61"><span class="down">-3.61%</span></td>
-        <td data-v="-3.23"><span class="down">-3.23%</span></td>
-        <td data-v="+61.77"><span class="up">+61.77%</span></td>
-        <td data-v="713">713亿</td>
-        <td data-v="1.95">1.95%</td>
-        <td data-v="0.99">0.99</td>
-      </tr>
-      <tr data-idx="21">
-        <td class="l">22</td>
+      <tr data-idx="17">
+        <td class="l">18</td>
         <td class="l mono">000400</td>
         <td class="l"><b>许继电气</b></td>
         <td class="l" data-v="20260826" title="早于或等于 2026-08-26">≤08-26</td>
-        <td title="基准 2026-08-27 开盘 22.33 → 现价 20.64"><span class="down">-7.57%</span></td>
+        <td title="基准 2026-08-27 开盘 22.33 → 现价 20.71"><span class="down">-7.25%</span></td>
         <td class="l" title="电网设备">电网设备</td>
-        <td data-v="20.64">20.64</td>
-        <td data-v="-2.46"><span class="down">-2.46%</span></td>
-        <td data-v="-5.84"><span class="down">-5.84%</span></td>
-        <td data-v="-19.02"><span class="down">-19.02%</span></td>
-        <td data-v="210">210亿</td>
-        <td data-v="1.34">1.34%</td>
-        <td data-v="1.00">1.00</td>
+        <td data-v="20.71">20.71</td>
+        <td data-v="+0.34"><span class="up">+0.34%</span></td>
+        <td data-v="-5.61"><span class="down">-5.61%</span></td>
+        <td data-v="-18.75"><span class="down">-18.75%</span></td>
+        <td data-v="211">211亿</td>
+        <td data-v="0.47">0.47%</td>
+        <td data-v="1.40">1.40</td>
       </tr>
-      <tr data-idx="22">
-        <td class="l">23</td>
+      <tr data-idx="18">
+        <td class="l">19</td>
         <td class="l mono">603019</td>
         <td class="l"><b>中科曙光</b></td>
         <td class="l" data-v="20260828" title="入选 2026-08-28">08-28</td>
-        <td title="基准 2026-08-31 开盘 84.51 → 现价 82.25"><span class="down">-2.67%</span></td>
+        <td title="基准 2026-08-31 开盘 84.51 → 现价 82.51"><span class="down">-2.37%</span></td>
         <td class="l" title="计算机设备">计算机设备</td>
-        <td data-v="82.25">82.25</td>
-        <td data-v="-0.12"><span class="down">-0.12%</span></td>
-        <td data-v="-0.53"><span class="down">-0.53%</span></td>
-        <td data-v="-3.45"><span class="down">-3.45%</span></td>
-        <td data-v="1,203">1,203亿</td>
-        <td data-v="1.48">1.48%</td>
-        <td data-v="1.08">1.08</td>
+        <td data-v="82.51">82.51</td>
+        <td data-v="+0.32"><span class="up">+0.32%</span></td>
+        <td data-v="-1.04"><span class="down">-1.04%</span></td>
+        <td data-v="-3.15"><span class="down">-3.15%</span></td>
+        <td data-v="1,207">1,207亿</td>
+        <td data-v="0.60">0.60%</td>
+        <td data-v="1.61">1.61</td>
       </tr>
-      <tr data-idx="23">
-        <td class="l">24</td>
+      <tr data-idx="19">
+        <td class="l">20</td>
         <td class="l mono">601233</td>
         <td class="l"><b>桐昆股份</b></td>
         <td class="l" data-v="20260831" title="入选 2026-08-31">08-31</td>
-        <td title="基准 2026-09-01 开盘 27.65 → 现价 23.41"><span class="down">-15.33%</span></td>
+        <td title="基准 2026-09-01 开盘 27.65 → 现价 23.45"><span class="down">-15.19%</span></td>
         <td class="l" title="炼化及贸易">炼化及贸易</td>
-        <td data-v="23.41">23.41</td>
-        <td data-v="-4.14"><span class="down">-4.14%</span></td>
-        <td data-v="-9.96"><span class="down">-9.96%</span></td>
-        <td data-v="+36.98"><span class="up">+36.98%</span></td>
-        <td data-v="557">557亿</td>
-        <td data-v="2.18">2.18%</td>
-        <td data-v="1.12">1.12</td>
+        <td data-v="23.45">23.45</td>
+        <td data-v="+0.17"><span class="up">+0.17%</span></td>
+        <td data-v="-5.90"><span class="down">-5.90%</span></td>
+        <td data-v="+37.21"><span class="up">+37.21%</span></td>
+        <td data-v="558">558亿</td>
+        <td data-v="0.60">0.60%</td>
+        <td data-v="0.97">0.97</td>
       </tr>
-      <tr data-idx="24">
-        <td class="l">25</td>
+      <tr data-idx="20">
+        <td class="l">21</td>
         <td class="l mono">300130</td>
         <td class="l"><b>新国都</b></td>
         <td class="l" data-v="20260902" title="入选 2026-09-02">09-02</td>
-        <td title="基准 2026-09-03 开盘 19.73 → 现价 18.18"><span class="down">-7.86%</span></td>
+        <td title="基准 2026-09-03 开盘 19.73 → 现价 18.08"><span class="down">-8.36%</span></td>
         <td class="l" title="计算机设备">计算机设备</td>
-        <td data-v="18.18">18.18</td>
-        <td data-v="-3.30"><span class="down">-3.30%</span></td>
-        <td data-v="-10.09"><span class="down">-10.09%</span></td>
-        <td data-v="-33.11"><span class="down">-33.11%</span></td>
+        <td data-v="18.08">18.08</td>
+        <td data-v="-0.55"><span class="down">-0.55%</span></td>
+        <td data-v="-7.71"><span class="down">-7.71%</span></td>
+        <td data-v="-33.48"><span class="down">-33.48%</span></td>
         <td data-v="103">103亿</td>
-        <td data-v="2.01">2.01%</td>
-        <td data-v="0.66">0.66</td>
+        <td data-v="0.90">0.90%</td>
+        <td data-v="1.31">1.31</td>
       </tr>
-      <tr data-idx="25">
-        <td class="l">26</td>
-        <td class="l mono">300622</td>
-        <td class="l"><b>博士眼镜</b></td>
-        <td class="l" data-v="20260904" title="入选 2026-09-04">09-04</td>
-        <td title="基准 2026-09-07 开盘 15.59 → 现价 14.29"><span class="down">-8.34%</span></td>
-        <td class="l" title="专业连锁Ⅱ">专业连锁Ⅱ</td>
-        <td data-v="14.29">14.29</td>
-        <td data-v="-3.45"><span class="down">-3.45%</span></td>
-        <td data-v="-8.86"><span class="down">-8.86%</span></td>
-        <td data-v="-34.55"><span class="down">-34.55%</span></td>
-        <td data-v="45.6">45.6亿</td>
-        <td data-v="3.04">3.04%</td>
-        <td data-v="0.98">0.98</td>
-      </tr>
-      <tr data-idx="26">
-        <td class="l">27</td>
+      <tr data-idx="21">
+        <td class="l">22</td>
         <td class="l mono">600150</td>
         <td class="l"><b>中国船舶</b></td>
         <td class="l" data-v="20260905" title="入选 2026-09-05">09-05</td>
-        <td title="基准 2026-09-07 开盘 37.74 → 现价 39.75"><span class="up">+5.33%</span></td>
+        <td title="基准 2026-09-07 开盘 37.74 → 现价 39.76"><span class="up">+5.35%</span></td>
         <td class="l" title="航海装备Ⅱ">航海装备Ⅱ</td>
-        <td data-v="39.75">39.75</td>
-        <td data-v="-2.62"><span class="down">-2.62%</span></td>
-        <td data-v="+6.08"><span class="up">+6.08%</span></td>
-        <td data-v="+20.84"><span class="up">+20.84%</span></td>
-        <td data-v="2,991">2,991亿</td>
-        <td data-v="2.44">2.44%</td>
-        <td data-v="0.90">0.90</td>
+        <td data-v="39.76">39.76</td>
+        <td data-v="+0.03"><span class="up">+0.03%</span></td>
+        <td data-v="+3.60"><span class="up">+3.60%</span></td>
+        <td data-v="+20.87"><span class="up">+20.87%</span></td>
+        <td data-v="2,992">2,992亿</td>
+        <td data-v="1.00">1.00%</td>
+        <td data-v="1.42">1.42</td>
+      </tr>
+      <tr data-idx="22">
+        <td class="l">23</td>
+        <td class="l mono">300037</td>
+        <td class="l"><b>新宙邦</b></td>
+        <td class="l" data-v="20260914" title="入选 2026-09-14">09-14</td>
+        <td title="入选日次一交易日尚未开盘, 待下个交易日生成"><span class="flat">—</span></td>
+        <td class="l" title="电池">电池</td>
+        <td data-v="71.81">71.81</td>
+        <td data-v="+0.39"><span class="up">+0.39%</span></td>
+        <td data-v="+5.40"><span class="up">+5.40%</span></td>
+        <td data-v="+38.36"><span class="up">+38.36%</span></td>
+        <td data-v="541">541亿</td>
+        <td data-v="1.80">1.80%</td>
+        <td data-v="1.93">1.93</td>
+      </tr>
+      <tr data-idx="23">
+        <td class="l">24</td>
+        <td class="l mono">603120</td>
+        <td class="l"><b>肯特催化</b></td>
+        <td class="l" data-v="20260914" title="入选 2026-09-14">09-14</td>
+        <td title="入选日次一交易日尚未开盘, 待下个交易日生成"><span class="flat">—</span></td>
+        <td class="l" title="化学制品">化学制品</td>
+        <td data-v="49.58">49.58</td>
+        <td data-v="+0.75"><span class="up">+0.75%</span></td>
+        <td data-v="+2.48"><span class="up">+2.48%</span></td>
+        <td data-v="+28.78"><span class="up">+28.78%</span></td>
+        <td data-v="44.8">44.8亿</td>
+        <td data-v="2.94">2.94%</td>
+        <td data-v="1.04">1.04</td>
+      </tr>
+      <tr data-idx="24">
+        <td class="l">25</td>
+        <td class="l mono">600301</td>
+        <td class="l"><b>华锡有色</b></td>
+        <td class="l" data-v="20260914" title="入选 2026-09-14">09-14</td>
+        <td title="入选日次一交易日尚未开盘, 待下个交易日生成"><span class="flat">—</span></td>
+        <td class="l" title="小金属">小金属</td>
+        <td data-v="45.43">45.43</td>
+        <td data-v="+0.00"><span class="flat">+0.00%</span></td>
+        <td data-v="+1.56"><span class="up">+1.56%</span></td>
+        <td data-v="+19.65"><span class="up">+19.65%</span></td>
+        <td data-v="287">287亿</td>
+        <td data-v="0.00">0.00%</td>
+        <td data-v="0.00">0.00</td>
+      </tr>
+      <tr data-idx="25">
+        <td class="l">26</td>
+        <td class="l mono">600188</td>
+        <td class="l"><b>兖矿能源</b></td>
+        <td class="l" data-v="20260831" title="入选 2026-08-31">08-31</td>
+        <td title="基准 2026-09-01 开盘 23.33 → 现价 20.85"><span class="down">-10.63%</span></td>
+        <td class="l" title="煤炭开采">煤炭开采</td>
+        <td data-v="20.85">20.85</td>
+        <td data-v="-2.48"><span class="down">-2.48%</span></td>
+        <td data-v="+0.34"><span class="up">+0.34%</span></td>
+        <td data-v="+62.51"><span class="up">+62.51%</span></td>
+        <td data-v="2,093">2,093亿</td>
+        <td data-v="0.39">0.39%</td>
+        <td data-v="1.53">1.53</td>
+      </tr>
+      <tr data-idx="26">
+        <td class="l">27</td>
+        <td class="l mono">300964</td>
+        <td class="l"><b>本川智能</b></td>
+        <td class="l" data-v="20260914" title="入选 2026-09-14">09-14</td>
+        <td title="入选日次一交易日尚未开盘, 待下个交易日生成"><span class="flat">—</span></td>
+        <td class="l" title="元件">元件</td>
+        <td data-v="71.87">71.87</td>
+        <td data-v="+4.61"><span class="up">+4.61%</span></td>
+        <td data-v="+17.76"><span class="up">+17.76%</span></td>
+        <td data-v="+81.29"><span class="up">+81.29%</span></td>
+        <td data-v="76.8">76.8亿</td>
+        <td data-v="9.27">9.27%</td>
+        <td data-v="2.33">2.33</td>
       </tr>
 
         </tbody>
@@ -512,114 +516,21 @@ footer { text-align: center; color: #b5bdc3; font-size: 12px; margin-top: 26px; 
     </div>
     <div class="toolbar">
       <button onclick="resetOrder()">↩ 恢复通达信顺序</button>
-      <span class="hint">通达信板块调整后重新运行本脚本即自动同步（增删 / 调序）</span>
+      <a class="btn" href="watchlist-exit.html">🗂 调出记录（21）</a>
+      <span class="hint">通达信板块调整后重新运行本脚本即自动同步（增删 / 调序）；被移除的标的会自动登记到调出记录</span>
     </div>
   </div>
 
   <div class="module">
     <h2>📰 公告跟踪（近两日）</h2>
     <div class="m-sub">自选股近两日（含今日）披露的公告，按关键词自动标注类型；标题可点击跳转东财详情页。</div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-11</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sz002885.html" target="_blank">京泉华 <span class="mono">002885</span></a><span class="ntag t-own">股权变动</span></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/002885/AN202609101829233910.html" target="_blank">京泉华:关于持股5%以上股东权益变动触及1%整数倍的公告</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-11</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sz001203.html" target="_blank">大中矿业 <span class="mono">001203</span></a><span class="ntag t-own">股权变动</span></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/001203/AN202609101829236222.html" target="_blank">大中矿业:关于回购股份方案实施完毕暨回购实施结果的公告</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-10</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sh603979.html" target="_blank">金诚信 <span class="mono">603979</span></a><span class="ntag t-earn">业绩</span></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/603979/AN202609091829170552.html" target="_blank">金诚信:金诚信关于召开2026年半年度业绩说明会的公告</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-10</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sz300017.html" target="_blank">网宿科技 <span class="mono">300017</span></a><span class="ntag t-earn">业绩</span></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/300017/AN202609101829220278.html" target="_blank">网宿科技:关于参加2026年上海辖区上市公司集体接待日暨中报业绩说明会活动的公告</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-10</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sz000703.html" target="_blank">恒逸石化 <span class="mono">000703</span></a><span class="ntag t-own">股权变动</span></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/000703/AN202609091829179376.html" target="_blank">恒逸石化:浙江天册律师事务所关于恒逸石化股份有限公司调整第七期员工持股计划受让价格之法律意见书</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-10</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sz000703.html" target="_blank">恒逸石化 <span class="mono">000703</span></a><span class="ntag t-own">股权变动</span></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/000703/AN202609091829179374.html" target="_blank">恒逸石化:董事会薪酬考核与提名委员会关于调整第七期员工持股计划受让价格的审核意见</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-10</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sz000703.html" target="_blank">恒逸石化 <span class="mono">000703</span></a><span class="ntag t-own">股权变动</span></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/000703/AN202609091829179373.html" target="_blank">恒逸石化:关于调整第七期员工持股计划受让价格的公告</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-10</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sh601233.html" target="_blank">桐昆股份 <span class="mono">601233</span></a><span class="ntag t-fin">融资</span></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/601233/AN202609091829170822.html" target="_blank">桐昆股份:桐昆集团股份有限公司关于债务融资工具注册申请获准的公告</a>
-      </div>
+<div class="empty">近两日暂无重要公告</div>
 
-<details class="nrm"><summary>展开普通公告（11 条，未命中关键词）</summary><div class="nrm-list">      <div class="notice">
-        <div class="n-head"><span class="n-date">09-12</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sh688419.html" target="_blank">耐科装备 <span class="mono">688419</span></a></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/688419/AN202609111829266353.html" target="_blank">耐科装备:安徽耐科装备科技股份有限公司关于参加2026年安徽上市公司投资者网上集体接待日活动的公告</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-11</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sh688561.html" target="_blank">奇安信-U <span class="mono">688561</span></a></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/688561/AN202609111829265896.html" target="_blank">奇安信:奇安信科技集团股份有限公司投资者关系活动记录表2026-003</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-11</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sz000975.html" target="_blank">山金国际 <span class="mono">000975</span></a></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/000975/AN202609101829227472.html" target="_blank">山金国际:关于完成公司注册资本变更登记的公告</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-11</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sh603019.html" target="_blank">中科曙光 <span class="mono">603019</span></a></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/603019/AN202609101829230992.html" target="_blank">中科曙光:中科曙光2026年第二次临时股东会会议材料</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-11</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sh600150.html" target="_blank">中国船舶 <span class="mono">600150</span></a></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/600150/AN202609111829239408.html" target="_blank">中国船舶:关于北海造船厂一货轮火灾事故有关情况的公告</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-10</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sh603979.html" target="_blank">金诚信 <span class="mono">603979</span></a></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/603979/AN202609091829171977.html" target="_blank">金诚信:金诚信2026年第五次临时股东会会议资料</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-10</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sz000703.html" target="_blank">恒逸石化 <span class="mono">000703</span></a></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/000703/AN202609111829253206.html" target="_blank">恒逸石化:2026年中期权益分派实施公告</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-10</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sz000703.html" target="_blank">恒逸石化 <span class="mono">000703</span></a></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/000703/AN202609091829179377.html" target="_blank">恒逸石化:关于变更注册资本并修订《公司章程》的公告</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-10</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sz000703.html" target="_blank">恒逸石化 <span class="mono">000703</span></a></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/000703/AN202609091829179375.html" target="_blank">恒逸石化:关于召开2026年第五次临时股东会的通知</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-10</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sz000703.html" target="_blank">恒逸石化 <span class="mono">000703</span></a></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/000703/AN202609091829179371.html" target="_blank">恒逸石化:第十三届董事会第二次会议决议公告</a>
-      </div>
-      <div class="notice">
-        <div class="n-head"><span class="n-date">09-10</span>
-          <a class="n-stock" href="https://quote.eastmoney.com/sz300130.html" target="_blank">新国都 <span class="mono">300130</span></a></div>
-        <a class="n-title" href="https://data.eastmoney.com/notices/detail/300130/AN202609101829231238.html" target="_blank">新国都:关于为控股子公司综合授信额度提供担保的进展公告</a>
-      </div>
-</div></details>
   </div>
 
   <footer>数据来源：东方财富（行情 / 日K线 / 公告）· 板块来源：通达信本地 C:/new_tdx/T0002/blocknew/064.blk<br>
-  盘中数据为刷新时刻快照 · 自动化任务每个交易日 09:15 与 15:35 自动核对同步（增删 / 调序自动跟随通达信）</footer>
+  盘中数据为刷新时刻快照 · 自动化任务每个交易日 09:15 与 15:35 自动核对同步（增删 / 调序自动跟随通达信）<br>
+  被移除的标的自动登记到 <a href="watchlist-exit.html" style="color:#3498db;text-decoration:none;">调出记录</a>（含调入日 / 调出日 / 期间涨跌幅 / 调出至今涨跌幅）</footer>
 </main>
 <script>
 var lastCol = -1, asc = false;
