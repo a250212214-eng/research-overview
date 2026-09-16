@@ -56,15 +56,15 @@ footer { text-align: center; color: #b5bdc3; font-size: 12px; margin-top: 26px; 
 <body>
 <main>
   <h1>🗂 自选股调出记录 · 通达信064板块</h1>
-  <div class="subtitle">更新于 2026-09-15 15:36:33 ｜ 已调出 22 只 ｜
+  <div class="subtitle">更新于 2026-09-16 15:36:16 ｜ 已调出 23 只 ｜
     <a href="watchlist.html">← 返回自选股监控</a> ｜ <a href="index.html">返回研究总览</a></div>
 
   <div class="cards">
-    <div class="card"><div class="k">已调出标的</div><div class="v" id="statN">22</div></div>
-    <div class="card"><div class="k">持有期间平均涨跌</div><div class="v down" id="statPP">-1.65%</div></div>
-    <div class="card"><div class="k">调出后至今平均涨跌</div><div class="v down" id="statSP">-3.66%</div></div>
-    <div class="card"><div class="k">调出后走强 / 走弱</div><div class="v" id="statUD"><span class="up">4</span> / <span class="down">17</span></div></div>
-    <div class="card"><div class="k">调出后最强 / 最弱</div><div class="v" id="statMM">+4.31% / -15.97%</div></div>
+    <div class="card"><div class="k">已调出标的</div><div class="v" id="statN">23</div></div>
+    <div class="card"><div class="k">持有期间平均涨跌</div><div class="v down" id="statPP">-1.48%</div></div>
+    <div class="card"><div class="k">调出后至今平均涨跌</div><div class="v down" id="statSP">-2.60%</div></div>
+    <div class="card"><div class="k">调出后走强 / 走弱</div><div class="v" id="statUD"><span class="up">5</span> / <span class="down">16</span></div></div>
+    <div class="card"><div class="k">调出后最强 / 最弱</div><div class="v" id="statMM">+9.19% / -15.47%</div></div>
   </div>
 
   <div class="module">
@@ -84,47 +84,60 @@ footer { text-align: center; color: #b5bdc3; font-size: 12px; margin-top: 26px; 
           <th class="l" data-t="s">调出后表现</th><th data-t="s">操作</th>
         </tr></thead>
         <tbody>
-      <tr data-code="688561" data-name="奇安信-U" data-pp="14.6283" data-sp="0.0000" data-hold="14">
+      <tr data-code="601009" data-name="南京银行" data-pp="2.1386" data-sp="0.0000" data-hold="15">
         <td class="l">1</td>
+        <td class="l mono">601009</td>
+        <td class="l"><b>南京银行</b></td>
+        <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
+        <td class="l" data-v="20260916" title="调出 2026-09-16">09-16</td>
+        <td data-v="15">15</td>
+        <td data-v="2.1386"><span class="up">+2.14%</span></td>
+        <td data-v="0.0000"><span class="flat">+0.00%</span></td>
+        <td data-v="11.94">11.94</td>
+        <td class="l"><span class="flat">持平</span></td>
+        <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
+      </tr>
+      <tr data-code="688561" data-name="奇安信-U" data-pp="14.6283" data-sp="-3.6960" data-hold="14">
+        <td class="l">2</td>
         <td class="l mono">688561</td>
         <td class="l"><b>奇安信-U</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
         <td class="l" data-v="20260915" title="调出 2026-09-15">09-15</td>
         <td data-v="14">14</td>
         <td data-v="14.6283"><span class="up">+14.63%</span></td>
-        <td data-v="0.0000"><span class="flat">+0.00%</span></td>
-        <td data-v="28.68">28.68</td>
-        <td class="l"><span class="flat">持平</span></td>
+        <td data-v="-3.6960"><span class="down">-3.70%</span></td>
+        <td data-v="27.62">27.62</td>
+        <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="603822" data-name="ST嘉澳" data-pp="9.4439" data-sp="-0.6552" data-hold="13">
-        <td class="l">2</td>
+      <tr data-code="603822" data-name="ST嘉澳" data-pp="9.4439" data-sp="-0.3196" data-hold="13">
+        <td class="l">3</td>
         <td class="l mono">603822</td>
         <td class="l"><b>ST嘉澳</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
         <td class="l" data-v="20260914" title="调出 2026-09-14">09-14</td>
         <td data-v="13">13</td>
         <td data-v="9.4439"><span class="up">+9.44%</span></td>
-        <td data-v="-0.6552"><span class="down">-0.66%</span></td>
-        <td data-v="62.17">62.17</td>
+        <td data-v="-0.3196"><span class="down">-0.32%</span></td>
+        <td data-v="62.38">62.38</td>
         <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="300622" data-name="博士眼镜" data-pp="-7.9538" data-sp="-1.9512" data-hold="6">
-        <td class="l">3</td>
+      <tr data-code="300622" data-name="博士眼镜" data-pp="-7.9538" data-sp="-1.1150" data-hold="6">
+        <td class="l">4</td>
         <td class="l mono">300622</td>
         <td class="l"><b>博士眼镜</b></td>
         <td class="l" data-v="20260904" title="调入 2026-09-04">09-04</td>
         <td class="l" data-v="20260914" title="调出 2026-09-14">09-14</td>
         <td data-v="6">6</td>
         <td data-v="-7.9538"><span class="down">-7.95%</span></td>
-        <td data-v="-1.9512"><span class="down">-1.95%</span></td>
-        <td data-v="14.07">14.07</td>
+        <td data-v="-1.1150"><span class="down">-1.11%</span></td>
+        <td data-v="14.19">14.19</td>
         <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
       <tr data-code="001203" data-name="大中矿业" data-pp="-12.3946" data-sp="-2.8882" data-hold="13">
-        <td class="l">4</td>
+        <td class="l">5</td>
         <td class="l mono">001203</td>
         <td class="l"><b>大中矿业</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
@@ -136,237 +149,237 @@ footer { text-align: center; color: #b5bdc3; font-size: 12px; margin-top: 26px; 
         <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="000703" data-name="恒逸石化" data-pp="-6.1056" data-sp="-0.5272" data-hold="13">
-        <td class="l">5</td>
+      <tr data-code="000703" data-name="恒逸石化" data-pp="-6.1056" data-sp="2.4019" data-hold="13">
+        <td class="l">6</td>
         <td class="l mono">000703</td>
         <td class="l"><b>恒逸石化</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
         <td class="l" data-v="20260914" title="调出 2026-09-14">09-14</td>
         <td data-v="13">13</td>
         <td data-v="-6.1056"><span class="down">-6.11%</span></td>
-        <td data-v="-0.5272"><span class="down">-0.53%</span></td>
-        <td data-v="16.98">16.98</td>
-        <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
+        <td data-v="2.4019"><span class="up">+2.40%</span></td>
+        <td data-v="17.48">17.48</td>
+        <td class="l"><span class="tag tag-up">调出后走强</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="301216" data-name="万凯新材" data-pp="-12.7208" data-sp="2.3713" data-hold="9">
-        <td class="l">6</td>
+      <tr data-code="301216" data-name="万凯新材" data-pp="-12.7208" data-sp="3.0075" data-hold="9">
+        <td class="l">7</td>
         <td class="l mono">301216</td>
         <td class="l"><b>万凯新材</b></td>
         <td class="l" data-v="20260831" title="调入 2026-08-31">08-31</td>
         <td class="l" data-v="20260911" title="调出 2026-09-11">09-11</td>
         <td data-v="9">9</td>
         <td data-v="-12.7208"><span class="down">-12.72%</span></td>
-        <td data-v="2.3713"><span class="up">+2.37%</span></td>
-        <td data-v="17.7">17.70</td>
+        <td data-v="3.0075"><span class="up">+3.01%</span></td>
+        <td data-v="17.81">17.81</td>
         <td class="l"><span class="tag tag-up">调出后走强</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="300760" data-name="迈瑞医疗" data-pp="-0.8167" data-sp="-1.4933" data-hold="9">
-        <td class="l">7</td>
+      <tr data-code="300760" data-name="迈瑞医疗" data-pp="-0.8167" data-sp="-2.8882" data-hold="9">
+        <td class="l">8</td>
         <td class="l mono">300760</td>
         <td class="l"><b>迈瑞医疗</b></td>
         <td class="l" data-v="20260831" title="调入 2026-08-31">08-31</td>
         <td class="l" data-v="20260911" title="调出 2026-09-11">09-11</td>
         <td data-v="9">9</td>
         <td data-v="-0.8167"><span class="down">-0.82%</span></td>
-        <td data-v="-1.4933"><span class="down">-1.49%</span></td>
-        <td data-v="160.3">160.30</td>
+        <td data-v="-2.8882"><span class="down">-2.89%</span></td>
+        <td data-v="158.03">158.03</td>
         <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="301349" data-name="信德新材" data-pp="-3.8041" data-sp="4.3097" data-hold="7">
-        <td class="l">8</td>
+      <tr data-code="301349" data-name="信德新材" data-pp="-3.8041" data-sp="9.1878" data-hold="7">
+        <td class="l">9</td>
         <td class="l mono">301349</td>
         <td class="l"><b>信德新材</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
         <td class="l" data-v="20260905" title="调出 2026-09-05">09-05</td>
         <td data-v="7">7</td>
         <td data-v="-3.8041"><span class="down">-3.80%</span></td>
-        <td data-v="4.3097"><span class="up">+4.31%</span></td>
-        <td data-v="44.05">44.05</td>
+        <td data-v="9.1878"><span class="up">+9.19%</span></td>
+        <td data-v="46.11">46.11</td>
         <td class="l"><span class="tag tag-up">调出后走强</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="301257" data-name="普蕊斯" data-pp="-14.6075" data-sp="-4.1786" data-hold="5">
-        <td class="l">9</td>
+      <tr data-code="301257" data-name="普蕊斯" data-pp="-14.6075" data-sp="-0.6790" data-hold="5">
+        <td class="l">10</td>
         <td class="l mono">301257</td>
         <td class="l"><b>普蕊斯</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
         <td class="l" data-v="20260902" title="调出 2026-09-02">09-02</td>
         <td data-v="5">5</td>
         <td data-v="-14.6075"><span class="down">-14.61%</span></td>
-        <td data-v="-4.1786"><span class="down">-4.18%</span></td>
-        <td data-v="36.69">36.69</td>
+        <td data-v="-0.6790"><span class="down">-0.68%</span></td>
+        <td data-v="38.03">38.03</td>
         <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="688728" data-name="格科微" data-pp="-0.1975" data-sp="-7.3879" data-hold="3">
-        <td class="l">10</td>
+      <tr data-code="688728" data-name="格科微" data-pp="-0.1975" data-sp="-4.9472" data-hold="3">
+        <td class="l">11</td>
         <td class="l mono">688728</td>
         <td class="l"><b>格科微</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
         <td class="l" data-v="20260831" title="调出 2026-08-31">08-31</td>
         <td data-v="3">3</td>
         <td data-v="-0.1975"><span class="down">-0.20%</span></td>
-        <td data-v="-7.3879"><span class="down">-7.39%</span></td>
-        <td data-v="14.04">14.04</td>
+        <td data-v="-4.9472"><span class="down">-4.95%</span></td>
+        <td data-v="14.41">14.41</td>
         <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="688692" data-name="达梦数据" data-pp="0.1528" data-sp="-4.6364" data-hold="3">
-        <td class="l">11</td>
+      <tr data-code="688692" data-name="达梦数据" data-pp="0.1528" data-sp="-4.2897" data-hold="3">
+        <td class="l">12</td>
         <td class="l mono">688692</td>
         <td class="l"><b>达梦数据</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
         <td class="l" data-v="20260831" title="调出 2026-08-31">08-31</td>
         <td data-v="3">3</td>
         <td data-v="0.1528"><span class="up">+0.15%</span></td>
-        <td data-v="-4.6364"><span class="down">-4.64%</span></td>
-        <td data-v="206.3">206.30</td>
+        <td data-v="-4.2897"><span class="down">-4.29%</span></td>
+        <td data-v="207.05">207.05</td>
         <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="600246" data-name="万通发展" data-pp="12.9661" data-sp="-5.0263" data-hold="3">
-        <td class="l">12</td>
+      <tr data-code="600246" data-name="万通发展" data-pp="12.9661" data-sp="0.1500" data-hold="3">
+        <td class="l">13</td>
         <td class="l mono">600246</td>
         <td class="l"><b>万通发展</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
         <td class="l" data-v="20260831" title="调出 2026-08-31">08-31</td>
         <td data-v="3">3</td>
         <td data-v="12.9661"><span class="up">+12.97%</span></td>
-        <td data-v="-5.0263"><span class="down">-5.03%</span></td>
-        <td data-v="12.66">12.66</td>
-        <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
+        <td data-v="0.1500"><span class="up">+0.15%</span></td>
+        <td data-v="13.35">13.35</td>
+        <td class="l"><span class="tag tag-up">调出后走强</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="600153" data-name="建发股份" data-pp="-8.5461" data-sp="1.2136" data-hold="3">
-        <td class="l">13</td>
+      <tr data-code="600153" data-name="建发股份" data-pp="-8.5461" data-sp="0.0000" data-hold="3">
+        <td class="l">14</td>
         <td class="l mono">600153</td>
         <td class="l"><b>建发股份</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
         <td class="l" data-v="20260831" title="调出 2026-08-31">08-31</td>
         <td data-v="3">3</td>
         <td data-v="-8.5461"><span class="down">-8.55%</span></td>
-        <td data-v="1.2136"><span class="up">+1.21%</span></td>
-        <td data-v="8.34">8.34</td>
-        <td class="l"><span class="tag tag-up">调出后走强</span></td>
+        <td data-v="0.0000"><span class="flat">+0.00%</span></td>
+        <td data-v="8.24">8.24</td>
+        <td class="l"><span class="flat">持平</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="002244" data-name="滨江集团" data-pp="-8.9343" data-sp="-6.1466" data-hold="3">
-        <td class="l">14</td>
+      <tr data-code="002244" data-name="滨江集团" data-pp="-8.9343" data-sp="-6.3830" data-hold="3">
+        <td class="l">15</td>
         <td class="l mono">002244</td>
         <td class="l"><b>滨江集团</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
         <td class="l" data-v="20260831" title="调出 2026-08-31">08-31</td>
         <td data-v="3">3</td>
         <td data-v="-8.9343"><span class="down">-8.93%</span></td>
-        <td data-v="-6.1466"><span class="down">-6.15%</span></td>
-        <td data-v="7.94">7.94</td>
+        <td data-v="-6.3830"><span class="down">-6.38%</span></td>
+        <td data-v="7.92">7.92</td>
         <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="002142" data-name="宁波银行" data-pp="0.2645" data-sp="3.0481" data-hold="3">
-        <td class="l">15</td>
+      <tr data-code="002142" data-name="宁波银行" data-pp="0.2645" data-sp="0.5569" data-hold="3">
+        <td class="l">16</td>
         <td class="l mono">002142</td>
         <td class="l"><b>宁波银行</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
         <td class="l" data-v="20260831" title="调出 2026-08-31">08-31</td>
         <td data-v="3">3</td>
         <td data-v="0.2645"><span class="up">+0.26%</span></td>
-        <td data-v="3.0481"><span class="up">+3.05%</span></td>
-        <td data-v="35.16">35.16</td>
+        <td data-v="0.5569"><span class="up">+0.56%</span></td>
+        <td data-v="34.31">34.31</td>
         <td class="l"><span class="tag tag-up">调出后走强</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="000949" data-name="新乡化纤" data-pp="0.6702" data-sp="-13.7150" data-hold="1">
-        <td class="l">16</td>
+      <tr data-code="000949" data-name="新乡化纤" data-pp="0.6702" data-sp="-11.1851" data-hold="1">
+        <td class="l">17</td>
         <td class="l mono">000949</td>
         <td class="l"><b>新乡化纤</b></td>
         <td class="l" data-v="20260831" title="调入 2026-08-31">08-31</td>
         <td class="l" data-v="20260831" title="调出 2026-08-31">08-31</td>
         <td data-v="1">1</td>
         <td data-v="0.6702"><span class="up">+0.67%</span></td>
-        <td data-v="-13.7150"><span class="down">-13.72%</span></td>
-        <td data-v="6.48">6.48</td>
+        <td data-v="-11.1851"><span class="down">-11.19%</span></td>
+        <td data-v="6.67">6.67</td>
         <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="603687" data-name="大胜达" data-pp="2.0539" data-sp="-4.1509" data-hold="1">
-        <td class="l">17</td>
+      <tr data-code="603687" data-name="大胜达" data-pp="2.0539" data-sp="-3.0189" data-hold="1">
+        <td class="l">18</td>
         <td class="l mono">603687</td>
         <td class="l"><b>大胜达</b></td>
         <td class="l" data-v="20260828" title="调入 2026-08-28">08-28</td>
         <td class="l" data-v="20260830" title="调出 2026-08-30">08-30</td>
         <td data-v="1">1</td>
         <td data-v="2.0539"><span class="up">+2.05%</span></td>
-        <td data-v="-4.1509"><span class="down">-4.15%</span></td>
-        <td data-v="15.24">15.24</td>
+        <td data-v="-3.0189"><span class="down">-3.02%</span></td>
+        <td data-v="15.42">15.42</td>
         <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="002466" data-name="天齐锂业" data-pp="5.3628" data-sp="-15.9681" data-hold="2">
-        <td class="l">18</td>
+      <tr data-code="002466" data-name="天齐锂业" data-pp="5.3628" data-sp="-15.4691" data-hold="2">
+        <td class="l">19</td>
         <td class="l mono">002466</td>
         <td class="l"><b>天齐锂业</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
         <td class="l" data-v="20260830" title="调出 2026-08-30">08-30</td>
         <td data-v="2">2</td>
         <td data-v="5.3628"><span class="up">+5.36%</span></td>
-        <td data-v="-15.9681"><span class="down">-15.97%</span></td>
-        <td data-v="42.1">42.10</td>
+        <td data-v="-15.4691"><span class="down">-15.47%</span></td>
+        <td data-v="42.35">42.35</td>
         <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="688676" data-name="金盘科技" data-pp="-6.8086" data-sp="-5.5211" data-hold="2">
-        <td class="l">19</td>
+      <tr data-code="688676" data-name="金盘科技" data-pp="-6.8086" data-sp="-2.9799" data-hold="2">
+        <td class="l">20</td>
         <td class="l mono">688676</td>
         <td class="l"><b>金盘科技</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
         <td class="l" data-v="20260828" title="调出 2026-08-28">08-28</td>
         <td data-v="2">2</td>
         <td data-v="-6.8086"><span class="down">-6.81%</span></td>
-        <td data-v="-5.5211"><span class="down">-5.52%</span></td>
-        <td data-v="62.46">62.46</td>
+        <td data-v="-2.9799"><span class="down">-2.98%</span></td>
+        <td data-v="64.14">64.14</td>
         <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="300596" data-name="利安隆" data-pp="0.5278" data-sp="-5.3222" data-hold="2">
-        <td class="l">20</td>
+      <tr data-code="300596" data-name="利安隆" data-pp="0.5278" data-sp="-4.6778" data-hold="2">
+        <td class="l">21</td>
         <td class="l mono">300596</td>
         <td class="l"><b>利安隆</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
         <td class="l" data-v="20260828" title="调出 2026-08-28">08-28</td>
         <td data-v="2">2</td>
         <td data-v="0.5278"><span class="up">+0.53%</span></td>
-        <td data-v="-5.3222"><span class="down">-5.32%</span></td>
-        <td data-v="39.67">39.67</td>
+        <td data-v="-4.6778"><span class="down">-4.68%</span></td>
+        <td data-v="39.94">39.94</td>
         <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="002438" data-name="江苏神通" data-pp="0.0000" data-sp="-4.0727" data-hold="2">
-        <td class="l">21</td>
+      <tr data-code="002438" data-name="江苏神通" data-pp="0.0000" data-sp="-2.9818" data-hold="2">
+        <td class="l">22</td>
         <td class="l mono">002438</td>
         <td class="l"><b>江苏神通</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
         <td class="l" data-v="20260828" title="调出 2026-08-28">08-28</td>
         <td data-v="2">2</td>
         <td data-v="0.0000"><span class="flat">+0.00%</span></td>
-        <td data-v="-4.0727"><span class="down">-4.07%</span></td>
-        <td data-v="13.19">13.19</td>
+        <td data-v="-2.9818"><span class="down">-2.98%</span></td>
+        <td data-v="13.34">13.34</td>
         <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
-      <tr data-code="002056" data-name="横店东磁" data-pp="0.6141" data-sp="-7.8404" data-hold="2">
-        <td class="l">22</td>
+      <tr data-code="002056" data-name="横店东磁" data-pp="0.6141" data-sp="-7.6056" data-hold="2">
+        <td class="l">23</td>
         <td class="l mono">002056</td>
         <td class="l"><b>横店东磁</b></td>
         <td class="l" data-v="20260826" title="调入 2026-08-26">≤08-26<span class="approx">*</span></td>
         <td class="l" data-v="20260828" title="调出 2026-08-28">08-28</td>
         <td data-v="2">2</td>
         <td data-v="0.6141"><span class="up">+0.61%</span></td>
-        <td data-v="-7.8404"><span class="down">-7.84%</span></td>
-        <td data-v="19.63">19.63</td>
+        <td data-v="-7.6056"><span class="down">-7.61%</span></td>
+        <td data-v="19.68">19.68</td>
         <td class="l"><span class="tag tag-dn">调出后走弱</span></td>
         <td><button class="delbtn" onclick="delRow(this)">删除</button></td>
       </tr>
