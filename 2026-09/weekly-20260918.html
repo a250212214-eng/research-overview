@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股上周涨幅复盘 | 2026年9月14日 — 9月20日</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f5f6fa; color: #2d3436; line-height: 1.7; padding: 24px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #fff;
+    border-radius: 16px; padding: 32px 40px; margin-bottom: 24px; }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  .header .subtitle { font-size: 15px; opacity: 0.8; }
+  .header .date-tag { display: inline-block; background: rgba(255,255,255,0.15);
+    padding: 4px 14px; border-radius: 20px; font-size: 13px; margin-top: 10px; }
+  .tldr { background: #fff; border-radius: 12px; padding: 24px 28px; margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); border-left: 4px solid #e74c3c; }
+  .tldr h2 { font-size: 18px; margin-bottom: 12px; color: #1a1a2e; }
+  .tldr p { font-size: 14px; color: #555; margin-bottom: 8px; }
+  .tldr .highlight { color: #e74c3c; font-weight: 600; }
+  .tldr .highlight-green { color: #27ae60; font-weight: 600; }
+  .section { background: #fff; border-radius: 12px; padding: 28px; margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .section h2 { font-size: 20px; font-weight: 700; color: #1a1a2e; margin-bottom: 16px;
+    padding-bottom: 10px; border-bottom: 2px solid #f0f0f0; }
+  .section h3 { font-size: 16px; font-weight: 600; color: #2d3436; margin: 18px 0 10px; }
+  .chart-box { width: 100%; height: 380px; margin: 16px 0; }
+  .chart-box-sm { width: 100%; height: 340px; margin: 16px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+  th { background: #f8f9fa; padding: 10px 12px; text-align: left; font-weight: 600;
+    color: #2d3436; border-bottom: 2px solid #e0e0e0; }
+  td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; color: #555; }
+  tr:hover td { background: #fafbfc; }
+  .red { color: #e74c3c; font-weight: 600; }
+  .green { color: #27ae60; font-weight: 600; }
+  .flat { color: #7f8c8d; font-weight: 600; }
+  .daily-card { border-radius: 10px; padding: 20px 24px; margin-bottom: 16px;
+    border: 1px solid #e8e8e8; background: #fff; }
+  .daily-card.mon { border-left: 4px solid #e74c3c; }
+  .daily-card.tue { border-left: 4px solid #27ae60; }
+  .daily-card.wed { border-left: 4px solid #e74c3c; }
+  .daily-card.thu { border-left: 4px solid #27ae60; }
+  .daily-card.fri { border-left: 4px solid #e74c3c; }
+  .daily-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .daily-header .day { font-size: 16px; font-weight: 700; color: #1a1a2e; }
+  .daily-header .idx { font-size: 13px; color: #666; }
+  .daily-tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+  .tag { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 12px; font-weight: 500; }
+  .tag-up { background: #fde8e8; color: #c0392b; }
+  .tag-down { background: #e8f8e8; color: #27ae60; }
+  .tag-info { background: #e8f0fe; color: #1a73e8; }
+  .daily-body { font-size: 13px; color: #555; }
+  .daily-body p { margin-bottom: 6px; }
+  .daily-body strong { color: #2d3436; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+  .summary-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff;
+    border-radius: 12px; padding: 24px 28px; margin-bottom: 24px; }
+  .summary-box h2 { color: #fff; border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .summary-box p { font-size: 14px; margin-bottom: 8px; opacity: 0.95; }
+  .summary-box strong { font-weight: 700; }
+  .source { font-size: 12px; color: #999; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #e0e0e0; }
+  .disclaimer { background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px;
+    padding: 16px 20px; margin-top: 24px; font-size: 12px; color: #856404; line-height: 1.8; }
+</style>
+<!-- AUTH_GATE --><script src="auth.js"></script></head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>A股上周涨幅复盘</h1>
+    <div class="subtitle">市场热点深度解析 | 每日上涨热点梳理（数据自动生成版）</div>
+    <span class="date-tag">2026年9月14日 — 9月20日</span>
+  </div>
+
+  <div class="tldr">
+    <h2>核心结论</h2>
+    <p>本周A股主要指数方面，<span class="highlight">科创200 周涨 +4.93%</span> 表现最强，<span class="highlight-green">红利指数 周跌 2.08%</span> 相对最弱。</p><p>31 个申万一级行业中 <span class="highlight">19 个上涨、12 个下跌</span>；强势方向为 <span class="highlight">电子、医药生物、机械设备</span>，弱势方向为 <span class="highlight-green">银行、煤炭、农林牧渔</span>。</p><p>概念涨幅居前：<span class="highlight">CRO +10.39%</span>、<span class="highlight">第四代半导体 +10.23%</span>、<span class="highlight">先进封装 +9.50%</span>、<span class="highlight">电子纸概念 +9.24%</span>、<span class="highlight">高带宽内存 +9.23%</span>。</p><p>全周涨停家数从 55 只（周一 9/14）到 78 只（周五 9/18），最高连板 6 板；日均成交 1.38 万亿。</p>
+  </div>
+
+  <div class="section">
+    <h2>一、主要指数周涨跌幅</h2>
+    <p style="font-size:14px;color:#666;margin-bottom:8px;">周涨跌幅基期为区间首日前一交易日（09-11）收盘。</p>
+    <div id="chart-index" class="chart-box"></div>
+    <table>
+      <thead><tr><th>指数</th><th>代码</th><th>收盘点位</th><th>周涨跌幅</th><th>风格特征</th></tr></thead>
+      <tbody><tr><td>科创200</td><td>000699.SH</td><td>1,519.84</td><td class="red">+4.93%</td><td>科创小盘</td></tr><tr><td>科创50</td><td>000688.SH</td><td>1,606.29</td><td class="red">+3.41%</td><td>硬科技</td></tr><tr><td>中证1000</td><td>000852.SH</td><td>7,548.82</td><td class="red">+1.64%</td><td>小盘</td></tr><tr><td>中证500</td><td>000905.SH</td><td>7,654.98</td><td class="red">+0.98%</td><td>中盘</td></tr><tr><td>北证50</td><td>899050.BJ</td><td>1,026.00</td><td class="red">+0.25%</td><td>北交所</td></tr><tr><td>上证指数</td><td>000001.SH</td><td>3,875.60</td><td class="green">-0.32%</td><td>沪市主板</td></tr><tr><td>深证成指</td><td>399001.SZ</td><td>13,409.91</td><td class="green">-0.46%</td><td>深市成指</td></tr><tr><td>创业板指</td><td>399006.SZ</td><td>3,298.31</td><td class="green">-0.71%</td><td>成长风向标</td></tr><tr><td>上证50</td><td>000016.SH</td><td>2,844.23</td><td class="green">-0.84%</td><td>大盘蓝筹</td></tr><tr><td>沪深300</td><td>000300.SH</td><td>4,460.16</td><td class="green">-1.11%</td><td>权重核心</td></tr><tr><td>红利指数</td><td>000015.SH</td><td>3,259.04</td><td class="green">-2.08%</td><td>高股息</td></tr></tbody>
+    </table>
+    <div class="source">数据来源：腾讯财经 | 数据时点：2026-09-18收盘</div>
+  </div>
+
+  <div class="section">
+    <h2>二、申万一级行业涨跌排名</h2>
+    <p style="font-size:14px;color:#666;margin-bottom:8px;">31 个申万一级行业中 19 涨 12 跌 个。周涨跌幅采用 5 日口径（基期同为 09-11 收盘）。</p>
+    <div id="chart-sector" class="chart-box"></div>
+    <h3>涨幅前五行业</h3>
+    <table><thead><tr><th>行业</th><th>周涨跌幅</th><th>5日主力净额（亿）</th></tr></thead>
+      <tbody><tr><td>电子</td><td class="red">+7.95%</td><td class="red">+240.8</td></tr><tr><td>医药生物</td><td class="red">+3.42%</td><td class="red">+32.2</td></tr><tr><td>机械设备</td><td class="red">+3.37%</td><td class="red">+58.2</td></tr><tr><td>电力设备</td><td class="red">+3.07%</td><td class="green">-67.2</td></tr><tr><td>通信</td><td class="red">+2.85%</td><td class="red">+43.5</td></tr></tbody></table>
+    <h3>跌幅前五行业</h3>
+    <table><thead><tr><th>行业</th><th>周涨跌幅</th><th>5日主力净额（亿）</th></tr></thead>
+      <tbody><tr><td>社会服务</td><td class="green">-1.37%</td><td class="green">-9.8</td></tr><tr><td>石油石化</td><td class="green">-1.66%</td><td class="green">-12.4</td></tr><tr><td>银行</td><td class="green">-1.92%</td><td class="green">-42.8</td></tr><tr><td>煤炭</td><td class="green">-2.27%</td><td class="green">-5.0</td></tr><tr><td>农林牧渔</td><td class="green">-2.86%</td><td class="green">-17.4</td></tr></tbody></table>
+    <div class="source">数据来源：东方财富（申万一级口径） | 数据时点：2026-09-18收盘</div>
+  </div>
+
+  <div class="section">
+    <h2>三、每日成交额变化</h2>
+    <p style="font-size:14px;color:#666;margin-bottom:8px;">沪深两市每日成交额（上证指数 + 深证综指）。</p>
+    <div id="chart-volume" class="chart-box-sm"></div>
+    <div class="source">数据来源：腾讯财经 | 单位：万亿</div>
+  </div>
+
+  <div class="section">
+    <h2>四、概念板块涨幅TOP10</h2>
+    <p style="font-size:14px;color:#666;margin-bottom:8px;">按 5 日涨跌幅排序（基期同为 09-11 收盘）。</p>
+    <div id="chart-concept" class="chart-box-sm"></div>
+    <div class="source">数据来源：东方财富 | 数据时点：2026-09-18收盘</div>
+  </div>
+
+  <div class="section">
+    <h2>五、资金流向</h2>
+    <p style="font-size:14px;color:#666;margin-bottom:8px;">按申万一级行业 5 日主力净额（f164 口径）排序。</p>
+    <div class="grid-2">
+      <div>
+        <h3 style="color:#c0392b;">主力净流入行业TOP5</h3>
+        <table><thead><tr><th>行业</th><th>净流入（亿）</th></tr></thead><tbody><tr><td>电子</td><td class="red">+240.8</td></tr><tr><td>机械设备</td><td class="red">+58.2</td></tr><tr><td>通信</td><td class="red">+43.5</td></tr><tr><td>医药生物</td><td class="red">+32.2</td></tr><tr><td>房地产</td><td class="red">+18.8</td></tr></tbody></table>
+      </div>
+      <div>
+        <h3 style="color:#27ae60;">主力净流出行业TOP5</h3>
+        <table><thead><tr><th>行业</th><th>净流出（亿）</th></tr></thead><tbody><tr><td>传媒</td><td class="green">-32.5</td></tr><tr><td>银行</td><td class="green">-42.8</td></tr><tr><td>有色金属</td><td class="green">-56.8</td></tr><tr><td>电力设备</td><td class="green">-67.2</td></tr><tr><td>国防军工</td><td class="green">-79.2</td></tr></tbody></table>
+      </div>
+    </div>
+    <div class="source">数据来源：东方财富 | 数据时点：2026-09-18收盘</div>
+  </div>
+
+  <div class="section">
+    <h2>六、每日上涨热点详解</h2>
+    <p style="font-size:14px;color:#666;margin-bottom:16px;">按交易日梳理成交额、涨停家数、涨停最集中的板块与连板梯队（数据自动汇总）。</p>
+
+    <div class="daily-card mon">
+      <div class="daily-header">
+        <span class="day">9月14日（周一）| 涨停 55 只 · 跌停 16 只</span>
+        <span class="idx">沪指 <span class="green">-0.07%</span> | 深成指 <span class="green">-0.64%</span> | 创业板指 <span class="green">-1.10%</span></span>
+      </div>
+      <div class="daily-body">
+        <p><strong>成交额</strong>：1.63万亿（较前日 +0.00万亿）| <strong>涨停</strong>：55只 | <strong>跌停</strong>：16只</p>
+        <p><strong>涨停最集中的板块</strong>：</p>
+        <div class="daily-tags"><span class="tag tag-up">元件 6家</span><span class="tag tag-up">汽车零部 3家</span><span class="tag tag-up">电网设备 3家</span><span class="tag tag-up">电力 3家</span><span class="tag tag-up">通用设备 3家</span></div>
+        <p><strong>连板梯队</strong>：闽东电力(000993) 4连板、中新赛克(002912) 3连板、超声电子(000823) 3连板、凯盛新能(600876) 3连板、正和生态(605069) 2连板、通达股份(002560) 2连板、中视传媒(600088) 2连板、双星新材(002585) 2连板</p>
+      </div>
+    </div>
+    <div class="daily-card tue">
+      <div class="daily-header">
+        <span class="day">9月15日（周二）| 涨停 32 只 · 跌停 27 只</span>
+        <span class="idx">沪指 <span class="green">-0.54%</span> | 深成指 <span class="green">-0.72%</span> | 创业板指 <span class="green">-1.15%</span></span>
+      </div>
+      <div class="daily-body">
+        <p><strong>成交额</strong>：1.61万亿（较前日 -0.02万亿）| <strong>涨停</strong>：32只 | <strong>跌停</strong>：27只</p>
+        <p><strong>涨停最集中的板块</strong>：</p>
+        <div class="daily-tags"><span class="tag tag-up">风电设备 4家</span><span class="tag tag-up">电力 3家</span><span class="tag tag-up">IT服务Ⅱ 2家</span><span class="tag tag-up">家居用品 2家</span><span class="tag tag-up">元件 2家</span></div>
+        <p><strong>连板梯队</strong>：闽东电力(000993) 5连板、中新赛克(002912) 4连板、双星新材(002585) 3连板、澳弘电子(605058) 3连板、启明信息(002232) 2连板、博汇科技(688004) 2连板、宏盛股份(603090) 2连板</p>
+      </div>
+    </div>
+    <div class="daily-card wed">
+      <div class="daily-header">
+        <span class="day">9月16日（周三）| 涨停 89 只 · 跌停 4 只</span>
+        <span class="idx">沪指 <span class="red">+0.71%</span> | 深成指 <span class="red">+1.26%</span> | 创业板指 <span class="red">+1.96%</span></span>
+      </div>
+      <div class="daily-body">
+        <p><strong>成交额</strong>：1.84万亿（较前日 +0.23万亿）| <strong>涨停</strong>：89只 | <strong>跌停</strong>：4只</p>
+        <p><strong>涨停最集中的板块</strong>：</p>
+        <div class="daily-tags"><span class="tag tag-up">通信设备 6家</span><span class="tag tag-up">半导体 5家</span><span class="tag tag-up">化学制品 5家</span><span class="tag tag-up">包装印刷 4家</span><span class="tag tag-up">元件 4家</span></div>
+        <p><strong>连板梯队</strong>：闽东电力(000993) 6连板、澳弘电子(605058) 4连板、博汇科技(688004) 3连板、华瓷股份(001216) 2连板、锡华科技(603248) 2连板、北自科技(603082) 2连板、英联股份(002846) 2连板、中晶科技(003026) 2连板</p>
+      </div>
+    </div>
+    <div class="daily-card thu">
+      <div class="daily-header">
+        <span class="day">9月17日（周四）| 涨停 47 只 · 跌停 1 只</span>
+        <span class="idx">沪指 <span class="green">-0.41%</span> | 深成指 <span class="green">-0.33%</span> | 创业板指 <span class="green">-0.40%</span></span>
+      </div>
+      <div class="daily-body">
+        <p><strong>成交额</strong>：1.82万亿（较前日 -0.02万亿）| <strong>涨停</strong>：47只 | <strong>跌停</strong>：1只</p>
+        <p><strong>涨停最集中的板块</strong>：</p>
+        <div class="daily-tags"><span class="tag tag-up">汽车零部 8家</span><span class="tag tag-up">半导体 2家</span><span class="tag tag-up">出版 2家</span><span class="tag tag-up">消费电子 2家</span><span class="tag tag-up">医疗服务 2家</span></div>
+        <p><strong>连板梯队</strong>：澳弘电子(605058) 5连板、中晶科技(003026) 3连板、华瓷股份(001216) 3连板、锡华科技(603248) 3连板、内蒙新华(603230) 2连板、世联行(002285) 2连板、中岩大地(003001) 2连板、共达电声(002655) 2连板</p>
+      </div>
+    </div>
+    <div class="daily-card fri">
+      <div class="daily-header">
+        <span class="day">9月18日（周五）| 涨停 78 只 · 跌停 0 只</span>
+        <span class="idx"></span>
+      </div>
+      <div class="daily-body">
+        <p><strong>成交额</strong>：0.00万亿（较前日 -1.82万亿）| <strong>涨停</strong>：78只 | <strong>跌停</strong>：0只</p>
+        <p><strong>涨停最集中的板块</strong>：</p>
+        <div class="daily-tags"><span class="tag tag-up">电网设备 6家</span><span class="tag tag-up">半导体 5家</span><span class="tag tag-up">家居用品 4家</span><span class="tag tag-up">服装家纺 4家</span><span class="tag tag-up">通用设备 4家</span></div>
+        <p><strong>连板梯队</strong>：华瓷股份(001216) 4连板、锡华科技(603248) 4连板、内蒙新华(603230) 3连板、世联行(002285) 3连板、华软科技(002453) 2连板、经纬股份(301390) 2连板、华纺股份(600448) 2连板、南华生物(000504) 2连板</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    <h2>七、市场主线与情绪分析（量化口径）</h2>
+    <p><strong>市场环境判断</strong>：震荡档 — 存量资金博弈，板块快速轮动，适合精选个股、控制总仓位。</p><p><strong>最强方向</strong>：电子（周 +7.95%，5日主力净额 240.8 亿）；弱势方向：农林牧渔（-2.86%）。</p><p><strong>资金主线</strong>：净流入居前 电子（240.8 亿）、机械设备（58.2 亿）；净流出居前 国防军工（-79.2 亿）。</p><p><strong>题材热点</strong>：CRO（+10.39%）、第四代半导体（+10.23%）、先进封装（+9.50%）、电子纸概念（+9.24%）、高带宽内存（+9.23%）。</p><p><strong>情绪周期</strong>：涨停家数 [55, 32, 89, 47, 78]，最高连板 [4, 5, 6, 5, 4]；日均成交 1.38 万亿。</p><p><strong>后续观察重点</strong>：① 连板高度能否维持/突破（投机情绪温度计）；② 资金净流入方向能否延续（主线确认信号）；③ 两市成交额能否回升至 2 万亿以上（增量资金信号）。</p>
+  </div>
+
+  <div class="disclaimer">
+    <strong>免责声明</strong>：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。
+  </div>
+
+  <div style="text-align:center;padding:20px;font-size:12px;color:#999;">
+    数据来源：腾讯财经、东方财富 | 报告生成时间：2026-09-18 16:00（服务器自动生成）
+  </div>
+
+</div>
+
+<script>
+echarts.init(document.getElementById('chart-index')).setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  grid: { left: '8%', right: '5%', bottom: '10%', top: '8%' },
+  xAxis: { type: 'category', data: ['科创200','科创50','中证1000','中证500','北证50','上证指数','深证成指','创业板指','上证50','沪深300','红利指数'], axisLabel: { fontSize: 11, rotate: 20 } },
+  yAxis: { type: 'value', name: '周涨跌幅(%)', axisLabel: { formatter: '{value}%' } },
+  series: [{ type: 'bar', data: [{value:4.93,itemStyle:{color:'#e74c3c'}},{value:3.41,itemStyle:{color:'#e74c3c'}},{value:1.64,itemStyle:{color:'#e74c3c'}},{value:0.98,itemStyle:{color:'#e74c3c'}},{value:0.25,itemStyle:{color:'#e74c3c'}},{value:-0.32,itemStyle:{color:'#27ae60'}},{value:-0.46,itemStyle:{color:'#27ae60'}},{value:-0.71,itemStyle:{color:'#27ae60'}},{value:-0.84,itemStyle:{color:'#27ae60'}},{value:-1.11,itemStyle:{color:'#27ae60'}},{value:-2.08,itemStyle:{color:'#27ae60'}}],
+    label: { show: true, position: 'top',
+      formatter: function(p){ return (p.value > 0 ? '+' : '') + p.value + '%'; },
+      fontSize: 11, color: '#555' }, barWidth: '50%' }]
+});
+echarts.init(document.getElementById('chart-sector')).setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  grid: { left: '15%', right: '8%', bottom: '5%', top: '5%' },
+  xAxis: { type: 'value', name: '周涨跌幅(%)', axisLabel: { formatter: '{value}%' } },
+  yAxis: { type: 'category', data: ['电子','医药生物','机械设备','电力设备','通信','社会服务','石油石化','银行','煤炭','农林牧渔'], axisLabel: { fontSize: 12 } },
+  series: [{ type: 'bar', data: [{value:7.95,itemStyle:{color:'#e74c3c'}},{value:3.42,itemStyle:{color:'#e74c3c'}},{value:3.37,itemStyle:{color:'#e74c3c'}},{value:3.07,itemStyle:{color:'#e74c3c'}},{value:2.85,itemStyle:{color:'#e74c3c'}},{value:-1.37,itemStyle:{color:'#27ae60'}},{value:-1.66,itemStyle:{color:'#27ae60'}},{value:-1.92,itemStyle:{color:'#27ae60'}},{value:-2.27,itemStyle:{color:'#27ae60'}},{value:-2.86,itemStyle:{color:'#27ae60'}}],
+    label: { show: true, position: 'right',
+      formatter: function(p){ return (p.value > 0 ? '+' : '') + p.value + '%'; },
+      fontSize: 11, color: '#555' }, barWidth: '55%' }]
+});
+echarts.init(document.getElementById('chart-volume')).setOption({
+  tooltip: { trigger: 'axis' },
+  grid: { left: '8%', right: '5%', bottom: '10%', top: '10%' },
+  xAxis: { type: 'category', data: ['周一 9/14','周二 9/15','周三 9/16','周四 9/17','周五 9/18'], axisLabel: { fontSize: 12 } },
+  yAxis: { type: 'value', name: '成交额(万亿)', min: 0.00, max: 2.02 },
+  series: [{ type: 'bar', data: [{value:1.63,itemStyle:{color:'#3498db'}},{value:1.61,itemStyle:{color:'#3498db'}},{value:1.84,itemStyle:{color:'#3498db'}},{value:1.82,itemStyle:{color:'#3498db'}},{value:0.00,itemStyle:{color:'#3498db'}}],
+    label: { show: true, position: 'top', formatter: '{c}万亿', fontSize: 12, color: '#555' },
+    barWidth: '45%',
+    markLine: { data: [{ type: 'average', name: '日均' }],
+      lineStyle: { color: '#e67e22', type: 'dashed' },
+      label: { formatter: '日均: {c}万亿', color: '#e67e22' } } }]
+});
+echarts.init(document.getElementById('chart-concept')).setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  grid: { left: '22%', right: '8%', bottom: '5%', top: '5%' },
+  xAxis: { type: 'value', name: '周涨跌幅(%)', axisLabel: { formatter: '{value}%' } },
+  yAxis: { type: 'category', data: ['OLED','存储芯片','中芯概念','光刻机','重组蛋白','高带宽内存','电子纸概念','先进封装','第四代半导体','CRO'], axisLabel: { fontSize: 12 }, inverse: true },
+  series: [{ type: 'bar', data: [{value:8.23,itemStyle:{color:'#e74c3c'}},{value:8.79,itemStyle:{color:'#e74c3c'}},{value:8.82,itemStyle:{color:'#e74c3c'}},{value:9.03,itemStyle:{color:'#e74c3c'}},{value:9.13,itemStyle:{color:'#e74c3c'}},{value:9.23,itemStyle:{color:'#e74c3c'}},{value:9.24,itemStyle:{color:'#e74c3c'}},{value:9.50,itemStyle:{color:'#e74c3c'}},{value:10.23,itemStyle:{color:'#e74c3c'}},{value:10.39,itemStyle:{color:'#e74c3c'}}],
+    label: { show: true, position: 'right', formatter: '+{c}%', fontSize: 11, color: '#555' },
+    barWidth: '55%' }]
+});
+</script>
+</body>
+</html>
