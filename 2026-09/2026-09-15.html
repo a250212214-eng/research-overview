@@ -74,6 +74,20 @@ h1 { font-size: 24px; margin-bottom: 4px; color: #2c3e50; }
              color: #fff; padding: 10px 18px; border-radius: 8px; font-size: 13px; z-index: 100000;
              opacity: 0; transition: opacity 0.25s; pointer-events: none; max-width: 80vw;
              white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* 卡片内嵌图片 + 大图浮层（2026-09-20 恢复） */
+.card-imgs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; align-items: flex-end; }
+.card-img { width: 150px; height: 106px; object-fit: cover; border-radius: 6px;
+            border: 1px solid #e3e8ee; background: #f2f5f9; cursor: zoom-in;
+            transition: border-color 0.15s, transform 0.15s; }
+.card-img:hover { border-color: #3498db; transform: translateY(-2px); }
+.card-imgs-n { font-size: 12px; color: #95a5a6; margin-left: 2px; align-self: center; }
+.img-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+               background: rgba(0,0,0,0.9); z-index: 100000; display: flex;
+               align-items: center; justify-content: center; overflow: auto; padding: 40px; }
+.img-overlay img { max-width: 92vw; max-height: 92vh; border-radius: 4px;
+                   cursor: zoom-in; transition: transform 0.15s ease; }
+.img-overlay-tip { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%);
+                   color: #fff; font-size: 12px; opacity: 0.75; white-space: nowrap; }
 </style>
 <!-- LINK_REWRITTEN --><!-- AUTH_GATE --><script src="auth.js"></script></head>
 <body>
@@ -167,6 +181,7 @@ h1 { font-size: 24px; margin-bottom: 4px; color: #2c3e50; }
 3.日常关联交易：10.2亿→15.7亿
 
 具体公告解读详询</div>
+            
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 1</span>
@@ -224,6 +239,7 @@ h1 { font-size: 24px; margin-bottom: 4px; color: #2c3e50; }
 [爱心]澄天是A股唯一健策代工商且是tier 1；公司指引27H1自产4万套冷板+1万套分水器/月，对应自产营收1.3亿/月；若考虑外采部分，则金额更高。
 
 [太阳]展望28年，#若MLCP顺利量产、且澄天保持健策tier1角色，则可享健策市占率从10%-&gt;80%的爆发。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -314,6 +330,7 @@ nsqNSCLC：mOS为33.6 mo vs 25.6 mo（HR=0.79），24个月OS率分别为57.5% v
 [玫瑰]高危sqNSCLC未见明显出血风险增加。在鳞癌亚组中，依沃西组的基线特征明显更差。其中，肿瘤中央型占比（72.2% vs 62.6%）、伴有空洞/坏死（10.0% vs 7.7%）、包绕大血管（6.7% vs 1.1%）的患者比例均显著高于帕博利珠单抗组。
 
 [玫瑰]Summit正在海外开展针对PD-L1 TPS≥50% NSCLC 1L患者的HARMONi-7研究，计划入组780名患者，主要终点是PFS和OS。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -341,6 +358,7 @@ nsqNSCLC：mOS为33.6 mo vs 25.6 mo（HR=0.79），24个月OS率分别为57.5% v
             <div class="card-title">节跳动上半年利润降至 200 亿美元，受 AI 支出拖累</div>
             <div class="card-tags"></div>
             <div class="card-body">节跳动上半年利润降至 200 亿美元，受 AI 支出拖累</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/82258255248511422_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -368,6 +386,7 @@ nsqNSCLC：mOS为33.6 mo vs 25.6 mo（HR=0.79），24个月OS率分别为57.5% v
             <div class="card-title">OpenAI 收购开发智能手机摄像头的初创公司</div>
             <div class="card-tags"></div>
             <div class="card-body">OpenAI 收购开发智能手机摄像头的初创公司</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/45548544528411588_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -449,6 +468,7 @@ nsqNSCLC：mOS为33.6 mo vs 25.6 mo（HR=0.79），24个月OS率分别为57.5% v
 4、CCL及PCB环节业绩与看点
 ·CCL业绩弹性验证：CCL环节业绩弹性表现突出，相关趋势已得到充分印证，华正新材7-8月合计盈利3.5亿元可作为佐证。行业内CCL相关企业均具备明确的业绩弹性，上游环节涨价可顺畅传导至发货端，带动产品售价同步提升，业绩兑现逻辑清晰，增量空间确定性较高。
 ·CCL企业核心看点：不同CCL企业各有差异化核心竞争优势与看点：a.生益科技聚焦高阶PCB业务布局；b.华正新材重点布局ABF膜赛道；c.南亚具备海外潜在订单的预期催化。当前行业内相关企业普遍处于业绩同比高增的状态，投资者若有具体企业的业绩相关沟通需求，可随时联系对应团队咨询。</div>
+            
             <div class="card-footer">
                 <span>👍 3</span>
                 <span>💬 0</span>
@@ -512,6 +532,7 @@ nsqNSCLC：mOS为33.6 mo vs 25.6 mo（HR=0.79），24个月OS率分别为57.5% v
 相关标的继续推荐，奥士康/世运/崇达/中京/依顿/超声/金禄等，以及载板：深南/兴森/方邦/华正
 
 这是pcb板块最近最大的变化，前瞻推荐，老师们多重视！</div>
+            
             <div class="card-footer">
                 <span>👍 5</span>
                 <span>💬 0</span>
@@ -584,6 +605,7 @@ nsqNSCLC：mOS为33.6 mo vs 25.6 mo（HR=0.79），24个月OS率分别为57.5% v
 算力租赁：宏景科技，协创数据，利通电子
 
 （今年大考请您重点支持东吴计算机团队！）</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -644,6 +666,7 @@ AI
 ①华为汪涛：10万卡以上超节点集群在2027年将成为基础配置
 ②华为发布全球首个3D数据中心|
 2.报道称字节跳动上半年营收同比增长30% 达到1200亿美元</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -671,6 +694,7 @@ AI
             <div class="card-title">【东吴商社】8月社零：整体扣除汽车外增长+2.5%，化妆品、饮料、烟酒类表现稳健，黄金珠宝较差，汽车&amp;家电等一次性刺激因素导致波动，整体扣除汽车1-8月增长+2...</div>
             <div class="card-tags"></div>
             <div class="card-body">【东吴商社】8月社零：整体扣除汽车外增长+2.5%，化妆品、饮料、烟酒类表现稳健，黄金珠宝较差，汽车&amp;家电等一次性刺激因素导致波动，整体扣除汽车1-8月增长+2.7%（扣除家电+3%+）</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -734,6 +758,7 @@ AI
 
 #国内海风
 深远海行动计划有一定进展：8月底前 相关方面 已给出正式意见，后续仍需更高层级决策机关同意，行动计划落地确定性已经明显提高。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -788,6 +813,7 @@ AI
 📌代工厂项目推进：Terafab 合作项目叠加 HBM 基底业务，预计 2029 年形成两大供应商格局。
 💰后端管道强劲：2027 年预期收入 11 亿美元，2028 年预期收入 70 亿美元。
 🧩EMIB / 基板良率领先于市场担忧：日本供应商良率已经达到约 45%，第二季度仅 20%-25%；目标 9 月底超过 50%，次年 1 月达到约 55%。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -824,6 +850,7 @@ AI
 
 💬Anthropic 预计将在 CY27 直接购买约 20% 的内存，并在 CY28 增加这一比例，在 DRAM 方面大致与 NVDA 规模相当。
 💬Anthropic 和 OpenAI 预计将在 CY27 开始直接购买 ——Anthropic 声称明年将有 400-500 亿颗 1Gb 的需求，其中约 20% 将直接购买。其余部分将来自 OEM、CPU/GPU、新云合作伙伴，但 CY28 及以后的采购量和直接购买比例应将增长。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -872,6 +899,7 @@ AI
 🔹高盛表示，与一位数据中心专家进行的专家电话会议指出，到 2030 年，800VDC 将占美国新建数据中心的 21%，此前预期为 25%。
 🔹这是因为推理工作负载通常可以保留在传统架构上；该专家指出，英伟达针对 Rubin Ultra 推出的 Kyber NVL144 机架系统也已从 2027 年推迟至 2028 年。
 🔹由高盛主持的这位专家表示，传统架构应在 2032 年之前继续保持主导地位，这将利好现有电气设备供应商并通常带来更好的利润率，而大规模固态变压器（SST）部署可能要到 2029 年才会开始。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -929,6 +957,7 @@ AI
 💾仅 DRAM 设备资本开支，预计 2026 年达到 610 亿美元，2027 年达到 850 亿美元。
 📌美国银行表示，AI 与数据中心订单持续高景气、产能规划落地、内存资本开支提升，为本轮上调的核心推手。
 🖥️英伟达 B200 GPU 租赁价格维持在约 5.72 美元 / 小时的高位，相比 3 月的峰值回落幅度不足 10%。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -995,6 +1024,7 @@ AI
 [太阳]注：以上反馈为区域样本数据，不代表整体数据。
 
 🎉详情欢迎沟通 · #长江食品饮料董思远团队🥇，恳请鼎力支持🏆</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -1067,6 +1097,7 @@ AI
 
 [玫瑰]欢迎联系
 #【传播文化 和通信】-【申万宏源】 林起贤 任梦妮 夏嘉励 赵航 黄俊儒15216630725 张淇元 王昊 刘菁菁 郝知雨 陈力扬 包轩豪</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -1124,6 +1155,7 @@ AI
 ⭕️投资推荐：在AI芯片功耗陡峭攀升、传统金属散热逼近物理极限及金刚石制备技术工艺持续优化三重因素驱动下，金刚石散热行业有望迎来产业化元年的投资机遇。我们建议围绕率先商用交付和产能量产卡位显著的两条主线进行布局：一、聚焦行业头部，率先实现散热片小批量供货、装备自研与产能规模领跑的企业有望充分受益于需求放量，建议关注国机精工、四方达；二、关注工艺领先，具备大尺寸制造与全产业链能力，且加速扩产布局的企业沃尔德。
 
 ☎️中信能化：王喆/赵宇航15201574980</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -1187,6 +1219,7 @@ AI
 #效率脱钩与高景气共振；新造船订单持续兑现。集运逆周期扩张、油轮订单兑现均是效率脱钩和高景气的双重共振，同时散运未来也有可能沿着相似的路径演绎，重申推荐#中国船舶、松发股份、中船防务H、中国动力、苏美达。
 
 [玫瑰]如需【海运视角看造船最新报告】，欢迎联系长江交运 韩轶超/韦铖/魏爱晓</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -1232,6 +1265,7 @@ AI
 #边际明显 β层面Q3进入Rubin等放量期，加大对M8材料需求，我们预计Q3起供需矛盾进一步加剧，新增产能消化预期强。α层面核心标的产能在Q3末开始陆续进入产能投放期，#东材科技 于9月逐步投产眉山万吨新产能，或在Q4加速体现业绩；#圣泉集团 将于Q4进一步扩产2000吨聚苯醚产能。中化国际、呈和科技等均在布局规划新产能的投放。
 
 [爆竹]风险提示：需求不及预期，投产不及预期。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -1283,6 +1317,7 @@ AI
 #甬矽电子先看600亿。28年主业5亿元净利，30x PE对应150亿元市值；CoWoS-L 27年5,000片/月满产对应年收入43亿元，稳态净利8-9亿元，考虑国产L稀缺性及后续万片扩产空间，50x PE对应400-450亿元市值。
 
 2.5D+封装在ai基建很重要&amp;板块整体处在地板上，各位领导务必重视锐度票[合十]</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -1331,6 +1366,7 @@ AI
 [太阳]新兴业务：储能液冷相关件已进头部客户链，同比持续高增，航天等仍处长验证，整体下半年空间打开
 
 [咖啡]详细调研内容欢迎交流！浙商汽车 文姬15957112050/傅昌鑫19280745352</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -1391,6 +1427,7 @@ AI
 英伟达Rubin平台明确采用100%全液冷方案，标志着高功耗 AI 机柜液冷由可选升级为刚需，渗透率或迎快速提升。当前海外英伟达供应链中台系厂商占据冷板核心份额，国内厂商依托热管理制造能力提供代工服务并加速认证导入，有望实现份额突围。
 
 欢迎交流，联系人：蒋国峰13671882095</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -1454,6 +1491,7 @@ AI
 
 [太阳]盈利预测
 我们预计公司2026-2028年归母净利润分别为12.1/15.8/20.1亿元，对应PE估值分别为21.1X/16.3X/12.8X，持续推荐。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -1505,6 +1543,7 @@ AI
 [玫瑰]10月是MLCC国产替代的重要观察窗口，村田减产将促使国产MLCC厂商加速扩产。我们预计10月村田“大概率”会进行第一次普调涨价、三星“大概率”跟涨、三环“确定”要涨，继续维持“一个月以内，原厂先涨，材料随后”的观点。
 
 #建议关注：华瓷股份、国瓷材料、长裕集团，以及#昀冢科技</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -1556,6 +1595,7 @@ AI
 3）新加坡自有品牌：持续加大自有品牌布局，主攻高端市场，海外本土化运营逐步成型，2030年收入目标5亿元，成为药玻主业之外又一稳健增长极。
 
 公司是玻璃基板原片核心标的，随新建产线投产与下游需求释放，弹性逐步兑现。&quot;药用包装+玻璃基板&quot;双轮驱动下，业绩弹性与估值空间同步打开，重点推荐。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -1601,6 +1641,7 @@ AI
 其中，职工薪酬增长较快的行业主要集中在中游制造尤其是先进制造方向，包括【有色、电子、新能源、机械】等。
 
 仅5个行业薪酬下降，基本是内需主导行业，包括【房地产、商贸零售、建筑、农业】</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/14425422444282452_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -1628,6 +1669,7 @@ AI
             <div class="card-title">长江存储科技（YMTC）已着手武汉第三工厂（FAB3）的生产设备连接工作。随着工厂投产准备进入最后阶段，年底初步投产的前景也日益明朗。</div>
             <div class="card-tags"></div>
             <div class="card-body">长江存储科技（YMTC）已着手武汉第三工厂（FAB3）的生产设备连接工作。随着工厂投产准备进入最后阶段，年底初步投产的前景也日益明朗。</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/82258255222515812_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -1655,6 +1697,7 @@ AI
             <div class="card-title">受特斯拉AI芯片订单激增的影响 ，三星电子位于美国德克萨斯州泰勒的晶圆代工工厂已开始量产</div>
             <div class="card-tags"></div>
             <div class="card-body">受特斯拉AI芯片订单激增的影响 ，三星电子位于美国德克萨斯州泰勒的晶圆代工工厂已开始量产</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/14425422444218582_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -1682,6 +1725,7 @@ AI
             <div class="card-title">三星电子调整定制 HBM 核心芯片的供应链……推行“双轨”战略，同时依赖台积电。</div>
             <div class="card-tags"></div>
             <div class="card-body">三星电子调整定制 HBM 核心芯片的供应链……推行“双轨”战略，同时依赖台积电。</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/55521522555248254_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -1709,6 +1753,7 @@ AI
             <div class="card-title">肯尼亚加入非洲国家行列，禁止未精炼矿产出口</div>
             <div class="card-tags"></div>
             <div class="card-body">肯尼亚加入非洲国家行列，禁止未精炼矿产出口</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/55521522555244484_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -1796,6 +1841,7 @@ AI
 
 📊资金流向：我们的买卖盘力量相对均衡。
 ✅我们买入银行、医疗以及能源设备板块，同时卖出电池、片式多层陶瓷电容器与共封装光学板块。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -1868,6 +1914,7 @@ AI
 📉原材料板块连续第四个交易日走弱。多重因素叠加，包括利率与油价通胀担忧、铜价上涨乏力、国内经济活动数据疲软。金价回调同样带来拖累。
 🏦金融板块下挫，银行板块下跌 1.5%，创下 8 月初以来最大单日跌幅，防御类以及价值板块买盘持续消退。
 💻科技板块在昨日回调后表现抗跌。AI 模型相关标的依旧走弱，MiniMax 下跌 7%，智谱 AI 下跌 5.7%；但半导体板块逆势走强，半导体板块上涨 1.2%，中国将大力扶持 AI 芯片设计与算力技术的消息形成支撑。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -1958,6 +2005,7 @@ AI
 💸外资与本土机构同步净卖出韩华海洋、三星重工、现代重工以及韩国造船海洋，个人投资者逢低买入。
 🔻汽车板块（下跌）：韩国汽车指数下跌 1.3%；现代汽车 (005380) 下跌 1.2%，起亚 (000270) 下跌 1.9%，摩比斯 (012330) 下跌 1.4%。
 📌据当地媒体报道，现代汽车集团一名高管表示，波士顿动力 2027 年的 IPO 大概率推迟，原因是该公司过去五年累计净亏损 1.76 万亿韩元，Atlas 机器人商业化落地规模化推广存在诸多阻碍。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -2015,6 +2063,7 @@ AI
 维持26年950亿利润不变，27年出货预计1300GWh，最悲观给到单瓦时9分盈利，仍然有1150～1200亿利润，当前股价对应27年不到13倍，已经具备比较好的安全边际。当下的核心矛盾还是生态链问题，下游盈利太差，如果27年车企盈利能修复，公司的盈利是有望放出来的。
 
 短期悲观情绪或仍需消化一段时间，看公司回购的节奏和力度。中期希望大家对公司保持耐心和信心，毕竟并不是公司做不到。</div>
+            
             <div class="card-footer">
                 <span>👍 3</span>
                 <span>💬 0</span>
@@ -2066,6 +2115,7 @@ AI
 27年保底4亿利润（主业2.5e+液冷1.5e），液冷业绩有望持续上调，保守看180e！
 
 全市场最底部推荐，欢迎联系张磊/黄雄</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -2123,6 +2173,7 @@ AI
 [玫瑰]今年我们冲新财富，请支持建投电子 No.21[礼物][太阳][好的] [礼物][庆祝]，您的一分支持，将逐步提升我们上榜的概率，感谢有您，一路相伴[抱拳][抱拳]
 
 ☎️：孙芳芳 15618077298</div>
+            
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 1</span>
@@ -2168,6 +2219,7 @@ AI
 [玫瑰]泰瑞达机器人属测试自动化及组装自动化核心上游部件，此次战略合作落地代表双方将共同服务北美大客户智能自动化升级需求，并会给予部分价格支持，双方共同推进北美客户组装及测试产线升级。
 
 [庆祝]现价强推【博硕科技】确定性与弹性兼备，业务逻辑及弹性测算见之前段子。北美算力客户产线自动化已成趋势，博硕＋泰瑞达深度绑定，坚定看好主业＋自动化设备明年有望实现20e＋利润，看400e市值。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -2231,6 +2283,7 @@ AI
 ❗️是报表端PE很低的科技公司❗️
 
 27年半导体业务10e利润，pe不到20x，考虑期权业务，先看千亿📈</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -2312,6 +2365,7 @@ sqNSCLC亚组HR=0.65，24个月OS率58.3% vs 42.4%，36个月OS率41.0% vs 26.9%
 [玫瑰]安全性表现良好，不良反应可控，停药率低。ak112对比K药SAE分别为29.9% vs 21.6%，停药率4.1% vs 5.0%，整体不良反应可控；
 
 [玫瑰]联系人：余文心/余克清/廖博闻/汪晋</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -2375,6 +2429,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
 全球III期HARMONi-7聚焦一线PD-L1高表达转移性NSCLC，同样对比依沃西与帕博利珠单抗单药。H-2高表达亚组结果为H-7提供了支持性证据，但该亚组分析属描述性分析，且中国与全球研究人群存在差异，海外疗效及获益幅度仍需H-7独立验证。
 
 [咖啡]更多请联系：天风医药 杨松/曹文清</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -2420,6 +2475,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
 3）公司6万吨PBAT产能具备改造为PETG产能的条件，技改预计投入约2000万元，改造周期为3个月，改造完成后可同时生产PETG和PLA，完善3D打印耗材产品布局。
 
 在3D打印需求的拉动下，近期PLA及乳酸价格均上涨，我们认为从紧缺环节来看，乳酸具备更大涨价弹性。此外乳酸龙一金丹科技PLA满产后，其外售乳酸产能或大幅下降（从14万吨供应能力变为2万吨外售，12万吨自用），乳酸环节供应更为紧张（乳酸新建产能至少18个月），行业利润有望向乳酸环节倾斜，金丹将是乳酸涨价弹性最大标的。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -2483,6 +2539,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
 欢迎联系：国金通信 张真桢/姚依念；国金电子 丁彦文
 
 风险提示：AI发展不及预期</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -2549,6 +2606,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
 [礼物]食品添加剂链条：
 厄尔尼诺扰动全球大豆、玉米产区。豆粕涨价强化饲料端&quot;减量替代&quot;动力——低蛋白日粮技术以赖氨酸、苏氨酸、蛋氨酸补足蛋白缺口，豆粕越贵、添加比例越高，氨基酸相关产品有望受益。相关公司：梅花生物、安迪苏、新和成、星湖科技、阜丰集团。
 厄尔尼诺事件预期造成白糖减产，糖价上行抬升饮料企业成本，代糖替代经济性改善，无糖化趋势加速。相关公司：金禾实业、百龙创园、保龄宝、华康生物。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -2621,6 +2679,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
 整体来看，科创半导体设备今日午后延续上攻，既是前期调整后的低位修复，也是市场重新聚焦半导体设备材料中长期高景气。当前位置板块在年线附近震荡后，估值和交易拥挤度已有所消化，随着加息预期逐步落地、AI资本开支上修和国产替代持续推进，科创半导体设备ETF鹏华配置性价比有望进一步凸显。
 
 （公开资料整理，仅供参考，不构成任何投资建议；基金有风险，投资需谨慎。）</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -2666,6 +2725,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
 另外湖南移动微厅今日公众号发布，中标服务器中有行云科技，关注新订单进展公告
 
 逢低买入，后续多重催化</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -2711,6 +2771,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
 公司Q2单Wh盈利确实环比调整，但核心原因是产品结构问题，国内储能占比提升。展望Q3，公司麒麟、神行等高端产品出货占比进一步提升，以及海外储能占比提升，公司单Wh盈利趋势向上。
 
 坚定公司今年950亿利润，27年1200亿+利润，当前对应今年估值15x，明年不到12x，已是历史最底部估值，坚定看好！</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -2777,6 +2838,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
 # 我们建议关注产能弹性大、产能规划大、客户资源优质、对标海外交付拉长的零部件厂商，看好恒运昌，江丰电子，富创精密，臻宝科技，珂玛科技。
 
 欢迎联系中信电子！</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -2804,6 +2866,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
             <div class="card-title">NV、ASIC、AMD产品材料供应商梳理</div>
             <div class="card-tags"></div>
             <div class="card-body">NV、ASIC、AMD产品材料供应商梳理</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/82258812552524452_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -2831,6 +2894,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
             <div class="card-title">潮玩动漫8月国内线上数据跟踪</div>
             <div class="card-tags"></div>
             <div class="card-body">潮玩动漫8月国内线上数据跟踪</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/82258812552524252_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -2897,6 +2961,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
 🐂#商社新消费·一网打尽·风向标  
 
 ☎️恳请支持：🏆#天风批零社服   何富丽/来舒楠/都春竹/李璇/周杰</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -2954,6 +3019,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
 [玫瑰]我们认为，公司本次集采全线中选符合预期，稳固公立院底盘。公司依托全品类布局，在集采外创新管线、民营医疗、海外蓝海打造多重增长极。一次性内镜、ERCP器械等创新产品逐步兑现，欧美客户持续突破、海外产能落地，成长天花板持续打开。中期维度，我们近期留意到部分区域就诊开始出现改善信号，院内板块有望迎来布局机会。南微作为集采出清后的平台型龙头，兼具国内放量弹性与海外长期成长，中期布局价值突出，坚定看好。
 
 [玫瑰]联系人：天风医药杨松/周海涛</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -3011,6 +3077,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
 今年看公司随便做到950亿业绩，明年最差预期也是1100亿（20%+）增长。
 
 现在宁德不到明年15倍，历史最差也就是15倍左右。最近油价新高，海外电车和储能需求持续增长，27年确定性极强。这位置继续强call</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 1</span>
@@ -3077,6 +3144,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
 
 风险提示：项目推进不及预期，市场需求不及预期，行业竞争格局恶化，安全生产风险。
 ❤️【请支持中信建投化工杨晖团队】杨晖/申起昊</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -3146,6 +3214,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
 3、增长新动能爆发在即，基本面有望迎反转：公司传统业务稳定增长（家电、工具、汽车+新能源），同时培育的自主智能新兴业务上半年3.4亿呈近2倍增长，新业务爆发提供增长新动能，#看好公司低位反转逻辑积极推荐！
 
 ☎天风通信团队</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -3194,6 +3263,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
 4⃣近期产业预期及景气度持续上修，看好本轮设备零部件板块beta级行情和华海的个股机遇：当前市值看27年PE触及40x左右，订单ps触及6-7x，堪称最便宜的前道设备❗
 
 具体订单情况欢迎联系：李双亮/王佩麟/高静怡</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -3245,6 +3315,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
 风险提示：算力行业需求释放节奏具有不确定性；行业竞争加剧。
 
 联系人：国联民生计算机吕伟/郭新宇</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -3326,6 +3397,7 @@ PD-L1 TPS≥50%亚组中位OS未达到 vs 23.2个月，HR=0.58，三年OS率53.4
 我们预计2026–2028年公司扣非归母净利润9.43/12.17/14.44亿元，同比+498.6%/+29.1%/+18.6%。采用分部估值法，目标价25元，维持“强推”评级。
 
 联系人：郑辰/王宏雨</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -3356,6 +3428,7 @@ DRAM、HDD 和 ABF 才是短缺所在，正是这些短缺阻碍了更多 HP
             <div class="card-tags"></div>
             <div class="card-body">TrendForce：“GPU 并不是瓶颈。”
 DRAM、HDD 和 ABF 才是短缺所在，正是这些短缺阻碍了更多 HPC 芯片的出货</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/82258812558412252_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -3413,6 +3486,7 @@ DRAM、HDD 和 ABF 才是短缺所在，正是这些短缺阻碍了更多 HP
 我们认为，考虑到招标→中标→收入确认通常滞后 1–2 年，今年换流阀的中标高峰对应未来两年的业绩确定性。
 
 访问方式欢迎各位领导登录机构客户服务平台，或联系长江电新团队和机构销售详询</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/45548815448215828_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -3449,6 +3523,7 @@ DRAM、HDD 和 ABF 才是短缺所在，正是这些短缺阻碍了更多 HP
 此外，晋华今年扩产预期上修，明年预计往大个位数走；cc也在积极扩产，接下来有望下单三期下一批订单。设备明年依然订单强劲增长！
 
 重点推荐：拓荆、中微、北方、华海等等</div>
+            
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -3518,6 +3593,7 @@ manifold歧管：服务器功率提升、对漏液与密封要求提高，不锈
 风险提示：AI产业发展不及预期、英伟达量产不及预期
 
 ☎中泰中小盘&amp;北交所 杨帅/徐嘉诚</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -3575,6 +3651,7 @@ manifold歧管：服务器功率提升、对漏液与密封要求提高，不锈
 #标的推荐： 重点推荐业绩确定性最强的#中国巨石，最紧缺的T布龙头#宏和科技，全品类供应的优势企业#国际复材，#中材科技，一体化布局的#建滔集团&amp;建滔积层板，以及新进规划的黑马标的#山东玻纤，其他#聚杰微纤、永冠新材。关注织机国产替代机会#泰坦股份，#卓郎智能等。
 
 ☎欢迎联系：任杰19512256636/宋涛/郝子禹17321138296/傅浩玮</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -3614,6 +3691,7 @@ M10虽然方案未定，但用量100%增加，只是增加幅度不同方案会�
 M10虽然方案未定，但用量100%增加，只是增加幅度不同方案会有差异。
 
 我们按照保守500t bcb规划，200w+单价，则对应10亿收入，50%净利率则对应5个亿利润，有望再造一个呈和，潜在期权强。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -3710,6 +3788,7 @@ BCB树脂是M8向M9升级纯新增量，M9向M10升级添加比例明显提升�
 考虑公司在BCB树脂绝佳产品、客户、产能卡位，当前位置给予重点推荐。
 ———————————
 欢迎交流：孙潇雅/张童童</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -3773,6 +3852,7 @@ BCB树脂是M8向M9升级纯新增量，M9向M10升级添加比例明显提升�
 4、远期规划：织布机难点在机架稳定性、电气控制与算法、下游客户验证意愿等。公司规划成熟月产300台，满产后年化利润近3亿元（纯新增）。
 
 💗北自科技及织布机数据库欢迎联系！郭威秀</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -3857,6 +3937,7 @@ ToB#唯品B+C占比约70%（B端略高），代工&lt;30%，咖啡茶饮门店�
 战略#聚焦短保巴氏鲜奶、中高端差异化、DTC渠道建壁垒。可转债12月中旬到期，暂不下修转股价，自有资金+信贷可覆盖偿债。港股正常排队；核心为搭建国际化平台、打开第二增长曲线。当前时点#继续重点推荐。
 
 🎉详情欢迎沟通#长江食品饮料董思远团队🥇，#恳请鼎力支持🏆~</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -3923,6 +4004,7 @@ PD-L1 TPS≥50%亚组，OS HR 0.58 (95% CI 0.38-0.89), mOS NR vs 23.2m；PD-L1 T
 
 注：资料来源为WCLC官网，不构成投资建议
 联系人：邹文凯17621880725/杨希成/黄翰漾/孙媛媛</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -3974,6 +4056,7 @@ PD-L1 TPS≥50%亚组，OS HR 0.58 (95% CI 0.38-0.89), mOS NR vs 23.2m；PD-L1 T
 #盈利向上：净利率9%（2025）→近15%（26H1）→全年目标20%、27年目标25%。26年收入20e+、净利约4e，下半年好于上半年（H1净利1e出头）。
 
 #东威科技完整笔记如需回复。请支持建投机械团队</div>
+            
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -4043,6 +4126,7 @@ PD-L1 TPS≥50%亚组，OS HR 0.58 (95% CI 0.38-0.89), mOS NR vs 23.2m；PD-L1 T
 风险提示：北美数据中心建设不及预期
 
 ☎浙商机械 王华君/陈姝姝</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -4094,6 +4178,7 @@ PD-L1 TPS≥50%亚组，OS HR 0.58 (95% CI 0.38-0.89), mOS NR vs 23.2m；PD-L1 T
 预计2026-2027年公司归母净利润为8/10亿元，当前股价对应PE为16/13倍，估值性价比高，维持“买入”评级。
 
 联系人：余汝意/阮帅（13229421730）</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -4133,6 +4218,7 @@ PD-L1 TPS≥50%亚组，OS HR 0.58 (95% CI 0.38-0.89), mOS NR vs 23.2m；PD-L1 T
 #化工中间体  主要包括硼氢化钾、硼氢化钠，2025年预计收入体量在10亿左右，目前处于价格周期底部，广泛应用于化工、制药、造纸等，需求取决于经济情况；
 
 根据 QYResearch 头部企业研究中心调研，全球范围内硼氢化钠生产商主要包括国邦医药集团、Ascensus Specialties、宁夏佰斯特医药化工、Kemira等。#2022年国邦医药全球市占率约45.2%。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -4187,6 +4273,7 @@ PD-L1 TPS≥50%亚组，OS HR 0.58 (95% CI 0.38-0.89), mOS NR vs 23.2m；PD-L1 T
 产能方面，明年算力铜材、机架母线产能同步扩张，算力铜材从3.5万扩大10万吨，机架母线铜材从1.5万吨扩到4万吨，明年H1完成扩产。
 
 业绩展望：26年预计10-11e利润，算力3-4e；27年不考虑新增产能和再生铜，保守看总共15-16e，其中算力5-6e，明年15X左右估值，考虑算力铜材成长性和再生铜增厚盈利，建议持续关注。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -4214,6 +4301,7 @@ PD-L1 TPS≥50%亚组，OS HR 0.58 (95% CI 0.38-0.89), mOS NR vs 23.2m；PD-L1 T
             <div class="card-title">电子布公司业绩测算</div>
             <div class="card-tags"></div>
             <div class="card-body">电子布公司业绩测算</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/55521185222824184_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 4</span>
                 <span>💬 0</span>
@@ -4346,6 +4434,7 @@ PD-L1 TPS≥50%亚组，OS HR 0.58 (95% CI 0.38-0.89), mOS NR vs 23.2m；PD-L1 T
 （一马平川）
 （建材）
 （年度 kpi 请#顶格支持）</div>
+            
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -4385,6 +4474,7 @@ PD-L1 TPS≥50%亚组，OS HR 0.58 (95% CI 0.38-0.89), mOS NR vs 23.2m；PD-L1 T
 2）摩尔签约京东10万卡，继续验证国产10万卡大集群市场化需求。天数、壁仞，预计不也不会太远。
 3）本周华为全联接大会，下周阿里云栖大会，大概率继续验证国产算力需求。
 4）本质还是超跌了，悲观预期都反应了。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -4436,6 +4526,7 @@ PD-L1 TPS≥50%亚组，OS HR 0.58 (95% CI 0.38-0.89), mOS NR vs 23.2m；PD-L1 T
 ③四代机验证进度良好，三年的期待终将落地。
 
 今年订单从36-40亿上修到60亿，明年百亿订单，看1500亿市值。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -4463,6 +4554,7 @@ PD-L1 TPS≥50%亚组，OS HR 0.58 (95% CI 0.38-0.89), mOS NR vs 23.2m；PD-L1 T
             <div class="card-title">据称种子巨头先正达将提交50亿美元的香港IPO申请</div>
             <div class="card-tags"></div>
             <div class="card-body">据称种子巨头先正达将提交50亿美元的香港IPO申请</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/82258812555221452_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -4490,6 +4582,7 @@ PD-L1 TPS≥50%亚组，OS HR 0.58 (95% CI 0.38-0.89), mOS NR vs 23.2m；PD-L1 T
             <div class="card-title">字节据报与中国工行汇丰等签订近300亿美元贷款协议</div>
             <div class="card-tags"></div>
             <div class="card-body">字节据报与中国工行汇丰等签订近300亿美元贷款协议</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/82258812555221212_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -4601,6 +4694,7 @@ PD-L1 TPS≥50%亚组，OS HR 0.58 (95% CI 0.38-0.89), mOS NR vs 23.2m；PD-L1 T
 ✨翰森制药（3692）：Ris-rez、B7-H3 抗体药物偶联物 III 期临床验证取得积极结果；重点关注药物安全性与更早线适应症拓展。买入评级
 ✨GenFleet（2595）在 WCLC26 会议披露内容进一步验证 GFH375 在 2L + 非小细胞肺癌的价值：1）具备可观的肿瘤应答；2）生存获益稳健。欧洲肿瘤内科学会结直肠癌数据与 Verastem10 月更新为后续催化。买入评级
 ✨中国生物制药（1177）：上调目标价，由 8.65 港元上调至 9.07 港元，上涨空间 73%。通过斥资 44.8 亿元增持正大天晴 5% 股权，强化创新驱动增长布局。买入评级</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -4655,6 +4749,7 @@ PD-L1 TPS≥50%亚组，OS HR 0.58 (95% CI 0.38-0.89), mOS NR vs 23.2m；PD-L1 T
 中国人工智能硬件板块今早出现反弹，其中 PCB 和半导体设备板块普遍上涨超过 2%。中国科技股重新获得动能，主要受到 MFC—— 质量流量控制器短缺猜测的推动。尽管相关讨论并非新鲜事，但本地投资者正试图寻找下一轮人工智能交易主题，而 MFC 正逐渐成为他们青睐的交易方向。Naura Tech 是受益者之一，股价今日反弹 2%。AIDC 电力相关股票也获得动能。另一方面，消费板块遭到抛售。汽车股开盘走高，反映出市场对行业整合的预期，但随后涨幅收窄，且该板块仍被大举做空。宏观层面，零售销售依然疲软，8 月同比增长 0.4%，低于预期的 0.8%。多只小盘旅游和零售股触及跌停，而大盘白酒和家电股相对抗跌。
 
 资金流：我们的买方优势为 1.1 倍。我们买入银行和材料板块。我们卖出 CPO 和 PCB。半导体设备板块多空双方均有交易。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -4712,6 +4807,7 @@ PD-L1 TPS≥50%亚组，OS HR 0.58 (95% CI 0.38-0.89), mOS NR vs 23.2m；PD-L1 T
 
 风险提示：行业竞争加剧、宏观经济波动导致需求不及预期
 🎁东吴电子：陈海进/谢文嘉</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -4781,6 +4877,7 @@ PD-L1 TPS≥50%亚组，OS HR 0.58 (95% CI 0.38-0.89), mOS NR vs 23.2m；PD-L1 T
 沿用前期跟踪逻辑，富满微重点看【晶圆资源保障+出货增长+涨价传导】，明微电子重点看【价格中枢抬升带来的利润率弹性】。二季度如果只是涨价逐步兑现的开始，那么接下来最值得关注的，就是三季度能否进一步体现最新的价格和出货水平。气派科技也值得关注，作为封测环节的业绩修复标的，继续跟踪其产能利用率和盈利改善的持续性！
 
 [太阳]从设计公司的盈利修复，到封测公司的预告扭亏，产业链的积极信号正在增加。继续看好【成熟制程价值重估】主线，重点关注富满微/明微电子，同时重视中芯国际/华虹/燕东微/新洁能/华润微，封测环节关注气派科技！</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -4877,6 +4974,7 @@ H3 CCL：毛利率从 11.46% 升至 13.73%（1-6月），进一步提升至 19.2
 拟定增募资 10亿元 打造专用产线，对接AI服务器、高阶交换机、BT封装载板及高阶HDI市场。项目达产后预计新增年营业收入 19.20亿元。
 
 风险提示：下游需求不及预期等</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -4928,6 +5026,7 @@ H3 CCL：毛利率从 11.46% 升至 13.73%（1-6月），进一步提升至 19.2
 #报告链接： <a href="https://mp.weixin.qq.com/s/HbgFJe2t0v51bThtvismFQ" target="_blank" rel="noopener noreferrer">【浙商化工‖杨占魁】AI算力“热路”与“电路”的铜材升级，从“有铜就行”升级为“高端铜材决定系统上限... ↗</a>
 
 [红包]欢迎联系【浙商化工&amp;算力‖杨占魁】</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -4955,6 +5054,7 @@ H3 CCL：毛利率从 11.46% 升至 13.73%（1-6月），进一步提升至 19.2
             <div class="card-title">散热重要性在增强。从头部VC供应商公布数据探出：Q3-Q4大批量出货给厂商，行业越来越重视堆叠VC，优先看重散热效率 ​​​</div>
             <div class="card-tags"></div>
             <div class="card-body">散热重要性在增强。从头部VC供应商公布数据探出：Q3-Q4大批量出货给厂商，行业越来越重视堆叠VC，优先看重散热效率 ​​​</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -5012,6 +5112,7 @@ PCB及覆铜板材料延续高增长。台光电、台燿、联茂营收同比�
 资料来源：中国台湾省公开资讯观测站及各公司官网。
 
 联系人：孙维容、王锐</div>
+            
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -5063,6 +5164,7 @@ PCB及覆铜板材料延续高增长。台光电、台燿、联茂营收同比�
 #盈利弹性看纱-布一体化+薄布占比高。 当前纱、布两个环节利润基本55分成，一体化更全的公司弹性更大；9月薄布毛利率已高出厚布13pct，结构优势显著。巨石纱-布产能配套，薄布占比提升；宏和薄布及以上占比高达90%+，复材70%。
 
 #预期Q3业绩环比高增。 预计核心公司环比增幅在28%~80%之间，且伴随AI布终端需求放量，Q4预期弹性更强，具体可以联系团队交流</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -5117,6 +5219,7 @@ PCB及覆铜板材料延续高增长。台光电、台燿、联茂营收同比�
 2、作为锂电板块的强主题，固态进度仍依赖于政策牵引和头部示范效应，技术进步和产业催化有望进一步拉动实质性落地，关注产业变革下的投资机会：
 【设备】优选确定性的干法电极，宏工&amp;纳科&amp;先惠；整线的先导&amp;利元亨&amp;海目星，放量预期的灵鸽，逻辑共振的德龙&amp;奥特维&amp;微导，等静压的荣旗&amp;利通，业绩优绩的联赢&amp;华自等。
 【材料】优选有确定性有卡位的龙头个股：硫化锂的厦钨、洗霸，无负极的中一海亮、嘉元，电解质的国瓷、当升，碘化锂的博苑，复合路线的三祥、天奈等。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -5168,6 +5271,7 @@ PCB及覆铜板材料延续高增长。台光电、台燿、联茂营收同比�
 #纸价展望：10月-12月涨价概率很大。10月起尤其国庆节后我们判断纸价会逐步开启上涨，一方面下游纸板厂库存去化到相对低位，另一方面11月春节订单和海外圣诞、黑五等这一类旺季需求将变成较强驱动，此外纸厂假期考虑停机检修等减产动作，涨价幅度上预计至少将8-9月回调部分涨回，且有望更好。
 
 ☎欢迎交流：蔡方羿/米雁翔/仲敏丽/尹姜子/许健玮</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -5195,6 +5299,7 @@ PCB及覆铜板材料延续高增长。台光电、台燿、联茂营收同比�
             <div class="card-title">🍁🍁🍁今天海风公司全线涨停，hcdx全市场最底部跟踪到拐点变化，海风+造船共振，政策与基本面双驱动，行业变化很大</div>
             <div class="card-tags"></div>
             <div class="card-body">🍁🍁🍁今天海风公司全线涨停，hcdx全市场最底部跟踪到拐点变化，海风+造船共振，政策与基本面双驱动，行业变化很大</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -5261,6 +5366,7 @@ PCB及覆铜板材料延续高增长。台光电、台燿、联茂营收同比�
 
 #中欧海风共振、板块有望迎估值修复
     海风板块自4月以来大幅下跌，目前整体处于估值低位。我们认为，海风低谷已经过去，27年有望迎招标高峰，28-30年有望迎装机高峰，建议关注【东方电缆、天顺风能、海力风电、大金重工】</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -5324,6 +5430,7 @@ PCB及覆铜板材料延续高增长。台光电、台燿、联茂营收同比�
 🌞 # 海风提供远期弹性：公司8.XMW海上批量订单已经进入吊装调试阶段，13.XMW抗台风机组实现批量交付；埃及2GW项目目前处于谅解备忘录阶段，若后续正式落地，将推动公司由单纯产品出口向“整机制造+本地化产能”升级。
 
 整体来看，三一重能当前最核心的逻辑不是简单跟涨海风，而是“国内份额提升、历史低价订单出清、风机毛利率修复、海外订单放量”四重共振。</div>
+            
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -5387,6 +5494,7 @@ PCB及覆铜板材料延续高增长。台光电、台燿、联茂营收同比�
 —————
 
 前瞻判断请持续关注中信建材团队：冷威/孙林潇</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -5426,6 +5534,7 @@ zt机械" data-author="白露"
 🔥国内能提供mSAP、IC载板全套湿制程设备厂商极少，#闪蚀/蚀刻环节更是稀缺。公司完成对飞仕达战略并购后补齐精密蚀刻能力，#目前拳头产品已与科翔股份签订蚀刻设备订单！
 
 zt机械</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -5498,6 +5607,7 @@ zt机械</div>
 💎核心材料：当升科技、博苑股份、容百科技、上海洗霸、厦钨新能、国瓷材料、海辰药业等
 
 欢迎联系邓伟/游宝来</div>
+            
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -5579,6 +5689,7 @@ zt机械</div>
 ▪️建议关注：中钨高新、厦门钨业、佳鑫国际资源、章源钨业、翔鹭钨业、江钨装备等。
 
 东吴金属刘奕町/曾先毅</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -5666,6 +5777,7 @@ zt机械</div>
 👉报告链接：#小程序://国金证券研究服务/3w9FyAqFiNQNssG
 
 国金金属王钦扬/吴晋恺/宁柯</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -5723,6 +5835,7 @@ zt机械</div>
 杭州：滨江区项目延续高热度，其余续销项目去化表现一般。
 
 开源地产团队齐东、胡耀文</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -5750,6 +5863,7 @@ zt机械</div>
             <div class="card-title">宁德时代电池交易获中国批准，推动行业整合</div>
             <div class="card-tags"></div>
             <div class="card-body">宁德时代电池交易获中国批准，推动行业整合</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/82258818112185822_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -5807,6 +5921,7 @@ zt机械</div>
 🔥转债已停止交易，来自转债转股带来的新增抛压来源关闭，强赎落地后压制因素逐步缓解，建议重点关注
 
 ⚡风险提升：产业进展不及预期</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -5864,6 +5979,7 @@ zt机械</div>
 🔥建议积极把握，欢迎交流！
 
 天风计算机 缪欣君/刘鉴</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -5939,6 +6055,7 @@ zt机械</div>
 4、公司是IDC&amp;AIDC&amp;液冷领先的国产算力龙头厂商，业绩持续稳健增长，且客户结构优秀&amp;在手能耗充沛且扩张弹性充足，目前强绑定国内三大核心互联网云厂，带动交付持续上量（今年预计交付超300MW，在手能耗超3GW）；算力业务在前期引流导入后具有强大客户基础和粘性，有望在国产算力高速发展下充分受益，建议投资者持续重点关注。
 
 天风通信王奕红/唐海清/袁昊</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -6014,6 +6131,7 @@ zt机械</div>
 社会消费品零售
 8月，同比0.4（前值0.6）；
 1-8月，同比1.1（前值1.2）。</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/82258818118218552_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><img class="card-img" src="图片/2026-09-15/82258818118218552_02.jpg" alt="图2" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">2 图</span></div>
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -6146,6 +6264,7 @@ b)单月：竣工面积0.19亿平，同比下降28.4%，降幅相比7月走宽9.
 8月份，一线城市二手住宅销售价格环比上涨0.1%，涨幅比上月回落0.1个百分点。其中，上海和深圳分别上涨0.3%和0.1%，广州持平，北京下降0.1%。二线城市二手住宅销售价格环比下降0.3%，降幅与上月相同。三线城市二手住宅销售价格环比下降0.3%，降幅比上月收窄0.1个百分点。70个大中城市中，二手住宅销售价格环比上涨或持平城市有8个，与上月相同。
 
 东北地产根据国家统计局数据整理</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/14425585885482822_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><img class="card-img" src="图片/2026-09-15/14425585885482822_02.jpg" alt="图2" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><img class="card-img" src="图片/2026-09-15/14425585885482822_03.jpg" alt="图3" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">3 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -6251,6 +6370,7 @@ b)单月：竣工面积0.19亿平，同比下降28.4%，降幅相比7月走宽9.
 免责声明：以上信息均来源于公开资料，不构成投资建议
 
 欢迎联系：耿荣晨/杨澜</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/14425585885418442_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -6338,6 +6458,7 @@ b)单月：竣工面积0.19亿平，同比下降28.4%，降幅相比7月走宽9.
 风险提示：基于公开资料信息整理，可能存在信息滞后或更新不及时、不全面的风险；任何情况下，不构成投资建议。
 
 联系人：国联民生能源开采团队 周泰/李航/王姗姗</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -6383,6 +6504,7 @@ b)单月：竣工面积0.19亿平，同比下降28.4%，降幅相比7月走宽9.
 数据包括：【1】固定资产投资（基建 地产 制造业）【2】PMI（制造业 建筑业）【3】政府债（专项债 特殊再融资债 特别国债）
 
 ☎欢迎随时联系长江建筑张弛团队：张弛/郑秋晨/李逸凡</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -6440,6 +6562,7 @@ b)单月：竣工面积0.19亿平，同比下降28.4%，降幅相比7月走宽9.
 [太阳]重点推荐中国巨石（业绩确定性首选）、中材科技（定增落地，扩产提速）、国际复材（二代布龙头、宏和科技（T布龙头）。
 
 ☎王翩翩/郁晾/闫广/孟杰</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -6506,6 +6629,7 @@ b)单月：竣工面积0.19亿平，同比下降28.4%，降幅相比7月走宽9.
 
 🔮国金轻纺家电新消费赵中平19867713319
 毕先磊/储天舒/谢俪丹15750768025/叶秋含/单欣彤</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -6557,6 +6681,7 @@ Anthropic近日披露第四起AI模型入侵真实系统事件，旗下Claude系
 昨晚北美技术软件指数etf(IGV指数)上涨5.04%，建议关注港股软件映射：金蝶国际、迈富时、范式智能
 
 欢迎联系：石月昊/刘政</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -6614,6 +6739,7 @@ Anthropic近日披露第四起AI模型入侵真实系统事件，旗下Claude系
 4.造船：新船造价&amp;订单上行，天顺和大金都有非常好的造船资产，订单还有翻倍空间。
 
 🍁推荐：东方电缆、天顺风能、大金重工、海力风电、新强联、金风科技、明阳智能等等</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -6641,6 +6767,7 @@ Anthropic近日披露第四起AI模型入侵真实系统事件，旗下Claude系
             <div class="card-title">Switch Tray生产制造存在少部分问题，信号反射带来25%不良率，在服务器环节可以全部质检出来，当前胜宏科技在这部分解决的最快，这些问题不影响出货。</div>
             <div class="card-tags"></div>
             <div class="card-body">Switch Tray生产制造存在少部分问题，信号反射带来25%不良率，在服务器环节可以全部质检出来，当前胜宏科技在这部分解决的最快，这些问题不影响出货。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -6713,6 +6840,7 @@ Anthropic近日披露第四起AI模型入侵真实系统事件，旗下Claude系
 #如需详细调研纪要请联系。
 
 ☎️欢迎联系：鲍荣富/王丹/于那/周丹丹/上官京杰/林晓龙/曾子峻</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -6770,6 +6898,7 @@ Anthropic近日披露第四起AI模型入侵真实系统事件，旗下Claude系
 [玫瑰]我们认为，今年茅台#已经出现类似2015年的底部特征（飞天降价至显著放量），同时考虑公司过去的产量不支持未来持续放量，公司的价格逻辑已经愈发凸显。当前茅台4%股息稳定，未来还有望获得个位数复合增长，配置价值凸显，继续重点推荐！
 
 🎉详情欢迎沟通 · 长江食品饮料董思远团队🏅，#恳请鼎力支持🏆~</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -6827,6 +6956,7 @@ Anthropic近日披露第四起AI模型入侵真实系统事件，旗下Claude系
 [庆祝]总结：三大板块均实现从0到1突破，半导体测试已贡献显著业绩，AI算力与CPU Socket蓄势待发，有望成为公司新一轮增长引擎。
 
 ☎️详情电联</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -6860,6 +6990,7 @@ Anthropic近日披露第四起AI模型入侵真实系统事件，旗下Claude系
             <div class="card-body">#万通发展——国产芯片底中底，严重低估，强烈推荐❗❗
 
 为什么万通发展股价在12.5元震荡？员工股权激励价格6.25元，实际市场化定价为12.5元。当前公司在左侧布局的右侧，右侧布局的左侧临界点，观望的资金众多。大家对于PCIE Switch的中期空间、数渡科技的技术领先性认可度越来越高，纠结点在于担心公司股权激励目标是否能够完成？随着后续财报的释放，公司的价值会得到市场重新定价！</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -6920,6 +7051,7 @@ Anthropic近日披露第四起AI模型入侵真实系统事件，旗下Claude系
 
 #广发机械团队【6号】
 孙柏阳/汪家豪/范方舟/王宁/蒲明琪/黄晓萍/张智林/许贝尔/陈沛宇</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -6989,6 +7121,7 @@ Blank Mask方面，韩国产能正推动国内头部Fab厂送样、验证工作�
 🌟投资建议：光伏银浆主业看80~100亿市值。Blank Mask预计27H2开始放量，看100~120亿市值。光刻胶等半导体材料潜在期权，看100亿市值，合计看300亿目标市值，继续重点推荐。
 ————————————
 欢迎交流：孙潇雅/敖颖晨</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -7028,6 +7161,7 @@ Blank Mask方面，韩国产能正推动国内头部Fab厂送样、验证工作�
 低端看一体化能力+低PS
 
 其中，高端品更新：深南、方正、胜宏科技，低端品看PS</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -7067,6 +7201,7 @@ Blank Mask方面，韩国产能正推动国内头部Fab厂送样、验证工作�
 [太阳]25年全球PCB油墨市场空间约300亿元，其中AI类空间在70亿元左右。全球龙头为日企太阳油墨和日立化学，两家合计市占率超过60%。随着AI需求的爆发+材料的升级，PCB油墨出现了供不应求的局面，今年以来已经涨价20~30%，预计后续将进一步提价，是继电子布、铜箔后，又一通胀潜力品种。
 
 推荐：容大感光，广信材料</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -7124,6 +7259,7 @@ Blank Mask方面，韩国产能正推动国内头部Fab厂送样、验证工作�
 🌟国内对标：深信服、绿盟科技
 
 ☎️From 华泰计算机 郭雅丽/范昳蕊/袁泽世/岳铂雄/王浩天/徐诚伟</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -7196,6 +7332,7 @@ Blank Mask方面，韩国产能正推动国内头部Fab厂送样、验证工作�
 电子布月度提价我们继续看匀速1.5 ，不降速因为紧缺，不加速因为求稳。CCL年底前1.5mmFR4价格看冲击400，电子布7628则看8个月的提价周期冲击20元。普通产品提价确定性布＞板，材料升级逻辑板＞布。
 
 中国巨石，中材科技，国际复材，建滔积层板（具体公司业绩测算私信交流）</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -7223,6 +7360,7 @@ Blank Mask方面，韩国产能正推动国内头部Fab厂送样、验证工作�
             <div class="card-title">9月初厚布、薄布分别涨1.5/2元，实际最后涨了1.5/2.5（多涨了一些）；预期10月涨价和9月一样（下游客户不放假）</div>
             <div class="card-tags"></div>
             <div class="card-body">9月初厚布、薄布分别涨1.5/2元，实际最后涨了1.5/2.5（多涨了一些）；预期10月涨价和9月一样（下游客户不放假）</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -7292,6 +7430,7 @@ Blank Mask方面，韩国产能正推动国内头部Fab厂送样、验证工作�
 #AI、算力仍是大趋势。阶段性的扰动不影响算力基建的持续增长，龙头材料企业在下游迭代过程中经验、技术、客户持续积累，壁垒稳固，龙头占优的格局巩固。我们认为，定制化满足下游客户的需求，是在下一阶段的算力基建的胜负手。#推荐东材科技、凌玮科技，建议关注圣泉集团、联瑞新材。
 ——————————
 欢迎交流~</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -7427,6 +7566,7 @@ Blank Mask方面，韩国产能正推动国内头部Fab厂送样、验证工作�
 ——————————————
 中信证券新材料
 李超/陈旺/俞腾/郭柯宇/何鑫圣/陈健/杨博钧</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -7478,6 +7618,7 @@ Blank Mask方面，韩国产能正推动国内头部Fab厂送样、验证工作�
 #3、考虑到26H1公司新接订单已经到达25年全年体量，我们上修全年订单100+亿，当下估值至10ps左右！
 
 [玫瑰][玫瑰][玫瑰]公司作为前道龙头筹码最好的公司，现价强call，看2000亿！</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -7565,6 +7706,7 @@ Blank Mask方面，韩国产能正推动国内头部Fab厂送样、验证工作�
 
 🌟投资建议：
 仅考虑北美30e+铜箔12e，预计27年公司利润42e，简单题给30XPE对应1200e市值目标，当前空间极大，重点关注！</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -7595,6 +7737,7 @@ Blank Mask方面，韩国产能正推动国内头部Fab厂送样、验证工作�
             <div class="card-tags"></div>
             <div class="card-body">国产更新：
 寒武纪一共下单800w颗，8月底到现在到货1-200w颗。沐曦今年出的主要是HBM2E的C500也不会被影响，明年C700的HBM今年Q1Q2都下了单，Q3现在下单被卡了还要等一下，但应该也够。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -7634,6 +7777,7 @@ Blank Mask方面，韩国产能正推动国内头部Fab厂送样、验证工作�
 恒烁股份80亿市值
 普冉股份580亿市值
 兆易创新2580亿市值</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -7697,6 +7841,7 @@ Blank Mask方面，韩国产能正推动国内头部Fab厂送样、验证工作�
 ②超纯应材（涂层部件+光刻）
 
 （详情私聊）</div>
+            
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -7727,6 +7872,7 @@ Blank Mask方面，韩国产能正推动国内头部Fab厂送样、验证工作�
             <div class="card-tags"></div>
             <div class="card-body">金盘科技重大更新：
 13.8kV北美版SST，主要的头部客户厂内测试、现场挂网验证还有联调都顺利通过！目前拿到xAI、G/M等客户批量订单，产线启动，开始分批交付，明年大规模切入北美头部云厂商新建高密度AIDC集群，将是业绩爆发点。补充一点，在所有的同行里面，金盘的进度属于走在最前面的，受益海外缺电长期逻辑，持续推荐！</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -7784,6 +7930,7 @@ CCL：GB300 6,695；VR200 18,750；VR300 35,601
 PCB：GB300 37,491；VR200 91,227；VR300 154,377
 
 对比 AMD、Google TPU 和 Amazon Trainium 系统的同类材料含量，并给出了代际环比增长（Gen/Gen）。英伟达这边铜箔和 CCL 的增幅尤为明显，VR200 相对 GB300 铜箔约 +204%、CCL +180%、PCB +143%</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/45548818114525418_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 4</span>
                 <span>💬 0</span>
@@ -7835,6 +7982,7 @@ PCB：GB300 37,491；VR200 91,227；VR300 154,377
 📌因此预计到 2028 年存储供需格局将更加趋紧，呈现结构性增长前景。
 📌2、三星电子 投资评级
 📊营业利润预估上调，2027 年 (27E)：462.6 万亿韩元 → 491.5 万亿韩元（+6%），2028 年 (28E)：471.6 万亿韩元 → 513.6 万亿韩元（+9%）。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -7898,6 +8046,7 @@ PCB：GB300 37,491；VR200 91,227；VR300 154,377
 📈尽管 SOX 指数今年迄今上涨 67%，半导体板块仍显示出吸引力：该群体以 19 倍预期市盈率交易 —— 与标普 500 指数大体持平 —— 尽管每股收益同比激增 139%（大约是市场增速的 7 倍）。
 📊按 24 个月预期计算，SOX 指数市盈率为 14.8 倍，比标普 500 指数折价 11%，尽管增长前景约 30%（近 2 倍于市场增速），这暗示市场对 AI 支出持久性的怀疑过度。
 🏗️AI 基础设施建设仍处于早期阶段，而半导体是其中最直接的受益者。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -7949,6 +8098,7 @@ PCB：GB300 37,491；VR200 91,227；VR300 154,377
 3️⃣供应商：配电母线和封闭通道自产，二次侧管网外采。#其中高澜股份占北美约75%份额，产能性能及成本优于海外供应商。
 
 4️⃣弹性测算：明年维谛二次侧管网54亿需求，假设高澜占75%份额，20%净利率，#对应8.2亿利润弹性。❗️维持重点推荐。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -8018,6 +8168,7 @@ PCB：GB300 37,491；VR200 91,227；VR300 154,377
 🌟产业博弈的解释：Dario这次突然强化“Pace the Frontier”，也可能与GPT-6等下一代模型即将带来的竞争压力有关——如果Anthropic预期下一轮模型竞争对自身形成明显冲击，推动行业统一提高安全门槛、放慢frontier迭代，也客观上有利于降低竞争节奏、延长现有模型生命周期。
 
 ☎️From 华泰计算机 郭雅丽/范昳蕊/袁泽世/岳铂雄/王浩天/徐诚伟</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -8075,6 +8226,7 @@ PCB：GB300 37,491；VR200 91,227；VR300 154,377
 ➠技术迭代mSAP增量主线落在铜箔环节：mSAP从光模块向服务器、交换机全场景扩展、1.6T光模块PCB全面转向mSAP，铜箔端边际变化最大在于载体箔进度超预期（三井26Q2销量407万平/月、同比+30%，2030年扩至800万平/月），国内德福（9月完成2家公司批测，10月光模块核心客户起量），铜冠、中一均已送样。mSAP工艺放量=载体铜箔放量，对应铜箔链中确定性最高的技术升级映射。
 
 🎯关注Q3业绩拐点，推荐【德福科技】、【海亮股份】、【铜冠铜箔】、【泰金新能】、【洪田股份】。#详细报告欢迎联系对口销售。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -8117,6 +8269,7 @@ PCB：GB300 37,491；VR200 91,227；VR300 154,377
 2）「10月份」大概率「村田」会普调涨价（第一次）「三星」大概率会跟，「三环」确定要涨
 3）接单大部分厂商排到年底和「明年3、4月份」
 4）当前原厂、经销商、终端客户库存水位都很低，「一个月以内」原厂先涨，材料随后</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -8168,6 +8321,7 @@ PCB：GB300 37,491；VR200 91,227；VR300 154,377
 从产业节奏看，AI正在从“提升生产力”逐步走向“参与业务执行”，安全需求也将从传统终端、云和身份保护，进一步延伸至Agent、模型、机器身份及运行时安全。随着企业AI渗透率提升，安全预算有望成为更具刚性的伴生投入。
 
 继续看好网安板块，持续推荐CRWD、PANW、ZS、OKTA等受益于Agentic Security趋势的标的。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -8222,6 +8376,7 @@ PCB：GB300 37,491；VR200 91,227；VR300 154,377
 5️⃣市场对风险缓解的有效信号预期不足，后续真正值得关注的标志是伊朗与美国国内的政治环境是否生变，以及伊朗冻结资产是否解封。
 6️⃣若假设9月美联储加息落地，是否可理解为风险出尽，高度取决于中东局势是否可控。当前，中东局势已成为诸多海外风险叙事的助推剂，若中东局势无法得到有效控制，则海外货币政策两难与债务困局等风险叙事仍可能在后续数月反复发酵。
 ☎第一时间把握地缘政治脉搏，跟踪全球局势变化，欢迎联系中信证券海外政策团队：杨帆/遥远/危思安/张念通/张雨亭/王祎帆</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -8273,6 +8428,7 @@ PCB：GB300 37,491；VR200 91,227；VR300 154,377
 [玫瑰]综合而言，#公司26-28年盈利预测为5/9/13e，CAGR达到50%以上，公司业绩逐季上升，#市值目标500e以上！
 —————
 前瞻判断请持续关注：冷威/周光裕</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -8306,6 +8462,7 @@ PCB：GB300 37,491；VR200 91,227；VR300 154,377
             <div class="card-body">TIM材料观点汇报 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=9df58eb79f7898e370d40879380d7d4f&amp;type=note&amp;_time=1789435152889" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 聊聊 PCB 的结构性上涨  <a href="https://share.note.youdao.com/ynoteshare/index.html?id=07ae5cc7e7e512aac0153712587d20b4&amp;type=note&amp;_time=1789435164310" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 九州一轨深度：硅光芯片激光隐切需求起量，金刚石芯片基板空间广阔 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=aababf60d0b6927489b4e42fce24cd86&amp;type=note&amp;_time=1789435139780" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a></div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -8333,6 +8490,7 @@ PCB：GB300 37,491；VR200 91,227；VR300 154,377
             <div class="card-title">主要煤炭公司盈利弹性测算表</div>
             <div class="card-tags"></div>
             <div class="card-body">主要煤炭公司盈利弹性测算表</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/45548818128852858_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -8390,6 +8548,7 @@ PCB：GB300 37,491；VR200 91,227；VR300 154,377
 4、宽基其实还是挺好的，创业板50ETF上周体验就不错，昨天科创小盘走得更好点，科创200ETF涨挺好，科创100ETF 也不错，科创综指ETF也是比较均衡，科创50增强ETF 昨天又有明显增强。
 
 （仅供内部参考，不做投资建议，基金投资需谨慎）</div>
+            
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -8522,6 +8681,7 @@ AVC数据显示，8月扫地机线上零售额同比-25%、量同比-11%，我�
 【扫地机8月内销筑底，外销延续景气】
 
 AVC数据显示，8月扫地机线上零售额同比-25%、量同比-11%，我们认为随着9月起国补带来的高基数压力缓解，行业有望迎来拐点。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -8639,6 +8799,7 @@ AVC数据显示，8月扫地机线上零售额同比-25%、量同比-11%，我�
 ③ 【特朗普称愿与伊朗谈判，提出美方要收“护航补偿”】 美国总统特朗普14日在社交媒体发布多条帖文为其对伊朗政策辩护。特朗普称对与伊朗谈判持“开放”态度，并称美方在霍尔木兹海峡帮助石油运输，各国应对美进行“护航补偿”。特朗普称，伊朗“迫切”希望达成协议，“我们对这一设想持开放态度”。此前，特朗普称，美伊战事将在11月美国国会中期选举完成后“立即结束”，同伊朗恢复谈判“并非我们目前考虑的事情”。（新华社）
 
 资料来源：华尔街见闻，财通证券研究所</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -8702,6 +8863,7 @@ AVC数据显示，8月扫地机线上零售额同比-25%、量同比-11%，我�
 商品市场：周一大宗商品涨跌互现。布伦特原油期货上涨1.0%，报105.7美元/桶；WTI原油期货上涨1.3%，报101.4美元/桶；黄金现货下跌1.1%，报4299.6美元/盎司；白银现货下跌2.0%，报63.2美元/盎司；LME期铜下跌1.7%，报14001.0美元/吨。
 
 今日关注：欧洲央行管委、法国央行行长Moulin讲话；欧洲央行执委Cipollone讲话。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -8861,6 +9023,7 @@ AI相关CCL增长的84%来自材料强度（单系统价值量）的提升，而
 关键风险
 
 1. AI基础设施投资放缓；2. 公司良率或执行不及预期；3. 未能通过下一代材料平台认证；4. 中国供应商竞争加剧；5. 上游玻璃布、特种树脂等原材料短缺；6. 共封装光学（CPO）技术更快普及，缩短电气信号路径，降低对高速CCL的需求；7. 铜价波动影响成本与定价。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -8903,6 +9066,7 @@ AI相关CCL增长的84%来自材料强度（单系统价值量）的提升，而
 📌高定价端通过缩短合同期限和减少客户预付款来实现。
 📌此外，行业关于 GPU 通过烧机测试后的韧性评论，以及 CRWV 最近关于签署 A100 的评论，都表明 GPU 的使用寿命比当前约 5-6 年的估计要长得多。
 📌对于 neocloud 业务的主要运营成本是电力和 GPU 折旧，使用寿命的延长代表了盈利能力的显著提升。”</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -8948,6 +9112,7 @@ AI相关CCL增长的84%来自材料强度（单系统价值量）的提升，而
 📌当我们考虑 3 年的租赁成本时，2026 年 7 月 Rubin 的成本为每芯片 / 小时超过 8.5 美元，Blackwell Ultra NVL72 的成本为每芯片 / 小时 5 美元，这次升级仍然是物超所值的。
 📌在 80 TPS P90 交互性下，Vera Rubin 在相同的租赁 TCO 下可以产生多 62% 的总 token。
 📌在更具交互性的前沿部分，Vera Rubin 在 3 年租赁 TCO 下可以实现多达 16 倍的 token。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -8975,6 +9140,7 @@ AI相关CCL增长的84%来自材料强度（单系统价值量）的提升，而
             <div class="card-title">美国历次加息与A股前后表现</div>
             <div class="card-tags"></div>
             <div class="card-body">美国历次加息与A股前后表现</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/55521181841112884_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -9032,6 +9198,7 @@ AI相关CCL增长的84%来自材料强度（单系统价值量）的提升，而
 4.目前油气大涨的影响比半年前大得多。半年前战争开端，全球原油库存高位，欧洲用气进入淡季，对煤炭影响微乎其微。#目前全球原油库存见底，欧洲，东北亚都即将进入用气高峰，煤代替气来发电，煤化工提高负荷都将大规模开始。
 
 5.当今纷乱时代，#煤炭可能是少数基本面本身健康且又不受地缘政治负面影响的行业，我们建议加大配置。#重点选择现货比率高的弹性品种。推荐晋控煤业（煤质转好），潞安环能，广汇能源，昊华能源，华阳股份，陕西煤业，兖矿能源等标的。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -9059,6 +9226,7 @@ AI相关CCL增长的84%来自材料强度（单系统价值量）的提升，而
             <div class="card-title">猪周期确定性在变强，4季度去产能会不断验证、催化，整体环境易涨难跌。前排大票估计30%空间，弹性标的首推德康农牧，近翻倍空间。（hyny）</div>
             <div class="card-tags"></div>
             <div class="card-body">猪周期确定性在变强，4季度去产能会不断验证、催化，整体环境易涨难跌。前排大票估计30%空间，弹性标的首推德康农牧，近翻倍空间。（hyny）</div>
+            
             <div class="card-footer">
                 <span>👍 3</span>
                 <span>💬 0</span>
@@ -9116,6 +9284,7 @@ AI相关CCL增长的84%来自材料强度（单系统价值量）的提升，而
 #有产业变化：天数智芯
 
 #相关低位标的：沐曦、昇腾链、摩尔、壁仞、燧原等</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -9215,6 +9384,7 @@ AI相关CCL增长的84%来自材料强度（单系统价值量）的提升，而
 [太阳]重点关注：#复旦微电、国博电子、航天电子
 
 ☎️欢迎联系【长江军工】王清/杨继虎/张飞/李麟君</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -9254,6 +9424,7 @@ AI相关CCL增长的84%来自材料强度（单系统价值量）的提升，而
 [烟花]传统能源正迎来新一轮周期与价值的再定价，长江煤炭团队持续深耕行业研究，#越思日想 追踪高频热点，#察煤观市 把脉市场律动，#炭本溯源 重构研究框架，#海外视角 拓展全球映射，#品煤鉴金 掘金优质标的。从宏观周期到产业趋势，从供需格局到企业价值，深耕煤炭全链条。#扫码查看小组主页，与长江煤炭团队一起，把握煤炭周期红利与能源变革中的结构性机遇。
 
 🎁长江煤炭（能源开采）团队：肖勇/赵超/叶如祯/庄越/韦思宇/宋楚</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -9344,6 +9515,7 @@ AI相关CCL增长的84%来自材料强度（单系统价值量）的提升，而
 #需要上年度报告详细内容请同我们团队联系！
 
 #风险提示：新兴需求不及预期、钽价波动风险、政策变化风险。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -9371,6 +9543,7 @@ AI相关CCL增长的84%来自材料强度（单系统价值量）的提升，而
             <div class="card-title">[Sun]稳稳的幸福：海外通胀，国内利率低位，红利资产的避险防御属性凸显，优质红利标的仍然可以作为长期底仓配置，欢迎交流～</div>
             <div class="card-tags"></div>
             <div class="card-body">[Sun]稳稳的幸福：海外通胀，国内利率低位，红利资产的避险防御属性凸显，优质红利标的仍然可以作为长期底仓配置，欢迎交流～</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -9449,6 +9622,7 @@ AI相关CCL增长的84%来自材料强度（单系统价值量）的提升，而
 
 持续努力🏆感恩支持
 详细观点交流欢迎联系浙商宏观林成炜18016306832</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -9509,6 +9683,7 @@ Dario Amodei、Sam Altman言论：从过去几年两位CEO公开言论回溯统�
 产业可能影响：这些所谓的倡议更多属于精细算计的利己安排，后续可能的政策监管亦属遥远，当下Anthropic、OpenAI能做的事情，以及带给产业的可能影响均非常有限，对半导体硬件板块的影响也将更多停留于叙事层面。我们比较容易达成的共识是：对于当下快速推进的AI产业而言，不进则退，对于模型厂商、半导体硬件厂商等均是如此；
 
 后续市场判断：短期相关言论的发酵料将推动本就摇摆的AI叙事继续发生摆动，半导体硬件承压，对软件、互联网影响中性偏正面。我们判断，三季报开启之前，资本市场关注焦点仍将聚集于：闭源&amp;开源模型之间的能力差距、AI货币化进展、中期选举带来的可能政策变化等。而对于Dario Amodei、Sam Altman而言，未来两个月观察他们干了什么更重要。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -9566,6 +9741,7 @@ Dario Amodei、Sam Altman言论：从过去几年两位CEO公开言论回溯统�
 三、底部反转(重要):  需求刚性但阶段受制于新国标，9月后需求和出货端有望反弹修复而估值处于低位的两轮车龙头：【爱玛科技】和【雅迪控股】。
 
 ❗结合当前位置可重点加仓标的:  美的集团、海尔智家；九号公司、石头科技、爱玛科技。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -9758,6 +9934,7 @@ Dario Amodei、Sam Altman言论：从过去几年两位CEO公开言论回溯统�
 
 詹森·黄  
 谢谢您，总统。非常感谢</div>
+            
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -9845,6 +10022,7 @@ Dario Amodei、Sam Altman言论：从过去几年两位CEO公开言论回溯统�
 24年的国产液冷三剑客，英维克、申菱环境、高澜股份（做液冷最早、最好的三家公司），现在只剩下高澜没涨了。
 
 #结论：这个位置的高澜=今年1月启动前的申菱环境=去年7月启动前的英维克。❗️整体看300亿，当前100亿位于绝对底部位置。维谛链稀缺标的+谷歌直供预期，建议重点关注。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 1</span>
@@ -9890,6 +10068,7 @@ Dario Amodei、Sam Altman言论：从过去几年两位CEO公开言论回溯统�
 2.公司从RP到GH到RH到GP等材料的扩展路径清晰，且从BOE扩展到其他客户和8.6代线放量也较为确定，这些基本面是市场容易遗忘的，终端消费被短期压制并没有过多扰动扎实的基本面。
 
 3. 所以说市场无需过度论证PTFE的故事亦或是Q布验证进展，过去的历史证明即使PTFE也非常难在实操层面交易，这些预期随时可变。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -9953,6 +10132,7 @@ Dario Amodei、Sam Altman言论：从过去几年两位CEO公开言论回溯统�
 [玫瑰]4、#盈利能力： 26H1毛利率同比提升4.0pct至33.56%，主要源于均价提升（贡献1pct以上）+原材料红利（贡献1pct左右）+工厂自动化效率提升（贡献1pct左右）+结构较好（春季错位、毛利率高的底料占比更高）。展望26H2：预计毛利率同比持平或提升，预计原材料平稳、效率提升持续贡献、但定制和大B产品或拖累结构。
 
 [玫瑰]5、#盈利预测： 预计公司2026-2027年收入74.22/81.81亿元，同比增长12.2%/10.2%；净利润9.81/11.23亿元，同比增长14.9%/14.4%；对应PE估值12.7/11.1倍；股息率7.2%，维持买入评级。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -10004,6 +10184,7 @@ Dario Amodei、Sam Altman言论：从过去几年两位CEO公开言论回溯统�
 🐟3️⃣#高速CCl验证顺利、PTFE级M10正在测试： 公司Extreme low loss（通过认证，小批量订单）/Extreme low loss+（通过认证）/Extreme low loss++（完成开发，参与测试认证），PTFE级M10完成研发，参与测试认证中。
 
 🐟4️⃣#进一步验证上游材料景气度： H1铜箔采购价格同比+27.61%，电子布同比+68.22%，树脂同比+33.08%（进一步验证树脂涨价的可能性）。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -10106,6 +10287,7 @@ Dario Amodei、Sam Altman言论：从过去几年两位CEO公开言论回溯统�
 风险提示：新业务放量不达预期；高管及股东减持；短期股价上涨过快；信息披露风险
 
 ☎【浙商机械 王华君18610723118/蒋逸18158576706/秦乐恒15221680140】</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -10148,6 +10330,7 @@ Dario Amodei、Sam Altman言论：从过去几年两位CEO公开言论回溯统�
 公司面向高速光模块开发的AFE信号芯片、DC-DC电源芯片，已完成对国际光模块行业两大龙头L客户、A客户的定向送样，#其中AFE芯片测试已进入收尾阶段，客户反馈整体表现优异，单颗价值量高
 
 #海外四家光模块公司认可、海外收入有望快速起量，新客户验证和导入速度加快，产品能力强，继续看300亿。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -10211,6 +10394,7 @@ Dario Amodei、Sam Altman言论：从过去几年两位CEO公开言论回溯统�
 横向参照一线鳞癌联合化疗，HARMONi-6中依沃西、替雷利珠单抗6个月PFS率按公开曲线估读约75%、55%，LBL-024的86.7%呈积极数值表现；依沃西早期Ⅱ期同指标为83.3%。我们认为，高缓解率与早期疾病控制表现支持LBL-024的开发潜力；目前样本较小、PFS尚未成熟，跨试验比较仍待随机对照验证。
 
 [咖啡]更多数据对比请联系：天风医药 杨松/曹文清</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -10280,6 +10464,7 @@ Dario Amodei、Sam Altman言论：从过去几年两位CEO公开言论回溯统�
 [月亮]风险提示：竞争加剧，汇率波动超预期，原材料波动超预期。
 
 [红包]联系人：姜文镪18817619332、李晨13994673909</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -10343,6 +10528,7 @@ Dario Amodei、Sam Altman言论：从过去几年两位CEO公开言论回溯统�
 —————
 
 前瞻判断请持续关注：冷威/周光裕</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -10394,6 +10580,7 @@ by tfx" data-author="白露"
 #AI电源打开新增量，高端PCB及整体模块同步拓展。公司收购百芳电子增强技术实力，下游在AI连接器、AI电源、机器人、相控阵等领域PCB产品有望2027年放量反馈，产品结构升级有望进一步释放盈利弹性。
 
 by tfx</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -10448,6 +10635,7 @@ by tfx</div>
 2、深度受益AI算力需求扩张，上半年晶圆级封装收入同比增长30.24%，成为新营收增长点；硅转接板、硅桥等核心工艺储备落地，具备异构集成能力，卡位Chiplet、2.5D/3D下一代先进封装赛道。
 
 报名联系【爱建智能制造&amp;电子团队】王凯13626769726 /朱俊宇13270096053/韦姗姗18621577807</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -10487,6 +10675,7 @@ by tfx</div>
 英伟达首席执行官詹森·黄在舞台小组讨论中接听了唐纳德·特朗普的现场电话，两人均拒绝了放缓先进人工智能开发的呼吁，并争辩称美国必须保持其在人工智能领域对中国的领先地位。 
 
 黄表示，人工智能安全与创新可以共同推进，而特朗普则将对人工智能存在 性风险的担忧斥为“骗局”，这凸显了与Anthropic的Dario Amodei、 Sam Altman和Elon Musk日益加剧的分歧，他们呼吁对前沿人工智能模型进行更严格的测试并放缓开发速度。</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/22258818124885821_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 3</span>
                 <span>💬 0</span>
@@ -10649,6 +10838,7 @@ by tfx</div>
 1. 今日成交16431亿，缩量3440亿。大缩量，都在等加息落地，但油价趋势也很重要，指数今天虽然守住了周五低点，明早再没点好消息，好像还需要经受考验，总之下一个低点到了还是捞为主，但整体预期不放太高。白天继续关注油价和外盘。
 2. 板块方面，医药（反抽）、汽车（国资整车兼并重组预期）和银行领涨。一级行业整体没啥意思，没量只能看小细分抱团度过这几天了。截止发稿，纳指拉回来了，不过结构上光存都是跌的。
 3.	题材方面，AI安全涨了但也没啥强度，买美股的还可以，三线pcb不负所望，趋势继续，筹码结构的优势又体现了一把（AI成分高的pcb没怎么表现），有那么一丝防守反击的属性，三季报环比好+不是AI。MLCC也延续反弹，但是没新技术反弹强，陶瓷TFLN金刚石都大涨，抢反弹有点猛，这块短期没什么业绩支撑，主要是看今天该跌不跌就兴奋大拉了一把，明早要美股没有表现出企稳态势就还是可能先歇歇。半导体有个MFC细分较强。整体大缩量兴奋不了太多。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -10760,6 +10950,7 @@ by tfx</div>
 2️⃣比亚迪计划在欧洲生产卡车，目标成为 “欧洲公司”。
 3️⃣小马智行发布最新无人卡车车型，目标开拓欧洲市场销售业务。
 4️⃣据悉，比亚迪最早将于 2027 年推出搭载固态电池的电动车型。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -10883,6 +11074,7 @@ by tfx</div>
 📌从资金流角度看，科技板块出现大规模期权价差展期操作 —— 例如：某客户买入 70000 手 NVDA 11 月 230/275 看涨期权价差，同时卖出 35000 手 12 月 245/300 看涨期权价差。
 📌除此之外，随着卖方会议释放评论，金融股出现双向资金流动。
 📌标普 500 指数隐含截至明日的波动幅度为 0.52%。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -10910,6 +11102,7 @@ by tfx</div>
             <div class="card-title">亚洲股市因人工智能担忧小幅走低，油价上涨：市场综述</div>
             <div class="card-tags"></div>
             <div class="card-body">亚洲股市因人工智能担忧小幅走低，油价上涨：市场综述</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/14425585844144142_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -10937,6 +11130,7 @@ by tfx</div>
             <div class="card-title">戴维-萨克斯表示，AI实验室应在没有反垄断协助的情况下开发安全技术</div>
             <div class="card-tags"></div>
             <div class="card-body">戴维-萨克斯表示，AI实验室应在没有反垄断协助的情况下开发安全技术</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/55521181855455584_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -10964,6 +11158,7 @@ by tfx</div>
             <div class="card-title">众议院议长迈克·约翰逊表示，国会“可能”需要对人工智能行业施加限制，以防止人工智能造成危害。</div>
             <div class="card-tags"></div>
             <div class="card-body">众议院议长迈克·约翰逊表示，国会“可能”需要对人工智能行业施加限制，以防止人工智能造成危害。</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/82258818122422242_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -10991,6 +11186,7 @@ by tfx</div>
             <div class="card-title">美国斥资4.5亿美元入股钨业公司，以对抗中国</div>
             <div class="card-tags"></div>
             <div class="card-body">美国斥资4.5亿美元入股钨业公司，以对抗中国</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/45548818155258518_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -11018,6 +11214,7 @@ by tfx</div>
             <div class="card-title">中国增加采购美国液化天然气</div>
             <div class="card-tags"></div>
             <div class="card-body">中国增加采购美国液化天然气</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/22258818122428811_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11051,6 +11248,7 @@ by tfx</div>
             <div class="card-body">液冷投资框架 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=a35713d653ec306be2bd5dcc9d36d114&amp;type=note&amp;_time=1789408250315" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 液冷调研更新汇报 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=90b96c58991dfd773e125f8df5d10ef7&amp;type=note&amp;_time=1789408475922" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 金刚石散热板块梳理  <a href="https://share.note.youdao.com/ynoteshare/index.html?id=23bb6d42b8376eb2e574cbbe7234f2da&amp;type=note&amp;_time=1789408206609" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a></div>
+            
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -11084,6 +11282,7 @@ by tfx</div>
             <div class="card-body">通信观点更新 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=e357ce25fbea1334c87ad2286ee7ca1d&amp;type=note&amp;_time=1789408689747" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 光博会启示：看山还是山 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=35ff281b6700a9abf793b6fe237ee893&amp;type=note&amp;_time=1789408543718" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 从CapEx担忧走向回报验证，AI云进入加速兑现期 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=e7df0c217052a19adb8650fd4775a5c4&amp;type=note&amp;_time=1789408673143" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a></div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -11114,6 +11313,7 @@ by tfx</div>
             <div class="card-tags"></div>
             <div class="card-body">半导体上游制造、封测、设备再汇报 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=791c59ea05eb500785958e7a224cfbb8&amp;type=note&amp;_time=1789408597912" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 国产算力・交换芯片：超节点架构规模化落地，国产高速交换芯片迎来导入窗口期 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=482cc4b72248a685bcd890d2e8450286&amp;type=note&amp;_time=1789408528184" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a></div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11144,6 +11344,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-tags"></div>
             <div class="card-body">AI产业链研究团队：迈向AI新时代：AI产业策略、算力软硬件及应用  <a href="https://share.note.youdao.com/ynoteshare/index.html?id=71a667b68122901d996d14baf72508f0&amp;type=note&amp;_time=1789408636895" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛制造配套 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=e426bed3e8fea6762322f720cafde9ac&amp;type=note&amp;_time=1789408650880" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a></div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -11177,6 +11378,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-body">大宗半小时——石油的供应底与需求顶 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=a12bd5004cd1900a4fd5a870d5c17068&amp;type=note&amp;_time=1789408575398" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 黄金的时代坐标：从宏观叙事到交易落地 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=b3f65d5eaeaafd868d6948121871d3fe&amp;type=note&amp;_time=1789408296112" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 迎接“效率脱钩牛”——风浪越大，“运力”越贵 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=4f373584d9240ddfb76da0087a5bb906&amp;type=note&amp;_time=1789408312035" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a></div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11210,6 +11412,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-body">种业双交会要点汇报 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=69204a991b11dbc8329dcb96bf6c3112&amp;type=note&amp;_time=1789408219746" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 两机产业链投资框架 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=549e827d750eb5b3bd40a704cc4db774&amp;type=note&amp;_time=1789408282619" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 调整之后，如何展望储能的投资机会？ <a href="https://share.note.youdao.com/ynoteshare/index.html?id=a73a1d7b3f510102a3c8fdc16a869287&amp;type=note&amp;_time=1789408355732" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a></div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11237,6 +11440,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">离岸信托征税新规解读</div>
             <div class="card-tags"></div>
             <div class="card-body">离岸信托征税新规解读 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=6bc64b0a58d4cacab97f9d64ac515def&amp;type=note&amp;_time=1789408230429" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a></div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11270,6 +11474,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-body">快要熬出头了 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=da8595ea743c4b8d3c83292f0b755a57&amp;type=note&amp;_time=1789408414826" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 下半年科技行情何时启动？ <a href="https://share.note.youdao.com/ynoteshare/index.html?id=c7bb52948a69cb993a780d0cfc5f2b6c&amp;type=note&amp;_time=1789408559441" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 牛市成交最多萎缩到什么程度？反弹是否一定依赖放量？ <a href="https://share.note.youdao.com/ynoteshare/index.html?id=56ca2803d9cf040941f5eb0d24744875&amp;type=note&amp;_time=1789408368848" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a></div>
+            
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -11303,6 +11508,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-body">宏观策略周论：美联储要加息吗？ <a href="https://share.note.youdao.com/ynoteshare/index.html?id=aaf071fcadaa941d3cc192896656f165&amp;type=note&amp;_time=1789408458630" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 宏观周周谈：落地了就是利空出尽吗？ <a href="https://share.note.youdao.com/ynoteshare/index.html?id=14fead858d0f452f9844c1e158ac6f2e&amp;type=note&amp;_time=1789408446894" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 总量之声：美债高位与A股方向选择 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=da2c2eae8fe163bf2520bb0348dae8da&amp;type=note&amp;_time=1789408514219" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a></div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11336,6 +11542,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-body">美国互联网泡沫的复盘及启示 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=94f2419797d55994a5cb5f4a9c1767e1&amp;type=note&amp;_time=1789408394740" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 光、电、热、力构成AI发展的“兵马粮草” <a href="https://share.note.youdao.com/ynoteshare/index.html?id=52e80cc713f9e2d66f49555a92fec3f1&amp;type=note&amp;_time=1789408433227" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 从美债困局的角度理解伊朗局势、AI浪潮与沃什改革 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=18e421961023eb421ef77d0fef20bbe9&amp;type=note&amp;_time=1789408615826" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a></div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11369,6 +11576,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-body">美联储会议前瞻学习 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=c3f5afdfc42a87c1a7995eb35656976a&amp;type=note&amp;_time=1789408270319" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 美国8月CPI：“恰到好处”的加息前奏 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=eaf23f411f60a54cc42f5972f533377e&amp;type=note&amp;_time=1789408381515" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
 海外加息预期会如何传导至国内 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=4335bafba223a70a0e4b3a4a1311e3e6&amp;type=note&amp;_time=1789408500003" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a></div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11396,6 +11604,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">「文件」</div>
             <div class="card-tags"></div>
             <div class="card-body">「文件」</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11423,6 +11632,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">「文件」</div>
             <div class="card-tags"></div>
             <div class="card-body">「文件」</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11450,6 +11660,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">「文件」</div>
             <div class="card-tags"></div>
             <div class="card-body">「文件」</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11477,6 +11688,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">「文件」</div>
             <div class="card-tags"></div>
             <div class="card-body">「文件」</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11504,6 +11716,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">「文件」</div>
             <div class="card-tags"></div>
             <div class="card-body">「文件」</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11531,6 +11744,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">「文件」</div>
             <div class="card-tags"></div>
             <div class="card-body">「文件」</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -11558,6 +11772,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">「文件」</div>
             <div class="card-tags"></div>
             <div class="card-body">「文件」</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11585,6 +11800,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">「文件」</div>
             <div class="card-tags"></div>
             <div class="card-body">「文件」</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -11612,6 +11828,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">「文件」</div>
             <div class="card-tags"></div>
             <div class="card-body">「文件」</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11639,6 +11856,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">「文件」</div>
             <div class="card-tags"></div>
             <div class="card-body">「文件」</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -11666,6 +11884,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">「文件」</div>
             <div class="card-tags"></div>
             <div class="card-body">「文件」</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -11693,6 +11912,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">「文件」</div>
             <div class="card-tags"></div>
             <div class="card-body">「文件」</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11720,6 +11940,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">「文件」</div>
             <div class="card-tags"></div>
             <div class="card-body">「文件」</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11747,6 +11968,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">「图片」</div>
             <div class="card-tags"></div>
             <div class="card-body">「图片」</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/22258818184421181_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><img class="card-img" src="图片/2026-09-15/22258818184421181_02.jpg" alt="图2" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">2 图</span></div>
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -11774,6 +11996,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">Anthropic 数据担忧促使 Nvidia、Palantir 和 Booz Allen 限制模型使用</div>
             <div class="card-tags"></div>
             <div class="card-body">Anthropic 数据担忧促使 Nvidia、Palantir 和 Booz Allen 限制模型使用</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/45548818182252188_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11801,6 +12024,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">微软加入人工智能公司行列，呼吁谨慎使用尖端模型</div>
             <div class="card-tags"></div>
             <div class="card-body">微软加入人工智能公司行列，呼吁谨慎使用尖端模型</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/82258818184424412_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -11828,6 +12052,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">OpenAI 的总裁兼联合创始人 Greg Brockman 认为，人工智能发展的任何放缓都应该仅限于像他所在的公司这样正在构建最强大模型的公司。</div>
             <div class="card-tags"></div>
             <div class="card-body">OpenAI 的总裁兼联合创始人 Greg Brockman 认为，人工智能发展的任何放缓都应该仅限于像他所在的公司这样正在构建最强大模型的公司。</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/22258818184424441_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11855,6 +12080,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">美国10年期国债收益率自2023年以来首次突破5%</div>
             <div class="card-tags"></div>
             <div class="card-body">美国10年期国债收益率自2023年以来首次突破5%</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/22258818184424421_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11882,6 +12108,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">全球石油库存正以创纪录的速度下降</div>
             <div class="card-tags"></div>
             <div class="card-body">全球石油库存正以创纪录的速度下降</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/14425585851141152_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -11909,6 +12136,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">【天风医药杨松团队】中国创新药BD出海：2026年1-8月交易总额1,115亿美元，同比+25.4%</div>
             <div class="card-tags"></div>
             <div class="card-body">【天风医药杨松团队】中国创新药BD出海：2026年1-8月交易总额1,115亿美元，同比+25.4%</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/14425585851141122_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11954,6 +12182,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
 9月份排产继续超预期，叠加油价上涨 储能需求继续攀升。
 
 现在属于VC库存基本都没了。印钞时刻刚开始。</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/55521181814454584_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -11981,6 +12210,7 @@ AI产业链研究团队：迈向AI新时代：AI上游原材料、装备与泛�
             <div class="card-title">英伟达 GB300、VR200、VR300 单机架铜箔为 1697、5164、5705 美元，CCL 为 6695、18750、35601 美元，PCB 为 3...</div>
             <div class="card-tags"></div>
             <div class="card-body">英伟达 GB300、VR200、VR300 单机架铜箔为 1697、5164、5705 美元，CCL 为 6695、18750、35601 美元，PCB 为 37491、91227、154377 美元。</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/55521181814454554_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 3</span>
                 <span>💬 0</span>
@@ -12104,6 +12334,7 @@ IGV +0.64%/+1.67%/+11.14%
 -宏观：依然是当前主要扰动因素。随着9月加息预期充分price in，向下空间有限，#目前半导体硬件板块估值都进入合理区间，海外半导体设备27年普遍23x~25x，台积电27年18x，NVDA 27年13x。建议左侧布局。
 
 国泰海通海外科技 秦和平/刁云鹏</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -12155,6 +12386,7 @@ IGV +0.64%/+1.67%/+11.14%
 3、海外原厂和台积电资本开支持续上修，市场担心挤压对华Litho资源，影响国内下游扩产和设备订单。我们认为无需过度担心，数量足够，担忧更多是情绪层面，不构成实质冲击。
 
 #设备环节我们坚定看好，回调即是机会[玫瑰]</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -12242,6 +12474,7 @@ CCL：#【生益科技】、华正新材、南亚新材、金安国纪等；
 
 鄢凡18601150178/程鑫 13761361461/涂锟山18682200047
 【#重视9-10️做多业绩爆发板块的窗口期！】</div>
+            
             <div class="card-footer">
                 <span>👍 3</span>
                 <span>💬 0</span>
@@ -12293,6 +12526,7 @@ CCL：#【生益科技】、华正新材、南亚新材、金安国纪等；
 3. 下一代MLCP是封装级液冷解决方案（封装厂安装，而非组装厂）；目前健策与台积电联合研发攻关。由于健策与台积电深度绑定，且AVC、CM等尚无半导体级相关产品经验，后续市场份额可参考健策均热片在台积电的份额（90%）。
 
 光大中小盘新兴产业</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -12350,6 +12584,7 @@ CCL：#【生益科技】、华正新材、南亚新材、金安国纪等；
 成本传导与市场影响
 
 铜箔价格上涨对CCL总成本影响相对有限。以普通标准铜箔为例，成本上涨约30%体现在CCL结构中，增幅不到10%。成本压力已通过上调CCL售价（至今约10次）完全传导至下游。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -12587,6 +12822,7 @@ CCL：#【生益科技】、华正新材、南亚新材、金安国纪等；
 -Coherent：3Q 1.6T未起量，6英寸良率未爬坡，预计4Q改善
 -Semtech：AI收入显著提升；2Q 1.6T TIA/Driver小批量出货，3-4Q起QoQ ramp； 3.2T/6.4T NPO采200G TIA，为核心供应商之一
 -Credo：AEC及光业务会前预期高，guidance偏保守；DSP改版+上游物料9月开始批量，光业务预计4Q起量</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -12668,6 +12904,7 @@ GPT-6 是迈向 AGI 的一步：解锁知识工作、企业智能体、DevOps / 
 仍然看好：NVDA、CPU、UMC/INTC、DRAM/HBM、散热、互连 / 光学（Credo, SMTC）、PCB/PTFE。
 
 8 月数据：台积电销售额环比增长 10%（符合预期）。Neoclouds 势头利好 OEM。基板上行周期完好，CCL 利润率扩张。Aspeed 同比增长 118%，第四季度指引稳健 / 可能上调 BMC 价格。</div>
+            
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -12701,6 +12938,7 @@ GPT-6 是迈向 AGI 的一步：解锁知识工作、企业智能体、DevOps / 
             <div class="card-body">现在大家只理解了第一层，半导体+光纤扩产都受制于MFC，SOFC对MFC拉动明显。
 
 下一阶段#会发现MFC卡点在【压电陶瓷】，重点标的轮到电新这边【星源材质】！</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -12824,6 +13062,7 @@ MFC：对应出货100w只，单价1800元，18e收入，50%净利率兑现9e利�
 整体看到500e目标市值，对应翻倍以上空间，保持重点推荐！
 ———————————
 欢迎交流：孙潇雅/张嘉豪</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -12857,6 +13096,7 @@ MFC：对应出货100w只，单价1800元，18e收入，50%净利率兑现9e利�
             <div class="card-body">我们周末已重点提示，上周调研下来，半导体上游零部件景气度最好的还是【MFC】。受下游光纤/SOFC/半导体三大需求拉动，海外供给严重不足，交付周期拉长，国产MFC正加速导入。
 
 继续推荐国产半导体MFC龙头【高凯技术】、上游压电陶瓷【星源材质】、MFC潜在进入者【英杰电气】【恒运昌】</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -12977,6 +13217,7 @@ MFC：对应出货100w只，单价1800元，18e收入，50%净利率兑现9e利�
 👉26年上半年澳煤出口量同比涨500万吨，受日韩等发达国家需求改善、电厂电煤采购补库支撑。
 👉受LNG供应地供应不确定性提高影响，多国考虑重启煤电，发达国家延长煤电服役将支撑高卡煤及澳煤需求，亚洲买家已转向澳大利亚
 👉今年厄尔尼诺整体利好澳洲下半年尤其是夏秋季节煤矿生产，但天气波动大有短期降雨扰动风险，或影响澳煤产量增长。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -13034,6 +13275,7 @@ MFC：对应出货100w只，单价1800元，18e收入，50%净利率兑现9e利�
 ⚠风险提示：基于公开资料信息整理，可能存在信息滞后或更新不及时、不全面的风险；任何情况下，不构成投资建议。
 
 ☎联系人：国联民生能源开采团队 周泰/李航/王姗姗</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -13103,6 +13345,7 @@ MFC：对应出货100w只，单价1800元，18e收入，50%净利率兑现9e利�
 [玫瑰]两元乐享：强爽两元乐享/微醺、清爽一元乐享，目前兑奖率约20%多，公司目标兑奖率50%，该活动在一二线城市推进相对成功，三线城市表现尚可，四线以下执行相对较差。
 
 🎉详情欢迎沟通 · #长江食品饮料董思远团队🏅，#恳请鼎力支持🏆</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -13160,6 +13403,7 @@ MFC：对应出货100w只，单价1800元，18e收入，50%净利率兑现9e利�
 玻璃持续减产、银包铜产业化推进。玻璃1H26冷修与转产合计9,640吨/日，库存天数由53.39天的高点降至9月3日的43.63天，7月起价格回升，我们认为龙头及二线头部企业已恢复盈利。胶膜同期完成顺价，龙头1H26归母净利率同比修复；组件龙头贱金属化改造落地，银包铜实现规模化出货。
 
 逆变器出口金额提升、增量来自新兴市场及工商业需求。1H26逆变器出口2,473万台、同比下降10%，出口金额55.35亿美元、同比增长25.6%，集中式与工商业占比提升推动单台价值量上移，东南亚、中东的地面电站与离网光储是主要增量。持续关注储能、海外工商业以及新兴市场的需求增量。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -13214,6 +13458,7 @@ MFC：对应出货100w只，单价1800元，18e收入，50%净利率兑现9e利�
 本周新房和二手房成交面积滚动四周同比分别-5.33%/-1.95%
 投资建议：8·28新政对土地市场的传导尚处初期，首周溢价率回落至5.3%但一线核心地块热度不减，房企投资逻辑正从城市维度进一步聚焦到单项目安全边际，区位稀缺性、开发周期、土地款支付安排与去化确定性成为报价基础；资金门槛抬升下拿地分化将持续加剧，建议关注资金实力雄厚、深耕核心城市、具备低密改善产品能力的央国企及区域龙头房企。标的方面建议关注存量地产三方向：一、商业地产（华润置地、新城控股+华润万象生活）；二、二手经纪（我爱我家、贝壳）；三、物业服务（绿城服务）；以及优质产品力开发商（中国金茂、建发国际集团）
 风险提示：政策落地不及预期；信用风险持续蔓延；楼市回暖不及预期</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -13274,6 +13519,7 @@ MFC：对应出货100w只，单价1800元，18e收入，50%净利率兑现9e利�
 （4）【军工】情绪升至54%分位。
 四、【红利低波】、【银行】情绪仍在80%分位附近，建议继续保持耐心等待拥挤度消化充分。
 五、【创业板指】情绪降至近一年情绪最低位。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -13325,6 +13571,7 @@ MFC：对应出货100w只，单价1800元，18e收入，50%净利率兑现9e利�
 宏观环境对估值的约束强于2021年周期：当前美国十年期实际利率较2021年末高出约3.5个百分点，年内利率中枢大概率维持高位震荡格局。9月与12月FOMC会议的核心观察点在于2027年政策利率中位数是否下移。财政部回购操作虽能在一定程度上缓冲流动性压力，但尚不足以确认利率趋势性反转。与此同时，AI产业投资在支撑盈利端的同时，也通过投资与融资需求的扩张推高实际利率中枢，形成盈利越强、贴现率也可能越高的内生对冲。
 总体而言，我们更倾向于将本轮视为景气延续中的估值调整，维持盈利驱动修复的判断。后续更看好盈利预期继续上修、现金流逐步改善的AI硬件龙头修复。判断转向的关键信号是2027年资本开支指引低于预期并带动盈利预测下修，以及实际利率再度上行仍会压制估值的修复力度。
 风险提示：AI资本开支不及预期；盈利质量下滑；海外实际利率超预期上行；流动性冲击；数据统计口径存在差异，历史规律不代表未来走势。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -13445,6 +13692,7 @@ Dario Amodei 发表文章主张前沿模型应有意放缓能力增益，Sam Alt
 • CSQR：基于 EV/调整后 EBITDA，目标价对应 NTM+1 调整后 EBITDA 5.68 亿美元，倍数 15 倍。
 
 • DLR 与 EQIX：均基于远期市价/调整后营运资金（AFFO）每股倍数，目标价分别对应 NTM+1 AFFO 每股 8.36 美元（27 倍）和 51.19 美元（约 25 倍）。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -13646,6 +13894,7 @@ Super Micro（SMCI，卖出，目标价34美元）：2027财年展望由订单�
 Penguin Solutions（PENG，买入，目标价75美元）：AI基础设施与内存交叉领域的差异化定位，结合ClusterWareAl与3—5年 recurring 服务合同，助其在新云与企业市场赢得更大项目。集成内存业务与AI推理工作负载日益对齐，CXL内存及光子内存解决方案提供长期上行空间。估值采用基本面/M&amp;A混合方法。
 
 Cricut（CRCT，卖出，目标价4.50美元）：通过投资更好的用户体验（而非激进变现）回归可持续盈利增长。重新设计的Maker 5及AI赋能创作工具应驱动更强参与度与留存。订阅增长稳定，平台营收约占公司利润的80%。估值采用基本面/M&amp;A混合方法。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -13799,6 +14048,7 @@ ON将举办自2023年5月以来的首次分析师大会。当时管理层提出2
 • Cerebras下行风险：产能部署/基础设施风险、客户集中度风险、竞争风险。
 
 • ON大会风险：宏观需求波动、SiC产能爬坡不及预期、Synaptics收购审批不确定性。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -13877,6 +14127,7 @@ ON将举办自2023年5月以来的首次分析师大会。当时管理层提出2
 📝具体数据欢迎联系财通策略徐近峰/林昊 159 2196 3623
 🌊涓涓不壅，终为江河
 🦄财通策略，感恩支持</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -13988,6 +14239,7 @@ ON将举办自2023年5月以来的首次分析师大会。当时管理层提出2
 风险提示：市场需求不及预期、技术迭代不及预期、市场竞争加剧
 
 ☎【浙商机械 邱世梁/王华君18610723118/蒋逸18158576706/秦乐恒15221860140】</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -14060,6 +14312,7 @@ MRDIMM突破传统RDIMM内存带宽瓶颈，匹配高密度算力下的海量数
 [發] 核心受益标的
 ✔ 万通发展：子公司数渡科技PCIe 5.0 104lane交换芯片进入加速放量阶段，144lane全面推进送测，在开发48lane补齐全应用场景；
 ✔ 澜起科技：MRCD/MDB全球领先，随MRDIMM加速渗透打开全新增长曲线；PCIe Retimer稳步放量，PCIe交换芯片研发进展顺利。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -14105,6 +14358,7 @@ MRDIMM突破传统RDIMM内存带宽瓶颈，匹配高密度算力下的海量数
 ✔＃假设国产HBM大厂集中供应2-3家国产GPU厂商，则头部国产GPU厂商2027年出货量的满足率或更为可观。我们预计寒武纪\海光信息2027年GPU出货量分别有望达到55/45万颗，且国产HBM满足率较高。
 
 ✔关注国产算力：寒武纪、海光信息、壁仞科技、澜起科技、万通发展、联想集团、飞荣达等。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -14150,6 +14404,7 @@ MRDIMM突破传统RDIMM内存带宽瓶颈，匹配高密度算力下的海量数
 #出口 8月出口3.8万，同比+39.2%，环比+3.5%，同比增速较7月走阔，环比回升。
 
 #重汽 8月批发3.0万，同比+17.5%，环比-0.4%，出口2.0万，同比+46.6%，环比+2.7%，批发销量和出口销量均位列第一。批发市占率34.9%（7月为35.9%），出口市占率51.3%（7月为51.7%）。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -14207,6 +14462,7 @@ MRDIMM突破传统RDIMM内存带宽瓶颈，匹配高密度算力下的海量数
 #我们预计三季度部分企业业绩修复、下一个观察窗口在2027年二季度。 低价单交付结束、需求环比修复、高功率与银包铜组件占比提升，板块三季度业绩有望修复，但需求偏弱、涨价尚未传导至终端，盈利转正概率下降。三项强制国标2027年1月1日生效后，若尾部产能淘汰叠加机制电价修复、储能装机的提升促进光伏需求的修复，2027年二季度是下一个业绩转正观察窗口。
 
 #若政策效果不及预期、出清需观察债务问题。 我们复盘钢铁、电解铝、房地产与光伏2011至2013年的出清情况，发现出清通常在企业无法偿付到期债务或被行政命令直接关停时发生。光伏行业融资能力下滑较为明显，本轮缺少一刀切的强制目标，银行抽贷意愿不高，尾部企业观察商业承兑汇票的持续逾期，头部企业观察2028-29年公开市场债务的到期与转股安排。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -14273,6 +14529,7 @@ MRDIMM突破传统RDIMM内存带宽瓶颈，匹配高密度算力下的海量数
 3️⃣HVDC Sidecar将成为 Rubin这一代的主要增量品种，28年市场空间有望达到千亿量级。
 
 投资建议：首选麦格米特、欧陆通等。也关注中压UPS、SST方案标的如科士达、科华数据、盛弘股份、阳光电源、四方股份、金盘科技等。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -14315,6 +14572,7 @@ B7H3验证年
 B7H3验证年
 1、瀚森&amp;宜联，两个3期基本确认B7H3-TOPi 靶点/MOA可行性；
 2、【映恩生物】ADC+IO2.0方案，体现低毒高效潜力；</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -14420,6 +14678,7 @@ B7H3验证年
 恒瑞/中生/翰森/信达/艾力斯2027E PE约26x/16x/25x/38x/14x，我们认为6月至今行情更多反映内需修复，海外大药价值仍未充分定价。
 
 联系人: 余文心/余克清/廖博闻/汪晋/薛健博</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -14471,6 +14730,7 @@ B7H3验证年
 3)基药落地+医保国谈收官+DRGs3.0，支付端改革打开 Q4 预期差。2026 版国家基药目录 9/1 起施行（收录 794 种、新增 116 种）；9 月 5–8 日国谈现场谈判竞价收官，124 个目录外品种入围，商保创新药目录 同步协商，预计 11 月发布、2027 年 1 月 1 日执行。医保局此前亦释 放未来五年持续调整目录、支持创新药纳入信号。DRG/DIP 3.0 分组 方案推进，有望改善部分高值创新技术支付环境。 
  
 [玫瑰]建议关注：1）CXO 及生命科学上游主线：药明康德、药明生物、康 龙化成、凯莱英、普洛药业、九洲药业、药石科技、博腾股份、泰格医 药、药明合联、海尔生物、阿拉丁、泰坦科技。2）创新药： 信达生物、中国生物制药、先声药业、三生制药、复宏汉霖、康方生 物、翰森制药、科伦博泰、荣昌生物、恒瑞医药、石药集团；3）互联 网药店&amp;器械等高增或企稳标的：京东健康、奕瑞科技、联影医疗、开 立医疗、迈瑞医疗、可孚医疗、鱼跃医疗、三诺生物、归创通桥、微泰医疗。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -14555,6 +14815,7 @@ B7H3验证年
 📍选股逻辑：优先关注汽车与AI数据中心敞口高、产品结构升级、份额提升、产能保障能力强，且能受益于价格上行和成本转嫁的公司。
 
 * 欢迎咨询详情</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -14624,6 +14885,7 @@ B7H3验证年
 #双环： 环动科技终止分拆，机器人估值全部收归母公司。产品定位新型减速器，持续与客户研发迭代，产品基本收敛有望进入量产。
 
 #具体公司细节欢迎交流~</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -14657,6 +14919,7 @@ B7H3验证年
             <div class="card-body">近期海外前沿模型进入了新一轮能力提升周期，叠加对反蒸馏的担忧，市场对国产模型的判断再度出现分歧。我们认为，国产模型后续有望进入新的大版本发布及能力提升周期。从2026年国产模型的演进来看，无论是注意力机制的优化，还是后训练的强化，对模型能力的提升都有明显贡献，追赶路径依然有效。
 更重要的是，前沿模型能力的提升将逐渐打开更大的市场空间。技术主线上，从早期的知识与多模态理解，到代码能力，再到当前各家模型公司都在攻坚的长程任务与工作流编排，进而到未来的递归自我改进和超级人工智能(ASI);这依次对应早期的聊天机器人场景、2025一2026H1爆发式增长的编程与软件开发场景、我们看好的今年下半年起有望放量的协作与泛办公场景，乃至未来企业、组织、社会的深度AI化，对应的市场空间不断放大。我们认为，当前仍处于应用的早期阶段。
 我们对整个大模型行业及国产模型仍然乐观。受近期市场情绪及其他外部因素影响，相关标的股价出现较大回调，我们认为这是不错的参与时点，推荐智谱、MiniMax等。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -14702,6 +14965,7 @@ B7H3验证年
 #乐心股份至少看翻倍空间、细节电话☎️
 
 近期调研汇总：行云科技、乐心股份、奥尼电子、赛意信息、粤港湾、润建股份</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -14777,6 +15041,7 @@ B7H3验证年
 风险提示：价格波动；需求不及预期。
 
 国金金属王钦扬/吴晋恺</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -14804,6 +15069,7 @@ B7H3验证年
             <div class="card-title">「图片」</div>
             <div class="card-tags"></div>
             <div class="card-body">「图片」</div>
+            <div class="card-imgs"><img class="card-img" src="图片/2026-09-15/45548818182815418_01.jpg" alt="图1" loading="lazy" title="点击放大" onclick="openCardImg(this)" onerror="this.style.display=&#39;none&#39;"><span class="card-imgs-n">1 图</span></div>
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -14843,6 +15109,7 @@ B7H3验证年
 威迈斯与德州仪器（TI）在中国深圳签署谅解备忘录（MOU），双方由汽车合作升级为覆盖 AI 基础设施领域+汽车的多赛道合作。
 
 威迈斯将携手 TI， TI将充分发挥在 MCU 及模拟器件（特别是 GaN 器件）方面的优势，并为威迈斯提供从市场开拓、芯片选型、方案定制到量产爬坡的全生命周期支持，双方合作交付更高效率、更小体积、高效可靠的 AIDC 电源整体解决方案，共同助力 AI 基础设施供电架构的升级。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -14915,6 +15182,7 @@ B7H3验证年
 ———————————————
 中信证券新材料
 李超/陈旺/俞腾/郭柯宇/何鑫圣/陈健/杨博钧</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -14966,6 +15234,7 @@ B7H3验证年
 3、#澄天伟业国内同步对接A和H公司，Q4预计会有突破性进展。
 
 4、#先看120亿市值，87%上涨空间。27年液冷收入20亿元，净利率20%计算，液冷业务净利润3.1亿元（上市公司持股77.27%），给30倍，90亿元，传统主业给30亿市值，先看120亿市值，国内同步拓展A和H，若突破市值看更高。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -15047,6 +15316,7 @@ B7H3验证年
 2️⃣拉美放量，估值锚切换。从“欧洲第二、10%天花板”切换到天花板高得多的叙事。
 
 预计净利：26年21亿（+29%）、27年27亿（+31%）。欢迎交流~</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -15128,6 +15398,7 @@ B7H3验证年
 [玫瑰]投资逻辑：智能家居政策红利释放，叠加电网基本盘托底、光伏业务持续拓展，力合微PLC技术多场景价值有望持续兑现。
 
 风险提示：智能家居行业政策落地节奏不及预期，电网招标及供货节奏不及预期，新产品研发及客户验证进度不及预期，地缘及汇率波动风险，原材料价格波动风险等</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -15236,6 +15507,7 @@ B7H3验证年
 给予主业20XPE=340e市值，燃机业务27年25XPE=150e市值，合计约490e市值，90%空间，保持“重点推荐” 。
 ———————————
 欢迎交流：孙潇雅/薛舟</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -15455,6 +15727,7 @@ B7H3验证年
 ✅ 超预期：披露头部AI服务器/光模块客户送样落地、大额框架订单，产能消化论证扎实 → 资金视为利好，推进审核
 ⚠️ 偏平淡：只写意向、送样，缺少重量级客户落地，主要靠行业赛道讲故事 → 中性，交易所可能继续二轮问询
 ❌ 偏弱：产能利用率、盈利假设解释薄弱，风险揭示不足 → 容易延后，甚至缩减募资规模#文字观点</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -15515,6 +15788,7 @@ B7H3验证年
 3.26年H1乘用车行业CR3/CR5/CR7分别为29.5/40.8/49.2%，行业集中度从22-25年整体呈现提升趋势，26年上半年受国内市场竞争加剧和消费者动力需求变化影响，集中度略有下滑。若供给侧改革实际落地，#我们认为行业产能优化有望提速&amp;利好龙头企业份额提升。
 
 供给侧改革推演报告和行业集中度等数据欢迎联系广发汽车组陈飞彤19821227018/罗英15766781877交流</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -15566,6 +15840,7 @@ B7H3验证年
 [玫瑰]此次整合如若最终完成，将成为中国汽车历史上最大的一笔重组案例。中长期来看，行业低效资产、重复体系的持续整合和出清，也将有效改善汽车行业的供需格局，终结价格内卷，推动行业整体毛利率、ROIC中枢上行，对行业是长期利好。
 
 欢迎交流！中信汽车</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -15617,6 +15892,7 @@ B7H3验证年
 3、公司半导体方面的进展积极，半导体材料平台公司值得期待。空白掩模版此前长期由日本企业占据主导地位，国产化率极低。目前公司已经获得DUV环节的基础产能与核心能力，产品整体覆盖14-90nm制程需求。上海半导体总部6月已动工建设，预期将于2027年上半年完成一期产能建设，2027年下半年完成产能爬坡；韩国原产线将改造升级并新增一条产线。聚和空白掩膜版产品已通过SK海力士、TMC、迪思微、中微掩模等国内外半导体客户的量产验证，客户反馈良好。后续不排除借助公司资本平台、产品技术依托等，未来整合国内产能以满足至少#国内50%以上的市场需求。
 
 [玫瑰][玫瑰][玫瑰]具体情况欢迎联系~</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -15662,6 +15938,7 @@ B7H3验证年
 业绩考核要求：子公司戴尔蒙德2026-2028年的净利润不低于人民币4850 万元、6800 万元、8450 万元。
 
 新一代PCB钻针——金刚石涂层钻针，未来潜力大[福][福][福]</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -15728,6 +16005,7 @@ B7H3验证年
 [礼物]线上路演链接： <a href="https://www.comein.cn/roadshow/home/463283" target="_blank" rel="noopener noreferrer">进门-领先的机构AI投研工作台 ↗</a>
 
 [太阳]联系人：宋涛18601045266/李绍程18721385032</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -15782,6 +16060,7 @@ B7H3验证年
 
 ☎️国金轻纺家电新消费赵中平团队
 轻工：毕先磊13122270825/叶秋含/谢俪丹/单欣彤15651830278</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -15839,6 +16118,7 @@ B7H3验证年
 #盈利预测 我们预计公司26-27年收入31/39亿，利润7/8.5亿，对应PE 14.6/12X，底部提示关注。
 
 🌹浙商轻纺团队史凡可/马莉/詹陆雨等，再次拜请、感谢支持！</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -15917,6 +16197,7 @@ B7H3验证年
 *两档剂量仍并行：方案一全人群确认 ORR 58.9%，方案二 49.2%；方案二在 TPS≥1%、TPS≥50% 不低。登记 III 期写的是 Q3W 4.5 mg/kg，更接近方案一，尚未看到方案二进入 III 期。
 
 *本条是野生型一线、ADC+PD-1、去化疗。SYNSTAR-01 是 EGFRm、TKI 失败后的单药 vs 化疗，已报 PFS 终点。两条线适应症和对照都不同。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -16121,6 +16402,7 @@ PD-L1 TPS&lt;1%亚组ORR 67.4%，mPFS 6.3mo，mOS 15.0mo
 资料来源：2026 WCLC
 注：仅为公开资料整理，不具备投资建议
 联系人：柳一林18322237137/刘焕彬/杨希成/黄翰漾/孙媛媛</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -16166,6 +16448,7 @@ PD-L1 TPS&lt;1%亚组ORR 67.4%，mPFS 6.3mo，mOS 15.0mo
 此激励主要针对点点互动这一主体，因此业绩目标一方面体现了公司对点点互动的增长信心；另一方面有望进一步提振业务团队动力。
 
 当前公司新产品《Lordrush》《Hotel legacy》逐步起量，《 <a href="https://wx.zsxq.com/mweb/views/weread/search.html?keyword=Kingshot" target="_blank" rel="noopener noreferrer">Kingshot ↗</a>》继续保持增长，Q4月度流水有望突破新高；随着持股计划落地，将进一步绑定点点研发能力，团队与管理层目标具备一致性；同时股东层面的减持压力已缓解，趋势向好。当前估值处于低位，建议逢低配置。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -16253,6 +16536,7 @@ ADC平台：ICP-B794（B7-H3 ADC）瞄准SCLC，I期剂量递增研究持续推�
 
 四、预期催化剂：
 26年业绩+ ICP-488 等产品数据陆续读出+其他BD（BCL-2、TYK2、双抗ADC等，按照激励目标A档，需要BD来实现），等等。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -16340,6 +16624,7 @@ ADC平台：ICP-B794（B7-H3 ADC）瞄准SCLC，I期剂量递增研究持续推�
 2.#新能源是本月最大亮点，出口渗透率快速提升。8月新能源出口1256辆，同比+1052%，环比+18%，1-8月累计6424辆，同比+128.9%。8月新能源出口渗透率达到6.3%，较去年同期约0.8%提升约5.5pct，较7月提升1.1pct。其中轻卡新能源540辆，同比+2150%；轻客新能源624辆，同比+845%，新能源轻客单月渗透率已超过33%。
 
 3.#欧洲电动VAN 8月销量显著提升。公司1-7月累计出口约700辆，8月单月出口约400辆，环比显著提升。9月4日点评提示领导欧洲柴油涨价商用车电动化提速机会，VAN是欧洲最大商用车品类（200万辆+）*最高电动渗透率（欧盟26H1已达16%，远超其他品类，有望快速提甚至50%以上，中国26H1已超70%）*高单车盈利（26H1福田单车利润3w）。2025-2026年为公司出口欧洲的产品导入阶段或0-1阶段，后续有望迎来爆发式增长，值得重视。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -16403,6 +16688,7 @@ ADC平台：ICP-B794（B7-H3 ADC）瞄准SCLC，I期剂量递增研究持续推�
 #3）自营品规模快速扩容
 
 9 月以来自营品日均 GMV 约 2240 万元，同比增长 79.6%，自营化转型不断夯实公司盈利底盘。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -16472,6 +16758,7 @@ ADC平台：ICP-B794（B7-H3 ADC）瞄准SCLC，I期剂量递增研究持续推�
 - 预计26/27/28公司收入+20%/15%/12%至52/60/67亿元，归母净利+36%/25%/17%至7.5/9.3/10.9亿元，PE19.3/15.5X/13.2X，作为A股户外及运动赛道最核心标的规模成长潜力及业绩弹性突出，继续强调推荐！
 
 风险提示：零售环境波动、新品牌发展不及预期</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -16544,6 +16831,7 @@ ADC平台：ICP-B794（B7-H3 ADC）瞄准SCLC，I期剂量递增研究持续推�
 ☎️横岭侧峰从紫金看龙净价值： <a href="https://s.comein.cn/t9e57z46" target="_blank" rel="noopener noreferrer">进门 ↗</a>
 ☎️麻米措项目跟踪： <a href="https://s.comein.cn/dg4193rd" target="_blank" rel="noopener noreferrer">进门 ↗</a>
 ☎️紫金矿业定增跟踪： <a href="https://s.comein.cn/htzx734f" target="_blank" rel="noopener noreferrer">进门 ↗</a></div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -16589,6 +16877,7 @@ ADC平台：ICP-B794（B7-H3 ADC）瞄准SCLC，I期剂量递增研究持续推�
 [太阳]看好大陆企业BT基板市占率提升趋势。BT基板作为存储上游，目前大陆企业仅5-10%市占率，自主可控提升空间充分。目前海外基板企业扩产以ABF基板为主导，尽管韩国三星、LG有扩产BT基板计划，但由于三星、海力士存储扩产计划较大，我们判断国内存储企业能够获得的海外BT基板增量有限，倒逼自主可控进程加速。此外，目前多家大陆公司加大对于上游BT树脂等材料突破力度，为产业链整体自主可控奠定更加良好基础。
 
 [太阳]头部BT基板企业重点受益，推荐上峰材料等。我们判断长鑫未来主流产品如果从LPDDR4升级到LPDDR5及LPDDR6，对于BT基板的热膨胀系数等将提出更高要求，头部BT基板企业将重点受益。推荐上峰材料（Q2收购美琪电路，产业链协同资源丰富）。此外深南电路、兴森科技等有望重点受益。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -16658,6 +16947,7 @@ ADC平台：ICP-B794（B7-H3 ADC）瞄准SCLC，I期剂量递增研究持续推�
     3）市值：当前300亿出头对应今年30倍PE作为底部市值，三大确定性增长板块30亿中长期利润即使就给10倍PE，合计先看600亿市值。
 
 [红包]</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -16685,6 +16975,7 @@ ADC平台：ICP-B794（B7-H3 ADC）瞄准SCLC，I期剂量递增研究持续推�
             <div class="card-title">首华燃气目前的核心：气价。9月下半月中石油LNG工厂（内蒙古油田周边除外）原料气竞价交易结束，起拍价格3.25元/方，成交3.7-4.16元/方。＃低端较上期上...</div>
             <div class="card-tags"></div>
             <div class="card-body">首华燃气目前的核心：气价。9月下半月中石油LNG工厂（内蒙古油田周边除外）原料气竞价交易结束，起拍价格3.25元/方，成交3.7-4.16元/方。＃低端较上期上涨0.17元/方～高端上涨0.46元/方。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -16727,6 +17018,7 @@ ADC平台：ICP-B794（B7-H3 ADC）瞄准SCLC，I期剂量递增研究持续推�
 🔥自建产能贡献核心弹性。目前行业液冷产品工艺以CNC为主，公司工艺创新对非关键尺寸工序采用冷锻冲压工艺快速成型，仅关键尺寸使用CNC加工，可降低成本30%以上，效率提升5倍。 公司快速切入双鸿、Cooler Master供应链，最终客户为英伟达。公司投入4.26亿元建设液冷产能，快速扩大产能抢占市场份额。Q4实现快速释放，2027年将进入十倍增长阶段预计收入10亿元以上，净利润1.5亿以上。业务持续拓展，#单机柜价值量可达20万元，进一步打开价值天花板。
 
 🎁收购宸裕精密拓宽渠道、补全液冷零部件工艺。公司目前控股55%，预计Q4并表，未来逐步提升持股比例。液冷行业MIM工艺平均良率约为60%，公司目前MIM工艺良率已达75%，目标提升至80%以上。#宸裕精密为双鸿DIMM 总成 MIM 工艺唯一通过验证并稳定批量供货的企业</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -16784,6 +17076,7 @@ ADC平台：ICP-B794（B7-H3 ADC）瞄准SCLC，I期剂量递增研究持续推�
 🌹预计 2026‑2028 年营收 11.49/15.16/19.73 亿元，归母净利润 1.44/3.37/4.92 亿元。公司固晶主业扎实，焊线 + 测试分选持续兑现，叠加海外、光模块远期弹性，建议重点关注。
 
 ⚡️风险提示：产业进展不及预期</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -16841,6 +17134,7 @@ ADC平台：ICP-B794（B7-H3 ADC）瞄准SCLC，I期剂量递增研究持续推�
 首个项目已落地，获得超过10亿美元中国互联网大厂五年锁定订单，算力中心部署在印尼、马来西亚等东南亚国家，2026年5月建设完毕，2026年10月开始交付，从2026年第四季度起确认收预计2027年6月30日前累计建成超100兆瓦算力，对应500亿收入(分60个月（年化100亿）计入收入），公司不持有数据中心及算力卡，绝对轻资产。
 
 预计分销业务2026年可实现6亿+利润/YOY150%+，收入超300亿/yoy+100%,token工厂可再造多个硬蛋。建议重点关注</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -16901,6 +17195,7 @@ ADC平台：ICP-B794（B7-H3 ADC）瞄准SCLC，I期剂量递增研究持续推�
 
 💎基本面扎实+散热明显低估，重点推荐！
 7月底以来板块普遍反弹近50%，部分接近翻倍，公司主业扎实、散热进展顺利，补涨空间大。10月散热产能即将落地，后续继续扩产目标直指行业第一，相信市场会重新认识力量！当前位置重点推荐！</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -16979,6 +17274,7 @@ GPU加速卡：8颗X16    128Lanes
 DPU           1颗X16      16Lanes
 NVMe SSD   8-16块X4 32-64Lanes
 合计304-336Lanes  对应4颗104通道pcie 5.0 Switch</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -17030,6 +17326,7 @@ NVMe SSD   8-16块X4 32-64Lanes
 [玫瑰]线束盒订单高景气、液冷机柜加速推进。富士康验厂顺利，AWS、AMD交付启动+份额提高，线束盒出货高增。TE专属机柜工厂预计10月中启动运营；ASW机柜也在对接，目标机柜一站式服务商。
 
 [玫瑰]汇兑压力持续缓解。26H1汇兑亏损1亿元，还原后经营利润2.2亿元，下半年美元走势趋缓，汇兑亏损收窄，同期业绩基数持续走低。</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -17075,6 +17372,7 @@ NVMe SSD   8-16块X4 32-64Lanes
 业绩爆发原因：1.公司一改以往战略，过往是降价开拓市场，Q2开始涨价提利，客户接受顺价意向度较高，q2成功完成部分涨价，毛利率从17%提升至20%，预计q3涨价范围更大，业绩会进一步大幅提升。2.公司产品结构性变化，智能模组毛利率比传统产品高7-10%，智能模组收入占比将会逐年提升。
 
 未来增长动力：公司产品逐渐从4G、5G通信模组逐渐扩展至AI模组，帮助高通、英伟达、联发科、瑞芯微等企业拓展下游客户，今年将开始在AI端侧将出现较为亮眼的表现，上半年智能模组收入占比将近50%，今年可能是智能模组超越传统业务的第一年，未来公司将成为AI端侧应用场景的主力军。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -17144,6 +17442,7 @@ NVMe SSD   8-16块X4 32-64Lanes
 深度报告： <a href="https://mp.weixin.qq.com/s/81m84YLZNYArJDOZYsC-nA" target="_blank" rel="noopener noreferrer">鸿仕达（920125）—AI时代自动化设备“小巨人”【招商机械】 ↗</a>
 
 ☎️联系人：郭倩倩/葛小川/郑笑东</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -17195,6 +17494,7 @@ NVMe SSD   8-16块X4 32-64Lanes
 🍁＃主业盈利反转。传统工业仪表基本盘稳固，公司收缩低毛利民用报警器业务，完成人员优化后，预计今年盈利反转，27年主业体现1e利润。
 
 🍁投资建议：看好公司切入半导体领域的成长性，mfc受益于行业供不应求和国产替代趋势，当时底部位置，继续重点推荐！</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -17276,6 +17576,7 @@ NVMe SSD   8-16块X4 32-64Lanes
 [爱心]感恩鼎力支持#广发建筑耿鹏智团队
 
 耿鹏智/尉凯旋/张子峻/陈怡洁</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -17327,6 +17628,7 @@ NVMe SSD   8-16块X4 32-64Lanes
 #化纤生头机器人：全新专机预计27年放量，存量市场~20e公司独家。
 
 #主业：新签订单数量与质量双改善，积极拓展新新能源与烟草等下游。新签24年~23e、25年30e、26E33e，25H2订单盈利能力回升。26Q2在手~54e，订单转换周期1.5-2年，26年兑现24年订单为主、27年兑现25订单为主。</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -17387,6 +17689,7 @@ ps：不代表公司口径" data-author="白露"
 #市场炒二次侧预期在先、一次侧兑现在后，盾安环境近期的行情带有明显的交易订单落地的后验特征，更适用“兑现外推”而非“空间假设”。公司在多个品类上同时具备客户关系、认证资质和规模化交付能力，我们预计数据中心液冷相关收入今年7e、明年20e，明年整体估值不到10x，数据中心订单弹性尚未被充分定价！
 
 ps：不代表公司口径</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -17444,6 +17747,7 @@ ps：不代表公司口径</div>
 ④考虑到国内消费大环境影响，行业竞争激烈导致客单价下降，核心产品嗨体类及再生类产品过往为行业稀缺合规三类医疗器械注册证，25年行业合规三类器械注册证趋于多元化，导致公司产品所处领域竞争日益激烈，我们预计公司2026-2028年归母净利润分别为13.13/14.15/15.46亿元，同比增长2%/8%/9%，对应26-28年PE分别为20/19/17，维持“增持”投资评级。
 
 联系人：梁广楷/许菲菲，张语馨</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -17489,6 +17793,7 @@ ps：不代表公司口径</div>
 [玫瑰]重视CNTp-3D集流体成长性。按照公司规划，后续产能提升十倍以上，3年内有望贡献10亿以上利润，可重点关注产能释放节奏
 
 [玫瑰]公司主业逐步改善，新业务即将放量，可持续关注</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -17549,6 +17854,7 @@ ps：不代表公司口径</div>
 #对标海外龙头HWM，#公司当前市值严重低估，#把握低位布局机会。HWM是海外叶片龙头，1000亿美金市值，未来3-5年收入和利润增速仅仅10-20%，当前市值对应28年PE尚且在40倍以上，估值水平显著超过GEV（30倍）。应流作为国内叶片龙头，正处于快速成长期，收入和利润增速是HWM的3倍左右，但当前市值不足300亿，对应28年不足20倍，显著低估，建议把握当前布局机会！
 
 ☎国金机械：满在朋/房灵聪18361753245</div>
+            
             <div class="card-footer">
                 <span>👍 2</span>
                 <span>💬 0</span>
@@ -17606,6 +17912,7 @@ ps：不代表公司口径</div>
 2、下一代PCB钻针（陶瓷PCB用——金刚石涂层钻针，杰美特）[福][福][福]
 
 3、下一代激光打孔（陶瓷PCB用）：英诺激光！[福][福][福]</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -17633,6 +17940,7 @@ ps：不代表公司口径</div>
             <div class="card-title">🍁hcdx 8月反弹底部筛选的科翔股份已经上涨130%，成为这轮ai反弹龙头，继续看好pcb陶瓷散热</div>
             <div class="card-tags"></div>
             <div class="card-body">🍁hcdx 8月反弹底部筛选的科翔股份已经上涨130%，成为这轮ai反弹龙头，继续看好pcb陶瓷散热</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -17666,6 +17974,7 @@ ps：不代表公司口径</div>
             <div class="card-body">万讯自控 可以重视，小高凯的逻辑
 
 公司拿到了brooks很大的订单，正式转型半导体精密零部件，现在只有30e，赔率很好，业绩和股价空间挺大的</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -17705,6 +18014,7 @@ ps：不代表公司口径</div>
 非洲电解铝龙头，电解铝中最强的阿尔法之一，未来有望大幅超市场预期！[福][福][福]
 
 重大推荐，持续力推！</div>
+            
             <div class="card-footer">
                 <span>👍 1</span>
                 <span>💬 0</span>
@@ -17789,6 +18099,7 @@ ps：不代表公司口径</div>
 ⚠风险提示：新业务放量不及预期
 
 ☎浙商大制造 邱世梁/周向昉/李晗玥15915890448</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -17852,6 +18163,7 @@ ps：不代表公司口径</div>
 #投资建议
 
 继续看好【星源材质】，半导体国产化先锋！</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -17927,6 +18239,7 @@ ps：不代表公司口径</div>
 #利润弹性明显，继续推荐【星源材质】
 
 27年公司预计50万支出货（满产满销），归母2.7亿利润，#28年公司预计MFC出货100万支，考虑锂电、gkj等领域放量，28年归母8亿利润，利润弹性显著，继续推荐【星源材质】</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -17972,6 +18285,7 @@ ps：不代表公司口径</div>
 #传统光模块隔离器&amp;滤光片业务，预期26H2在下游客户份额提升显著：隔离器和滤光片26Q2均处于紧缺、涨价周期；在上游法拉第旋光片、光学镀膜设备紧缺背景下，随着公司产能逐步释放，预计公司26H2将显著在下游客户提升份额！
 
 #目前公司东莞/江西/无锡三地同步扩产， 预计公司Q3/Q4业绩环比提升显著，当下位置对于27年不足20X，坚定推荐看500亿市值！建议各位领导重视！欢迎电话预约路演📞</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -18017,6 +18331,7 @@ ps：不代表公司口径</div>
 🚀光模块需求大幅提升，有望贡献一半利润。公司光模块目前客户华工光迅，产能紧张下大客户也跟公司沟通了业务，按照客户指引光收入有望从今年4亿多增长到27年的15~20亿。产能端公司目前光模块产能满产，技改盐城HDI工厂增加十几亿产值。盐城在投msap产能专门为光模块等高端产能装备，投产后光模块产能可以达到近40亿元！按照目前利润水平可以达到接近30%净利率。
 
 🚀陶瓷业务算力+光模块双轮驱动。公司陶瓷业务布局多年，目前在跟客户做光模块tec用陶瓷板，单模块价值量几十元。算力业务上公司跟H一直配合紧密，NV在测试HDI里面加陶瓷方案，公司也在接洽客户，跟相关公司合作一起给大客户打样，成长空间进一步打开！</div>
+            
             <div class="card-footer">
                 <span>👍 0</span>
                 <span>💬 0</span>
@@ -18334,6 +18649,45 @@ function renderBookmarkBar() {
         showToast('已复制「' + brief + '」，正在打开千问搜索…');
     });
 })();
+
+/* ========== 卡片大图浮层（2026-09-20 恢复）========== */
+var _ovZoom = 1;
+function _ovKey(e) { if (e.key === 'Escape') closeCardImg(); }
+function closeCardImg() {
+    var d = document.getElementById('imgOverlay');
+    if (d) d.remove();
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+    document.removeEventListener('keydown', _ovKey);
+}
+function openCardImg(el) {
+    var old = document.getElementById('imgOverlay');
+    if (old) old.remove();
+    _ovZoom = 1;
+    var box = document.createElement('div');
+    box.id = 'imgOverlay';
+    box.className = 'img-overlay';
+    box.innerHTML = '<img src="' + el.getAttribute('src') + '" alt="">' +
+                    '<div class="img-overlay-tip">滚轮缩放 · 点击图片切换 1x/2x · Esc 或点空白关闭</div>';
+    box.onclick = function(e) { if (e.target === box) closeCardImg(); };
+    document.body.appendChild(box);
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    var img = box.querySelector('img');
+    img.onclick = function(e) {
+        e.stopPropagation();
+        _ovZoom = _ovZoom > 1.05 ? 1 : 2;
+        this.style.transform = 'scale(' + _ovZoom + ')';
+        this.style.cursor = _ovZoom > 1 ? 'zoom-out' : 'zoom-in';
+    };
+    box.addEventListener('wheel', function(e) {
+        e.preventDefault();
+        _ovZoom = Math.max(0.4, Math.min(6, _ovZoom + (e.deltaY > 0 ? -0.15 : 0.15)));
+        img.style.transform = 'scale(' + _ovZoom + ')';
+        img.style.cursor = _ovZoom > 1 ? 'zoom-out' : 'zoom-in';
+    }, {passive: false});
+    document.addEventListener('keydown', _ovKey);
+}
 </script>
 </body>
 </html>
