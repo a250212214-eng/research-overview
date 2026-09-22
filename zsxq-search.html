@@ -41,12 +41,30 @@ body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Mi
         font-size:12.5px; color:var(--muted); cursor:pointer; transition:all .14s; user-select:none; }
 .chip:hover { border-color:var(--blue); color:var(--blue); }
 .chip.on { background:linear-gradient(135deg,#e8f0fd,#d3e3fb); border-color:var(--blue); color:#1c4fa1; font-weight:600; }
+.chip .c { font-style:normal; font-size:10.5px; color:#93a0b1; margin-left:5px; }
+.chip.on .c { color:#4a76c4; }
+.chip.ind-more { border-style:dashed; }
+
+/* ── 自定义时间区间 ── */
+.rng { display:inline-flex; align-items:center; gap:6px; }
+.rng input[type=date] { padding:5px 8px; border:1px solid var(--border); border-radius:8px;
+        background:var(--panel2); color:var(--text); font-size:12.5px; font-family:inherit; outline:none; transition:all .14s; }
+.rng input[type=date]:focus { border-color:var(--blue); background:#fff; box-shadow:0 0 0 3px rgba(47,107,216,.08); }
+.rng .tilde { color:var(--muted); font-size:12px; }
+.rng button { padding:6px 13px; border:none; border-radius:8px; background:var(--blue); color:#fff;
+        font-size:12.5px; font-weight:600; cursor:pointer; transition:all .14s; }
+.rng button:hover { background:#2559bd; }
+.rngtip { font-size:11.5px; color:var(--muted); }
 
 .hot { margin-top:14px; padding-top:13px; border-top:1px dashed var(--border); }
 .hot .lbl { font-size:12px; color:var(--muted); margin-right:8px; }
 .hot .kw { display:inline-block; padding:5px 11px; margin:0 6px 6px 0; border-radius:7px;
            background:#eef3fc; color:#2a5db5; font-size:12.5px; cursor:pointer; transition:all .14s; }
 .hot .kw:hover { background:var(--blue); color:#fff; }
+
+/* ── 行业更多（折叠区）── */
+.indwrap { display:none; margin-top:11px; padding-top:11px; border-top:1px dashed var(--border); }
+.indwrap.show { display:block; }
 
 /* ── 结果统计 ── */
 .rstat { display:flex; align-items:baseline; gap:14px; margin-bottom:14px; padding-left:4px; flex-wrap:wrap; }
@@ -97,11 +115,27 @@ mark { background:#fff2a8; color:#7a5b00; padding:0 2px; border-radius:3px; font
     </div>
 
     <div class="opt">
-      <span class="lbl">范围</span>
-      <span class="chip on" data-days="30">近 30 天</span>
-      <span class="chip" data-days="7">近 7 天</span>
-      <span class="chip" data-days="90">近 90 天</span>
-      <span class="chip" data-days="0">全库</span>
+      <span class="lbl">时间</span>
+      <span id="rngChips" style="display:contents">
+        <span class="chip" data-days="7">近 7 天</span>
+        <span class="chip on" data-days="30">近 30 天</span>
+        <span class="chip" data-days="90">近 90 天</span>
+        <span class="chip" data-days="0">全库</span>
+      </span>
+      <span style="display:contents">
+        <span class="chip" id="cusToggle">自定义 ▶</span>
+      </span>
+    </div>
+
+    <div class="opt" id="cusBox" style="display:none">
+      <span class="lbl">区间</span>
+      <span class="rng">
+        <input type="date" id="dFrom" min="2026-01-01">
+        <span class="tilde">~</span>
+        <input type="date" id="dTo">
+        <button type="button" id="dApply">应用</button>
+      </span>
+      <span class="rngtip" id="dTip">留空一端表示该端不限；也可直接回车</span>
     </div>
 
     <div class="opt">
@@ -133,8 +167,8 @@ mark { background:#fff2a8; color:#7a5b00; padding:0 2px; border-radius:3px; font
   <div id="out"></div>
 
   <div class="foot">
-    数据源：知识星球「调研纪要」全文库（zsxq_topics）· 每日 09:15 自动入库<br>
-    本页为只读检索 · 支持中文子串匹配
+    数据源：知识星球「调研纪要」全文库（zsxq_topics）· 每日 05:00 自动入库<br>
+    本页为只读检索 · 支持中文子串匹配 · 时间区间可自定义（如 2026-01-01 ~ 2026-01-07）
   </div>
 </div>
 
@@ -150,15 +184,28 @@ try { var _lk = localStorage.getItem(LS_KEY); if (_lk) SB_KEY = _lk; } catch (e)
 function hasKey(){ return SB_KEY && SB_KEY.indexOf("__") !== 0 && SB_KEY.length > 20; }
 
 var PAGE = 60;
-var state = { kw:"", days:30, field:"content", rows:[], total:0, offset:0, loading:false };
+/* state.from / state.to 是时间过滤的唯一真相；state.days 只用于按钮高亮与文案
+ *   days > 0  → 预置「近 N 天」（from = N 天前，to 开放）
+ *   days = 0  → 全库（不做日期过滤）
+ *   days = -1 → 自定义区间（用 from / to）                                        */
+var state = { kw:"", days:30, from:"", to:"", field:"content", ind:"",
+              rows:[], total:0, offset:0, loading:false };
 
 var $ = function(id){ return document.getElementById(id); };
 function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function pad2(n){ return String(n).padStart(2,"0"); }
+function ymd(d){ return d.getFullYear() + "-" + pad2(d.getMonth()+1) + "-" + pad2(d.getDate()); }
 
-/* ── 日期偏移 ── */
+/* ── 日期工具 ── */
 function daysAgo(n){
   var d = new Date(); d.setDate(d.getDate() - n + 1);
-  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+  return ymd(d);
+}
+function today(){ return ymd(new Date()); }
+function rangeLabel(){
+  if (state.days > 0) return "近 " + state.days + " 天";
+  if (state.days === 0) return "全库";
+  return (state.from || "最早") + " ~ " + (state.to || "至今");
 }
 
 /* ── 构造 PostgREST 查询 ── */
@@ -167,7 +214,8 @@ function buildURL(limit, offset){
   q += "&limit=" + limit + "&offset=" + offset;
   if (state.kw) q += "&" + state.field + "=ilike.*" + encodeURIComponent(state.kw) + "*";
   if (state.ind) q += "&sector=eq." + encodeURIComponent(state.ind);
-  if (state.days) q += "&date=gte." + daysAgo(state.days);
+  if (state.from) q += "&date=gte." + state.from;
+  if (state.to)   q += "&date=lte." + state.to;
   return SB_URL + "/rest/v1/zsxq_topics?" + q;
 }
 
@@ -220,7 +268,7 @@ function render(newRows){
   $("stat").innerHTML = statBar();
 
   if (!state.rows.length){
-    $("out").innerHTML = '<div class="empty"><div class="ic">🗂</div>没有命中记录<br><span style="font-size:12.5px">换个关键词，或把范围切到「全库」再试</span></div>';
+    $("out").innerHTML = '<div class="empty"><div class="ic">🗂</div>没有命中记录<br><span style="font-size:12.5px">换个关键词，或把时间切到「全库」再试</span></div>';
     return;
   }
 
@@ -276,7 +324,7 @@ function statBar(){
   var label = state.kw ? '「' + esc(state.kw) + '」' : (state.ind ? esc(state.ind) + " 行业" : "最近发帖");
   return '<div class="rstat">' +
     '<span class="n">' + (state.total < 0 ? state.rows.length : state.total) + '</span>' +
-    '<span class="t">条命中 · ' + label + ' · ' + (state.days ? "近 " + state.days + " 天" : "全库") + ' · 覆盖 ' + days.length + ' 天</span>' +
+    '<span class="t">条命中 · ' + label + ' · ' + rangeLabel() + ' · 覆盖 ' + days.length + ' 天</span>' +
     '<span class="spark">' + bars + '</span>' +
   '</div>';
 }
@@ -284,39 +332,108 @@ function statBar(){
 /* ============================================================
  *  行业（申万一级）入口
  *  —— 复用帖子自带的 sector 字段，点一下就把该行业全部捞出来
+ *
+ *  ⚠️ 性能坑（2026-09-22 修）：PostgREST 没有 GROUP BY，Supabase 又硬限
+ *     单请求 1000 行（db-max-rows），所以算「全表 sector 计数」必须翻 64 页。
+ *     原实现**串行**翻页 → 实测 41 秒（而且还写死了 off<60000，漏掉最新 5%）。
+ *     现在三级：① 当天本地缓存（瞬时）→ ② 构建时生成的 zsxq-sectors.json
+ *     （一个小文件，瞬时）→ ③ 12 路并行翻页兜底（实测约 3 秒）。
  * ============================================================ */
 var IND_LIST = [];
 var IND_PIN = ["电子","计算机","通信","电力设备","机械设备","医药生物","汽车","国防军工"];
+var IND_CACHE = "zsxq_sectors_v2";
+var IND_TTL   = 6 * 3600 * 1000;    // 缓存 6 小时内视为新鲜，直接用
+var IND_PAGE  = 1000;               // Supabase 单请求硬上限
+var IND_WORKERS = 12;               // 并行翻页宽度
 
-function indCacheKey(){
+function indOldKey(){
   var d = new Date();
-  return "zsxq_ind_" + d.getFullYear() + String(d.getMonth()+1).padStart(2,"0") + String(d.getDate()).padStart(2,"0");
+  return "zsxq_ind_" + d.getFullYear() + pad2(d.getMonth()+1) + pad2(d.getDate());
 }
 
+function saveInd(list, ts){
+  IND_LIST = list;
+  try {
+    localStorage.setItem(IND_CACHE, JSON.stringify({ ts: ts || Date.now(), list: list }));
+    localStorage.removeItem(indOldKey());     // 清掉旧版「按天」缓存
+  } catch (e) {}
+  renderInd();
+}
+
+/* 主入口：本地缓存 → 静态索引 → 并行翻页 */
 function loadInd(){
   if (!hasKey()) return;
-  try { var raw = localStorage.getItem(indCacheKey()); if (raw) { IND_LIST = JSON.parse(raw); renderInd(); return; } } catch(e){}
-  var acc = {}, off = 0;
-  (function step(){
-    fetch(SB_URL + "/rest/v1/zsxq_topics?select=sector&order=topic_id.asc&limit=1000&offset=" + off, {
-      headers: { "apikey": SB_KEY, "Authorization": "Bearer " + SB_KEY, "Range": off + "-" + (off + 999) }
+  var cached = null;
+  try { cached = JSON.parse(localStorage.getItem(IND_CACHE) || "null"); } catch (e) {}
+  if (cached && cached.list && cached.list.length){
+    IND_LIST = cached.list;
+    renderInd();                                    // 先渲染，用户立刻看到行业条
+    if (Date.now() - (cached.ts || 0) < IND_TTL) return;
+    scanInd(true);                                  // 过期了，后台静默刷新
+    return;
+  }
+  scanInd(false);
+}
+
+/* 静态索引快路径：构建/部署时由 build_sector_index.py 生成 */
+function scanInd(silent){
+  fetch("zsxq-sectors.json", { cache: "no-store" })
+    .then(function(r){ if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .then(function(j){
+      var list = (j && j.sectors) || (Array.isArray(j) ? j : []);
+      if (!list || !list.length) throw new Error("empty");
+      var ts = j.ts ? Date.parse(j.ts) : Date.now();
+      saveInd(list, ts);
+      if (Date.now() - ts > 3 * 86400000) scanIndFromDb(true);   // JSON 太旧，顺带刷一次
     })
-    .then(function(r){ return r.ok ? r.json() : []; })
-    .then(function(rows){
-      rows.forEach(function(x){ var s = x.sector || "其他"; acc[s] = (acc[s] || 0) + 1; });
-      off += rows.length;
-      if (rows.length === 1000 && off < 60000) return step();
-      IND_LIST = Object.keys(acc).map(function(k){ return { n:k, c:acc[k] }; })
-                   .sort(function(a,b){ return b.c - a.c; });
-      try { localStorage.setItem(indCacheKey(), JSON.stringify(IND_LIST)); } catch(e){}
-      renderInd();
-    })
-    .catch(function(){});
-  })();
+    .catch(function(){ scanIndFromDb(silent); });
+}
+
+/* 兜底：并行翻页整张表算 sector 计数（12 并发实测约 3s，串行要 40s+） */
+function scanIndFromDb(silent){
+  fetch(SB_URL + "/rest/v1/zsxq_topics?select=sector", {
+    headers: { "apikey": SB_KEY, "Authorization": "Bearer " + SB_KEY,
+               "Prefer": "count=exact", "Range": "0-0" }
+  })
+  .then(function(r){
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    var cr = r.headers.get("Content-Range") || "";
+    var total = cr.indexOf("/") >= 0 ? parseInt(cr.split("/")[1], 10) : 0;
+    if (!total) throw new Error("拿不到总行数");
+    var offsets = [], o;
+    for (o = 0; o < total; o += IND_PAGE) offsets.push(o);     // 不再写死 60000 上限
+    var acc = {}, got = 0, i = 0;
+    return new Promise(function(resolve){
+      function next(){
+        if (i >= offsets.length){ resolve(got ? acc : null); return; }
+        var off = offsets[i++];
+        fetch(SB_URL + "/rest/v1/zsxq_topics?select=sector&order=topic_id.asc&limit="
+              + IND_PAGE + "&offset=" + off,
+              { headers: { "apikey": SB_KEY, "Authorization": "Bearer " + SB_KEY,
+                           "Range": off + "-" + (off + IND_PAGE - 1) } })
+          .then(function(r){ return r.ok ? r.json() : []; })
+          .then(function(rows){
+            rows.forEach(function(x){ var s = x.sector || "其他"; acc[s] = (acc[s] || 0) + 1; });
+            got += rows.length;
+          })
+          .catch(function(){})
+          .then(next);
+      }
+      for (var w = 0; w < Math.min(IND_WORKERS, offsets.length); w++) next();
+    });
+  })
+  .then(function(acc){
+    if (!acc) return;
+    var list = Object.keys(acc).map(function(k){ return { n: k, c: acc[k] }; })
+                 .sort(function(a, b){ return b.c - a.c; });
+    saveInd(list, Date.now());
+  })
+  .catch(function(){});
 }
 
 function chipInd(name, count){
-  return '<span class="chip" data-ind="' + esc(name) + '">' + esc(name) + '<i class="c">' + count + '</i></span>';
+  return '<span class="chip" data-ind="' + esc(name) + '">' + esc(name) +
+         '<i class="c">' + count + '</i></span>';
 }
 
 function renderInd(){
@@ -331,14 +448,19 @@ function renderInd(){
   var picked = others.map(function(x){ return x.n; });
   var rest = IND_LIST.filter(function(x){ return picked.indexOf(x.n) < 0; });
 
-  var box = $("indChips");
-  box.innerHTML = '<span class="chip' + (state.ind ? "" : " on") + '" data-ind="">全部</span>' +
+  $("indChips").innerHTML = '<span class="chip' + (state.ind ? "" : " on") + '" data-ind="">全部</span>' +
                   others.map(function(x){ return chipInd(x.n, x.c); }).join("");
+
+  var m = $("indMore"), w = $("indWrap");
   if (rest.length){
-    $("indMore").style.display = "";
-    $("indMore").textContent = "更多行业 ▾（" + rest.length + "）";
-    $("indWrap").innerHTML = '<div class="opt" style="margin-top:0">' +
+    m.style.display = "";
+    m.textContent = "更多行业 ▾（" + rest.length + "）";
+    w.innerHTML = '<div class="opt" style="margin-top:0">' +
       rest.map(function(x){ return chipInd(x.n, x.c); }).join("") + '</div>';
+  } else {
+    m.style.display = "none";
+    w.innerHTML = "";
+    w.classList.remove("show");
   }
   syncIndOn();
   bindInd();
@@ -353,7 +475,7 @@ function bindInd(){
     var w = $("indWrap");
     var show = w.classList.toggle("show");
     m.textContent = (show ? "收起行业 ▴" : "更多行业 ▾") +
-      (w.firstChild ? "（" + w.querySelectorAll('[data-ind]').length + "）" : "");
+      "（" + w.querySelectorAll('[data-ind]').length + "）";
   };
 }
 
@@ -398,7 +520,7 @@ function showKeyHint(){
       .then(function(r){
         if (!r.ok) throw new Error("HTTP " + r.status);
         $("km").innerHTML = '<span style="color:var(--down)">✓ 激活成功，正在加载结果…</span>';
-        setTimeout(function(){ search(false); }, 500);
+        setTimeout(function(){ search(false); loadInd(); }, 500);   // 顺带把行业条也拉起来
       })
       .catch(function(e){
         try { localStorage.removeItem(LS_KEY); } catch (er) {}
@@ -411,13 +533,58 @@ function showKeyHint(){
 }
 
 /* ── 交互绑定 ── */
-document.querySelectorAll('.opt .chip').forEach(function(c){
+// 时间预设
+document.querySelectorAll('#rngChips .chip').forEach(function(c){
   c.onclick = function(){
-    var g = c.parentNode;
-    g.querySelectorAll('.chip').forEach(function(x){ x.classList.remove('on'); });
-    c.classList.add('on');
-    if (c.dataset.days !== undefined) state.days = parseInt(c.dataset.days, 10);
-    if (c.dataset.field !== undefined) state.field = c.dataset.field;
+    var n = parseInt(c.dataset.days, 10);
+    state.days = n;
+    state.from = n > 0 ? daysAgo(n) : "";
+    state.to = "";
+    closeCustom();
+    document.querySelectorAll('#rngChips .chip').forEach(function(x){ x.classList.remove("on"); });
+    c.classList.add("on");
+    search(false);
+  };
+});
+
+// 自定义区间
+function closeCustom(){
+  $("cusBox").style.display = "none";
+  $("cusToggle").classList.remove("on");
+  $("cusToggle").textContent = "自定义 ▶";
+}
+(function(){
+  var box = $("cusBox"), tg = $("cusToggle");
+  $("dFrom").value = daysAgo(30);
+  $("dTo").value = today();
+  tg.onclick = function(){
+    var show = box.style.display === "none";
+    box.style.display = show ? "flex" : "none";
+    tg.classList.toggle("on", show);
+    tg.textContent = show ? "自定义 ▼" : "自定义 ▶";
+    if (show) $("dFrom").focus();
+  };
+  function apply(){
+    var f = $("dFrom").value.trim(), e = $("dTo").value.trim();
+    if (f && e && f > e){ var tmp = f; f = e; e = tmp; $("dFrom").value = f; $("dTo").value = e; }
+    if (!f && !e){ $("dTip").innerHTML = '<span style="color:var(--up)">请至少填一端日期</span>'; return; }
+    state.from = f; state.to = e; state.days = -1;
+    document.querySelectorAll('#rngChips .chip').forEach(function(x){ x.classList.remove("on"); });
+    $("dTip").innerHTML = '已应用 <b>' + (f || "最早") + ' ~ ' + (e || "至今") + '</b>';
+    search(false);
+  }
+  $("dApply").onclick = apply;
+  ["dFrom","dTo"].forEach(function(id){
+    $(id).addEventListener("keydown", function(ev){ if (ev.key === "Enter") apply(); });
+  });
+})();
+
+// 字段
+document.querySelectorAll('.opt .chip[data-field]').forEach(function(c){
+  c.onclick = function(){
+    state.field = c.dataset.field;
+    c.parentNode.querySelectorAll('.chip[data-field]').forEach(function(x){ x.classList.remove("on"); });
+    c.classList.add("on");
     search(false);
   };
 });
@@ -432,7 +599,10 @@ $("kw").addEventListener("keydown", function(e){
 });
 
 /* ── 初始：展示最近发帖 ── */
+$("kw").value = "";
 state.kw = "";
+state.from = daysAgo(state.days);      // 与默认高亮的「近 30 天」保持一致
+state.to = "";
 search(false);
 if (hasKey()) loadInd();
 </script>
