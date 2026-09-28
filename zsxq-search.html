@@ -139,6 +139,13 @@ mark { background:#fff2a8; color:#7a5b00; padding:0 2px; border-radius:3px; font
     </div>
 
     <div class="opt">
+      <span class="lbl">星球</span>
+      <span class="chip on" data-gid="">全部</span>
+      <span class="chip" data-gid="28855458518111">调研纪要</span>
+      <span class="chip" data-gid="15525241828412">观察者03</span>
+    </div>
+
+    <div class="opt">
       <span class="lbl">字段</span>
       <span class="chip on" data-field="content">全文</span>
       <span class="chip" data-field="title">仅标题</span>
@@ -167,8 +174,8 @@ mark { background:#fff2a8; color:#7a5b00; padding:0 2px; border-radius:3px; font
   <div id="out"></div>
 
   <div class="foot">
-    数据源：知识星球「调研纪要」全文库（zsxq_topics）· 每日 05:00 自动入库<br>
-    本页为只读检索 · 支持中文子串匹配 · 时间区间可自定义（如 2026-01-01 ~ 2026-01-07）
+    数据源：知识星球全文库（zsxq_topics）· 覆盖「调研纪要」与「观察者03」· 每日自动入库<br>
+    本页为只读检索 · 支持中文子串匹配 · 时间区间可自定义（如 2026-01-01 ~ 2026-01-07）· 可按星球筛选
   </div>
 </div>
 
@@ -187,8 +194,11 @@ var PAGE = 60;
 /* state.from / state.to 是时间过滤的唯一真相；state.days 只用于按钮高亮与文案
  *   days > 0  → 预置「近 N 天」（from = N 天前，to 开放）
  *   days = 0  → 全库（不做日期过滤）
- *   days = -1 → 自定义区间（用 from / to）                                        */
-var state = { kw:"", days:30, from:"", to:"", field:"content", ind:"",
+ *   days = -1 → 自定义区间（用 from / to）
+ * state.gid 是星球过滤（2026-09-27 新增）："" = 全部，
+ *   28855458518111 = 调研纪要，15525241828412 = 观察者03。
+ *   两星球同表共存（zsxq_topics.group_id），不加此过滤会把两边帖子混在一起。 */
+var state = { kw:"", days:30, from:"", to:"", field:"content", ind:"", gid:"",
               rows:[], total:0, offset:0, loading:false };
 
 var $ = function(id){ return document.getElementById(id); };
@@ -213,6 +223,7 @@ function buildURL(limit, offset){
   var q = "select=topic_id,date,title,content,author,sector,likes,url&order=date.desc,created_at.desc";
   q += "&limit=" + limit + "&offset=" + offset;
   if (state.kw) q += "&" + state.field + "=ilike.*" + encodeURIComponent(state.kw) + "*";
+  if (state.gid) q += "&group_id=eq." + encodeURIComponent(state.gid);
   if (state.ind) q += "&sector=eq." + encodeURIComponent(state.ind);
   if (state.from) q += "&date=gte." + state.from;
   if (state.to)   q += "&date=lte." + state.to;
@@ -389,9 +400,12 @@ function scanInd(silent){
     .catch(function(){ scanIndFromDb(silent); });
 }
 
-/* 兜底：并行翻页整张表算 sector 计数（12 并发实测约 3s，串行要 40s+） */
+/* 兜底：并行翻页整张表算 sector 计数（12 并发实测约 3s，串行要 40s+）
+   ⚠ 2026-09-27：zsxq_topics 同时存放两星球，行业条数口径固定取「调研纪要」，
+      与 zsxq-sectors.json（build_sector_index.py，同样过滤）保持一致。 */
+var GID_DIAOYAN = "28855458518111";
 function scanIndFromDb(silent){
-  fetch(SB_URL + "/rest/v1/zsxq_topics?select=sector", {
+  fetch(SB_URL + "/rest/v1/zsxq_topics?select=sector&group_id=eq." + GID_DIAOYAN, {
     headers: { "apikey": SB_KEY, "Authorization": "Bearer " + SB_KEY,
                "Prefer": "count=exact", "Range": "0-0" }
   })
@@ -407,7 +421,8 @@ function scanIndFromDb(silent){
       function next(){
         if (i >= offsets.length){ resolve(got ? acc : null); return; }
         var off = offsets[i++];
-        fetch(SB_URL + "/rest/v1/zsxq_topics?select=sector&order=topic_id.asc&limit="
+        fetch(SB_URL + "/rest/v1/zsxq_topics?select=sector&group_id=eq." + GID_DIAOYAN
+              + "&order=topic_id.asc&limit="
               + IND_PAGE + "&offset=" + off,
               { headers: { "apikey": SB_KEY, "Authorization": "Bearer " + SB_KEY,
                            "Range": off + "-" + (off + IND_PAGE - 1) } })
@@ -578,6 +593,16 @@ function closeCustom(){
     $(id).addEventListener("keydown", function(ev){ if (ev.key === "Enter") apply(); });
   });
 })();
+
+// 星球（2026-09-27 新增：两星球共表，必须能分开筛）
+document.querySelectorAll('.opt .chip[data-gid]').forEach(function(c){
+  c.onclick = function(){
+    state.gid = c.dataset.gid || "";
+    c.parentNode.querySelectorAll('.chip[data-gid]').forEach(function(x){ x.classList.remove("on"); });
+    c.classList.add("on");
+    search(false);
+  };
+});
 
 // 字段
 document.querySelectorAll('.opt .chip[data-field]').forEach(function(c){
