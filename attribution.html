@@ -140,7 +140,7 @@ border:1px solid #f3e2b8;border-radius:7px;padding:7px 11px;line-height:1.6}
 
   <div class="foot">
     数据来源：知识星球「调研纪要」库（Supabase）· 东方财富全网检索 ｜ 红涨绿跌<br>
-    生成于 2026-09-27 20:20 ｜ 改前端逻辑需重跑 build_attribution_module.py + deploy_overview_github.py
+    生成于 2026-09-28 15:37 ｜ 改前端逻辑需重跑 build_attribution_module.py + deploy_overview_github.py
   </div>
 </div>
 
@@ -287,12 +287,18 @@ function atStock(input){
   return atPush2(s);
 }
 
-/* ── ① 星球库：Supabase REST 直查 ── */
+/* ── ① 星球库：Supabase REST 直查 ──
+   2026-09-27：zsxq_topics 现在同表承载两个星球（调研纪要 + 观察者03），
+   不加 group_id 过滤会把观察者03 的研报转发也算进来，干扰归因上下文。
+   此处限定为「调研纪要」主库 —— 归因看的是本人在调研纪要里积累的原始纪要，
+   口径与历史归因报告保持一致。 */
+var AT_GID_DIAOYAN = "28855458518111";
 function atDbQuery(pats, ws, we){
   if (!pats.length) return Promise.resolve([]);
   var q = AT_SB + "/rest/v1/zsxq_topics"
         + "?select=topic_id,date,title,content,url,author,likes,sector"
         + "&or=(" + pats.join(",") + ")"
+        + "&group_id=eq." + AT_GID_DIAOYAN
         + "&date=gte." + ws + "&date=lte." + we
         + "&order=date.asc&limit=" + AT_DB_SCAN;
   return fetch(q, { headers: { "apikey": AT_KEY, "Authorization": "Bearer " + AT_KEY } })
