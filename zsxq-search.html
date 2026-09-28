@@ -286,7 +286,11 @@ function render(newRows){
   var html = newRows.map(function(r, i){
     var idx = state.offset - newRows.length + i;
     var body = r.content || "";
-    var long = body.length > 260;
+    // 只要有正文就渲染折叠容器 + 展开按钮（先隐藏），
+    // 插入 DOM 后再按「实际是否被 CSS 裁掉」决定按钮显隐 ——
+    // 不能再用固定字符数阈值（旧逻辑 260 与 CSS 4 行裁剪不匹配，
+    // 254 字的正文会被裁成 4 行带省略号，却不给出展开入口）。
+    var hasBody = body.trim().length > 0;
     return '<div class="card">' +
       '<div class="meta">' +
         '<span class="d">' + esc(r.date || "") + '</span>' +
@@ -297,13 +301,23 @@ function render(newRows){
       (r.title ? '<div class="ttl">' + hl(r.title) + '</div>' : "") +
       '<div class="txt clip" id="t' + idx + '">' + hl(body) + '</div>' +
       '<div class="acts">' +
-        (long ? '<span onclick="toggle(' + idx + ',this)">展开全文 ▾</span>' : "") +
+        (hasBody ? '<span class="tg" style="display:none" onclick="toggle(' + idx + ',this)">展开全文 ▾</span>' : "") +
         (r.url ? '<a class="ext" href="' + esc(r.url) + '" target="_blank" rel="noopener">星球原帖 ↗</a>' : "") +
       '</div>' +
     '</div>';
   }).join("");
 
   $("out").innerHTML += html;
+
+  // 逐条测量：内容实际高度 > 可视高度 ⇒ 确实被裁掉了 ⇒ 露出「展开全文」
+  newRows.forEach(function(r, i){
+    var idx = state.offset - newRows.length + i;
+    var t = $("t" + idx);
+    if (!t) return;
+    var span = t.parentNode.querySelector(".tg");
+    if (!span) return;
+    if (t.scrollHeight - t.clientHeight > 2) span.style.display = "";
+  });
 
   if (state.rows.length < state.total){
     var b = document.createElement("button");
