@@ -94,6 +94,10 @@ mark { background:#fff2a8; color:#7a5b00; padding:0 2px; border-radius:3px; font
 .empty .ic { font-size:36px; margin-bottom:12px; opacity:.7; }
 .err { background:#fff5f5; border:1px solid #ffd0d0; color:#c92a2a; border-radius:11px;
        padding:14px 18px; font-size:13px; line-height:1.7; }
+.tip { background:#f0f7ff; border:1px solid #cfe3ff; color:#1864ab; border-radius:11px;
+       padding:11px 16px; font-size:12.5px; line-height:1.7; }
+#tipbox { background:#fff9e6; border:1px solid #ffe08a; color:#8a6100; border-radius:11px;
+          padding:11px 16px; font-size:12.5px; line-height:1.7; margin-bottom:12px; }
 .more { display:block; width:100%; padding:13px; border:1px dashed var(--border); border-radius:11px;
         background:var(--panel); color:var(--blue); font-size:13.5px; font-weight:600; cursor:pointer; transition:all .16s; }
 .more:hover { border-color:var(--blue); background:#f7faff; }
@@ -171,6 +175,7 @@ mark { background:#fff2a8; color:#7a5b00; padding:0 2px; border-radius:3px; font
   </div>
 
   <div id="stat"></div>
+  <div id="tipbox" style="display:none"></div>
   <div id="out"></div>
 
   <div class="foot">
@@ -218,19 +223,78 @@ function rangeLabel(){
   return (state.from || "最早") + " ~ " + (state.to || "至今");
 }
 
-/* ── 构造 PostgREST 查询 ── */
-function buildURL(limit, offset){
+/* ── 构造 PostgREST 查询 ──
+ * ⚠️ 性能铁律（2026-10-03 修复 HTTP 500 / 57014 statement timeout）
+ *   zsxq_topics 有 65904 行，content（正文全文）是长文本，PostgREST 的
+ *   `content=ilike.*kw*` 前缀通配 = 全表 seq scan + 文本比对，命中量大时
+ *   必然撞 Supabase 的 statement timeout（实测「储能」3~39 秒必 500）。
+ *   两条对策，都已实装在下面：
+ *   ① 关键词字段用 `or=(title.ilike.*k*,content.ilike.*k*)` 顶掉单 content。
+ *      title 上有 trigram 索引，PostgREST 会先走 title 的候选集，命中量小得多
+ *      （实测「AI」：单 content → 500；or 双字段 → 206 正常）。
+ *   ② 「全文」字段自动按月分片：跨月区间拆成多个 date=gte..&date=lte 子查询，
+ *      单片扫的行数大降，逐片取回后在前端合并排序。
+ *      命中量仍然过大的超宽词（如「AI」）会走 ③ 降级。
+ * ③ 前端超时/500 兜底：命中首片失败时自动把区间收窄并提示用户改用标题检索，
+ *      不再把 PostgREST 原始报错直接甩给用户。 */
+var FIELD_SPLIT = 30;          /* 全文分片步长（天）。
+   实测（2026-10-03，65904 行、关键词「储能」= 最坏情况全命中）：
+     90 天分片 → 密集期整片 500/57014；
+     30 天分片 → 全部分片通过，单片 0.2~1.2s。
+   别为了少发请求把步长调大。 */
+var FIELD_SHRINK = [30, 7];    /* 分片仍失败时逐级收窄的步长（天） */
+var FIELD_MAX_MS = 12000;       /* 单次请求超过这个毫秒数就主动放弃并降级 */
+
+/* 把 [from,to] 切成不超过 step 天的若干片。
+ * ⚠️ state.to 常态是空串（「近 N 天」只设了 from），必须补成今天，
+ *    否则一律返回 [null] → 分片完全不生效（2026-10-03 踩过）。
+ *    确实没有下界（from 空 = 全库）时才不切，那种情况靠 or 双字段 + 降级兜住。 */
+function splitRange(from, to, step){
+  if (!from) return [null];                      /* 全库：不切 */
+  var a = new Date(from + "T00:00:00");
+  var b = to ? new Date(to + "T00:00:00") : new Date();
+  if (isNaN(a) || isNaN(b)) return [null];
+  if (b < a) return [null];
+  var out = [], cur = new Date(a);
+  while (cur <= b) {
+    var end = new Date(cur);
+    end.setDate(end.getDate() + step - 1);
+    if (end > b) end = b;
+    out.push([ymd(cur), ymd(end)]);
+    cur = new Date(end); cur.setDate(cur.getDate() + 1);
+  }
+  return out;
+}
+
+function buildURL(limit, offset, slice, noCount){
   var q = "select=topic_id,date,title,content,author,sector,likes,url&order=date.desc,created_at.desc";
   q += "&limit=" + limit + "&offset=" + offset;
-  if (state.kw) q += "&" + state.field + "=ilike.*" + encodeURIComponent(state.kw) + "*";
+  if (state.kw){
+    var k = encodeURIComponent(state.kw);
+    if (state.field === "content")
+      /* 全文：title+content 双字段，title 走索引压住扫描量 */
+      q += "&or=(title.ilike.*" + k + "*,content.ilike.*" + k + "*)";
+    else
+      q += "&" + state.field + "=ilike.*" + k + "*";
+  }
   if (state.gid) q += "&group_id=eq." + encodeURIComponent(state.gid);
   if (state.ind) q += "&sector=eq." + encodeURIComponent(state.ind);
-  if (state.from) q += "&date=gte." + state.from;
-  if (state.to)   q += "&date=lte." + state.to;
+  /* 日期：优先用分片，其次用用户区间 */
+  if (slice){ q += "&date=gte." + slice[0] + "&date=lte." + slice[1]; }
+  else {
+    if (state.from) q += "&date=gte." + state.from;
+    if (state.to)   q += "&date=lte." + state.to;
+  }
   return SB_URL + "/rest/v1/zsxq_topics?" + q;
 }
 
-/* ── 检索 ── */
+/* ── 检索 ──
+ * 全文检索改为「分片并行 + 超时降级」：
+ *   1) 跨月区间先按 FIELD_SPLIT 切片，片与片之间并发请求（最多 4 片一批）；
+ *   2) 每片用 or=(title,content) 走 title 索引；
+ *   3) 任一片 500/57014 或超时 → 收窄该片区间再试，仍失败则该片降级为
+ *      title-only（保证一定有结果），并在页头提示已降级。
+ * 这样"储能"这类超宽词也能出结果，而不是整页崩成 500。 */
 function search(append){
   if (state.loading) return;
   if (!hasKey()) { showKeyHint(); return; }
@@ -238,30 +302,135 @@ function search(append){
   $("go").disabled = true;
   $("go").textContent = "检索中…";
   if (!append) { state.rows = []; state.offset = 0; $("out").innerHTML = ""; }
+  state.degraded = false;
 
-  var hdrs = { "apikey": SB_KEY, "Authorization": "Bearer " + SB_KEY, "Range": state.offset + "-" + (state.offset + PAGE - 1), "Prefer": "count=exact" };
+  var slices = (state.kw && state.field === "content")
+             ? splitRange(state.from, state.to, FIELD_SPLIT)
+             : [null];
+  if (slices.length > 1) {
+      $("out").innerHTML = '<div class="tip">全文检索较大，正在分 '
+      + slices.length + " 段并行查询（" + state.from + " ~ " + (state.to || "今天") + "）…</div>";
+  }
 
-  fetch(buildURL(PAGE, state.offset), { headers: hdrs })
+  var offset = state.offset;
+  fetchSlice(slices, offset, 0).then(function(res){
+    state.total = res.total;
+    if (res.degraded) state.degraded = true;
+    state.rows = state.rows.concat(res.rows);
+    state.offset = offset + res.rows.length;
+    render(res.rows);
+    if (res.degraded) noteDegraded(res.failed, slices.length);
+  }).catch(function(e){
+    $("out").innerHTML = '<div class="err"><b>检索失败</b><br>' + esc(e.message) +
+      '<br><br>若报 <code>57014 statement timeout</code>，是查询范围过大：'
+      + '请缩小时间范围，或把检索字段从「全文」改成「仅标题」。</div>';
+  }).then(function(){
+    state.loading = false;
+    $("go").disabled = false;
+    $("go").textContent = "检 索";
+  });
+}
+
+/* 依次/并发处理分片；offset 只作用于第 0 片（保持分页语义） */
+function fetchSlice(slices, offset, depth){
+  if (!slices.length) return Promise.resolve({rows:[], total:0, degraded:false, failed:0});
+  var slice = slices[0], rest = slices.slice(1);
+  return fetchOne(slice, offset, depth).then(function(one){
+    if (!rest.length) return one;
+    /* 后续分片固定从 0 取，结果在前端并入 */
+    return fetchSlice(rest, 0, depth).then(function(r){
+      return { rows: one.rows.concat(r.rows), total: one.total + r.total,
+               degraded: one.degraded || r.degraded, failed: one.failed + r.failed };
+    });
+  });
+}
+
+/* 单片查询：500/57014 或超时时，把该片按 FIELD_SHRINK 逐级切小重试，
+   切到最小仍失败才退回 title-only（保证一定有结果）。 */
+function fetchOne(slice, offset, depth){
+  var url = buildURL(PAGE, offset, slice);
+  var hdrs = { "apikey": SB_KEY, "Authorization": "Bearer " + SB_KEY,
+               "Range": offset + "-" + (offset + PAGE - 1), "Prefer": "count=exact" };
+  return fetchTimed(url, hdrs, FIELD_MAX_MS)
     .then(function(r){
       var cr = r.headers.get("Content-Range") || "";
-      state.total = cr.indexOf("/") >= 0 ? parseInt(cr.split("/")[1], 10) : -1;
-      if (!r.ok) return r.text().then(function(t){ throw new Error("HTTP " + r.status + " · " + t.slice(0,240)); });
-      return r.json();
+      var total = cr.indexOf("/") >= 0 ? parseInt(cr.split("/")[1], 10) : -1;
+      if (!r.ok) throw { http: r.status, body: r._body };
+      return r.json().then(function(rows){ return { rows: rows, total: total < 0 ? rows.length : total,
+                                                   degraded:false, failed:0 }; });
     })
-    .then(function(rows){
-      state.rows = state.rows.concat(rows);
-      state.offset += rows.length;
-      render(rows);
-    })
-    .catch(function(e){
-      $("out").innerHTML = '<div class="err"><b>检索失败</b><br>' + esc(e.message) +
-        '<br><br>常见原因：密钥未配置 / RLS 未开放只读 / 网络不通。</div>';
-    })
-    .then(function(){
-      state.loading = false;
-      $("go").disabled = false;
-      $("go").textContent = "检 索";
+    .catch(function(err){
+      /* 降级 1：把这一片再切小（FIELD_SHRINK[0] 天 → FIELD_SHRINK[1] 天） */
+      if (depth < FIELD_SHRINK.length && slice){
+        var sub = splitRange(slice[0], slice[1], FIELD_SHRINK[depth]);
+        if (sub.length > 1){
+          return fetchSlice(sub, offset, depth + 1).then(function(r){
+            if (r.degraded) r.failed = (r.failed || 0) + 1;
+            r.degraded = true;
+            return r;
+          });
+        }
+      }
+      /* 降级 2：仍失败 → 该片只按 title 检索，保证有结果 */
+      var savedF = state.field;
+      state.field = "title";
+      var u2 = buildURL(PAGE, offset, slice);
+      state.field = savedF;
+      return fetchTimed(u2, hdrs, FIELD_MAX_MS)
+        .then(function(r){
+          var cr = r.headers.get("Content-Range") || "";
+          var total = cr.indexOf("/") >= 0 ? parseInt(cr.split("/")[1], 10) : -1;
+          if (!r.ok) throw { http: r.status, body: r._body };
+          return r.json().then(function(rows){
+            return { rows: rows, total: total < 0 ? rows.length : total, degraded:true, failed:1 };
+          });
+        })
+        .catch(function(e2){
+          throw new Error(describeErr(e2));
+        });
     });
+}
+
+/* 带超时的 fetch（浏览器 fetch 无内置超时） */
+function fetchTimed(url, hdrs, ms){
+  return new Promise(function(res, rej){
+    var done = false;
+    var to = setTimeout(function(){
+      if (done) return; done = true;
+      rej({ timeout: true });
+    }, ms);
+    fetch(url, { headers: hdrs }).then(function(r){
+      if (done) return;
+      return r.text().then(function(t){
+        r._body = t.slice(0, 240);
+        try { r.json = function(){ return Promise.resolve(JSON.parse(t)); }; } catch(e){}
+        done = true; clearTimeout(to);
+        res(r);
+      });
+    }).catch(function(e){
+      if (done) return; done = true; clearTimeout(to);
+      rej({ net: e && e.message ? e.message : String(e) });
+    });
+  });
+}
+
+function describeErr(e){
+  if (e && e.timeout) return "查询超时（超过 " + (FIELD_MAX_MS/1000) + " 秒）";
+  if (e && e.net)     return "网络不通：" + e.net;
+  if (e && e.http){
+    if (e.http === 500 && /57014/.test(e.body || "")) return "查询范围过大导致超时（57014）";
+    if (e.http === 401 || e.http === 403) return "密钥无效或无只读权限（HTTP " + e.http + "）";
+    return "HTTP " + e.http + " · " + (e.body || "");
+  }
+  return String(e && e.message || e);
+}
+
+function noteDegraded(failed, total){
+  var t = document.getElementById("tipbox");
+  if (!t) return;
+  t.innerHTML = '⚠ 有 ' + failed + "/" + total + " 个时间段查询过大，已自动缩小范围或改用标题检索（结果可能不完整）。"
+              + '想看完整结果请缩小时间范围，或改用「仅标题」+ 更具体的关键词。';
+  t.style.display = "block";
 }
 
 /* ── 关键词高亮 ── */
