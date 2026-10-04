@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="report-date" content="2026-10-04">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>调研纪要 - 2026-10-04 新闻日报</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+       background: #f5f7fa; color: #333; padding: 20px; max-width: 1200px; margin: 0 auto; }
+h1 { font-size: 24px; margin-bottom: 4px; color: #2c3e50; }
+.subtitle { font-size: 14px; color: #666; margin-bottom: 20px; }
+.stats-bar { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+.stat-card { background: #fff; border-radius: 8px; padding: 16px 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+             flex: 1; min-width: 120px; text-align: center; }
+.stat-card .num { font-size: 28px; font-weight: 700; color: #2c3e50; }
+.stat-card .label { font-size: 12px; color: #999; }
+.charts { display: flex; gap: 20px; margin-bottom: 24px; flex-wrap: wrap; }
+.chart-box { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+             flex: 1; min-width: 300px; }
+.chart-box h3 { font-size: 16px; margin-bottom: 12px; color: #2c3e50; }
+.filters { margin-bottom: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+.filter-btn { padding: 6px 14px; border: 2px solid #ddd; border-radius: 20px; background: #fff;
+              font-size: 13px; cursor: pointer; transition: all 0.2s; }
+.filter-btn:hover { background: #ecf0f1; }
+.filter-btn.active { background: #3498db; color: #fff; border-color: #3498db; }
+.card { background: #fff; border-radius: 8px; padding: 16px; margin-bottom: 12px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.08); transition: all 0.3s; }
+.card.hidden { display: none; }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.sector-tag { padding: 3px 10px; border-radius: 12px; color: #fff; font-size: 12px; font-weight: 600; }
+.company-tag { padding: 3px 10px; border-radius: 12px; background: #eef2f7; color: #2c3e50;
+               font-size: 12px; font-weight: 600; border: 1px solid #d5dbe3; }
+.time { font-size: 12px; color: #999; }
+.author { font-size: 12px; color: #666; }
+.badge { padding: 2px 8px; border-radius: 10px; font-size: 11px; }
+.badge-digg { background: #f39c12; color: #fff; }
+.card-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; color: #2c3e50; }
+.card-tags { margin-bottom: 6px; }
+.tag { background: #ecf0f1; padding: 2px 8px; border-radius: 10px; font-size: 11px; color: #555; margin-right: 4px; }
+.card-body { font-size: 14px; color: #555; line-height: 1.6; white-space: pre-wrap; }
+.card-body a { color: #3498db; text-decoration: none; border-bottom: 1px dashed #3498db; }
+.card-body a:hover { color: #2980b9; border-bottom-style: solid; }
+/* 书签 */
+.bookmark-bar { background: #fff; border-radius: 8px; padding: 10px 16px; margin-bottom: 16px;
+                box-shadow: 0 1px 4px rgba(0,0,0,0.08); font-size: 13px; color: #555; display: flex; align-items: flex-start; gap: 8px; }
+.bm-label { font-weight: 600; color: #f39c12; white-space: nowrap; padding-top: 2px; }
+.bm-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.bm-item { display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px; background: #fef3e2;
+            border-radius: 12px; font-size: 12px; cursor: pointer; color: #e67e22; white-space: nowrap; max-width: 240px; overflow: hidden; text-overflow: ellipsis; }
+.bm-item:hover { background: #fdebd0; }
+.bm-remove { color: #999; font-size: 14px; font-weight: 700; cursor: pointer; }
+.bm-remove:hover { color: #e74c3c; }
+.bm-btn { background: none; border: 1px solid transparent; font-size: 18px; cursor: pointer;
+          width: 28px; height: 28px; padding: 0; line-height: 26px; text-align: center;
+          border-radius: 4px; color: #ccc; transition: all 0.2s; margin-left: auto; flex-shrink: 0; }
+.bm-btn::before { content: '☆'; }
+.bm-btn:hover { color: #f39c12; border-color: #f39c12; background: #fef3e2; }
+.bm-btn.bookmarked { color: #f39c12; border-color: #f39c12; }
+.bm-btn.bookmarked::before { content: '★'; }
+.card.highlight { box-shadow: 0 0 0 3px #f39c12; transition: box-shadow 0.3s; }
+.card-footer { display: flex; gap: 16px; margin-top: 10px; font-size: 13px; color: #999; }
+.card-footer a { color: #3498db; text-decoration: none; }
+/* 划词「千问搜索」浮动按钮（不拦截原生右键，复制功能保留） */
+.qw-fab { position: fixed; z-index: 99999; display: none; align-items: center; gap: 6px;
+           background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.16);
+           padding: 5px 12px; font-size: 13px; cursor: pointer; color: #1668dc; white-space: nowrap;
+           font-family: -apple-system, "Microsoft YaHei", sans-serif; }
+.qw-fab:hover { background: #f0f7ff; }
+.qw-fab .ic { font-size: 14px; }
+.qw-toast { position: fixed; left: 50%; bottom: 42px; transform: translateX(-50%); background: rgba(0,0,0,0.82);
+             color: #fff; padding: 10px 18px; border-radius: 8px; font-size: 13px; z-index: 100000;
+             opacity: 0; transition: opacity 0.25s; pointer-events: none; max-width: 80vw;
+             white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* 卡片内嵌图片 + 大图浮层（2026-09-20 恢复） */
+.card-imgs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; align-items: flex-end; }
+.card-img { width: 150px; height: 106px; object-fit: cover; border-radius: 6px;
+            border: 1px solid #e3e8ee; background: #f2f5f9; cursor: zoom-in;
+            transition: border-color 0.15s, transform 0.15s; }
+.card-img:hover { border-color: #3498db; transform: translateY(-2px); }
+.card-imgs-n { font-size: 12px; color: #95a5a6; margin-left: 2px; align-self: center; }
+.img-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+               background: rgba(0,0,0,0.9); z-index: 100000; display: flex;
+               align-items: center; justify-content: center; overflow: auto; padding: 40px; }
+.img-overlay img { max-width: 92vw; max-height: 92vh; border-radius: 4px;
+                   cursor: zoom-in; transition: transform 0.15s ease; }
+.img-overlay-tip { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%);
+                   color: #fff; font-size: 12px; opacity: 0.75; white-space: nowrap; }
+</style>
+<!-- LINK_REWRITTEN --><!-- AUTH_GATE --><script src="auth.js"></script></head>
+<body>
+<h1>调研纪要 · 2026-10-04 新闻日报</h1>
+<p class="subtitle">星球 ID: 28855458518111 | 共 12 条帖子 | 精华 4 条
+  | <a href="javascript:showResearch()" style="color:#3498db;text-decoration:underline;cursor:pointer">查看研究积累</a></p>
+<div id="syncDebug" style="background:#fff3cd;border:1px solid #ffc107;border-radius:4px;padding:4px 12px;margin-bottom:8px;font-size:11px;color:#856404;display:none">
+  <span id="syncStatus"></span>
+  <button onclick="forceSyncAll()" style="margin-left:12px;padding:2px 8px;font-size:11px;cursor:pointer;border:1px solid #ffc107;border-radius:3px;background:#fff">强制同步到研究积累</button>
+</div>
+
+<div class="stats-bar">
+    <div class="stat-card"><div class="num">12</div><div class="label">帖子总数</div></div>
+    <div class="stat-card"><div class="num">4</div><div class="label">总点赞</div></div>
+    <div class="stat-card"><div class="num">0</div><div class="label">总评论</div></div>
+    <div class="stat-card"><div class="num">8040</div><div class="label">总阅读</div></div>
+</div>
+
+<div class="charts">
+    <div class="chart-box">
+        <h3>板块分布</h3>
+        <canvas id="sectorPie"></canvas>
+    </div>
+    <div class="chart-box">
+        <h3>发布时间分布</h3>
+        <canvas id="timeBar"></canvas>
+    </div>
+</div>
+
+<div class="filters">
+    <button class="filter-btn active" onclick="filterCards(&#39;all&#39;)">全部</button><button class="filter-btn" onclick="filterCards(&#39;其他&#39;)" style="border-color:#e74c3c">其他</button><button class="filter-btn" onclick="filterCards(&#39;电子&#39;)" style="border-color:#3498db">电子</button><button class="filter-btn" onclick="filterCards(&#39;计算机&#39;)" style="border-color:#2ecc71">计算机</button><button class="filter-btn" onclick="filterCards(&#39;机械设备&#39;)" style="border-color:#f39c12">机械设备</button><button class="filter-btn" onclick="filterCards(&#39;房地产&#39;)" style="border-color:#9b59b6">房地产</button>
+</div>
+
+<div class="bookmark-bar" id="bookmarkBar" style="display:none">
+    <span class="bm-label">书签</span><span class="bm-list" id="bookmarkList"></span>
+</div>
+
+<div id="researchPanel" style="display:none;margin-bottom:16px">
+ <div style="background:#fff;border-radius:8px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,0.08)">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+   <h2 style="font-size:18px;color:#2c3e50;margin:0">研究积累</h2>
+   <span style="font-size:12px;color:#999" id="researchCount">0 条</span>
+   <a href="javascript:hideResearch()" style="margin-left:auto;font-size:13px;color:#3498db;text-decoration:none">← 返回日报</a>
+  </div>
+  <div id="researchFilters" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px"></div>
+  <div id="researchList"></div>
+ </div>
+</div>
+
+
+        <div class="card" id="topic-22258281441212581" data-sector="电子"
+             data-tid="22258281441212581" data-title="Muse深度解读，Meta资本开支有望持续上修" data-content="Muse深度解读，Meta资本开支有望持续上修
+从联想、AMD、BE 看AI从训练到推理带来的变量"
+             data-author="秋分" data-time="01:27"
+             data-link="https://wx.zsxq.com/dweb2/index/topic/22258281441212581">
+            <div class="card-header">
+                <span class="sector-tag" style="background:#3498db">电子</span>
+                
+                <span class="time">01:27</span>
+                <span class="badge badge-digg">精华</span>
+                <span class="author">@秋分</span>
+                <button class="bm-btn" data-tid="22258281441212581" data-title="Muse深度解读，Meta资本开支有望持续上修"
+                        data-content="Muse深度解读，Meta资本开支有望持续上修
+从联想、AMD、BE 看AI从训练到推理带来的变量" data-author="秋分"
+                        data-time="01:27" data-link="https://wx.zsxq.com/dweb2/index/topic/22258281441212581"
+                        data-sector="电子"
+                        onclick="toggleBookmark(this)" title="书签"></button>
+            </div>
+            <div class="card-title">Muse深度解读，Meta资本开支有望持续上修</div>
+            <div class="card-tags"></div>
+            <div class="card-body">Muse深度解读，Meta资本开支有望持续上修 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=230d19f7de012173fb2c38ba3c33984d&amp;type=note&amp;_time=1791048267218" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
+从联想、AMD、BE 看AI从训练到推理带来的变量 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=2a632dae15cbc61eaf39d4c8f079a1bd&amp;type=note&amp;_time=1791048256385" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a></div>
+            
+            <div class="card-footer">
+                <span>👍 1</span>
+                <span>💬 0</span>
+                <span>👁 706</span>
+                <a href="https://wx.zsxq.com/dweb2/index/topic/22258281441212581" target="_blank">原文链接</a>
+            </div>
+        </div>
+        
+        <div class="card" id="topic-82258281441212582" data-sector="计算机"
+             data-tid="82258281441212582" data-title="新能源+AI系列分享" data-content="新能源+AI系列分享 
+“新生成”主义，讲什么"
+             data-author="秋分" data-time="01:27"
+             data-link="https://wx.zsxq.com/dweb2/index/topic/82258281441212582">
+            <div class="card-header">
+                <span class="sector-tag" style="background:#2ecc71">计算机</span>
+                
+                <span class="time">01:27</span>
+                <span class="badge badge-digg">精华</span>
+                <span class="author">@秋分</span>
+                <button class="bm-btn" data-tid="82258281441212582" data-title="新能源+AI系列分享"
+                        data-content="新能源+AI系列分享 
+“新生成”主义，讲什么" data-author="秋分"
+                        data-time="01:27" data-link="https://wx.zsxq.com/dweb2/index/topic/82258281441212582"
+                        data-sector="计算机"
+                        onclick="toggleBookmark(this)" title="书签"></button>
+            </div>
+            <div class="card-title">新能源+AI系列分享</div>
+            <div class="card-tags"></div>
+            <div class="card-body">新能源+AI系列分享  <a href="https://share.note.youdao.com/ynoteshare/index.html?id=4d123f967031760efb03ecc7d1af8365&amp;type=note&amp;_time=1791048143280" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
+“新生成”主义，讲什么 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=9f90ddbb8b8600aca35226707a5a28c5&amp;type=note&amp;_time=1791048242137" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a></div>
+            
+            <div class="card-footer">
+                <span>👍 1</span>
+                <span>💬 0</span>
+                <span>👁 696</span>
+                <a href="https://wx.zsxq.com/dweb2/index/topic/82258281441212582" target="_blank">原文链接</a>
+            </div>
+        </div>
+        
+        <div class="card" id="topic-55521518448581124" data-sector="机械设备"
+             data-tid="55521518448581124" data-title="消费级3D打印行业专家交流" data-content="消费级3D打印行业专家交流
+探针卡行业深度：AI算力与存储升级驱动测试价值提升，国产替代进入加速期"
+             data-author="秋分" data-time="01:27"
+             data-link="https://wx.zsxq.com/dweb2/index/topic/55521518448581124">
+            <div class="card-header">
+                <span class="sector-tag" style="background:#f39c12">机械设备</span>
+                
+                <span class="time">01:27</span>
+                <span class="badge badge-digg">精华</span>
+                <span class="author">@秋分</span>
+                <button class="bm-btn" data-tid="55521518448581124" data-title="消费级3D打印行业专家交流"
+                        data-content="消费级3D打印行业专家交流
+探针卡行业深度：AI算力与存储升级驱动测试价值提升，国产替代进入加速期" data-author="秋分"
+                        data-time="01:27" data-link="https://wx.zsxq.com/dweb2/index/topic/55521518448581124"
+                        data-sector="机械设备"
+                        onclick="toggleBookmark(this)" title="书签"></button>
+            </div>
+            <div class="card-title">消费级3D打印行业专家交流</div>
+            <div class="card-tags"></div>
+            <div class="card-body">消费级3D打印行业专家交流 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=f3a0341741eb5bb193e5efc9c8d2c914&amp;type=note&amp;_time=1791048160514" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
+探针卡行业深度：AI算力与存储升级驱动测试价值提升，国产替代进入加速期 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=bfdfe62c45d9b67d8e92f0ac0b996b19&amp;type=note&amp;_time=1791048196161" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a></div>
+            
+            <div class="card-footer">
+                <span>👍 1</span>
+                <span>💬 0</span>
+                <span>👁 698</span>
+                <a href="https://wx.zsxq.com/dweb2/index/topic/55521518448581124" target="_blank">原文链接</a>
+            </div>
+        </div>
+        
+        <div class="card" id="topic-82258281441218852" data-sector="房地产"
+             data-tid="82258281441218852" data-title="贴息之后 地产展望" data-content="贴息之后 地产展望
+929新政力度影响和展望
+联合解读居民房贷贴息和结构性货币政策"
+             data-author="秋分" data-time="01:27"
+             data-link="https://wx.zsxq.com/dweb2/index/topic/82258281441218852">
+            <div class="card-header">
+                <span class="sector-tag" style="background:#9b59b6">房地产</span>
+                
+                <span class="time">01:27</span>
+                <span class="badge badge-digg">精华</span>
+                <span class="author">@秋分</span>
+                <button class="bm-btn" data-tid="82258281441218852" data-title="贴息之后 地产展望"
+                        data-content="贴息之后 地产展望
+929新政力度影响和展望
+联合解读居民房贷贴息和结构性货币政策" data-author="秋分"
+                        data-time="01:27" data-link="https://wx.zsxq.com/dweb2/index/topic/82258281441218852"
+                        data-sector="房地产"
+                        onclick="toggleBookmark(this)" title="书签"></button>
+            </div>
+            <div class="card-title">贴息之后 地产展望</div>
+            <div class="card-tags"></div>
+            <div class="card-body">贴息之后 地产展望 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=ce7ddb94d324c7c23e4f4693c80851a5&amp;type=note&amp;_time=1791048183319" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
+929新政力度影响和展望 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=f86df4d9592cc38d7d87a8d8dee28554&amp;type=note&amp;_time=1791048227428" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a>
+联合解读居民房贷贴息和结构性货币政策 <a href="https://share.note.youdao.com/ynoteshare/index.html?id=1432adb9b7038d0e6b8d3b1c4be64b04&amp;type=note&amp;_time=1791048207157" target="_blank" rel="noopener noreferrer">share.note.youdao.com ↗</a></div>
+            
+            <div class="card-footer">
+                <span>👍 0</span>
+                <span>💬 0</span>
+                <span>👁 696</span>
+                <a href="https://wx.zsxq.com/dweb2/index/topic/82258281441218852" target="_blank">原文链接</a>
+            </div>
+        </div>
+        
+        <div class="card" id="topic-45548581221518848" data-sector="其他"
+             data-tid="45548581221518848" data-title="「文件」" data-content="「文件」"
+             data-author="秋分" data-time="01:27"
+             data-link="https://wx.zsxq.com/dweb2/index/topic/45548581221518848">
+            <div class="card-header">
+                <span class="sector-tag" style="background:#e74c3c">其他</span>
+                
+                <span class="time">01:27</span>
+                
+                <span class="author">@秋分</span>
+                <button class="bm-btn" data-tid="45548581221518848" data-title="「文件」"
+                        data-content="「文件」" data-author="秋分"
+                        data-time="01:27" data-link="https://wx.zsxq.com/dweb2/index/topic/45548581221518848"
+                        data-sector="其他"
+                        onclick="toggleBookmark(this)" title="书签"></button>
+            </div>
+            <div class="card-title">「文件」</div>
+            <div class="card-tags"></div>
+            <div class="card-body">「文件」</div>
+            
+            <div class="card-footer">
+                <span>👍 0</span>
+                <span>💬 0</span>
+                <span>👁 696</span>
+                <a href="https://wx.zsxq.com/dweb2/index/topic/45548581221518848" target="_blank">原文链接</a>
+            </div>
+        </div>
+        
+        <div class="card" id="topic-14425458118485522" data-sector="其他"
+             data-tid="14425458118485522" data-title="「文件」" data-content="「文件」"
+             data-author="秋分" data-time="01:27"
+             data-link="https://wx.zsxq.com/dweb2/index/topic/14425458118485522">
+            <div class="card-header">
+                <span class="sector-tag" style="background:#e74c3c">其他</span>
+                
+                <span class="time">01:27</span>
+                
+                <span class="author">@秋分</span>
+                <button class="bm-btn" data-tid="14425458118485522" data-title="「文件」"
+                        data-content="「文件」" data-author="秋分"
+                        data-time="01:27" data-link="https://wx.zsxq.com/dweb2/index/topic/14425458118485522"
+                        data-sector="其他"
+                        onclick="toggleBookmark(this)" title="书签"></button>
+            </div>
+            <div class="card-title">「文件」</div>
+            <div class="card-tags"></div>
+            <div class="card-body">「文件」</div>
+            
+            <div class="card-footer">
+                <span>👍 0</span>
+                <span>💬 0</span>
+                <span>👁 678</span>
+                <a href="https://wx.zsxq.com/dweb2/index/topic/14425458118485522" target="_blank">原文链接</a>
+            </div>
+        </div>
+        
+        <div class="card" id="topic-22258281441218511" data-sector="其他"
+             data-tid="22258281441218511" data-title="「文件」" data-content="「文件」"
+             data-author="秋分" data-time="01:26"
+             data-link="https://wx.zsxq.com/dweb2/index/topic/22258281441218511">
+            <div class="card-header">
+                <span class="sector-tag" style="background:#e74c3c">其他</span>
+                
+                <span class="time">01:26</span>
+                
+                <span class="author">@秋分</span>
+                <button class="bm-btn" data-tid="22258281441218511" data-title="「文件」"
+                        data-content="「文件」" data-author="秋分"
+                        data-time="01:26" data-link="https://wx.zsxq.com/dweb2/index/topic/22258281441218511"
+                        data-sector="其他"
+                        onclick="toggleBookmark(this)" title="书签"></button>
+            </div>
+            <div class="card-title">「文件」</div>
+            <div class="card-tags"></div>
+            <div class="card-body">「文件」</div>
+            
+            <div class="card-footer">
+                <span>👍 0</span>
+                <span>💬 0</span>
+                <span>👁 678</span>
+                <a href="https://wx.zsxq.com/dweb2/index/topic/22258281441218511" target="_blank">原文链接</a>
+            </div>
+        </div>
+        
+        <div class="card" id="topic-82258281441218512" data-sector="其他"
+             data-tid="82258281441218512" data-title="「文件」" data-content="「文件」"
+             data-author="秋分" data-time="01:26"
+             data-link="https://wx.zsxq.com/dweb2/index/topic/82258281441218512">
+            <div class="card-header">
+                <span class="sector-tag" style="background:#e74c3c">其他</span>
+                
+                <span class="time">01:26</span>
+                
+                <span class="author">@秋分</span>
+                <button class="bm-btn" data-tid="82258281441218512" data-title="「文件」"
+                        data-content="「文件」" data-author="秋分"
+                        data-time="01:26" data-link="https://wx.zsxq.com/dweb2/index/topic/82258281441218512"
+                        data-sector="其他"
+                        onclick="toggleBookmark(this)" title="书签"></button>
+            </div>
+            <div class="card-title">「文件」</div>
+            <div class="card-tags"></div>
+            <div class="card-body">「文件」</div>
+            
+            <div class="card-footer">
+                <span>👍 0</span>
+                <span>💬 0</span>
+                <span>👁 678</span>
+                <a href="https://wx.zsxq.com/dweb2/index/topic/82258281441218512" target="_blank">原文链接</a>
+            </div>
+        </div>
+        
+        <div class="card" id="topic-45548581221518418" data-sector="其他"
+             data-tid="45548581221518418" data-title="「文件」" data-content="「文件」"
+             data-author="秋分" data-time="01:26"
+             data-link="https://wx.zsxq.com/dweb2/index/topic/45548581221518418">
+            <div class="card-header">
+                <span class="sector-tag" style="background:#e74c3c">其他</span>
+                
+                <span class="time">01:26</span>
+                
+                <span class="author">@秋分</span>
+                <button class="bm-btn" data-tid="45548581221518418" data-title="「文件」"
+                        data-content="「文件」" data-author="秋分"
+                        data-time="01:26" data-link="https://wx.zsxq.com/dweb2/index/topic/45548581221518418"
+                        data-sector="其他"
+                        onclick="toggleBookmark(this)" title="书签"></button>
+            </div>
+            <div class="card-title">「文件」</div>
+            <div class="card-tags"></div>
+            <div class="card-body">「文件」</div>
+            
+            <div class="card-footer">
+                <span>👍 0</span>
+                <span>💬 0</span>
+                <span>👁 678</span>
+                <a href="https://wx.zsxq.com/dweb2/index/topic/45548581221518418" target="_blank">原文链接</a>
+            </div>
+        </div>
+        
+        <div class="card" id="topic-14425458118485282" data-sector="其他"
+             data-tid="14425458118485282" data-title="「文件」" data-content="「文件」"
+             data-author="秋分" data-time="01:26"
+             data-link="https://wx.zsxq.com/dweb2/index/topic/14425458118485282">
+            <div class="card-header">
+                <span class="sector-tag" style="background:#e74c3c">其他</span>
+                
+                <span class="time">01:26</span>
+                
+                <span class="author">@秋分</span>
+                <button class="bm-btn" data-tid="14425458118485282" data-title="「文件」"
+                        data-content="「文件」" data-author="秋分"
+                        data-time="01:26" data-link="https://wx.zsxq.com/dweb2/index/topic/14425458118485282"
+                        data-sector="其他"
+                        onclick="toggleBookmark(this)" title="书签"></button>
+            </div>
+            <div class="card-title">「文件」</div>
+            <div class="card-tags"></div>
+            <div class="card-body">「文件」</div>
+            
+            <div class="card-footer">
+                <span>👍 0</span>
+                <span>💬 0</span>
+                <span>👁 678</span>
+                <a href="https://wx.zsxq.com/dweb2/index/topic/14425458118485282" target="_blank">原文链接</a>
+            </div>
+        </div>
+        
+        <div class="card" id="topic-22258281441218541" data-sector="其他"
+             data-tid="22258281441218541" data-title="「文件」" data-content="「文件」"
+             data-author="秋分" data-time="01:26"
+             data-link="https://wx.zsxq.com/dweb2/index/topic/22258281441218541">
+            <div class="card-header">
+                <span class="sector-tag" style="background:#e74c3c">其他</span>
+                
+                <span class="time">01:26</span>
+                
+                <span class="author">@秋分</span>
+                <button class="bm-btn" data-tid="22258281441218541" data-title="「文件」"
+                        data-content="「文件」" data-author="秋分"
+                        data-time="01:26" data-link="https://wx.zsxq.com/dweb2/index/topic/22258281441218541"
+                        data-sector="其他"
+                        onclick="toggleBookmark(this)" title="书签"></button>
+            </div>
+            <div class="card-title">「文件」</div>
+            <div class="card-tags"></div>
+            <div class="card-body">「文件」</div>
+            
+            <div class="card-footer">
+                <span>👍 0</span>
+                <span>💬 0</span>
+                <span>👁 586</span>
+                <a href="https://wx.zsxq.com/dweb2/index/topic/22258281441218541" target="_blank">原文链接</a>
+            </div>
+        </div>
+        
+        <div class="card" id="topic-82258281441218522" data-sector="电子"
+             data-tid="82258281441218522" data-title="高盛——日本科技：半导体——投资者反馈：AI投资与利率上行忧虑犹存，但市场情绪边际改善" data-content="高盛——日本科技：半导体——投资者反馈：AI投资与利率上行忧虑犹存，但市场情绪边际改善
+
+一、市场情绪：7-9月颓势难续，估值进入中期以下区间
+
+投资者对半导体/SPE板块的整体情绪仍偏谨慎，核心忧虑在于2028年后AI资本开支的可持续性，以及日本与美国利率上行压力。然而，多数投资者并不认为7-9月股价与估值倍数持续下行的趋势将延续至年底。随着盈利增长未见放缓迹象，越来越多个股的估值倍数已回落至周期中值以下，部分投资者表示将积极增配那些有望实现超预期盈利的公司。
+
+二、个股多空分歧：爱德万测试、国际电气获青睐；Lasertec、迪思科仍遭看空
+
+• 看多阵营：爱德万测试（Advantest）与国际电气（Kokusai Electric）获较多投资者青睐。
+
+• 看空阵营：Lasertec与迪思科（Disco）因估值偏高且缺乏短期催化剂而承受较重卖压。尤其对迪思科，许多投资者担忧客户将HBM堆叠层数从12层降至8层将压制设备需求。但高盛认为，HBM供需趋紧反而可能加速HBM投资，层数减少的影响中性甚至偏正面。对于Lasertec，需求增长提升了一季度业绩会上上调全年订单指引（当前为区间指引）的可能性，这有望成为股价上行的催化剂。
+
+三、选股框架：聚焦营收增速、产能释放与利润率扩张
+
+在需求整体强劲的背景下，高盛提出SPE板块选股三大核心标准：
+
+1. 营收增速：能否实现超越行业平均的增长；
+
+2. 产能弹性：是否具备充足产能以兑现强劲订单；
+
+3. 利润率改善：在收入高增阶段能否实现利润率扩张。
+
+基于上述框架，高盛维持Lasertec（ACTIS检测设备增长率加速）为亚太区确信买入名单（Conviction List）首选标的，同时维持以下买入评级：
+
+• 迪思科（出货动能加速）
+
+• 东京电子（提价驱动利润率改善）
+
+• 荏原制作所（CMP业务增速超越晶圆前道设备WFE市场整体）
+
+• 铠侠控股（预期价格持续上涨及额外股东回报）
+
+• HOYA（尽管盈利强劲，估值仍被低估）
+
+四、关键标的估值方法与目标价（文字版）
+
+• 迪思科（Buy）：目标价105,000日元。基于全球SPE板块平均EV/EBITDA倍数18倍及FY3/28预期，并附加50%板块相对溢价。主要风险：AI相关需求放缓或份额流失、中国需求走弱或出口管制放松、日元快速升值。
+
+• 荏原制作所（Buy）：目标价7,900日元。基于P/B与FY12/27预期ROE的相关性。风险：半导体资本开支进入下行周期、中国CMP设备商竞争力提升、新技术采用缓慢、原油/LNG价格下跌。
+
+• 国际电气（Neutral）：目标价10,500日元。基于全球SPE平均EV/EBITDA 18倍及FY3/28预期。风险：关键客户投资变动、出口管制调整、竞争对手战略变化。
+
+• 爱德万测试（Neutral）：目标价43,000日元。基于全球SPE平均EV/EBITDA 18倍及FY3/28预期，附加40%溢价。风险：客户资本开支波动、市场份额变化、中国测试机需求趋势、汇率波动。
+
+• Lasertec（Buy，确信买入）：目标价70,000日元。基于全球SPE平均EV/EBITDA 18倍及FY6/28预期，附加50%溢价。风险：新进入者导致份额下降、晶圆厂采用ACTIS进展缓慢、客户对先进制程投资意愿减弱、日元快速升值。
+
+• HOYA（Buy）：目标价36,000日元。采用分部加总估值法（SOTP），医疗业务（FY3/27 EV/EBITDA 15倍，FY3/28 13倍）与IT业务（FY3/27 35倍，FY3/28 28倍）。风险：EUV光罩基板竞争格局变化、EUV薄膜采用导致EUV光罩用量下降、利率环境变动。
+
+• 东京电子（Buy）：目标价18,000日元。基于全球SPE平均EV/EBITDA 18倍及FY3/28预期，附加30%溢价。风险：半导体行业库存调整延长、出口限制加码、利率上行压制估值倍数。
+
+• 铠侠控股（Buy）：目标价38,667日元。基于P/B与FY3/27-3/28预期ROE的相关性。风险：超大规模企业AI投资放缓、中国NAND厂商崛起、成本上升或产能利用率波动导致利润率下滑、日元急升。
+
+五、上行风险与策略启示
+
+• AI Capex长尾效应：若2028年后AI基础设施投资维持高位，设备商订单能见度将延长。
+
+• HBM技术路径变化：层数减少可能促使客户通过增加晶圆投片量来弥补单芯片容量损失，反而利好刻蚀/沉积设备。
+
+• 估值修复窗口：当前板块估值处于周期中值以下，一旦宏观利率预期企稳，具备盈利上修潜力的个股有望迎来戴维斯双击。"
+             data-author="秋分" data-time="01:25"
+             data-link="https://wx.zsxq.com/dweb2/index/topic/82258281441218522">
+            <div class="card-header">
+                <span class="sector-tag" style="background:#3498db">电子</span>
+                
+                <span class="time">01:25</span>
+                
+                <span class="author">@秋分</span>
+                <button class="bm-btn" data-tid="82258281441218522" data-title="高盛——日本科技：半导体——投资者反馈：AI投资与利率上行忧虑犹存，但市场情绪边际改善"
+                        data-content="高盛——日本科技：半导体——投资者反馈：AI投资与利率上行忧虑犹存，但市场情绪边际改善
+
+一、市场情绪：7-9月颓势难续，估值进入中期以下区间
+
+投资者对半导体/SPE板块的整体情绪仍偏谨慎，核心忧虑在于2028年后AI资本开支的可持续性，以及日本与美国利率上行压力。然而，多数投资者并不认为7-9月股价与估值倍数持续下行的趋势将延续至年底。随着盈利增长未见放缓迹象，越来越多个股的估值倍数已回落至周期中值以下，部分投资者表示将积极增配那些有望实现超预期盈利的公司。
+
+二、个股多空分歧：爱德万测试、国际电气获青睐；Lasertec、迪思科仍遭看空
+
+• 看多阵营：爱德万测试（Advantest）与国际电气（Kokusai Electric）获较多投资者青睐。
+
+• 看空阵营：Lasertec与迪思科（Disco）因估值偏高且缺乏短期催化剂而承受较重卖压。尤其对迪思科，许多投资者担忧客户将HBM堆叠层数从12层降至8层将压制设备需求。但高盛认为，HBM供需趋紧反而可能加速HBM投资，层数减少的影响中性甚至偏正面。对于Lasertec，需求增长提升了一季度业绩会上上调全年订单指引（当前为区间指引）的可能性，这有望成为股价上行的催化剂。
+
+三、选股框架：聚焦营收增速、产能释放与利润率扩张
+
+在需求整体强劲的背景下，高盛提出SPE板块选股三大核心标准：
+
+1. 营收增速：能否实现超越行业平均的增长；
+
+2. 产能弹性：是否具备充足产能以兑现强劲订单；
+
+3. 利润率改善：在收入高增阶段能否实现利润率扩张。
+
+基于上述框架，高盛维持Lasertec（ACTIS检测设备增长率加速）为亚太区确信买入名单（Conviction List）首选标的，同时维持以下买入评级：
+
+• 迪思科（出货动能加速）
+
+• 东京电子（提价驱动利润率改善）
+
+• 荏原制作所（CMP业务增速超越晶圆前道设备WFE市场整体）
+
+• 铠侠控股（预期价格持续上涨及额外股东回报）
+
+• HOYA（尽管盈利强劲，估值仍被低估）
+
+四、关键标的估值方法与目标价（文字版）
+
+• 迪思科（Buy）：目标价105,000日元。基于全球SPE板块平均EV/EBITDA倍数18倍及FY3/28预期，并附加50%板块相对溢价。主要风险：AI相关需求放缓或份额流失、中国需求走弱或出口管制放松、日元快速升值。
+
+• 荏原制作所（Buy）：目标价7,900日元。基于P/B与FY12/27预期ROE的相关性。风险：半导体资本开支进入下行周期、中国CMP设备商竞争力提升、新技术采用缓慢、原油/LNG价格下跌。
+
+• 国际电气（Neutral）：目标价10,500日元。基于全球SPE平均EV/EBITDA 18倍及FY3/28预期。风险：关键客户投资变动、出口管制调整、竞争对手战略变化。
+
+• 爱德万测试（Neutral）：目标价43,000日元。基于全球SPE平均EV/EBITDA 18倍及FY3/28预期，附加40%溢价。风险：客户资本开支波动、市场份额变化、中国测试机需求趋势、汇率波动。
+
+• Lasertec（Buy，确信买入）：目标价70,000日元。基于全球SPE平均EV/EBITDA 18倍及FY6/28预期，附加50%溢价。风险：新进入者导致份额下降、晶圆厂采用ACTIS进展缓慢、客户对先进制程投资意愿减弱、日元快速升值。
+
+• HOYA（Buy）：目标价36,000日元。采用分部加总估值法（SOTP），医疗业务（FY3/27 EV/EBITDA 15倍，FY3/28 13倍）与IT业务（FY3/27 35倍，FY3/28 28倍）。风险：EUV光罩基板竞争格局变化、EUV薄膜采用导致EUV光罩用量下降、利率环境变动。
+
+• 东京电子（Buy）：目标价18,000日元。基于全球SPE平均EV/EBITDA 18倍及FY3/28预期，附加30%溢价。风险：半导体行业库存调整延长、出口限制加码、利率上行压制估值倍数。
+
+• 铠侠控股（Buy）：目标价38,667日元。基于P/B与FY3/27-3/28预期ROE的相关性。风险：超大规模企业AI投资放缓、中国NAND厂商崛起、成本上升或产能利用率波动导致利润率下滑、日元急升。
+
+五、上行风险与策略启示
+
+• AI Capex长尾效应：若2028年后AI基础设施投资维持高位，设备商订单能见度将延长。
+
+• HBM技术路径变化：层数减少可能促使客户通过增加晶圆投片量来弥补单芯片容量损失，反而利好刻蚀/沉积设备。
+
+• 估值修复窗口：当前板块估值处于周期中值以下，一旦宏观利率预期企稳，具备盈利上修潜力的个股有望迎来戴维斯双击。" data-author="秋分"
+                        data-time="01:25" data-link="https://wx.zsxq.com/dweb2/index/topic/82258281441218522"
+                        data-sector="电子"
+                        onclick="toggleBookmark(this)" title="书签"></button>
+            </div>
+            <div class="card-title">高盛——日本科技：半导体——投资者反馈：AI投资与利率上行忧虑犹存，但市场情绪边际改善</div>
+            <div class="card-tags"></div>
+            <div class="card-body">高盛——日本科技：半导体——投资者反馈：AI投资与利率上行忧虑犹存，但市场情绪边际改善
+
+一、市场情绪：7-9月颓势难续，估值进入中期以下区间
+
+投资者对半导体/SPE板块的整体情绪仍偏谨慎，核心忧虑在于2028年后AI资本开支的可持续性，以及日本与美国利率上行压力。然而，多数投资者并不认为7-9月股价与估值倍数持续下行的趋势将延续至年底。随着盈利增长未见放缓迹象，越来越多个股的估值倍数已回落至周期中值以下，部分投资者表示将积极增配那些有望实现超预期盈利的公司。
+
+二、个股多空分歧：爱德万测试、国际电气获青睐；Lasertec、迪思科仍遭看空
+
+• 看多阵营：爱德万测试（Advantest）与国际电气（Kokusai Electric）获较多投资者青睐。
+
+• 看空阵营：Lasertec与迪思科（Disco）因估值偏高且缺乏短期催化剂而承受较重卖压。尤其对迪思科，许多投资者担忧客户将HBM堆叠层数从12层降至8层将压制设备需求。但高盛认为，HBM供需趋紧反而可能加速HBM投资，层数减少的影响中性甚至偏正面。对于Lasertec，需求增长提升了一季度业绩会上上调全年订单指引（当前为区间指引）的可能性，这有望成为股价上行的催化剂。
+
+三、选股框架：聚焦营收增速、产能释放与利润率扩张
+
+在需求整体强劲的背景下，高盛提出SPE板块选股三大核心标准：
+
+1. 营收增速：能否实现超越行业平均的增长；
+
+2. 产能弹性：是否具备充足产能以兑现强劲订单；
+
+3. 利润率改善：在收入高增阶段能否实现利润率扩张。
+
+基于上述框架，高盛维持Lasertec（ACTIS检测设备增长率加速）为亚太区确信买入名单（Conviction List）首选标的，同时维持以下买入评级：
+
+• 迪思科（出货动能加速）
+
+• 东京电子（提价驱动利润率改善）
+
+• 荏原制作所（CMP业务增速超越晶圆前道设备WFE市场整体）
+
+• 铠侠控股（预期价格持续上涨及额外股东回报）
+
+• HOYA（尽管盈利强劲，估值仍被低估）
+
+四、关键标的估值方法与目标价（文字版）
+
+• 迪思科（Buy）：目标价105,000日元。基于全球SPE板块平均EV/EBITDA倍数18倍及FY3/28预期，并附加50%板块相对溢价。主要风险：AI相关需求放缓或份额流失、中国需求走弱或出口管制放松、日元快速升值。
+
+• 荏原制作所（Buy）：目标价7,900日元。基于P/B与FY12/27预期ROE的相关性。风险：半导体资本开支进入下行周期、中国CMP设备商竞争力提升、新技术采用缓慢、原油/LNG价格下跌。
+
+• 国际电气（Neutral）：目标价10,500日元。基于全球SPE平均EV/EBITDA 18倍及FY3/28预期。风险：关键客户投资变动、出口管制调整、竞争对手战略变化。
+
+• 爱德万测试（Neutral）：目标价43,000日元。基于全球SPE平均EV/EBITDA 18倍及FY3/28预期，附加40%溢价。风险：客户资本开支波动、市场份额变化、中国测试机需求趋势、汇率波动。
+
+• Lasertec（Buy，确信买入）：目标价70,000日元。基于全球SPE平均EV/EBITDA 18倍及FY6/28预期，附加50%溢价。风险：新进入者导致份额下降、晶圆厂采用ACTIS进展缓慢、客户对先进制程投资意愿减弱、日元快速升值。
+
+• HOYA（Buy）：目标价36,000日元。采用分部加总估值法（SOTP），医疗业务（FY3/27 EV/EBITDA 15倍，FY3/28 13倍）与IT业务（FY3/27 35倍，FY3/28 28倍）。风险：EUV光罩基板竞争格局变化、EUV薄膜采用导致EUV光罩用量下降、利率环境变动。
+
+• 东京电子（Buy）：目标价18,000日元。基于全球SPE平均EV/EBITDA 18倍及FY3/28预期，附加30%溢价。风险：半导体行业库存调整延长、出口限制加码、利率上行压制估值倍数。
+
+• 铠侠控股（Buy）：目标价38,667日元。基于P/B与FY3/27-3/28预期ROE的相关性。风险：超大规模企业AI投资放缓、中国NAND厂商崛起、成本上升或产能利用率波动导致利润率下滑、日元急升。
+
+五、上行风险与策略启示
+
+• AI Capex长尾效应：若2028年后AI基础设施投资维持高位，设备商订单能见度将延长。
+
+• HBM技术路径变化：层数减少可能促使客户通过增加晶圆投片量来弥补单芯片容量损失，反而利好刻蚀/沉积设备。
+
+• 估值修复窗口：当前板块估值处于周期中值以下，一旦宏观利率预期企稳，具备盈利上修潜力的个股有望迎来戴维斯双击。</div>
+            
+            <div class="card-footer">
+                <span>👍 1</span>
+                <span>💬 0</span>
+                <span>👁 572</span>
+                <a href="https://wx.zsxq.com/dweb2/index/topic/82258281441218522" target="_blank">原文链接</a>
+            </div>
+        </div>
+        
+
+<script>
+// 板块分布饼图
+new Chart(document.getElementById('sectorPie'), {
+    type: 'doughnut',
+    data: {
+        labels: ["\u5176\u4ed6", "\u7535\u5b50", "\u8ba1\u7b97\u673a", "\u673a\u68b0\u8bbe\u5907", "\u623f\u5730\u4ea7"],
+        datasets: [{ data: [7, 2, 1, 1, 1],
+                      backgroundColor: ["#e74c3c", "#3498db", "#2ecc71", "#f39c12", "#9b59b6"] }]
+    },
+    options: { plugins: { legend: { position: 'right' } } }
+});
+
+// 发布时间柱状图
+new Chart(document.getElementById('timeBar'), {
+    type: 'bar',
+    data: {
+        labels: ["00:00", "02:00", "04:00", "06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00", "20:00", "22:00"],
+        datasets: [{ data: [12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      backgroundColor: '#3498db' }]
+    },
+    options: { plugins: { legend: { display: false } },
+               scales: { y: { beginAtZero: true } } }
+});
+
+// 板块筛选
+function filterCards(sector) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.card').forEach(c => {
+        if (sector === 'all' || c.dataset.sector === sector) {
+            c.classList.remove('hidden');
+        } else {
+            c.classList.add('hidden');
+        }
+    });
+}
+
+// ── 书签功能 ──
+const BM_KEY = 'zsxq_bm_2026-10-04';
+
+function getBookmarks() {
+    try { return JSON.parse(localStorage.getItem(BM_KEY) || '{}'); } catch(e) { return {}; }
+}
+
+function saveBookmarks(bm) {
+    localStorage.setItem(BM_KEY, JSON.stringify(bm));
+    renderBookmarkBar();
+}
+
+function toggleBookmark(btn) {
+    var tid = btn.dataset.tid;
+    var bm = getBookmarks();
+    if (bm[tid]) {
+        delete bm[tid];
+        btn.classList.remove('bookmarked');
+        removeFromSaved(tid);
+    } else {
+        bm[tid] = btn.dataset.title;
+        btn.classList.add('bookmarked');
+        addToSaved(btn);
+    }
+    saveBookmarks(bm);
+}
+
+function addToSaved(btn) {
+    var card = btn.parentNode;
+    while (card && !card.classList.contains('card')) card = card.parentNode;
+    if (!card) { showSyncStatus('错误: 找不到卡片'); return; }
+    var tid = card.dataset.tid;
+    var saved = [];
+    try { saved = JSON.parse(localStorage.getItem('zsxq_saved') || '[]'); } catch(e) {}
+    // 只增不改：已在研究积累中的条目绝不被覆盖（保护用户编辑过的标题/级别/顺序）
+    for (var _e = 0; _e < saved.length; _e++) {
+        if (saved[_e].tid === tid) { showSyncStatus('已在研究积累中，保持不变'); return; }
+    }
+    var bodyEl = card.querySelector('.card-body');
+    var item = {
+        tid: tid,
+        title: card.dataset.title || '',
+        content: bodyEl ? bodyEl.textContent : '',
+        sector: card.dataset.sector || '其他',
+        author: (card.querySelector('.author') || {}).textContent || '',
+        time: (card.querySelector('.time') || {}).textContent || '',
+        link: card.dataset.link || '',
+        date: document.querySelector('meta[name="report-date"]').content || '',
+        level: 1
+    };
+    saved.unshift(item);
+    localStorage.setItem('zsxq_saved', JSON.stringify(saved));
+    showSyncStatus('已同步: ' + (item.title || tid).substring(0, 30));
+}
+
+function showSyncStatus(msg) {
+    var el = document.getElementById('syncDebug');
+    var st = document.getElementById('syncStatus');
+    if (!el || !st) return;
+    el.style.display = 'block';
+    var saved = 0; try { saved = JSON.parse(localStorage.getItem('zsxq_saved') || '[]').length; } catch(e) {}
+    st.textContent = '研究积累: ' + saved + ' 条 | ' + msg;
+}
+
+function getDeletedIds() {
+    var delIds = {};
+    try {
+        var sd = JSON.parse(localStorage.getItem('zsxq_deleted') || '[]');
+        for (var q = 0; q < sd.length; q++) delIds[sd[q]] = true;
+    } catch(e) {}
+    return delIds;
+}
+
+function forceSyncAll() {
+    var btns = document.querySelectorAll('.bm-btn.bookmarked');
+    var saved = [];
+    try { saved = JSON.parse(localStorage.getItem('zsxq_saved') || '[]'); } catch(e) {}
+    var ids = {};
+    for (var i = 0; i < saved.length; i++) ids[saved[i].tid] = true;
+    var delIds = getDeletedIds();
+    var count = 0;
+    for (var i = 0; i < btns.length; i++) {
+        if (!ids[btns[i].dataset.tid] && !delIds[btns[i].dataset.tid]) { addToSaved(btns[i]); count++; }
+    }
+    showSyncStatus('强制同步完成: ' + count + ' 条');
+}
+
+function removeFromSaved(tid) {
+    // 不从 zsxq_saved 删除 — 研究积累页面的内容只通过该页面的保存按钮控制
+    // 取消收藏只影响 zsxq_bm_* (已由 saveBookmarks 处理)
+}
+
+function scrollToCard(tid) {
+    var card = document.getElementById('topic-' + tid);
+    if (!card) return;
+    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    card.classList.add('highlight');
+    var btns = document.querySelectorAll('.filter-btn');
+    for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
+    var allBtn = document.querySelector('.filter-btn');
+    if (allBtn) allBtn.classList.add('active');
+    var cards = document.querySelectorAll('.card');
+    for (var i = 0; i < cards.length; i++) cards[i].classList.remove('hidden');
+    setTimeout(function(){ card.classList.remove('highlight'); }, 2000);
+}
+
+function removeBookmark(tid, e) {
+    e.stopPropagation();
+    var bm = getBookmarks();
+    delete bm[tid];
+    saveBookmarks(bm);
+    var btn = document.querySelector("[data-tid='" + tid + "'].bm-btn");
+    if (btn) btn.classList.remove('bookmarked');
+}
+
+function renderBookmarkBar() {
+    var bar = document.getElementById('bookmarkBar');
+    var list = document.getElementById('bookmarkList');
+    var bm = getBookmarks();
+    var keys = Object.keys(bm);
+    if (keys.length === 0) { bar.style.display = 'none'; return; }
+    bar.style.display = 'flex';
+    list.innerHTML = '';
+    for (var i = 0; i < keys.length; i++) {
+        (function(tid, title) {
+            var s = document.createElement('span');
+            s.className = 'bm-item';
+            s.textContent = title.substring(0, 30);
+            s.onclick = function() { scrollToCard(tid); };
+            var x = document.createElement('span');
+            x.className = 'bm-remove';
+            x.textContent = '×';
+            x.onclick = function(ev) { removeBookmark(tid, ev); };
+            s.appendChild(x);
+            list.appendChild(s);
+        })(keys[i], bm[keys[i]]);
+    }
+}
+
+(function() {
+    renderBookmarkBar();
+    var bm = getBookmarks();
+    for (var tid in bm) {
+        var btn = document.querySelector("[data-tid='" + tid + "'].bm-btn");
+        if (btn) btn.classList.add('bookmarked');
+    }
+    showSyncStatus('页面就绪，书签: ' + Object.keys(bm).length + ' 条');
+    // 自动同步已有书签到研究积累（跳过已删除的）
+    setTimeout(function() {
+        var btns = document.querySelectorAll('.bm-btn.bookmarked');
+        var saved = [];
+        try { saved = JSON.parse(localStorage.getItem('zsxq_saved') || '[]'); } catch(e) {}
+        var ids = {};
+        for (var i = 0; i < saved.length; i++) ids[saved[i].tid] = true;
+        var delIds = getDeletedIds();
+        var count = 0;
+        for (var i = 0; i < btns.length; i++) {
+            if (!ids[btns[i].dataset.tid] && !delIds[btns[i].dataset.tid]) { addToSaved(btns[i]); count++; }
+        }
+        if (count > 0) showSyncStatus('自动同步: ' + count + ' 条');
+    }, 500);
+})();
+
+// ── URL 锚点找回：#fav-<tid> 自动收藏并同步到研究积累 ──
+(function() {
+    var m = location.hash.match(/^#fav-(\d+)$/);
+    if (!m) return;
+    var tid = m[1];
+    setTimeout(function() {
+        var btn = document.querySelector(".bm-btn[data-tid='" + tid + "']");
+        if (!btn) return;
+        var saved = [];
+        try { saved = JSON.parse(localStorage.getItem('zsxq_saved') || '[]'); } catch(e) {}
+        var delIds = getDeletedIds();
+        for (var i = 0; i < saved.length; i++) {
+            if (saved[i].tid === tid) { scrollToCard(tid); return; }
+        }
+        if (delIds[tid]) {
+            try {
+                var sd = JSON.parse(localStorage.getItem('zsxq_deleted') || '[]');
+                var nd = sd.filter(function(x) { return x !== tid; });
+                localStorage.setItem('zsxq_deleted', JSON.stringify(nd));
+            } catch(e) {}
+        }
+        addToSaved(btn);
+        btn.classList.add('bookmarked');
+        var bm = getBookmarks();
+        if (!bm[tid]) { bm[tid] = btn.dataset.title || ''; saveBookmarks(bm); }
+        scrollToCard(tid);
+    }, 800);
+})();
+
+// ── 划词「千问搜索」浮动按钮（不拦截右键，原生复制保留） ──
+(function() {
+    var fab = document.createElement('div');
+    fab.className = 'qw-fab';
+    fab.innerHTML = '<span class="ic">🔍</span><span>千问搜索</span>';
+    document.body.appendChild(fab);
+
+    var toast = document.createElement('div');
+    toast.className = 'qw-toast';
+    document.body.appendChild(toast);
+    var toastTimer = null;
+    function showToast(msg) {
+        toast.textContent = msg;
+        toast.style.opacity = '1';
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function(){ toast.style.opacity = '0'; }, 2400);
+    }
+
+    var selText = '';
+    function showFab(x, y, t) {
+        if (!t) { fab.style.display = 'none'; return; }
+        selText = t;
+        fab.style.display = 'flex';
+        var fw = fab.offsetWidth, fh = fab.offsetHeight;
+        if (x + fw / 2 > window.innerWidth - 8) x = window.innerWidth - fw / 2 - 8;
+        if (x - fw / 2 < 8) x = fw / 2 + 8;
+        var top = y - fh - 8;
+        if (top < 8) top = y + 8;
+        fab.style.left = Math.max(4, x - fw / 2) + 'px';
+        fab.style.top = Math.max(4, top) + 'px';
+    }
+
+    document.addEventListener('mouseup', function(e) {
+        setTimeout(function() {
+            var sel = window.getSelection();
+            var t = (sel || '').toString().trim();
+            if (!t || sel.rangeCount === 0) { fab.style.display = 'none'; return; }
+            var rect = sel.getRangeAt(0).getBoundingClientRect();
+            showFab(rect.left + rect.width / 2, rect.top, t);
+        }, 0);
+    });
+
+    // 点击按钮外区域 / 滚动时收起
+    document.addEventListener('mousedown', function(e) {
+        if (!fab.contains(e.target)) fab.style.display = 'none';
+    });
+    window.addEventListener('scroll', function() { fab.style.display = 'none'; }, true);
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') fab.style.display = 'none';
+    });
+
+    function copyText(t) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(t).catch(function(){ fallbackCopy(t); });
+        } else { fallbackCopy(t); }
+    }
+    function fallbackCopy(t) {
+        var ta = document.createElement('textarea');
+        ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch(e) {}
+        document.body.removeChild(ta);
+    }
+
+    fab.addEventListener('click', function() {
+        if (!selText) return;
+        fab.style.display = 'none';
+        // 同步复制完整文本（必须在 window.open 之前执行，否则新标签页抢焦点导致复制失败）
+        fallbackCopy(selText);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(selText).catch(function(){});
+        }
+        // 搜索 URL 用截断文本（超长会被搜索引擎截断）
+        var q = selText.length > 200 ? selText.substring(0, 200) : selText;
+        window.open('https://www.qianwen.com/?q=' + encodeURIComponent(q), '_blank');
+        var brief = selText.length > 20 ? selText.substring(0, 20) + '…' : selText;
+        showToast('已复制「' + brief + '」，正在打开千问搜索…');
+    });
+})();
+
+/* ========== 卡片大图浮层（2026-09-20 恢复）========== */
+var _ovZoom = 1;
+function _ovKey(e) { if (e.key === 'Escape') closeCardImg(); }
+function closeCardImg() {
+    var d = document.getElementById('imgOverlay');
+    if (d) d.remove();
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+    document.removeEventListener('keydown', _ovKey);
+}
+function openCardImg(el) {
+    var old = document.getElementById('imgOverlay');
+    if (old) old.remove();
+    _ovZoom = 1;
+    var box = document.createElement('div');
+    box.id = 'imgOverlay';
+    box.className = 'img-overlay';
+    box.innerHTML = '<img src="' + el.getAttribute('src') + '" alt="">' +
+                    '<div class="img-overlay-tip">滚轮缩放 · 点击图片切换 1x/2x · Esc 或点空白关闭</div>';
+    box.onclick = function(e) { if (e.target === box) closeCardImg(); };
+    document.body.appendChild(box);
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    var img = box.querySelector('img');
+    img.onclick = function(e) {
+        e.stopPropagation();
+        _ovZoom = _ovZoom > 1.05 ? 1 : 2;
+        this.style.transform = 'scale(' + _ovZoom + ')';
+        this.style.cursor = _ovZoom > 1 ? 'zoom-out' : 'zoom-in';
+    };
+    box.addEventListener('wheel', function(e) {
+        e.preventDefault();
+        _ovZoom = Math.max(0.4, Math.min(6, _ovZoom + (e.deltaY > 0 ? -0.15 : 0.15)));
+        img.style.transform = 'scale(' + _ovZoom + ')';
+        img.style.cursor = _ovZoom > 1 ? 'zoom-out' : 'zoom-in';
+    }, {passive: false});
+    document.addEventListener('keydown', _ovKey);
+}
+</script>
+</body>
+</html>
