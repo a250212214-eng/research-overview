@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>588000 申赎监控 · 科创50ETF华夏</title>
+<script src="../auth.js"></script>
+<style>
+:root{
+  --bg:#f5f7fb; --card:#ffffff; --line:#e4e9f2; --text:#1b2434; --muted:#6b7688;
+  --up:#d92b2b; --down:#0f9d58; --blue:#2563eb; --blue-soft:#eef4ff;
+  --shadow:0 1px 3px rgba(20,35,70,.06),0 6px 18px rgba(20,35,70,.05);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+ font-size:14px;line-height:1.6}
+.wrap{max-width:1180px;margin:0 auto;padding:22px 18px 60px}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;margin-bottom:6px}
+h1{font-size:24px;margin:0;font-weight:700;letter-spacing:.3px}
+.code{font-size:13px;color:var(--muted);background:#fff;border:1px solid var(--line);
+ padding:2px 9px;border-radius:20px}
+.sub{color:var(--muted);font-size:12.5px;margin-bottom:18px}
+.sub b{color:var(--text);font-weight:600}
+.pill{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:6px;
+ padding:3px 9px;margin-right:8px;font-size:12px;color:var(--muted)}
+.pill b{color:var(--text)}
+.back{float:right;font-size:12.5px;color:var(--blue)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+ box-shadow:var(--shadow);padding:18px 20px;margin-bottom:16px}
+.card h2{font-size:15px;margin:0 0 14px;font-weight:700;display:flex;align-items:center;gap:8px}
+.card h2 small{font-weight:400;color:var(--muted);font-size:12px}
+.quote{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px}
+.qi{border-right:1px solid var(--line);padding-right:12px}
+.qi:last-child{border-right:0}
+.qi .k{font-size:11.5px;color:var(--muted);letter-spacing:.2px}
+.qi .v{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:2px}
+.qi .x{font-size:11.5px;color:var(--muted)}
+.up{color:var(--up)} .down{color:var(--down)}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:720px){.three{grid-template-columns:1fr}}
+.mcard{border-radius:12px;border:1px solid var(--line);background:#fff;padding:18px 20px;
+ box-shadow:var(--shadow);position:relative;overflow:hidden}
+.mcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+.mcard.b::before{background:var(--up)} .mcard.s::before{background:var(--down)}
+.mcard.n::before{background:var(--blue)}
+.mcard .lab{font-size:12.5px;color:var(--muted)}
+.mcard .num{font-size:30px;font-weight:750;font-variant-numeric:tabular-nums;
+ letter-spacing:-.5px;margin:6px 0 2px;line-height:1.15}
+.mcard .unit{font-size:13px;font-weight:500;color:var(--muted);margin-left:3px}
+.mcard .hint{font-size:11.5px;color:var(--muted);border-top:1px dashed var(--line);
+ padding-top:8px;margin-top:8px}
+.tag{display:inline-block;font-size:10.5px;padding:1px 7px;border-radius:10px;
+ background:var(--blue-soft);color:var(--blue);margin-left:6px;vertical-align:middle}
+.chart{width:100%;height:auto;display:block}
+.legend{font-size:11.5px;color:var(--muted);margin-top:6px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin:0 4px 0 12px}
+table{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 8px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th{color:var(--muted);font-weight:600;background:#fafbfe;position:sticky;top:0}
+th:first-child,td:first-child{text-align:left}
+tbody tr:hover{background:#fafcff}
+.scroll{overflow:auto;max-height:420px;border:1px solid var(--line);border-radius:8px}
+.note{font-size:12.5px;color:var(--muted);line-height:1.85}
+.note b{color:var(--text)}
+.note ul{margin:8px 0 0;padding-left:20px}
+.note li{margin-bottom:5px}
+.warn{background:#fff8e8;border:1px solid #f5dfa8;color:#7a5b12;border-radius:8px;
+ padding:11px 14px;font-size:12.5px;margin-bottom:14px;line-height:1.7}
+.src{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-top:10px}
+.src a{display:block;border:1px solid var(--line);border-radius:8px;padding:10px 12px;
+ background:#fafbfe;font-size:12px;color:var(--text)}
+.src a:hover{text-decoration:none;border-color:#b9cdf5;background:var(--blue-soft)}
+.src .n{font-weight:650}
+.src .u{color:var(--muted);font-size:11.5px;margin-top:2px}
+.empty{padding:30px 12px;text-align:center;color:var(--muted);font-size:13px}
+.anchor{display:flex;flex-wrap:wrap;gap:10px}
+.anchor div{flex:1 1 220px;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#fafbfe}
+.anchor .d{font-size:11.5px;color:var(--muted)}
+.anchor .v{font-size:17px;font-weight:700;margin:2px 0}
+footer{text-align:center;color:var(--muted);font-size:11.5px;margin-top:26px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html">← 返回研究总览</a>
+  <div class="top"><h1>588000 申赎监控</h1><span class="code">科创50ETF华夏 · 华夏上证科创板50成份ETF</span></div>
+  <div class="sub" id="meta">加载中…</div>
+
+  <div class="card">
+    <h2>📌 最新快照 <small>盘后披露值</small></h2>
+    <div class="quote" id="quote"></div>
+  </div>
+
+  <div class="three" id="three"></div>
+
+  <div class="card" style="margin-top:16px">
+    <h2>📊 日频净申购金额 <small>近 30 个采集日 · 单位：亿元</small></h2>
+    <div id="barchart"></div>
+    <div class="legend"><i style="background:var(--up)"></i>净申购（份额净增）<i style="background:var(--down)"></i>净赎回（份额净减）</div>
+    <div class="warn" style="margin-top:14px;margin-bottom:0">
+      <b>口径提示</b>：公开渠道每日只披露<b>基金总份额</b>（盘后值），并非一级市场逐笔申赎流水。
+      本页「净申购」= 份额变化 × 当日单位净值（Wind / Choice / 新浪基金通行口径）；
+      「申购 / 赎回」是把净额按增减方向做的<b>单边归因</b>，二者相加恒等于净额，<b>不代表当日双边实际发生额</b>。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📈 单位净值与基金份额 <small>近 60 个交易日净值 / 采集到的份额</small></h2>
+    <div id="linechart"></div>
+    <div class="legend"><i style="background:var(--blue)"></i>单位净值（元）<i style="background:#f59e0b"></i>基金总份额（亿份）</div>
+  </div>
+
+  <div class="card">
+    <h2>🧾 每日明细 <small>每日 16:05 自动采集</small></h2>
+    <div class="scroll"><table id="daily"><thead><tr>
+      <th>数据日</th><th>总份额<br>亿份</th><th>份额变化<br>亿份</th><th>单位净值<br>元</th>
+      <th>申购<br>亿元</th><th>赎回<br>亿元</th><th>净申购<br>亿元</th>
+    </tr></thead><tbody></tbody></table></div>
+  </div>
+
+  <div class="card">
+    <h2>🏛 官方季度双边申赎 <small>基金定期报告 · 唯一权威双边数据 · 单位：亿份 / 亿元</small></h2>
+    <div class="scroll"><table id="quarter"><thead><tr>
+      <th>报告期</th><th>期间申购<br>亿份</th><th>期间赎回<br>亿份</th><th>净增份额<br>亿份</th>
+      <th>期末总份额<br>亿份</th><th>期末净资产<br>亿元</th>
+    </tr></thead><tbody></tbody></table></div>
+    <div class="note" style="margin-top:10px">季度数据来自基金定期报告披露的<b>期间申购 / 期间赎回份额</b>，是真实的双边发生量；日频双边金额需上交所 Level-2 授权数据，本页不臆造。</div>
+  </div>
+
+  <div class="card">
+    <h2>🔎 公开报道校验锚点 <small>人工核验 · 不参与本页自动计算</small></h2>
+    <div class="anchor" id="anchors"></div>
+  </div>
+
+  <div class="card">
+    <h2>📖 数据来源与口径</h2>
+    <div class="note" id="method"></div>
+    <div class="src" id="sources"></div>
+  </div>
+
+  <footer id="foot">数据仅供研究参考，不构成投资建议</footer>
+</div>
+
+<script>
+const RED='#d92b2b', GREEN='#0f9d58', BLUE='#2563eb', AMBER='#f59e0b';
+const fmt=(v,d=2)=>v===null||v===undefined||Number.isNaN(v)?'—':Number(v).toFixed(d);
+const signed=(v,d=2)=>v===null||v===undefined?'—':(v>0?'+':'')+Number(v).toFixed(d);
+const cls=v=>v===null||v===undefined?'':(v>0?'up':v<0?'down':'');
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function barChart(rows){
+  const r=rows.filter(x=>x.net_yi!==null&&x.net_yi!==undefined).slice(-30);
+  if(!r.length) return '<div class="empty">监控已启动，等待下一交易日份额更新后生成净申购数据。<br>期间可参考下方「季度官方双边申赎」与「公开报道校验锚点」。</div>';
+  const W=1080,H=250,PL=58,PR=18,PT=18,PB=34,iw=W-PL-PR,ih=H-PT-PB;
+  const mx=Math.max(1,...r.map(x=>Math.abs(x.net_yi)))*1.15;
+  const y0=PT+ih/2, bw=Math.max(3,Math.min(30,iw/r.length*0.62));
+  let s=`<svg class="chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">`;
+  [-1,-0.5,0,0.5,1].forEach(k=>{const y=y0-k*ih/2;
+    s+=`<line x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}" stroke="${k===0?'#c9d3e4':'#eef1f7'}" stroke-width="1"/>`;
+    s+=`<text x="${PL-8}" y="${y+4}" text-anchor="end" font-size="11" fill="#8a94a6">${fmt(k*mx,1)}</text>`;});
+  r.forEach((x,i)=>{
+    const cx=PL+iw*(i+0.5)/r.length, v=x.net_yi, h=Math.abs(v)/mx*ih/2;
+    const y=v>=0?y0-h:y0, col=v>=0?RED:GREEN;
+    s+=`<rect x="${cx-bw/2}" y="${y}" width="${bw}" height="${Math.max(1,h)}" rx="2" fill="${col}" opacity=".88"><title>${x.date} 净申购 ${fmt(v)} 亿元</title></rect>`;
+    if(r.length<=16||i%Math.ceil(r.length/12)===0)
+      s+=`<text x="${cx}" y="${H-12}" text-anchor="middle" font-size="10" fill="#8a94a6">${x.date.slice(5)}</text>`;
+  });
+  s+='</svg>'; return s;
+}
+
+function lineChart(nav,rows){
+  const n=nav.slice(-60); if(!n.length) return '<div class="empty">暂无净值数据</div>';
+  const W=1080,H=190,PL=54,PR=54,PT=16,PB=26,iw=W-PL-PR,ih=H-PT-PB;
+  const vals=n.map(x=>x.nav), lo=Math.min(...vals), hi=Math.max(...vals), pad=(hi-lo)*0.12||0.01;
+  const y=v=>PT+ih-(v-(lo-pad))/((hi+pad)-(lo-pad))*ih;
+  const sByDate={}; rows.forEach(r=>sByDate[r.date]=r.share_yi);
+  const sv=n.map(x=>sByDate[x.date]).filter(v=>v!==undefined);
+  const slo=sv.length?Math.min(...sv):0, shi=sv.length?Math.max(...sv):1;
+  const sy=v=>PT+ih-(v-slo)/((shi-slo)||1)*ih;
+  let s=`<svg class="chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">`;
+  [0,.5,1].forEach(k=>{const yy=PT+ih*k;
+    s+=`<line x1="${PL}" y1="${yy}" x2="${W-PR}" y2="${yy}" stroke="#eef1f7"/>`;
+    s+=`<text x="${PL-8}" y="${yy+4}" text-anchor="end" font-size="11" fill="#8a94a6">${fmt(hi+pad-k*(hi-lo+2*pad),3)}</text>`;});
+  const path=(arr,fy)=>arr.map((p,i)=>`${i?'L':'M'}${(PL+iw*(i+0.5)/arr.length).toFixed(1)},${fy(p).toFixed(1)}`).join(' ');
+  s+=`<path d="${path(n,p=>y(p.nav))}" fill="none" stroke="${BLUE}" stroke-width="2.2" stroke-linejoin="round"/>`;
+  if(sv.length>1){
+    const pts=n.filter(x=>sByDate[x.date]!==undefined);
+    s+=`<path d="${path(pts,p=>sy(sByDate[p.date]))}" fill="none" stroke="${AMBER}" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"/>`;
+  }
+  n.forEach((p,i)=>{if(i%Math.ceil(n.length/8)===0)
+    s+=`<text x="${PL+iw*(i+0.5)/n.length}" y="${H-7}" text-anchor="middle" font-size="10" fill="#8a94a6">${p.date.slice(5)}</text>`;});
+  s+='</svg>'; return s;
+}
+
+function render(d){
+  const L=d.latest||{};
+  document.getElementById('meta').innerHTML=
+    `<span class="pill">数据日 <b>${esc(d.data_date)}</b></span>`+
+    `<span class="pill">更新时间 <b>${esc(d.updated_at)}</b></span>`+
+    `<span class="pill">采集 <b>每日 16:05</b></span>`+
+    `<span class="pill">份额历史 <b>${d.share_days||(d.history||[]).length} 天</b></span>`;
+  const Q=d.quote||{};
+  const qcls=cls(Q.pct);
+  const qprice=Q.price?fmt(Q.price,4):'—';
+  const qpct=(Q.pct===undefined||Q.pct===null)?'—':(Q.pct>0?'+':'')+fmt(Q.pct,2)+'%';
+  document.getElementById('quote').innerHTML=[
+    ['最新市价（实时）',qprice,Q.time?`行情时刻 ${esc(Q.time)}`:'行情暂不可用'],
+    ['当日涨跌',qpct,'按昨收计算',qcls],
+    ['基金总份额',fmt(L.share_yi,2),'亿份 · 盘后披露'],
+    ['单位净值',fmt(L.nav,4),`截至 ${esc(d.data_date)}`],
+    ['基金资产净值',fmt(L.aum_yi,2),'亿元 = 份额 × 净值'],
+    ['估算总市值',fmt(L.market_cap_yi,2),'亿元 = 份额 × 实时价'],
+  ].map(x=>`<div class="qi"><div class="k">${x[0]}</div><div class="v ${x[3]||''}">${x[1]}</div><div class="x">${x[2]}</div></div>`).join('');
+
+  const net=L.net_yi;
+  const cards=[
+    ['b','申购金额',L.buy_yi,'净增归因','份额增加的部分折算为申购；非当日实际申购总额'],
+    ['s','赎回金额',L.sell_yi,'净减归因','份额减少的部分折算为赎回；非当日实际赎回总额'],
+    ['n','净申购金额',net,'核心指标','(当日份额 − 上一交易日份额) × 当日单位净值'],
+  ];
+  document.getElementById('three').innerHTML=cards.map(c=>{
+    const col=c[0]==='b'?'up':c[0]==='s'?'down':cls(net);
+    const val=c[2]===null||c[2]===undefined?'—':(c[0]==='n'?signed(c[2]):fmt(c[2]));
+    return `<div class="mcard ${c[0]}"><div class="lab">${c[1]}<span class="tag">${c[3]}</span></div>`+
+      `<div class="num ${col}">${val}<span class="unit">亿元</span></div>`+
+      `<div class="hint">${c[4]}</div></div>`;
+  }).join('');
+
+  document.getElementById('barchart').innerHTML=barChart(d.history||[]);
+  document.getElementById('linechart').innerHTML=lineChart(d.nav_trend||[],d.history||[]);
+
+  const rows=[...(d.history||[])].reverse();
+  document.querySelector('#daily tbody').innerHTML=rows.length?rows.map(r=>`<tr>
+    <td>${esc(r.date)}</td><td>${fmt(r.share_yi,2)}</td>
+    <td class="${cls(r.d_share_yi)}">${signed(r.d_share_yi,2)}</td><td>${fmt(r.nav,4)}</td>
+    <td class="up">${r.buy_yi===null?'—':fmt(r.buy_yi)}</td>
+    <td class="down">${r.sell_yi===null?'—':fmt(r.sell_yi)}</td>
+    <td class="${cls(r.net_yi)}"><b>${signed(r.net_yi)}</b></td></tr>`).join('')
+    :'<tr><td colspan="7" style="text-align:center;color:#6b7688;padding:24px">尚无采集数据</td></tr>';
+
+  document.querySelector('#quarter tbody').innerHTML=[...(d.quarterly||[])].reverse().map(q=>`<tr>
+    <td>${esc(q.date)}</td><td class="up">${fmt(q.buy_share_yi)}</td><td class="down">${fmt(q.sell_share_yi)}</td>
+    <td class="${cls(q.net_share_yi)}">${signed(q.net_share_yi)}</td><td>${fmt(q.total_share_yi)}</td>
+    <td>${fmt(q.na_yi)}</td></tr>`).join('');
+
+  document.getElementById('anchors').innerHTML=(d.anchors||[]).map(a=>`<div>
+    <div class="d">${esc(a.date)} · ${esc(a.source)}</div>
+    <div class="v ${cls(a.net_yi)}">${signed(a.net_yi)} 亿元</div>
+    <div class="d">${esc(a.note)}</div>
+    <a href="${esc(a.url)}" target="_blank" rel="noopener" style="font-size:11.5px">查看原文 ↗</a></div>`).join('');
+
+  const m=d.methodology||{};
+  document.getElementById('method').innerHTML=`<ul>
+    <li><b>净申购金额</b>：${esc(m.net)}</li>
+    <li><b>申购 / 赎回</b>：${esc(m.buy_sell)}</li>
+    <li><b>双边实际发生额</b>：${esc(m.bilateral)}</li>
+    <li><b>数据时点</b>：${esc(m.timing)}。因此 16:05 采集到的通常是<b>最近一个已披露交易日</b>的数据，页面「数据日」即为该交易日。</li>
+    <li><b>注意</b>：${esc(m.caveat)}</li></ul>`;
+  document.getElementById('sources').innerHTML=(d.sources||[]).map(s=>
+    `<a href="${esc(s.url)}" target="_blank" rel="noopener"><div class="n">${esc(s.name)}</div><div class="u">${esc(s.use)}</div></a>`).join('');
+  document.getElementById('foot').textContent='数据仅供研究参考，不构成投资建议 · 数据源：东方财富数据中心 / 天天基金 / 腾讯行情 / 上交所 PCF · '+esc(d.updated_at);
+}
+
+fetch('./data.json?v='+Date.now()).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
+ .then(render).catch(e=>{document.getElementById('meta').innerHTML='<b style="color:#d92b2b">数据加载失败：'+esc(e.message)+'</b>';});
+// 每 10 分钟自动刷新（带 cache-bust，绕过 Pages CDN 缓存）
+setTimeout(()=>location.reload(),600000);
+</script>
+</body>
+</html>
