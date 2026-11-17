@@ -3,44 +3,30 @@
   "name": "华夏上证科创板50成份ETF",
   "short": "科创50ETF华夏",
   "index": "科创50 (000688)",
-  "data_date": "2026-11-13",
-  "updated_at": "2026-11-16 18:33:04 +0800",
+  "data_date": "2026-11-16",
+  "updated_at": "2026-11-17 08:17:21 +0800",
   "quote": {
     "price": 1.282,
     "prev_close": 1.354,
     "pct": -5.32,
     "time": "2026-11-16 16:14:55"
   },
-  "share_days": 1459,
+  "share_days": 1460,
   "latest": {
-    "date": "2026-11-13",
-    "share_yi": 1033.9167,
-    "nav": 1.3538,
-    "price": 1.3538,
+    "date": "2026-11-16",
+    "share_yi": 1034.6967,
+    "nav": 1.2849,
+    "price": 1.2849,
     "prev_close": null,
-    "pct": -2.2,
-    "market_cap_yi": 1325.48,
-    "aum_yi": 1399.72,
-    "d_share_yi": -9.06,
-    "net_yi": -12.2654,
-    "buy_yi": 0,
-    "sell_yi": 12.2654
+    "pct": -5.09,
+    "market_cap_yi": 1326.48,
+    "aum_yi": 1329.48,
+    "d_share_yi": 0.78,
+    "net_yi": 1.0022,
+    "buy_yi": 1.0022,
+    "sell_yi": 0
   },
   "history": [
-    {
-      "date": "2026-05-21",
-      "share_yi": 348.9867,
-      "nav": 1.8582,
-      "price": 1.8582,
-      "prev_close": null,
-      "pct": -3.71,
-      "market_cap_yi": 447.4,
-      "aum_yi": 648.49,
-      "d_share_yi": -2.46,
-      "net_yi": -4.5712,
-      "buy_yi": 0,
-      "sell_yi": 4.5712
-    },
     {
       "date": "2026-05-22",
       "share_yi": 344.9067,
@@ -1706,14 +1692,23 @@
       "net_yi": -12.2654,
       "buy_yi": 0,
       "sell_yi": 12.2654
+    },
+    {
+      "date": "2026-11-16",
+      "share_yi": 1034.6967,
+      "nav": 1.2849,
+      "price": 1.2849,
+      "prev_close": null,
+      "pct": -5.09,
+      "market_cap_yi": 1326.48,
+      "aum_yi": 1329.48,
+      "d_share_yi": 0.78,
+      "net_yi": 1.0022,
+      "buy_yi": 1.0022,
+      "sell_yi": 0
     }
   ],
   "nav_trend": [
-    {
-      "date": "2026-08-14",
-      "nav": 1.8134,
-      "pct": -0.01
-    },
     {
       "date": "2026-08-17",
       "nav": 1.8886,
@@ -2008,6 +2003,11 @@
       "date": "2026-11-13",
       "nav": 1.3538,
       "pct": -2.2
+    },
+    {
+      "date": "2026-11-16",
+      "nav": 1.2849,
+      "pct": -5.09
     }
   ],
   "quarterly": [
