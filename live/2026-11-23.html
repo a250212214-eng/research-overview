@@ -56,7 +56,7 @@ footer{text-align:center;font-size:11.5px;color:var(--muted);margin-top:26px}
     <a class="back" href="../index.html">← 返回研究总览</a>
   </header>
   <div class="toolbar">
-    <div class="hint">全文直接展示 · 按发帖时间倒序 · 无需跳转 · 页面每 5 分钟自动刷新</div>
+    <div class="hint">全文直接展示 · 按发帖时间倒序 · 无需跳转 · 每 5 分钟无刷新更新</div>
     <input id="q" type="search" placeholder="🔍 页内筛选（标题 / 正文 / 作者）" autocomplete="off">
   </div>
   <div class="list">
@@ -1047,15 +1047,39 @@ EDA
 <script>
 (function() {
   var q = document.getElementById('q');
-  if (q) q.addEventListener('input', function() {
-    var k = this.value.trim().toLowerCase();
-    var cards = document.querySelectorAll('.item');
+  function applyFilter() {
+    if (!q) return;
+    var k = q.value.trim().toLowerCase();
+    var cards = document.querySelectorAll('.list .item');
     for (var i = 0; i < cards.length; i++) {
       cards[i].style.display = !k || cards[i].textContent.toLowerCase().indexOf(k) >= 0 ? '' : 'none';
     }
-  });
+  }
+  if (q) q.addEventListener('input', applyFilter);
+
+  var busy = false;
+  function refresh() {
+    if (busy || document.hidden) return;   // 后台标签页不请求，避免无谓刷新
+    busy = true;
+    fetch(location.pathname + '?t=' + Date.now(), { cache: 'no-store' })
+      .then(function(r) { return r.ok ? r.text() : null; })
+      .then(function(text) {
+        if (!text) return;
+        var doc = new DOMParser().parseFromString(text, 'text/html');
+        var newList = doc.querySelector('.list');
+        var oldList = document.querySelector('.list');
+        if (!newList || !oldList) return;   // 登录门/异常页：静默跳过
+        oldList.innerHTML = newList.innerHTML;
+        var newSub = doc.querySelector('.sub');
+        var oldSub = document.querySelector('.sub');
+        if (newSub && oldSub) oldSub.innerHTML = newSub.innerHTML;
+        applyFilter();                      // 保留页内筛选
+      })
+      .catch(function() { /* 网络失败静默，下一轮再试 */ })
+      .then(function() { busy = false; });
+  }
+  setInterval(refresh, 300000);
 })();
-setTimeout(function(){ location.replace(location.pathname + '?t=' + Date.now()); }, 300000);
 </script>
 </body>
 </html>
